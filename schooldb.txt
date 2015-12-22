@@ -1,0 +1,405 @@
+1#tbl_users
+1. id
+2. name
+3. user_name
+4. email
+5. priv
+6. phone
+7. created_at
+8. updated_at
+9. user_type
+
+2#tbl_parents
+1. id
+2. guradian_id
+3. guardian_name
+4. fathers_name
+5. mothers_name
+6. fathers_name
+7. fathers_profession
+8. mothers_profession
+9. email
+10. phone
+11. address
+12. image
+13. gov_id
+14. user_name
+15. pass
+16. created_at
+17. updated_at
+18. user_type
+
+3#tbl_studets
+1. id
+2. st_id
+3. name
+4. guardian_name(id)
+5. gender
+6. religion 
+7. email
+8. phone
+9. email
+10.address
+11.class(id)
+12.section(id)
+13.roll
+14.image
+15.birth_certificate
+16.created_at
+17.updated_at
+18.route_name
+19.transport_rent
+20. status
+21. user_type
+
+4#tbl_teacher
+1. id
+2. teacher_id
+3. name
+4. designation
+5. birth_date
+7. gender
+8. religion
+9. email
+10.phone
+11.address
+12.join_date
+13.image
+14.gov_id
+15.user_name
+16.pass
+17.created_at
+18.updated_at
+19.user_type
+
+5#tbl_class
+1. id
+2. class
+3. class_numeric
+4. teacher_name(id)
+5. note
+
+6#tbl_section
+1.section name
+2.category
+3.class(id)
+4.teacher_name(id)
+5.note
+
+7#tbl_subject
+1.id
+2.sub_code
+3.class_name(id)
+4.teacher_name(id)
+5.sub_name
+6.sub_author
+
+8#tbl_grade_system
+1.id
+2.grade_name
+3.grade_point
+4.mark_form
+5.mark_upto
+6.note
+
+9#tbl_exam
+1. id
+2. exam_name
+3. date
+4. note
+
+10#tbl_exam_schedule
+1. id
+2. exam_name(id)
+3. class_name(id)
+4. section_name(id)
+5. sub_name(id)
+6. date
+7. time_from
+8. time_to
+9. room_no
+
+11#tbl_mark
+1. id
+2. image
+3. st_name
+4. roll
+5. phone
+6. mark
+7. class
+8. sub
+9. exam
+10.st_id
+11.created_at
+12.updated_at
+
+12#tbl_class_routine
+1. id
+2. class_name(id)
+3. section_name(id)
+4. subject_name(id)
+5. day
+6. start_time
+7. end_time
+9. room_no
+
+13#tbl_st_attendence
+1. id
+2. image
+3. st_name(id)
+4. section(id)
+5. roll
+6. phone
+7. status
+8. class_name(id)
+9. date
+10. st_id(id)
+
+14#tbl_teacher_attendence
+1. id
+2. teacher_id(id)
+3. image
+4. teacher_name(id)
+5. email
+6. status
+7. date
+
+15#tbl_staff_attendence
+1. id
+2. staff_id
+3. name
+4. email
+5. phone
+6. status
+7. date
+
+16#tbl_exam_attendence
+1. id
+2. class_name(id)
+3. exam_name(id)
+4. subject(id)
+5. exam_schedule(id)
+7. st_id(id)
+8. image
+9. st_name
+10. section
+11. roll
+12. phone
+13. status
+14. date
+
+
+17#tbl_transport
+1. id
+2. route_name
+3. transpot_rent
+4. vehicle_number
+5. vehicle_numberplate
+6. note
+7. status
+8. created_at
+9. updated_at
+
+18#ac_fee_type
+1. id
+2. fee_type
+3. fee_id
+4. note
+
+19#ac_invoice
+1. id
+2. class_name(id)
+3. invoice_id
+4. student_name(id)
+5. fee_type
+6. total_amount
+7. date
+8. created_at
+9. updated_at
+10.note
+11.status
+13.payment_method
+14.payment_ammount
+
+20#tbl_add_payment(class wise payment adding)
+1. id
+2. class_name(id)
+3. fee_type(id)
+4. amount
+5. date
+6. note
+7. status
+
+21#tbl_total_st_balance
+1. id
+2. name
+3. image
+4. phone
+5. roll
+6. total_balance
+7. paid_balance
+8. due_balance
+9. status(paid, pairttily paid, unpaid)
+
+22#tbl_expance
+1. id
+2. name
+3. date
+4. user
+5. amount
+6. note
+7. action 
+
+22#tbl_promotion(subject & mark need join)
+1. id
+2. class_name(id)
+3. sub1
+4. sub2
+5. sub5
+6. sub6
+7. sub7
+8. sub8
+9. sub9
+10.sub10
+11.sub11
+12.sub12
+13.sub13
+14.sub14
+15.sub15
+
+23#tbl_email_templete
+1. id
+2. class_name(id)
+3. templete_id
+4. user_type(id)
+5. tag
+6. templete_description
+
+24#tbl_sms_templete
+1. id
+2. sms_id
+3. class_name(id)
+4. user_type(id)
+5. tags
+6. description
+
+23#tbl_email_templete_report
+1. id
+2. class_name(id)
+3. templete_id
+4. user_type(id)
+5. tag
+6. templete_description
+7. created_at
+8. updated_at
+
+24#tbl_sms_templete_report
+1. id
+2. sms_id
+3. class_name(id)
+4. user_type(id)
+5. tags
+6. description
+7. created_at
+8. updated_at
+
+25#tbl_notice
+1. id
+2. title
+3. date
+4. description
+5. created_at
+6. updated_at
+
+26#tbl_staff
+1. id 
+2. name
+3. birth_date
+4. gender
+5. religio
+6. email
+7. phone
+8. address
+9. join_date
+10. image
+11. user_type(static)
+12. user_name
+13. password
+
+27#tbl_instituate
+1. id
+2. institute_code
+4. institute_name
+5. institute_url
+6. email
+7. phone
+8. address
+9. logo
+10.slider
+11.fevicon
+
+28#tbl_academic_calender
+1. id
+2. institute_code
+3. title
+4. date
+5. day
+6. event
+7. session(academic session)
+8. list_holidays(upload_file)
+
+29#tbl_institute_contactus(only updateble)
+1. id
+2. institute_code
+3. address
+4. title
+5. phone
+6. email
+8. web_address
+
+30#tbl_footer(updateble only)
+1. id
+2. institute_code
+3. institute_name
+4. fb
+5. twitter
+6. gplus
+7. linkid
+8. created_at
+9. updated_at
+
+31#tbl_institute_info(updateble only)
+1. id
+2. institute_id
+3. about_us
+4. mision
+5. vision
+
+32#tbl_president_msg
+1. id
+2. institute_code
+3. president_name
+4. msg
+5. image
+6. sing
+
+33#tbl_principal_msg
+1. id
+2. institute_code
+3. principal_name
+4. msg
+5. image
+6. sing
+7. phone
+
+34#tbl_board_member
+1. id
+2. institute_code
+3. title
+4. name
+5. phone
+6. email
+7. designation
+
+35#tbl_chat(panding)
+
