@@ -45,7 +45,7 @@
 13.roll
 14.image
 15.birth_certificate
-16.created_at
+16. created_at
 17.updated_at
 18.route_name
 19.transport_rent
@@ -61,16 +61,16 @@
 7. gender
 8. religion
 9. email
-10.phone
+10. phone
 11.address
 12.join_date
-13.image
-14.gov_id
-15.user_name
-16.pass
+13. image
+14. gov_id
+15. user_name
+16. pass
 17.created_at
 18.updated_at
-19.user_type
+19. user_type
 
 5#tbl_class
 1. id
@@ -96,8 +96,8 @@
 
 8#tbl_grade_system
 1.id
-2.grade_name
-3.grade_point
+2. grade_name
+3. grade_point
 4.mark_form
 5.mark_upto
 6.note
@@ -129,9 +129,9 @@
 7. class
 8. sub
 9. exam
-10.st_id
-11.created_at
-12.updated_at
+10. st_id
+11. created_at
+12. updated_at
 
 12#tbl_class_routine
 1. id
