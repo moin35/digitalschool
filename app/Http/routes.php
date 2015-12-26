@@ -15,15 +15,15 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('home',['middleware' => 'auth', function () {
+Route::get('home',['middleware' => 'auth', 'uses' => 'HomeController@home']);
+Route::get('/lang/{lang}',['middleware' => 'auth', 'uses' => 'LangController@home']);
 
-        return view('welcome');
-
-}]);
 Route::get('reg', function(){
     return view('institute.reg_institute');
 });
-
+Route::get('student', function(){
+    return view('superadmin.add_search_student');
+});
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');

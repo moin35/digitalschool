@@ -238,10 +238,9 @@
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#"><img alt="" src="images/flags/es.png"> Spanish</a></li>
-                        <li><a href="#"><img alt="" src="images/flags/de.png"> German</a></li>
-                        <li><a href="#"><img alt="" src="images/flags/ru.png"> Russian</a></li>
-                        <li><a href="#"><img alt="" src="images/flags/fr.png"> French</a></li>
+                        <li><a href="{{url('lang/bn')}}"><img alt="" src="images/flags/bd.png"> Bangla</a></li>
+                        <li><a href="{{url('lang/en')}}"><img alt="" src="images/flags/us.png"> Us</a></li>
+
                     </ul>
                 </li>
                 <!-- user login dropdown start-->
@@ -283,7 +282,7 @@
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-laptop"></i>
-                            <span>Layouts</span>
+                            <span>{{Lang::get('home.layout')}}</span>
                         </a>
                         <ul class="sub">
                             <li><a href="boxed_page.html">Boxed Page</a></li>
@@ -408,6 +407,9 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
+            {{session('lang_msg')}}
+            <h3>{{Lang::get('home.layout')}}</h3>
+            Default Language: {{Lang::getLocale()}}<br>
             @yield('body')
         </section>
     </section>
