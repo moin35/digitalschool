@@ -6,5 +6,6 @@
  * Time: 12:36 PM
  */
 return [
-    'layout' => 'লেআউট'
+    'layout' => 'লেআউট',
+    'language'=>'বাংলা',
 ];

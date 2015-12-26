@@ -226,22 +226,31 @@
             <!--  notification end -->
         </div>
         <div class="top-nav clearfix">
+        {{session('lang_msg')}} 
             <!--search & user info start-->
             <ul class="nav pull-right top-menu">
+            
+         
+           
                 <li>
                     <input type="text" class="form-control search" placeholder=" Search">
                 </li>
                 <li class="dropdown language">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                      
+                      <a href="{{url('lang/en')}}" class="dropdown-toggle"> 
                         <img alt="" src="images/flags/us.png">
-                        <span class="username">US</span>
-                        <b class="caret"></b>
+                        <span class="username">English</span>
+                         
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{url('lang/bn')}}"><img alt="" src="images/flags/bd.png"> Bangla</a></li>
-                        <li><a href="{{url('lang/en')}}"><img alt="" src="images/flags/us.png"> Us</a></li>
-
-                    </ul>
+                     
+                </li>
+                  <li class="dropdown language">
+                    <a href="{{url('lang/bn')}}" class="dropdown-toggle">                        
+                        <img alt="" src="images/flags/bd.png">
+                        <span class="username">বাংলা</span>                        
+                        
+                    </a>
+                    
                 </li>
                 <!-- user login dropdown start-->
                 <li class="dropdown">
@@ -407,9 +416,7 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
-            {{session('lang_msg')}}
-            <h3>{{Lang::get('home.layout')}}</h3>
-            Default Language: {{Lang::getLocale()}}<br>
+           
             @yield('body')
         </section>
     </section>
