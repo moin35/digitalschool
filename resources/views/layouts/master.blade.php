@@ -5,22 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="ThemeBucket">
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="{{URL::to('/')}}/images/favicon.png">
     <title>Digital School</title>
     <!--Core CSS -->
-    <link href="bs3/css/bootstrap.min.css" rel="stylesheet">
-    <link href="js/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet">
-    <link href="css/bootstrap-reset.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="js/jvector-map/jquery-jvectormap-1.2.2.css" rel="stylesheet">
-    <link href="css/clndr.css" rel="stylesheet">
+    <link href="{{URL::to('/')}}/bs3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{URL::to('/')}}/js/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet">
+    <link href="{{URL::to('/')}}/css/bootstrap-reset.css" rel="stylesheet">
+    <link href="{{URL::to('/')}}/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="{{URL::to('/')}}/js/jvector-map/jquery-jvectormap-1.2.2.css" rel="stylesheet">
+    <link href="{{URL::to('/')}}/css/clndr.css" rel="stylesheet">
     <!--clock css-->
-    <link href="js/css3clock/css/style.css" rel="stylesheet">
+    <link href="{{URL::to('/')}}/js/css3clock/css/style.css" rel="stylesheet">
+
     <!--Morris Chart CSS -->
-    <link rel="stylesheet" href="js/morris-chart/morris.css">
+    <link rel="stylesheet" href="{{URL::to('/')}}/js/morris-chart/morris.css">
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet"/>
+    <link href="{{URL::to('/')}}/css/style.css" rel="stylesheet">
+    <link href="{{URL::to('/')}}/css/style-responsive.css" rel="stylesheet"/>
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]>
     <script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -226,31 +227,31 @@
             <!--  notification end -->
         </div>
         <div class="top-nav clearfix">
-        {{session('lang_msg')}} 
+        {{session('lang_msg')}}
             <!--search & user info start-->
             <ul class="nav pull-right top-menu">
-            
-         
-           
+
+
+
                 <li>
                     <input type="text" class="form-control search" placeholder=" Search">
                 </li>
                 <li class="dropdown language">
-                      
-                      <a href="{{url('lang/en')}}" class="dropdown-toggle"> 
+
+                      <a href="{{url('lang/en')}}" class="dropdown-toggle">
                         <img alt="" src="images/flags/us.png">
                         <span class="username">English</span>
-                         
+
                     </a>
-                     
+
                 </li>
                   <li class="dropdown language">
-                    <a href="{{url('lang/bn')}}" class="dropdown-toggle">                        
+                    <a href="{{url('lang/bn')}}" class="dropdown-toggle">
                         <img alt="" src="images/flags/bd.png">
-                        <span class="username">বাংলা</span>                        
-                        
+                        <span class="username">বাংলা</span>
+
                     </a>
-                    
+
                 </li>
                 <!-- user login dropdown start-->
                 <li class="dropdown">
@@ -302,10 +303,10 @@
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-book"></i>
-                            <span>UI Elements</span>
+                            <span>{{Lang::get('home.student')}}</span>
                         </a>
                         <ul class="sub">
-                            <li><a href="general.html">General</a></li>
+                            <li><a href="{{URL::to('student')}}">{{Lang::get('home.student')}}</a></li>
                             <li><a href="buttons.html">Buttons</a></li>
                             <li><a href="typography.html">Typography</a></li>
                             <li><a href="widget.html">Widget</a></li>
@@ -416,7 +417,7 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
-           
+
             @yield('body')
         </section>
     </section>
@@ -677,44 +678,44 @@
 </section>
 <!-- Placed js at the end of the document so the pages load faster -->
 <!--Core js-->
-<script src="js/jquery.js"></script>
-<script src="js/jquery-ui/jquery-ui-1.10.1.custom.min.js"></script>
-<script src="bs3/js/bootstrap.min.js"></script>
-<script src="js/jquery.dcjqaccordion.2.7.js"></script>
-<script src="js/jquery.scrollTo.min.js"></script>
-<script src="js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
-<script src="js/jquery.nicescroll.js"></script>
+<script src="{{URL::to('/')}}/js/jquery.js"></script>
+<script src="{{URL::to('/')}}/js/jquery-ui/jquery-ui-1.10.1.custom.min.js"></script>
+<script src="{{URL::to('/')}}/bs3/js/bootstrap.min.js"></script>
+<script src="{{URL::to('/')}}/js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="{{URL::to('/')}}/js/jquery.scrollTo.min.js"></script>
+<script src="{{URL::to('/')}}/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
+<script src="{{URL::to('/')}}/js/jquery.nicescroll.js"></script>
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
-<script src="js/skycons/skycons.js"></script>
-<script src="js/jquery.scrollTo/jquery.scrollTo.js"></script>
+<script src="{{URL::to('/')}}/js/skycons/skycons.js"></script>
+<script src="{{URL::to('/')}}/js/jquery.scrollTo/jquery.scrollTo.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<script src="js/calendar/clndr.js"></script>
+<script src="{{URL::to('/')}}/js/calendar/clndr.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
-<script src="js/calendar/moment-2.2.1.js"></script>
-<script src="js/evnt.calendar.init.js"></script>
-<script src="js/jvector-map/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="js/jvector-map/jquery-jvectormap-us-lcc-en.js"></script>
-<script src="js/gauge/gauge.js"></script>
+<script src="{{URL::to('/')}}/js/calendar/moment-2.2.1.js"></script>
+<script src="{{URL::to('/')}}/js/evnt.calendar.init.js"></script>
+<script src="{{URL::to('/')}}/js/jvector-map/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="{{URL::to('/')}}/js/jvector-map/jquery-jvectormap-us-lcc-en.js"></script>
+<script src="{{URL::to('/')}}/js/gauge/gauge.js"></script>
 <!--clock init-->
-<script src="js/css3clock/js/css3clock.js"></script>
+<script src="{{URL::to('/')}}/js/css3clock/js/css3clock.js"></script>
 <!--Easy Pie Chart-->
-<script src="js/easypiechart/jquery.easypiechart.js"></script>
+<script src="{{URL::to('/')}}/js/easypiechart/jquery.easypiechart.js"></script>
 <!--Sparkline Chart-->
-<script src="js/sparkline/jquery.sparkline.js"></script>
+<script src="{{URL::to('/')}}/js/sparkline/jquery.sparkline.js"></script>
 <!--Morris Chart-->
-<script src="js/morris-chart/morris.js"></script>
-<script src="js/morris-chart/raphael-min.js"></script>
+<script src="{{URL::to('/')}}/js/morris-chart/morris.js"></script>
+<script src="{{URL::to('/')}}/js/morris-chart/raphael-min.js"></script>
 <!--jQuery Flot Chart-->
-<script src="js/flot-chart/jquery.flot.js"></script>
-<script src="js/flot-chart/jquery.flot.tooltip.min.js"></script>
-<script src="js/flot-chart/jquery.flot.resize.js"></script>
-<script src="js/flot-chart/jquery.flot.pie.resize.js"></script>
-<script src="js/flot-chart/jquery.flot.animator.min.js"></script>
-<script src="js/flot-chart/jquery.flot.growraf.js"></script>
-<script src="js/dashboard.js"></script>
-<script src="js/jquery.customSelect.min.js" ></script>
+<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.js"></script>
+<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.tooltip.min.js"></script>
+<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.resize.js"></script>
+<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.pie.resize.js"></script>
+<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.animator.min.js"></script>
+<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.growraf.js"></script>
+<script src="{{URL::to('/')}}/js/dashboard.js"></script>
+<script src="{{URL::to('/')}}/js/jquery.customSelect.min.js" ></script>
 <!--common script init for all pages-->
-<script src="js/scripts.js"></script>
+<script src="{{URL::to('/')}}/js/scripts.js"></script>
 <!--script for this page-->
 </body>
 </html>

@@ -8,4 +8,5 @@
 return [
     'layout' => 'লেআউট',
     'language'=>'বাংলা',
+    'student'=> 'ছাত্র / ছাত্রী ',
 ];

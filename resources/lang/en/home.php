@@ -8,4 +8,5 @@
 return [
     'layout' => 'Layout',
     'language'=>'English',
+    'student'=>'student',
 ];
