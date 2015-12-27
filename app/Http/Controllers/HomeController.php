@@ -37,18 +37,10 @@ class HomeController extends Controller
 
     }
 public function getAddStudent(){
-    if(Auth::check()){
-        if(priv()==1){
+
             return view('superadmin.add_search_student');
-        }
-        else{
-            Session::flash('data','Not Logged In! Please Login to Continue.');
-            return redirect::to('/');
-        }
-    }else{
-        Session::flash('data','Not Logged In! Please Login to Continue.');
-        return redirect::to('/');
-    }
+
+
 
 }
 public function postAddStudent(){

@@ -31,6 +31,8 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+
+    
     <![endif]-->
     <!--Core CSS -->
     @yield('head')
@@ -303,24 +305,24 @@
                     <li><a href="language_switch.html">Language Switch Bar</a></li>
                 </ul>
             </li>
-            <li class="sub-menu">
-                <a href="javascript:;">
-                    <i class="fa fa-book"></i>
-                    <span>UI Elements</span>
-                </a>
-                <ul class="sub">
-                    <li><a href="general.html">General</a></li>
-                    <li><a href="buttons.html">Buttons</a></li>
-<li><a href="typography.html">Typography</a></li>
-                    <li><a href="widget.html">Widget</a></li>
-                    <li><a href="slider.html">Slider</a></li>
-                    <li><a href="tree_view.html">Tree View</a></li>
-                    <li><a href="nestable.html">Nestable</a></li>
-                    <li><a href="grids.html">Grids</a></li>
-                    <li><a href="calendar.html">Calender</a></li>
-                    <li><a href="draggable_portlet.html">Draggable Portlet</a></li>
-                </ul>
-            </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>{{Lang::get('home.student')}}</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="{{URL::to('add/student')}}">{{Lang::get('home.student')}}</a></li>
+                        <li><a href="buttons.html">Buttons</a></li>
+                        <li><a href="typography.html">Typography</a></li>
+                        <li><a href="widget.html">Widget</a></li>
+                        <li><a href="slider.html">Slider</a></li>
+                        <li><a href="tree_view.html">Tree View</a></li>
+                        <li><a href="nestable.html">Nestable</a></li>
+                        <li><a href="grids.html">Grids</a></li>
+                        <li><a href="calendar.html">Calender</a></li>
+                        <li><a href="draggable_portlet.html">Draggable Portlet</a></li>
+                    </ul>
+                </li>
             <li>
                 <a href="fontawesome.html">
                     <i class="fa fa-bullhorn"></i>
@@ -709,8 +711,11 @@
 
 <!--script for this page only-->
 <script src="{{URL::to('/')}}/js/table-editable.js"></script>
+<!-- validition script -->
+<script type="text/javascript" src="{{URL::to('/')}}/js/jquery.validate.min.js"></script>
+<script src="{{URL::to('/')}}/js/validation-init.js"></script>
 
- 
+<script src="{{URL::to('/')}}/js/jquery-steps/jquery.steps.js"></script>
 <!-- END JAVASCRIPTS -->
 <script>
     jQuery(document).ready(function() {

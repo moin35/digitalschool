@@ -5,8 +5,6 @@
 @section('head')
 @stop
 @section('body')
-
-
         <div class="row">
             <div class="col-sm-12">
                 <section class="panel">
@@ -22,10 +20,86 @@
                         <div class="adv-table editable-table ">
                             <div class="clearfix">
                                 <div class="btn-group">
-                                    <button id="editable-sample_new" class="btn btn-primary">
+                                    <a class="btn btn-primary" data-toggle="modal" href="#myModal">
                                         Add New <i class="fa fa-plus"></i>
-                                    </button>
+                                    </a>
                                 </div>
+                                <!-- Modal -->
+                                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                                <h4 class="modal-title">Form Tittle</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form">
+                                                    <form class="cmxform form-horizontal " id="signupForm" method="get" action="">
+                                                        <div class="form-group ">
+                                                            <label for="firstname" class="control-label col-lg-3">Firstname</label>
+                                                            <div class="col-lg-6">
+                                                                <input class=" form-control" id="firstname" name="firstname" type="text" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group ">
+                                                            <label for="lastname" class="control-label col-lg-3">Lastname</label>
+                                                            <div class="col-lg-6">
+                                                                <input class=" form-control" id="lastname" name="lastname" type="text" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group ">
+                                                            <label for="username" class="control-label col-lg-3">Username</label>
+                                                            <div class="col-lg-6">
+                                                                <input class="form-control " id="username" name="username" type="text" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group ">
+                                                            <label for="password" class="control-label col-lg-3">Password</label>
+                                                            <div class="col-lg-6">
+                                                                <input class="form-control " id="password" name="password" type="password" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group ">
+                                                            <label for="confirm_password" class="control-label col-lg-3">Confirm Password</label>
+                                                            <div class="col-lg-6">
+                                                                <input class="form-control " id="confirm_password" name="confirm_password" type="password" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group ">
+                                                            <label for="email" class="control-label col-lg-3">Email</label>
+                                                            <div class="col-lg-6">
+                                                                <input class="form-control " id="email" name="email" type="email" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group ">
+                                                            <label for="agree" class="control-label col-lg-3 col-sm-3">Agree to Our Policy</label>
+                                                            <div class="col-lg-6 col-sm-9">
+                                                                <input  type="checkbox" style="width: 20px" class="checkbox form-control" id="agree" name="agree" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group ">
+                                                            <label for="newsletter" class="control-label col-lg-3 col-sm-3">Receive the Newsletter</label>
+                                                            <div class="col-lg-6 col-sm-9">
+                                                                <input  type="checkbox" style="width: 20px" class="checkbox form-control" id="newsletter" name="newsletter" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <div class="col-lg-offset-3 col-lg-6">
+                                                                <button class="btn btn-primary" type="submit">Save</button>
+                                                                <button class="btn btn-default" type="button">Cancel</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- modal -->
+
+
+
                                 <div class="btn-group pull-right">
                                     <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
                                     </button>
@@ -39,6 +113,33 @@
                             <div class="space15"></div>
                             
                         </div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <div class="list-group-item list-group-item-warning">
+                                <form style="" class="form-horizontal" role="form" method="post">
+                                    <div class="form-group">
+                                        <label for="classesID" class="col-sm-2 col-sm-offset-2 control-label">
+                                            Class                                </label>
+                                        <div class="col-sm-6">
+                                            <select name="classesID" id="classesID" class="form-control">
+                                                <option value="0">Select Class</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                                <option value="4">Four</option>
+                                                <option value="5">Five</option>
+                                                <option value="6">Six</option>
+                                                <option value="7">Seven</option>
+                                                <option value="8">Eight</option>
+                                                <option value="9">Nine</option>
+                                                <option value="10">Ten</option>
+                                            </select>                                </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-3"></div>
+
                     </div>
                 </section>
                   <section class="panel">
