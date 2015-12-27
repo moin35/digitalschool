@@ -40,7 +40,7 @@
         <div class="brand">
 
             <a href="index.html" class="logo">
-                <img src="images/logo.png" alt="">
+                <img src="{{URL::to('/')}}/images/logo.png" alt="">
             </a>
             <div class="sidebar-toggle-box">
                 <div class="fa fa-bars"></div>
@@ -132,7 +132,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <span class="photo"><img alt="avatar" src="images/avatar-mini.jpg"></span>
+                                <span class="photo"><img alt="avatar" src="{{URL::to('/')}}/images/avatar-mini.jpg"></span>
                                 <span class="subject">
                                 <span class="from">Jonathan Smith</span>
                                 <span class="time">Just now</span>
@@ -144,7 +144,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <span class="photo"><img alt="avatar" src="images/avatar-mini-2.jpg"></span>
+                                <span class="photo"><img alt="avatar" src="{{URL::to('/')}}/images/avatar-mini-2.jpg"></span>
                                 <span class="subject">
                                 <span class="from">Jane Doe</span>
                                 <span class="time">2 min ago</span>
@@ -156,7 +156,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <span class="photo"><img alt="avatar" src="images/avatar-mini-3.jpg"></span>
+                                <span class="photo"><img alt="avatar" src="{{URL::to('/')}}/images/avatar-mini-3.jpg"></span>
                                 <span class="subject">
                                 <span class="from">Tasi sam</span>
                                 <span class="time">2 days ago</span>
@@ -168,7 +168,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <span class="photo"><img alt="avatar" src="images/avatar-mini.jpg"></span>
+                                <span class="photo"><img alt="avatar" src="{{URL::to('/')}}/images/avatar-mini.jpg"></span>
                                 <span class="subject">
                                 <span class="from">Mr. Perfect</span>
                                 <span class="time">2 hour ago</span>
@@ -239,7 +239,7 @@
                 <li class="dropdown language">
 
                       <a href="{{url('lang/en')}}" class="dropdown-toggle">
-                        <img alt="" src="images/flags/us.png">
+                        <img alt="" src="{{URL::to('/')}}/images/flags/us.png">
                         <span class="username">English</span>
 
                     </a>
@@ -247,7 +247,7 @@
                 </li>
                   <li class="dropdown language">
                     <a href="{{url('lang/bn')}}" class="dropdown-toggle">
-                        <img alt="" src="images/flags/bd.png">
+                        <img alt="" src="{{URL::to('/')}}/images/flags/bd.png">
                         <span class="username">বাংলা</span>
 
                     </a>
@@ -256,14 +256,14 @@
                 <!-- user login dropdown start-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <img alt="" src="images/avatar1_small.jpg">
+                        <img alt="" src="{{URL::to('/')}}/images/avatar1_small.jpg">
                         <span class="username">John Doe</span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
                         <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
                         <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                        <li><a href="login.html"><i class="fa fa-key"></i> Log Out</a></li>
+                        <li><a href="{{URL::to('auth/logout')}}"><i class="fa fa-key"></i> Log Out</a></li>
                     </ul>
                 </li>
                 <!-- user login dropdown end -->
@@ -306,7 +306,7 @@
                             <span>{{Lang::get('home.student')}}</span>
                         </a>
                         <ul class="sub">
-                            <li><a href="{{URL::to('student')}}">{{Lang::get('home.student')}}</a></li>
+                            <li><a href="{{URL::to('add/student')}}">{{Lang::get('home.student')}}</a></li>
                             <li><a href="buttons.html">Buttons</a></li>
                             <li><a href="typography.html">Typography</a></li>
                             <li><a href="widget.html">Widget</a></li>

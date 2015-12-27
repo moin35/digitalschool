@@ -33,16 +33,12 @@
 <body class="login-body">
 
 <div class="container">
-
-    <form class="form-signin" method="POST" action="/auth/login">
-        {!! csrf_field() !!}
-        <h2 class="form-signin-heading">sign in now</h2>
-        <div class="login-wrap">
-            <div class="user-login-info">
-                <input class="form-control" placeholder="User ID" type="email" name="email" value="{{ old('email') }}" autofocus>
-                <input type="password" class="form-control" placeholder="Password" name="password" id="password">
-            </div>
-            <label class="checkbox">
+    @if(Session::get('data'))
+        <div class="alert alert-dismissible alert-info">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong> <h3>{{Session::get('data')}}</h3></strong>
+        </div>
+    @endif
                 <input type="checkbox" value="remember-me"> Remember me
                 <span class="pull-right">
                     <a data-toggle="modal" href="#myModal"> Forgot Password?</a>

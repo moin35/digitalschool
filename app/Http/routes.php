@@ -12,7 +12,12 @@
 */
 
 Route::get('/', function () {
+    if(Auth::check()){
+        return view('welcome');
+    }
+    else{
     return view('auth.login');
+    }
 });
 
 Route::get('home',['middleware' => 'auth', 'uses' => 'HomeController@home']);
@@ -21,9 +26,11 @@ Route::get('/lang/{lang}',['middleware' => 'auth', 'uses' => 'LangController@hom
 Route::get('reg', function(){
     return view('institute.reg_institute');
 });
-Route::get('student', function(){
-    return view('superadmin.add_search_student');
-});
+//Add Student Route
+Route::get('add/student','HomeController@getAddStudent');
+Route::post('add/student','HomeController@postAddStudent');
+
+
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
