@@ -142,6 +142,7 @@
 
                     </div>
                 </section>
+                
                   <section class="panel">
                     <header class="panel-heading">
                         Flip Scroll
@@ -297,6 +298,148 @@
             </div>
         </div>
         <!-- page end-->
+        
+        <div class="row">
+            <div class="col-sm-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Basic Wizard
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-cog"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                         </span>
+                    </header>
+                    <div class="panel-body">
+
+                        <div id="wizard">
+                            <h2>First Step</h2>
+
+                            <section>
+                                <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">Full Name</label>
+                                            <div class="col-lg-8">
+                                                <input type="text" class="form-control" placeholder="Full Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">Email Address</label>
+                                            <div class="col-lg-8">
+                                                <input type="text" class="form-control" placeholder="Email Address">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">User Name</label>
+                                            <div class="col-lg-8">
+                                                <input type="text" class="form-control" placeholder="Username">
+                                            </div>
+                                        </div>
+                                    </form>
+                            </section>
+
+                            <h2>Second Step</h2>
+                            <section>
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Phone</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" placeholder="Phone">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Mobile</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" placeholder="Mobile">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Address</label>
+                                        <div class="col-lg-8">
+                                            <textarea class="form-control" cols="60" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                            </section>
+
+                            <h2>Third Step</h2>
+                            <section>
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Bill Name 1</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" placeholder="Phone">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Bill Name 2</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" placeholder="Mobile">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Status</label>
+                                        <div class="col-lg-8">
+                                            <textarea class="form-control" cols="60" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                            </section>
+
+                            <h2>Final Step</h2>
+                            <section>
+                                <p>Congratulations This is the Final Step</p>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+                <section class="panel">
+                    <header class="panel-heading">
+                        Vertical Wizard
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-cog"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                         </span>
+                    </header>
+                    <div class="panel-body">
+                        <div id="wizard-vertical">
+                            <h2>First Step</h2>
+                            <section>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut nulla nunc. Maecenas arcu sem, hendrerit a tempor quis,
+                                    sagittis accumsan tellus. In hac habitasse platea dictumst. Donec a semper dui. Nunc eget quam libero. Nam at felis metus.
+                                    Nam tellus dolor, tristique ac tempus nec, iaculis quis nisi.</p>
+                            </section>
+
+                            <h2>Second Step</h2>
+                            <section>
+                                <p>Donec mi sapien, hendrerit nec egestas a, rutrum vitae dolor. Nullam venenatis diam ac ligula elementum pellentesque.
+                                    In lobortis sollicitudin felis non eleifend. Morbi tristique tellus est, sed tempor elit. Morbi varius, nulla quis condimentum
+                                    dictum, nisi elit condimentum magna, nec venenatis urna quam in nisi. Integer hendrerit sapien a diam adipiscing consectetur.
+                                    In euismod augue ullamcorper leo dignissim quis elementum arcu porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Vestibulum leo velit, blandit ac tempor nec, ultrices id diam. Donec metus lacus, rhoncus sagittis iaculis nec, malesuada a diam.
+                                    Donec non pulvinar urna. Aliquam id velit lacus.</p>
+                            </section>
+
+                            <h2>Third Step</h2>
+                            <section>
+                                <p>Morbi ornare tellus at elit ultrices id dignissim lorem elementum. Sed eget nisl at justo condimentum dapibus. Fusce eros justo,
+                                    pellentesque non euismod ac, rutrum sed quam. Ut non mi tortor. Vestibulum eleifend varius ullamcorper. Aliquam erat volutpat.
+                                    Donec diam massa, porta vel dictum sit amet, iaculis ac massa. Sed elementum dui commodo lectus sollicitudin in auctor mauris
+                                    venenatis.</p>
+                            </section>
+
+                            <h2>Forth Step</h2>
+                            <section>
+                                <p>Quisque at sem turpis, id sagittis diam. Suspendisse malesuada eros posuere mauris vehicula vulputate. Aliquam sed sem tortor.
+                                    Quisque sed felis ut mauris feugiat iaculis nec ac lectus. Sed consequat vestibulum purus, imperdiet varius est pellentesque vitae.
+                                    Suspendisse consequat cursus eros, vitae tempus enim euismod non. Nullam ut commodo tortor.</p>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
           
  @stop
        

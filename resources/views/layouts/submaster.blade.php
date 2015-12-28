@@ -22,7 +22,7 @@
     <!-- Custom styles for this template -->
     <link href="{{URL::to('/')}}/css/style.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/css/style-responsive.css" rel="stylesheet" />
-
+ <link rel="stylesheet" href="{{URL::to('/')}}/css/jquery.steps.css">
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]>
     <script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -137,7 +137,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <span class="photo"><img alt="avatar" src="images/avatar-mini.jpg"></span>
+                        <span class="photo"><img alt="avatar" src="{{URL::to('/')}}/images/avatar-mini.jpg"></span>
                                 <span class="subject">
                                 <span class="from">Jonathan Smith</span>
                                 <span class="time">Just now</span>
@@ -149,7 +149,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <span class="photo"><img alt="avatar" src="images/avatar-mini-2.jpg"></span>
+                        <span class="photo"><img alt="avatar" src="{{URL::to('/')}}/images/avatar-mini-2.jpg"></span>
                                 <span class="subject">
                                 <span class="from">Jane Doe</span>
                                 <span class="time">2 min ago</span>
@@ -161,7 +161,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <span class="photo"><img alt="avatar" src="images/avatar-mini-3.jpg"></span>
+                        <span class="photo"><img alt="avatar" src="{{URL::to('/')}}/images/avatar-mini-3.jpg"></span>
                                 <span class="subject">
                                 <span class="from">Tasi sam</span>
                                 <span class="time">2 days ago</span>
@@ -173,7 +173,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <span class="photo"><img alt="avatar" src="images/avatar-mini.jpg"></span>
+                        <span class="photo"><img alt="avatar" src="{{URL::to('/')}}/images/avatar-mini.jpg"></span>
                                 <span class="subject">
                                 <span class="from">Mr. Perfect</span>
                                 <span class="time">2 hour ago</span>
@@ -246,7 +246,7 @@
                 <li class="dropdown language">
 
                       <a href="{{url('lang/en')}}" class="dropdown-toggle">
-                        <img alt="" src="images/flags/us.png">
+                        <img alt="" src="{{URL::to('/')}}/images/flags/us.png">
                         <span class="username">English</span>
 
                     </a>
@@ -254,7 +254,7 @@
                 </li>
                   <li class="dropdown language">
                     <a href="{{url('lang/bn')}}" class="dropdown-toggle">
-                        <img alt="" src="images/flags/bd.png">
+                        <img alt="" src="{{URL::to('/')}}/images/flags/bd.png">
                         <span class="username">বাংলা</span>
 
                     </a>
@@ -263,7 +263,7 @@
         <!-- user login dropdown start-->
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img alt="" src="images/avatar1_small.jpg">
+                <img alt="" src="{{URL::to('/')}}/images/avatar1_small.jpg">
                 <span class="username">John Doe</span>
                 <b class="caret"></b>
             </a>
@@ -703,8 +703,8 @@
 <script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.resize.js"></script>
 <script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.pie.resize.js"></script>
 
-<script type="{{URL::to('/')}}/text/javascript" src="js/data-tables/jquery.dataTables.js"></script>
-<script type="{{URL::to('/')}}/text/javascript" src="js/data-tables/DT_bootstrap.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/jquery.dataTables.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/DT_bootstrap.js"></script>
 
 <!--common script init for all pages-->
 <script src="{{URL::to('/')}}/js/scripts.js"></script>
@@ -716,11 +716,31 @@
 <script src="{{URL::to('/')}}/js/validation-init.js"></script>
 
 <script src="{{URL::to('/')}}/js/jquery-steps/jquery.steps.js"></script>
+
 <!-- END JAVASCRIPTS -->
 <script>
     jQuery(document).ready(function() {
         EditableTable.init();
     });
+</script>
+<script>
+    $(function ()
+    {
+        $("#wizard").steps({
+            headerTag: "h2",
+            bodyTag: "section",
+            transitionEffect: "slideLeft"
+        });
+
+        $("#wizard-vertical").steps({
+            headerTag: "h2",
+            bodyTag: "section",
+            transitionEffect: "slideLeft",
+            stepsOrientation: "vertical"
+        });
+    });
+
+
 </script>
 
 </body>
