@@ -687,7 +687,7 @@
 <!--Core js-->
 <script src="{{URL::to('/')}}/js/jquery-1.8.3.min.js"></script>
 <script src="{{URL::to('/')}}/bs3/js/bootstrap.min.js"></script>
-<script class="include" type="text/javascript" src="{{URL::to('/')}}/jjs/jquery.dcjqaccordion.2.7.js"></script>
+<script class="include" type="text/javascript" src="{{URL::to('/')}}/js/jquery.dcjqaccordion.2.7.js"></script>
 <script src="{{URL::to('/')}}/js/jquery.scrollTo.min.js"></script>
 <script src="{{URL::to('/')}}/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
 <script src="{{URL::to('/')}}/js/jquery.nicescroll.js"></script>
