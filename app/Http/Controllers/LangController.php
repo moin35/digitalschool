@@ -24,7 +24,7 @@ class LangController extends Controller
         $langs=['bn','en'];
         if (in_array($lang, $langs)) {
             Session::set('lang', $lang);
-            return Redirect::back()->with('lang_msg','Your Changeing language')->with('lang',$lang);
+            return Redirect::back()->with('lang_msg','Your Changeing language');
         }
     }
 }

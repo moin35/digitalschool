@@ -29,7 +29,9 @@ Route::get('reg', function(){
 //Add Student Route
 Route::get('add/student','HomeController@getAddStudent');
 Route::post('add/student','HomeController@postAddStudent');
-
+//Institute Refistration
+Route::get('admin/institute/registration','HomeController@getInstituteReg');
+Route::post('admin/institute/registration','HomeController@postInstituteReg');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

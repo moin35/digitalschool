@@ -3,7 +3,11 @@
  Students
 @stop
 @section('head')
+    <script src="{{URL::to('/')}}/js/angular/angular.min.js"></script>
+    <script src="{{URL::to('/')}}/js/angular/angular-animate.min.js"></script>
+    <link href="{{URL::to('/')}}/css/angular/animatedbox.css" rel="stylesheet">
 @stop
+
 @section('body')
         <div class="row">
             <div class="col-sm-12">
@@ -18,97 +22,205 @@
                     </header>
                     <div class="panel-body">
                         <div class="adv-table editable-table ">
-                            <div class="clearfix">
-                                <div class="btn-group">
-                                    <a class="btn btn-primary" data-toggle="modal" href="#myModal">
-                                        Add New <i class="fa fa-plus"></i>
-                                    </a>
-                                </div>
-                                <!-- Modal -->
-                                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                                                <h4 class="modal-title">Form Tittle</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="form">
-                                                    <form class="cmxform form-horizontal " id="signupForm" method="get" action="">
-                                                        <div class="form-group ">
-                                                            <label for="firstname" class="control-label col-lg-3">Firstname</label>
-                                                            <div class="col-lg-6">
-                                                                <input class=" form-control" id="firstname" name="firstname" type="text" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group ">
-                                                            <label for="lastname" class="control-label col-lg-3">Lastname</label>
-                                                            <div class="col-lg-6">
-                                                                <input class=" form-control" id="lastname" name="lastname" type="text" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group ">
-                                                            <label for="username" class="control-label col-lg-3">Username</label>
-                                                            <div class="col-lg-6">
-                                                                <input class="form-control " id="username" name="username" type="text" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group ">
-                                                            <label for="password" class="control-label col-lg-3">Password</label>
-                                                            <div class="col-lg-6">
-                                                                <input class="form-control " id="password" name="password" type="password" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group ">
-                                                            <label for="confirm_password" class="control-label col-lg-3">Confirm Password</label>
-                                                            <div class="col-lg-6">
-                                                                <input class="form-control " id="confirm_password" name="confirm_password" type="password" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group ">
-                                                            <label for="email" class="control-label col-lg-3">Email</label>
-                                                            <div class="col-lg-6">
-                                                                <input class="form-control " id="email" name="email" type="email" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group ">
-                                                            <label for="agree" class="control-label col-lg-3 col-sm-3">Agree to Our Policy</label>
-                                                            <div class="col-lg-6 col-sm-9">
-                                                                <input  type="checkbox" style="width: 20px" class="checkbox form-control" id="agree" name="agree" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group ">
-                                                            <label for="newsletter" class="control-label col-lg-3 col-sm-3">Receive the Newsletter</label>
-                                                            <div class="col-lg-6 col-sm-9">
-                                                                <input  type="checkbox" style="width: 20px" class="checkbox form-control" id="newsletter" name="newsletter" />
-                                                            </div>
-                                                        </div>
+                                <div ng-app="app" ng-controller="TestCtrl as test">
+                                    <div class="clearfix">
+                                        <div class="btn-group">
+                                            <a class="btn btn-primary" ng-click="test.showBoxOne = !test.showBoxOne" >
+                                                Add New <i class="fa fa-plus"></i>
+                                            </a>
+                                        </div>
+                                        <div class="btn-group pull-right">
+                                            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
+                                            </button>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li><a href="#">Print</a></li>
+                                                <li><a href="#">Save as PDF</a></li>
+                                                <li><a href="#">Export to Excel</a></li>
+                                            </ul>
+                                        </div>
+                                <div class="box-one" ng-show="test.showBoxOne">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <section class="panel">
+                                                <header class="panel-heading">
+                                                    Student Admission Form
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-cog"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                         </span>
+                                                </header>
+                                                <div class="panel-body">
+                                                    {!! Form::open(array('id'=>'signupFormt','class'=>'cmxform form-horizontal')) !!}
+                                                    <div class="form" >
 
-                                                        <div class="form-group">
-                                                            <div class="col-lg-offset-3 col-lg-6">
-                                                                <button class="btn btn-primary" type="submit">Save</button>
-                                                                <button class="btn btn-default" type="button">Cancel</button>
+
+                                                            <div class="form-group ">
+                                                                <label for="institute" class="control-label col-lg-3">Institute id</label>
+                                                                <div class="col-lg-6">
+                                                                    <input class=" form-control" id="institute" name="institute" type="text" />
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </form>
+                                                            <div class="form-group ">
+                                                                <label for="firstname" class="control-label col-lg-3">Firstname</label>
+                                                                <div class="col-lg-6">
+                                                                    <input class=" form-control" id="firstname" name="firstname" type="text" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <label for="lastname" class="control-label col-lg-3">Lastname</label>
+                                                                <div class="col-lg-6">
+                                                                    <input class=" form-control" id="lastname" name="lastname" type="text" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <label for="guardian_name" class="control-label col-lg-3">Guardian Name</label>
+                                                                <div class="col-lg-6">
+                                                                    <input class=" form-control" id="guardian_name" name="guardian_name" type="text" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <label for="gender" class="control-label col-lg-3">Gender</label>
+                                                                <div class="col-lg-6">
+                                                                    <input class=" form-control" id="gender" name="gender" type="text" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <label for="religion " class="control-label col-lg-3">Religion </label>
+                                                                <div class="col-lg-6">
+                                                                    <input class=" form-control" id="religion" name="religion" type="text" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <label for="address" class="control-label col-lg-3">Address</label>
+                                                                <div class="col-lg-6">
+                                                                    <input class=" form-control" id="address" name="address" type="text" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <label for="class" class="control-label col-lg-3">Class</label>
+                                                                <div class="col-lg-6">
+                                                                    <input class=" form-control" id="class" name="class" type="text" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <label for="section" class="control-label col-lg-3">Section</label>
+                                                                <div class="col-lg-6">
+                                                                    <input class=" form-control" id="section" name="section" type="text" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <label for="roll" class="control-label col-lg-3">Roll</label>
+                                                                <div class="col-lg-6">
+                                                                    <input class=" form-control" id="roll" name="roll" type="text" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <label for="route_name" class="control-label col-lg-3">Route Name</label>
+                                                                <div class="col-lg-6">
+                                                                    <input class=" form-control" id="route_name" name="route_name" type="text" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <label for="transport_rent" class="control-label col-lg-3">Transport Rent</label>
+                                                                <div class="col-lg-6">
+                                                                    <input class=" form-control" id="transport_rent" name="transport_rent" type="text" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <label for="user_type" class="control-label col-lg-3">User Type</label>
+                                                                <div class="col-lg-6">
+                                                                    <input class=" form-control" id="user_type" name="user_type" type="text" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <label for="username" class="control-label col-lg-3">Username</label>
+                                                                <div class="col-lg-6">
+                                                                    <input class="form-control " id="username" name="username" type="text" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <label for="password" class="control-label col-lg-3">Password</label>
+                                                                <div class="col-lg-6">
+                                                                    <input class="form-control " id="password" name="password" type="password" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <label for="confirm_password" class="control-label col-lg-3">Confirm Password</label>
+                                                                <div class="col-lg-6">
+                                                                    <input class="form-control " id="confirm_password" name="confirm_password" type="password" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <label for="email" class="control-label col-lg-3">Email</label>
+                                                                <div class="col-lg-6">
+                                                                    <input class="form-control " id="email" name="email" type="email" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group ">
+                                                                <label for="phone" class="control-label col-lg-3">Phone</label>
+                                                                <div class="col-lg-6">
+                                                                    <input class=" form-control" id="phone" name="phone" type="text" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group ">
+                                                                <label for="agree" class="control-label col-lg-3 col-sm-3">Agree to Our Policy</label>
+                                                                <div class="col-lg-6 col-sm-9">
+                                                                    <input  type="checkbox" style="width: 20px" class="checkbox form-control" id="agree" name="agree" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <label for="newsletter" class="control-label col-lg-3 col-sm-3">Receive the Newsletter</label>
+                                                                <div class="col-lg-6 col-sm-9">
+                                                                    <input  type="checkbox" style="width: 20px" class="checkbox form-control" id="newsletter" name="newsletter" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group last">
+                                                                <label class="control-label col-md-3">Image Upload</label>
+                                                                <div class="col-md-9">
+                                                                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                                                                        <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                                                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                                                                        </div>
+                                                                        <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                                                        <div>
+                                                   <span class="btn btn-white btn-file">
+                                                   <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
+                                                   <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
+                                                   <input type="file" class="default" />
+                                                   </span>
+                                                                            <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <span class="label label-danger">NOTE!</span>
+                                             <span>
+                                             Attached image thumbnail is
+                                             supported in Latest Firefox, Chrome, Opera,
+                                             Safari and Internet Explorer 10 only
+                                             </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-lg-offset-3 col-lg-6">
+                                                                    <button class="btn btn-primary" type="submit">Save</button>
+                                                                    <button class="btn btn-default" type="button">Cancel</button>
+                                                                </div>
+                                                            </div>
+
+                                                    </div>
+                                                    {!!Form::close()!!}
+
                                                 </div>
-                                            </div>
+
+                                            </section>
+
                                         </div>
                                     </div>
                                 </div>
-                                <!-- modal -->
-
-
-
-                                <div class="btn-group pull-right">
-                                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="#">Print</a></li>
-                                        <li><a href="#">Save as PDF</a></li>
-                                        <li><a href="#">Export to Excel</a></li>
-                                    </ul>
                                 </div>
+
                             </div>
                             <div class="space15"></div>
                             
@@ -299,147 +411,19 @@
         </div>
         <!-- page end-->
         
-        <div class="row">
-            <div class="col-sm-12">
-                <section class="panel">
-                    <header class="panel-heading">
-                        Basic Wizard
-                        <span class="tools pull-right">
-                            <a href="javascript:;" class="fa fa-chevron-down"></a>
-                            <a href="javascript:;" class="fa fa-cog"></a>
-                            <a href="javascript:;" class="fa fa-times"></a>
-                         </span>
-                    </header>
-                    <div class="panel-body">
 
-                        <div id="wizard">
-                            <h2>First Step</h2>
+<script>
+    function TestCtrl() {
+        var self = this;
 
-                            <section>
-                                <form class="form-horizontal">
-                                        <div class="form-group">
-                                            <label class="col-lg-2 control-label">Full Name</label>
-                                            <div class="col-lg-8">
-                                                <input type="text" class="form-control" placeholder="Full Name">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-2 control-label">Email Address</label>
-                                            <div class="col-lg-8">
-                                                <input type="text" class="form-control" placeholder="Email Address">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-2 control-label">User Name</label>
-                                            <div class="col-lg-8">
-                                                <input type="text" class="form-control" placeholder="Username">
-                                            </div>
-                                        </div>
-                                    </form>
-                            </section>
+        self.showBoxOne = false;
+        self.showBoxTwo = false;
 
-                            <h2>Second Step</h2>
-                            <section>
-                                <form class="form-horizontal">
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Phone</label>
-                                        <div class="col-lg-8">
-                                            <input type="text" class="form-control" placeholder="Phone">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Mobile</label>
-                                        <div class="col-lg-8">
-                                            <input type="text" class="form-control" placeholder="Mobile">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Address</label>
-                                        <div class="col-lg-8">
-                                            <textarea class="form-control" cols="60" rows="5"></textarea>
-                                        </div>
-                                    </div>
-                                </form>
-                            </section>
 
-                            <h2>Third Step</h2>
-                            <section>
-                                <form class="form-horizontal">
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Bill Name 1</label>
-                                        <div class="col-lg-8">
-                                            <input type="text" class="form-control" placeholder="Phone">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Bill Name 2</label>
-                                        <div class="col-lg-8">
-                                            <input type="text" class="form-control" placeholder="Mobile">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Status</label>
-                                        <div class="col-lg-8">
-                                            <textarea class="form-control" cols="60" rows="5"></textarea>
-                                        </div>
-                                    </div>
-                                </form>
-                            </section>
+    }
 
-                            <h2>Final Step</h2>
-                            <section>
-                                <p>Congratulations This is the Final Step</p>
-                            </section>
-                        </div>
-                    </div>
-                </section>
-                <section class="panel">
-                    <header class="panel-heading">
-                        Vertical Wizard
-                        <span class="tools pull-right">
-                            <a href="javascript:;" class="fa fa-chevron-down"></a>
-                            <a href="javascript:;" class="fa fa-cog"></a>
-                            <a href="javascript:;" class="fa fa-times"></a>
-                         </span>
-                    </header>
-                    <div class="panel-body">
-                        <div id="wizard-vertical">
-                            <h2>First Step</h2>
-                            <section>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut nulla nunc. Maecenas arcu sem, hendrerit a tempor quis,
-                                    sagittis accumsan tellus. In hac habitasse platea dictumst. Donec a semper dui. Nunc eget quam libero. Nam at felis metus.
-                                    Nam tellus dolor, tristique ac tempus nec, iaculis quis nisi.</p>
-                            </section>
-
-                            <h2>Second Step</h2>
-                            <section>
-                                <p>Donec mi sapien, hendrerit nec egestas a, rutrum vitae dolor. Nullam venenatis diam ac ligula elementum pellentesque.
-                                    In lobortis sollicitudin felis non eleifend. Morbi tristique tellus est, sed tempor elit. Morbi varius, nulla quis condimentum
-                                    dictum, nisi elit condimentum magna, nec venenatis urna quam in nisi. Integer hendrerit sapien a diam adipiscing consectetur.
-                                    In euismod augue ullamcorper leo dignissim quis elementum arcu porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Vestibulum leo velit, blandit ac tempor nec, ultrices id diam. Donec metus lacus, rhoncus sagittis iaculis nec, malesuada a diam.
-                                    Donec non pulvinar urna. Aliquam id velit lacus.</p>
-                            </section>
-
-                            <h2>Third Step</h2>
-                            <section>
-                                <p>Morbi ornare tellus at elit ultrices id dignissim lorem elementum. Sed eget nisl at justo condimentum dapibus. Fusce eros justo,
-                                    pellentesque non euismod ac, rutrum sed quam. Ut non mi tortor. Vestibulum eleifend varius ullamcorper. Aliquam erat volutpat.
-                                    Donec diam massa, porta vel dictum sit amet, iaculis ac massa. Sed elementum dui commodo lectus sollicitudin in auctor mauris
-                                    venenatis.</p>
-                            </section>
-
-                            <h2>Forth Step</h2>
-                            <section>
-                                <p>Quisque at sem turpis, id sagittis diam. Suspendisse malesuada eros posuere mauris vehicula vulputate. Aliquam sed sem tortor.
-                                    Quisque sed felis ut mauris feugiat iaculis nec ac lectus. Sed consequat vestibulum purus, imperdiet varius est pellentesque vitae.
-                                    Suspendisse consequat cursus eros, vitae tempus enim euismod non. Nullam ut commodo tortor.</p>
-                            </section>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-          
+    angular.module('app', ['ngAnimate'])
+            .controller('TestCtrl', TestCtrl)
+</script>
  @stop
        

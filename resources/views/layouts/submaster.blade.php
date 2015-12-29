@@ -238,7 +238,7 @@
             <!--search & user info start-->
             <ul class="nav pull-right top-menu">
 
-
+                {{Lang::getLocale()}}
 
                 <li>
                     <input type="text" class="form-control search" placeholder=" Search">
