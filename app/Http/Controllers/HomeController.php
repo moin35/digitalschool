@@ -74,31 +74,53 @@ public function postAddStudent(){
              return Redirect::to('add/student');
 }
     public function getInstituteReg(){
-       $matchdistrict=District::where('division_id','=','')->get();
+       
         $division=Division::all()->lists('id','Division');
-      return view('admin.reg_insiatute')->with('divisionlist',$division)->with('district',$matchdistrict);
+      return view('admin.reg_insiatute')->with('divisionlist',$division);
     }
 
     public function postInstituteReg(){
-        $insiatute=Input::get('iname');
-        $email=Input::get('email');
-        $einn=Input::get('einn');
-       // return $insiatute.'/'.$email.'/'. $einn;
-        $iu=new Institute;
-        $iu->institute_name=$insiatute;
-        $iu->email=$email;
-        $iu->institute_code=$einn;
-        $iu->save();
-    }
-    public function  getdistrict(){
         $division=Input::get('division');
-    // return $division;
-      $matchdistrict=District::where('division_id','=',$division)->lists('id','district');
-      $division=Division::all()->lists('id','Division');
-      //return Redirect::back()->withInput()->with('district',$matchdistrict);
-    return view('admin.reg_insiatute')->with('divisionlist',$division)->with('district',$matchdistrict);
-    // return $matchdistrict;
+        $district=Input::get('district');
+        $thana=Input::get('thana');        
+        $insiatutename=Input::get('institute_name');
+        $email=Input::get('email');
+        $icode=Input::get('icode');
+        $inphone=Input::get('iphone');
+        $inaddress=Input::get('iaddress');
+        $inurl=Input::get('inurl');
+        $inpass=  Input::get('password');
+        $cofpass=  Input::get('confirm_password');        
+        
+     // return $division.'/'.$district.'/'. $thana.'/'.$insiatute;
+      
+        $iu=new Institute;
+        $iu->institute_name=$insiatutename;
+        $iu->email=$email;
+        $iu->institute_code=$icode;
+        $iu->phone=$inphone;
+        $iu->address=$inaddress;
+        $iu->division=$division;
+        $iu->district=$district;
+        $iu->thana=$thana;
+        $iu->url=$inurl;
+        $iu->status=1;
+        $iu->save();
+        
+        $uin=new User;
+        $uin->name=$insiatutename;
+        $uin->institute_id=$icode;
+        $uin->uid=$icode;
+        $uin->user_name=$inurl;
+        $uin->user_type='Institute';
+        $uin->priv=3;
+        $uin->email=$email;
+        $uin->password= $cofpass;
+        $uin->save();
+        Session::flash('saved',1);
+      return Redirect::to('admin/institute/registration');
     }
+  
 }
 function priv(){
     return  Auth::user()->priv;
