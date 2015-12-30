@@ -8,7 +8,7 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="{{URL::to('/')}}/images/favicon.png">
 
-    <title>Editable Table</title>
+    <title>@yield('title')</title>
 
     <!--Core CSS -->
      <link href="{{URL::to('/')}}/js/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet">
@@ -21,6 +21,7 @@
 
     <!-- Custom styles for this template -->
     <link href="{{URL::to('/')}}/css/style.css" rel="stylesheet">
+    <link href="{{URL::to('/')}}/css/cicon.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/css/style-responsive.css" rel="stylesheet" />
  <link rel="stylesheet" href="{{URL::to('/')}}/css/jquery.steps.css">
  
@@ -315,12 +316,12 @@
                 </li>
                 <li>
                     <a href="{{URL::to('add/student')}}">
-                        <i class="fa fa-male"></i>
+                        <i class="fa icon-student"></i>
                         <span>{{Lang::get('home.student')}} </span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{URL::to('add/student')}}">
+                    <a href="{{URL::to('admin/add/parents')}}">
                         <i class="fa fa-sitemap"></i>
                         <span>{{Lang::get('home.parents')}} </span>
                     </a>

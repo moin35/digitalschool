@@ -32,7 +32,8 @@ Route::post('add/student','HomeController@postAddStudent');
 //Institute Refistration
 Route::get('admin/institute/registration','HomeController@getInstituteReg');
 Route::post('admin/institute/registration','HomeController@postInstituteReg');
-
+//Add Parent
+Route::get('admin/add/parents','HomeController@getAddParents');
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');

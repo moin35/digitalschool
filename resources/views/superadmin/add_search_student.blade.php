@@ -26,7 +26,7 @@
                                     <div class="clearfix">
                                         <div class="btn-group">
                                             <a class="btn btn-primary" ng-click="test.showBoxOne = !test.showBoxOne" >
-                                                Add New <i class="fa fa-plus"></i>
+                                                Add New Student <i class="fa fa-plus"></i>
                                             </a>
                                         </div>
                                         <div class="btn-group pull-right">
@@ -53,14 +53,6 @@
                                                 <div class="panel-body">
                                                     {!! Form::open(array('id'=>'signupFormt','class'=>'cmxform form-horizontal')) !!}
                                                     <div class="form" >
-
-
-                                                            <div class="form-group ">
-                                                                <label for="institute" class="control-label col-lg-3">Institute id</label>
-                                                                <div class="col-lg-6">
-                                                                    <input class=" form-control" id="institute" name="institute" type="text" />
-                                                                </div>
-                                                            </div>
                                                             <div class="form-group ">
                                                                 <label for="firstname" class="control-label col-lg-3">Firstname</label>
                                                                 <div class="col-lg-6">
@@ -73,16 +65,34 @@
                                                                     <input class=" form-control" id="lastname" name="lastname" type="text" />
                                                                 </div>
                                                             </div>
+                                                        <div class="form-group">
+                                                            <label for="guardian_name" class="control-label col-lg-3">Date of Birth</label>
+                                                            <div class="col-lg-6">
+                                                                <input class="form-control form-control-inline input-medium default-date-picker"  size="16" type="text" value="" />
+                                                                <span class="help-block">Select date</span>
+                                                            </div>
+                                                        </div>
                                                             <div class="form-group ">
                                                                 <label for="guardian_name" class="control-label col-lg-3">Guardian Name</label>
                                                                 <div class="col-lg-6">
-                                                                    <input class=" form-control" id="guardian_name" name="guardian_name" type="text" />
+                                                                    <select class="form-control input-sm m-bot15" id="guardian_name" name="guardian_name" type="text">
+                                                                        <option selected>Select a Guardian Name</option>
+                                                                        <option value="male">Male</option>
+                                                                        <option value="female">Female</option>
+                                                                        <option value="other">Other</option>
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group ">
                                                                 <label for="gender" class="control-label col-lg-3">Gender</label>
                                                                 <div class="col-lg-6">
-                                                                    <input class=" form-control" id="gender" name="gender" type="text" />
+                                                                    <select class="form-control input-sm m-bot15" id="gender" name="gender" type="text">
+                                                                        <option selected>Select a Gender</option>
+                                                                        <option value="male">Male</option>
+                                                                        <option value="female">Female</option>
+                                                                        <option value="other">Other</option>
+                                                                    </select>
+
                                                                 </div>
                                                             </div>
                                                             <div class="form-group ">
@@ -100,13 +110,23 @@
                                                             <div class="form-group ">
                                                                 <label for="class" class="control-label col-lg-3">Class</label>
                                                                 <div class="col-lg-6">
-                                                                    <input class=" form-control" id="class" name="class" type="text" />
+                                                                    <select class="form-control input-sm m-bot15" id="class" name="class" type="text">
+                                                                        <option selected>Select Class</option>
+                                                                        <option value="One">One</option>
+                                                                    </select>
+
                                                                 </div>
                                                             </div>
                                                             <div class="form-group ">
                                                                 <label for="section" class="control-label col-lg-3">Section</label>
                                                                 <div class="col-lg-6">
-                                                                    <input class=" form-control" id="section" name="section" type="text" />
+                                                                    <select class="form-control input-sm m-bot15" id="section" name="section" type="text">
+                                                                        <option selected>Select a Guardian Name</option>
+                                                                        <option value="male">Male</option>
+                                                                        <option value="female">Female</option>
+                                                                        <option value="other">Other</option>
+                                                                    </select>
+
                                                                 </div>
                                                             </div>
                                                             <div class="form-group ">
@@ -128,9 +148,16 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group ">
+
                                                                 <label for="user_type" class="control-label col-lg-3">User Type</label>
                                                                 <div class="col-lg-6">
-                                                                    <input class=" form-control" id="user_type" name="user_type" type="text" />
+
+                                                                    <select class="form-control input-sm m-bot15" id="user_type" name="user_type" type="text">
+                                                                        <option selected>Select a User Type</option>
+                                                                        <option value="student">Student</option>
+                                                                        <option value="teacher">Teacher</option>
+                                                                        <option value="parents">Parents</option>
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group ">
