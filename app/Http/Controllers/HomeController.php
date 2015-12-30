@@ -73,6 +73,7 @@ public function postAddStudent(){
     public function getInstituteReg(){
         return view('admin.reg_insiatute');
     }
+
     public function postInstituteReg(){
         $insiatute=Input::get('iname');
         $email=Input::get('email');

@@ -289,22 +289,18 @@
         <!-- sidebar menu start-->            <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
             <li>
-                <a href="index.html">
+                <a href="#">
                     <i class="fa fa-dashboard"></i>
-                    <span>Dashboard</span>
+                    <span>{{Lang::get('home.layout')}}</span>
                 </a>
             </li>
-            <li class="sub-menu">
-                <a href="javascript:;">
-                    <i class="fa fa-laptop"></i>
-                     <span>{{Lang::get('home.layout')}}</span>
-                </a>
-                <ul class="sub">
-                    <li><a href="boxed_page.html">Boxed Page</a></li>
-                    <li><a href="horizontal_menu.html">Horizontal Menu</a></li>
-                    <li><a href="language_switch.html">Language Switch Bar</a></li>
-                </ul>
-            </li>
+                <li>
+                    <a href="fontawesome.html">
+                        <i class="fa fa-bullhorn"></i>
+                        <span>Fontawesome </span>
+                    </a>
+                </li>
+
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>

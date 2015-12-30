@@ -6,7 +6,7 @@
  * Time: 12:36 PM
  */
 return [
-    'layout' => 'লেআউট',
+    'layout' => 'ড্যাশবোর্ড',
     'language'=>'বাংলা',
     'student'=> 'ছাত্র / ছাত্রী ',
 ];
