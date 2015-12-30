@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class District extends Model
 {
-    protected $table='tbl_division';
+    protected $table='tbl_district';
     // public $timestamps=false;
 }

@@ -11,7 +11,10 @@ use Illuminate\Support\Facades\Session;
 use App\User;
 use App\Students;
 use App\Institute;
-
+use App\Division;
+use App\District;
+use App\Thana;
+ 
 class HomeController extends Controller
 {
     /**
@@ -71,7 +74,9 @@ public function postAddStudent(){
              return Redirect::to('add/student');
 }
     public function getInstituteReg(){
-        return view('admin.reg_insiatute');
+       $matchdistrict=District::where('division_id','=','')->get();
+        $division=Division::all()->lists('id','Division');
+      return view('admin.reg_insiatute')->with('divisionlist',$division)->with('district',$matchdistrict);
     }
     public function postInstituteReg(){
         $insiatute=Input::get('iname');
@@ -83,6 +88,15 @@ public function postAddStudent(){
         $iu->email=$email;
         $iu->institute_code=$einn;
         $iu->save();
+    }
+    public function  getdistrict(){
+        $division=Input::get('division');
+    // return $division;
+      $matchdistrict=District::where('division_id','=',$division)->lists('id','district');
+      $division=Division::all()->lists('id','Division');
+      //return Redirect::back()->withInput()->with('district',$matchdistrict);
+    return view('admin.reg_insiatute')->with('divisionlist',$division)->with('district',$matchdistrict);
+    // return $matchdistrict;
     }
 }
 function priv(){
