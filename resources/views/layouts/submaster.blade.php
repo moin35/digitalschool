@@ -779,6 +779,7 @@
     jQuery(document).ready(function() {
         EditableTable.init();
     });
+    
 </script>
 <script>
     $(function ()
@@ -799,6 +800,42 @@
 
 
 </script>
+     <script>
+        jQuery(document).ready(function($){
+            n=1;
+            $('#make').change(function(){
+                $.get("{{ url('api/dropdown')}}",
+                        { option: $(this).val() },
+                        function(data) {
+                            var model = $('.model');
+                            model.empty();
+                            $.each(data, function(index, element) {
+                                model.append("<option>" + 'Choose District' + "</option>","<option value='"+ element +"'>" + element + "</option>");
+                            });
+                        });
+            });
 
+
+        });
+    </script>
+        <script>
+        jQuery(document).ready(function($){
+            n=1;
+            $('.model').change(function(){
+                $.get("{{ url('api/dropdown/thana')}}",
+                        { option: $(this).val() },
+                        function(data) {
+                            var model = $('#idthana');
+                            model.empty();
+
+                            $.each(data, function(index, element) {
+                                model.append("<option>" + 'Choose Thana' + "</option>","<option value='"+ element +"'>" + element + "</option>");
+                            });
+                        });
+            });
+
+
+        });
+    </script>
 </body>
 </html>

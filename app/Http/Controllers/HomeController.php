@@ -11,7 +11,14 @@ use Illuminate\Support\Facades\Session;
 use App\User;
 use App\Students;
 use App\Institute;
+
 use Illuminate\Support\Facades\Hash;
+
+use App\Division;
+use App\District;
+use App\Thana;
+ 
+
 class HomeController extends Controller
 {
     /**
@@ -103,22 +110,56 @@ public function postAddStudent(){
              return Redirect::to('add/student');
 }
     public function getInstituteReg(){
-        return view('admin.reg_insiatute');
+       
+        $division=Division::all()->lists('id','Division');
+      return view('admin.reg_insiatute')->with('divisionlist',$division);
     }
     public function postInstituteReg(){
-        $insiatute=Input::get('iname');
+        $division=Input::get('division');
+        $district=Input::get('district');
+        $thana=Input::get('thana');        
+        $insiatutename=Input::get('institute_name');
         $email=Input::get('email');
-        $einn=Input::get('einn');
-       // return $insiatute.'/'.$email.'/'. $einn;
+        $icode=Input::get('icode');
+        $inphone=Input::get('iphone');
+        $inaddress=Input::get('iaddress');
+        $inurl=Input::get('inurl');
+        $inpass=  Input::get('password');
+        $cofpass=  Input::get('confirm_password');        
+        
+     // return $division.'/'.$district.'/'. $thana.'/'.$insiatute;
+      
         $iu=new Institute;
-        $iu->institute_name=$insiatute;
+        $iu->institute_name=$insiatutename;
         $iu->email=$email;
-        $iu->institute_code=$einn;
+        $iu->institute_code=$icode;
+        $iu->phone=$inphone;
+        $iu->address=$inaddress;
+        $iu->division=$division;
+        $iu->district=$district;
+        $iu->thana=$thana;
+        $iu->url=$inurl;
+        $iu->status=1;
         $iu->save();
+        
+        $uin=new User;
+        $uin->name=$insiatutename;
+        $uin->institute_id=$icode;
+        $uin->uid=$icode;
+        $uin->user_name=$inurl;
+        $uin->user_type='Institute';
+        $uin->priv=3;
+        $uin->email=$email;
+        $uin->password= $cofpass;
+        $uin->save();
+        Session::flash('saved',1);
+      return Redirect::to('admin/institute/registration');
     }
+
     public function getAddParents(){
         return view('parent.reg_parent');
     }
+
 }
 function priv(){
     return  Auth::user()->priv;

@@ -42,3 +42,19 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 // Registration routes...
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
+//saif division  select such as dirstrict,thana
+
+Route::get('api/dropdown', function(){
+    $user = Input::get('option');
+    $items = App\District::where('division_id', '=', $user)->lists('district','id');
+    return Response::make($items);
+});
+
+Route::get('api/dropdown/thana', function(){
+    $users = Input::get('option');    
+    $items = App\Thana::where('district_name', '=', $users)->lists('thana_or_upazilla','id');
+    return Response::make($items);
+});
+
+
+ 
