@@ -301,23 +301,66 @@
     <div id="sidebar" class="nav-collapse">
         <!-- sidebar menu start-->            <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
-            <li>
-                <a href="index.html">
-                    <i class="fa fa-dashboard"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li class="sub-menu">
-                <a href="javascript:;">
-                    <i class="fa fa-laptop"></i>
-                     <span>{{Lang::get('home.layout')}}</span>
-                </a>
-                <ul class="sub">
-                    <li><a href="boxed_page.html">Boxed Page</a></li>
-                    <li><a href="horizontal_menu.html">Horizontal Menu</a></li>
-                    <li><a href="language_switch.html">Language Switch Bar</a></li>
-                </ul>
-            </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i>
+                        <span>{{Lang::get('home.layout')}}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{URL::to('admin/institute/registration')}}">
+                        <i class="fa fa-building-o"></i>
+                        <span>{{Lang::get('home.institute')}} </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{URL::to('add/student')}}">
+                        <i class="fa fa-male"></i>
+                        <span>{{Lang::get('home.student')}} </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{URL::to('add/student')}}">
+                        <i class="fa fa-sitemap"></i>
+                        <span>{{Lang::get('home.parents')}} </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{URL::to('add/student')}}">
+                        <i class="fa fa-group"></i>
+                        <span>{{Lang::get('home.teacher')}} </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{URL::to('add/student')}}">
+                        <i class="fa fa-user"></i>
+                        <span>{{Lang::get('home.user')}} </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{URL::to('add/student')}}">
+                        <i class="fa fa-bell"></i>
+                        <span>{{Lang::get('home.class')}} </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{URL::to('add/student')}}">
+                        <i class="fa fa-edit"></i>
+                        <span>{{Lang::get('home.section')}} </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{URL::to('add/student')}}">
+                        <i class="fa fa-bullhorn"></i>
+                        <span>{{Lang::get('home.subject')}} </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{URL::to('add/student')}}">
+                        <i class="fa fa-signal"></i>
+                        <span>{{Lang::get('home.grade')}} </span>
+                    </a>
+                </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>

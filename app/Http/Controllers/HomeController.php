@@ -78,6 +78,7 @@ public function postAddStudent(){
         $division=Division::all()->lists('id','Division');
       return view('admin.reg_insiatute')->with('divisionlist',$division)->with('district',$matchdistrict);
     }
+
     public function postInstituteReg(){
         $insiatute=Input::get('iname');
         $email=Input::get('email');

@@ -6,7 +6,17 @@
  * Time: 12:36 PM
  */
 return [
-    'layout' => 'Layout',
+    'layout' => 'Dashboard',
     'language'=>'English',
-    'student'=>'student',
+    'institute'=> 'Institute',
+    'student'=>'Student',
+    'parents'=> 'Parents',
+    'teacher'=> 'Teacher',
+    'institute'=> 'Institute',
+    'user'=> 'User',
+    'class'=> 'Class',
+    'section'=> 'Section',
+    'subject'=> 'Subject',
+    'grade'=> 'Grade',
+
 ];
