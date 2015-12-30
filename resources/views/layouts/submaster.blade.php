@@ -23,6 +23,19 @@
     <link href="{{URL::to('/')}}/css/style.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/css/style-responsive.css" rel="stylesheet" />
  <link rel="stylesheet" href="{{URL::to('/')}}/css/jquery.steps.css">
+ 
+    <link rel="stylesheet" href="css/bootstrap-switch.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-fileupload/bootstrap-fileupload.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-datepicker/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-timepicker/compiled/timepicker.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-colorpicker/css/colorpicker.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-datetimepicker/css/datetimepicker.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/jquery-multi-select/css/multi-select.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/jquery-tags-input/jquery.tagsinput.css" />
+
+    <link rel="stylesheet" type="text/css" href="js/select2/select2.css" />
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]>
     <script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -701,7 +714,7 @@
 
 <script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/jquery.dataTables.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/DT_bootstrap.js"></script>
-
+<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-fileupload/bootstrap-fileupload.js"></script>
 <!--common script init for all pages-->
 <script src="{{URL::to('/')}}/js/scripts.js"></script>
 
