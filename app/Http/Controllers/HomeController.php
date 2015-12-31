@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Session;
 use App\User;
 use App\Students;
 use App\Institute;
-
+use App\InstituteContacts;
 use Illuminate\Support\Facades\Hash;
-
+use App\InstituteInfo;
 use App\Division;
 use App\District;
 use App\Thana;
@@ -115,7 +115,17 @@ public function postAddStudent(){
       return view('admin.reg_insiatute')->with('divisionlist',$division);
     }
     public function postInstituteReg(){
-        $division=Input::get('division');
+         $email=Input::get('email');
+        $icode=Input::get('icode');
+    $userc=User::where('institute_id','=',$icode)->orWhere('email','=',$email)->count();        
+    $marchant=  Institute::where('institute_code','=',$icode)->orWhere('email','=',$email)->count();
+        if($userc >0 || $marchant>0){
+            Session::flash('data','Institute or Email was already used. Please Try a different number.');
+
+            return Redirect::to('merchant/signup');
+      }
+ else {
+         $division=Input::get('division');
         $district=Input::get('district');
         $thana=Input::get('thana');        
         $insiatutename=Input::get('institute_name');
@@ -152,8 +162,23 @@ public function postAddStudent(){
         $uin->email=$email;
         $uin->password= $cofpass;
         $uin->save();
-        Session::flash('saved',1);
-      return Redirect::to('admin/institute/registration');
+        
+        
+        $info=new InstituteInfo;
+        $info->institute_code=$icode;
+        $info->save();
+        
+        
+        $incon=new InstituteContacts;
+        $incon->institute_code=$icode;
+        $incon->save();
+
+         
+        
+        Session::flash('data','You successfully');
+      return Redirect::to('admin/institute/registration'); 
+      }
+        
     }
 
     public function getAddParents(){

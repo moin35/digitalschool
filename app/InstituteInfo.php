@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class InstituteInfo extends Model
 {
-    protected $table='merchant';
-    // public $timestamps=false;
+    protected $table='tbl_institute_info';
+  public $timestamps=false;
 }
