@@ -761,9 +761,26 @@
 
 <script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/jquery.dataTables.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/DT_bootstrap.js"></script>
-<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+ 
 <!--common script init for all pages-->
 <script src="{{URL::to('/')}}/js/scripts.js"></script>
+
+<script type="text/javascript" src="{{URL::to('/')}}/js/fuelux/js/spinner.min.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/jquery-multi-select/js/jquery.multi-select.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/jquery-multi-select/js/jquery.quicksearch.js"></script>
+
+<script type="text/javascript" src="js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
+
+<script src="js/jquery-tags-input/jquery.tagsinput.js"></script>
 
 <!--script for this page only-->
 <script src="{{URL::to('/')}}/js/table-editable.js"></script>
