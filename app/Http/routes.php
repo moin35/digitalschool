@@ -34,6 +34,11 @@ Route::get('admin/institute/registration','HomeController@getInstituteReg');
 Route::post('admin/institute/registration','HomeController@postInstituteReg');
 //Add Parent
 Route::get('admin/add/parents','HomeController@getAddParents');
+Route::post('admin/add/parents','HomeController@postAddParents');
+
+//Add Teacher
+Route::get('admin/add/teacher','HomeController@getAddTeacher');
+Route::post('admin/add/teacher','HomeController@postAddTeacher');
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
