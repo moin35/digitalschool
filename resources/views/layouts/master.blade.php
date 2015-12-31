@@ -302,7 +302,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{URL::to('add/student')}}">
+                        <a href="{{URL::to('admin/add/parents')}}">
                             <i class="fa fa-sitemap"></i>
                             <span>{{Lang::get('home.parents')}} </span>
                         </a>
