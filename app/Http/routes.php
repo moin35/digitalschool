@@ -29,9 +29,11 @@ Route::get('reg', function(){
 //Add Student Route
 Route::get('add/student','HomeController@getAddStudent');
 Route::post('add/student','HomeController@postAddStudent');
+
 //Institute Refistration
 Route::get('admin/institute/registration','HomeController@getInstituteReg');
 Route::post('admin/institute/registration','HomeController@postInstituteReg');
+
 //Add Parent
 Route::get('admin/add/parents','HomeController@getAddParents');
 // Authentication routes...
@@ -55,6 +57,8 @@ Route::get('api/dropdown/thana', function(){
     $items = App\Thana::where('district_name', '=', $users)->lists('thana_or_upazilla','id');
     return Response::make($items);
 });
-
+//class info add
+Route::get('Addclass','HomeController@getaddclass');
+Route::post('Addclass','HomeController@postaddclass');
 
  

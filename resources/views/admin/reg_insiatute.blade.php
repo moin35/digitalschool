@@ -41,13 +41,7 @@ Institute
                                
     @endif
                             <div class="btn-group pull-right">
-                                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
-                                </button>
-                                <ul class="dropdown-menu pull-right">
-                                    <li><a href="#">Print</a></li>
-                                    <li><a href="#">Save as PDF</a></li>
-                                    <li><a href="#">Export to Excel</a></li>
-                                </ul>
+                                
                             </div>
                             <div class="box-one" ng-show="test.showBoxOne">
                                 <div class="row">
@@ -62,7 +56,7 @@ Institute
                                                 </span>
                                             </header>
                                             <div class="panel-body">
-                                                {!!Form::open(array('id'=>'signupFormt1','class'=>'cmxform form-horizontal')) !!}
+                                                {!!Form::open(array('id'=>'signupinstute','class'=>'cmxform form-horizontal')) !!}
                                                 <section class="panel">
 
                                                     <div class="panel-body">
@@ -143,7 +137,7 @@ Institute
                                                                 <div class="form-group ">
                                                                     <label for="icode" class="control-label col-lg-3">Institute Code</label>
                                                                     <div class="col-lg-6">
-                                                                        <input class="form-control " id="icode" name="icode" type="text" />
+                                                                        <input class="form-control " id="icodes" name="icode" type="text" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group ">
@@ -235,154 +229,64 @@ Institute
         </section>
 
         <section class="panel">
-            <header class="panel-heading">
-                Flip Scroll
-                <span class="tools pull-right">
-                    <a href="javascript:;" class="fa fa-chevron-down"></a>
-                    <a href="javascript:;" class="fa fa-cog"></a>
-                    <a href="javascript:;" class="fa fa-times"></a>
-                </span>
-            </header>
-            <div class="panel-body">
-                <section id="flip-scroll">
-                    <table class="table table-bordered table-striped table-condensed cf">
-                        <thead class="cf">
-                            <tr>
-                                <th>Code</th>
-                                <th>Company</th>
-                                <th class="numeric">Price</th>
-                                <th class="numeric">Change</th>
-                                <th class="numeric">Change %</th>
-                                <th class="numeric">Open</th>
-                                <th class="numeric">High</th>
-                                <th class="numeric">Low</th>
-                                <th class="numeric">Volume</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>AAC</td>
-                                <td>AUSTRALIAN AGRICULTURAL COMPANY LIMITED.</td>
-                                <td class="numeric">$1.38</td>
-                                <td class="numeric">-0.01</td>
-                                <td class="numeric">-0.36%</td>
-                                <td class="numeric">$1.39</td>
-                                <td class="numeric">$1.39</td>
-                                <td class="numeric">$1.38</td>
-                                <td class="numeric">9,395</td>
-                            </tr>
-                            <tr>
-                                <td>AAD</td>
-                                <td>ARDENT LEISURE GROUP</td>
-                                <td class="numeric">$1.15</td>
-                                <td class="numeric">  +0.02</td>
-                                <td class="numeric">1.32%</td>
-                                <td class="numeric">$1.14</td>
-                                <td class="numeric">$1.15</td>
-                                <td class="numeric">$1.13</td>
-                                <td class="numeric">56,431</td>
-                            </tr>
-                            <tr>
-                                <td>AAX</td>
-                                <td>AUSENCO LIMITED</td>
-                                <td class="numeric">$4.00</td>
-                                <td class="numeric">-0.04</td>
-                                <td class="numeric">-0.99%</td>
-                                <td class="numeric">$4.01</td>
-                                <td class="numeric">$4.05</td>
-                                <td class="numeric">$4.00</td>
-                                <td class="numeric">90,641</td>
-                            </tr>
-                            <tr>
-                                <td>ABC</td>
-                                <td>ADELAIDE BRIGHTON LIMITED</td>
-                                <td class="numeric">$3.00</td>
-                                <td class="numeric">  +0.06</td>
-                                <td class="numeric">2.04%</td>
-                                <td class="numeric">$2.98</td>
-                                <td class="numeric">$3.00</td>
-                                <td class="numeric">$2.96</td>
-                                <td class="numeric">862,518</td>
-                            </tr>
-                            <tr>
-                                <td>ABP</td>
-                                <td>ABACUS PROPERTY GROUP</td>
-                                <td class="numeric">$1.91</td>
-                                <td class="numeric">0.00</td>
-                                <td class="numeric">0.00%</td>
-                                <td class="numeric">$1.92</td>
-                                <td class="numeric">$1.93</td>
-                                <td class="numeric">$1.90</td>
-                                <td class="numeric">595,701</td>
-                            </tr>
-                            <tr>
-                                <td>ABY</td>
-                                <td>ADITYA BIRLA MINERALS LIMITED</td>
-                                <td class="numeric">$0.77</td>
-                                <td class="numeric">  +0.02</td>
-                                <td class="numeric">2.00%</td>
-                                <td class="numeric">$0.76</td>
-                                <td class="numeric">$0.77</td>
-                                <td class="numeric">$0.76</td>
-                                <td class="numeric">54,567</td>
-                            </tr>
-                            <tr>
-                                <td>ACR</td>
-                                <td>ACRUX LIMITED</td>
-                                <td class="numeric">$3.71</td>
-                                <td class="numeric">  +0.01</td>
-                                <td class="numeric">0.14%</td>
-                                <td class="numeric">$3.70</td>
-                                <td class="numeric">$3.72</td>
-                                <td class="numeric">$3.68</td>
-                                <td class="numeric">191,373</td>
-                            </tr>
-                            <tr>
-                                <td>ADU</td>
-                                <td>ADAMUS RESOURCES LIMITED</td>
-                                <td class="numeric">$0.72</td>
-                                <td class="numeric">0.00</td>
-                                <td class="numeric">0.00%</td>
-                                <td class="numeric">$0.73</td>
-                                <td class="numeric">$0.74</td>
-                                <td class="numeric">$0.72</td>
-                                <td class="numeric">8,602,291</td>
-                            </tr>
-                            <tr>
-                                <td>AGG</td>
-                                <td>ANGLOGOLD ASHANTI LIMITED</td>
-                                <td class="numeric">$7.81</td>
-                                <td class="numeric">-0.22</td>
-                                <td class="numeric">-2.74%</td>
-                                <td class="numeric">$7.82</td>
-                                <td class="numeric">$7.82</td>
-                                <td class="numeric">$7.81</td>
-                                <td class="numeric">148</td>
-                            </tr>
-                            <tr>
-                                <td>AGK</td>
-                                <td>AGL ENERGY LIMITED</td>
-                                <td class="numeric">$13.82</td>
-                                <td class="numeric">  +0.02</td>
-                                <td class="numeric">0.14%</td>
-                                <td class="numeric">$13.83</td>
-                                <td class="numeric">$13.83</td>
-                                <td class="numeric">$13.67</td>
-                                <td class="numeric">846,403</td>
-                            </tr>
-                            <tr>
-                                <td>AGO</td>
-                                <td>ATLAS IRON LIMITED</td>
-                                <td class="numeric">$3.17</td>
-                                <td class="numeric">-0.02</td>
-                                <td class="numeric">-0.47%</td>
-                                <td class="numeric">$3.11</td>
-                                <td class="numeric">$3.22</td>
-                                <td class="numeric">$3.10</td>
-                                <td class="numeric">5,416,303</td>
-                            </tr>
-                        </tbody>
-                    </table>
+             <!-- page start-->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        ALL Institute
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-cog"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                         </span>
+                    </header>
+                    <div class="panel-body">
+                        <div class="adv-table editable-table ">
+                            <div class="clearfix">
+                                 
+                                <div class="btn-group pull-right">
+                                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="#">Print</a></li>
+                                        <li><a href="#">Save as PDF</a></li>
+                                        <li><a href="#">Export to Excel</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="space15"></div>
+                            <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Code</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>URL</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                               @foreach($allinstuted as $a)
+                                <tr class="">
+                                    <td>{{$a->institute_name}}</td>
+                                    <td>{{$a->institute_code}}</td>
+                                    <td>{{$a->email}}</td>
+                                    <td class="center">{{$a->phone}}</td>
+                                    <td><a  href="{{$a->url}}">{{$a->url}}</a></td>
+                                    <td><a   href="">View More</a></td>
+                                </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <!-- page end-->
                 </section>
             </div>
         </section>

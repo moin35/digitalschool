@@ -327,7 +327,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{URL::to('add/student')}}">
+                    <a href="{{URL::to('Addclass')}}">
                         <i class="fa fa-group"></i>
                         <span>{{Lang::get('home.teacher')}} </span>
                     </a>
@@ -790,6 +790,7 @@
 <script src="{{URL::to('/')}}/js/validation-init.js"></script>
 
 <script src="{{URL::to('/')}}/js/jquery-steps/jquery.steps.js"></script>
+<script src="{{URL::to('/')}}/js/table-editable.js"></script>
 
 <!-- END JAVASCRIPTS -->
 <script>
@@ -820,14 +821,15 @@
      <script>
         jQuery(document).ready(function($){
             n=1;
+         
             $('#make').change(function(){
                 $.get("{{ url('api/dropdown')}}",
                         { option: $(this).val() },
                         function(data) {
                             var model = $('.model');
                             model.empty();
-                            $.each(data, function(index, element) {
-                                model.append("<option>" + 'Choose District' + "</option>","<option value='"+ element +"'>" + element + "</option>");
+                            $.each(data, function(index,element) {
+                                model.append("<option value='"+ element +"'>" + element + "</option>");
                             });
                         });
             });
@@ -845,8 +847,8 @@
                             var model = $('#idthana');
                             model.empty();
 
-                            $.each(data, function(index, element) {
-                                model.append("<option>" + 'Choose Thana' + "</option>","<option value='"+ element +"'>" + element + "</option>");
+                            $.each(data, function(index,element) {
+                                model.append("<option value='"+ element +"'>" + element + "</option>");
                             });
                         });
             });

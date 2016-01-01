@@ -93,17 +93,29 @@ var Script = function () {
             }
         });
         // validate signup form on keyup and submit
-        $("#signupFormt1").validate({
+        $("#signupinstute").validate({
             rules: {
                 institute_name: "required",
 
-                iusername: {
+                icode: {
                     required: true,
                     minlength: 4
                 },
                 password: {
                     required: true,
                     minlength: 5
+                },                
+                division: {
+                    required: true,
+                    
+                },
+                 district: {
+                    required: true,
+                     
+                },
+                thana: {
+                    required: true,
+                    
                 },
                 confirm_password: {
                     required: true,
@@ -140,9 +152,17 @@ var Script = function () {
             messages: {
                 firstname: "Please enter your firstname",
                 lastname: "Please enter your lastname",
-                iusername: {
-                    required: "Please enter a username",
-                    minlength: "Your username must consist of at least 4 characters"
+                icode: {
+                    required: "Please enter a Insiatute Code",                    
+                },
+                 division: {
+                    required: "Choose Division",                    
+                },
+                district: {
+                    required: "Choose Division",                    
+                },
+                thana: {
+                    required: "Choose Thana/Upazilla",                    
                 },
                 password: {
                     required: "Please provide a password",
