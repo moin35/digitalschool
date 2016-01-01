@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Parents extends Model
 {
-    protected $table='merchant';
+    protected $table='tbl_parents';
     // public $timestamps=false;
 }

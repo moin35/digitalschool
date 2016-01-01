@@ -327,7 +327,11 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{URL::to('Addclass')}}">
+ 
+                   
+ 
+                    <a href="{{URL::to('admin/add/teacher')}}">
+ 
                         <i class="fa fa-group"></i>
                         <span>{{Lang::get('home.teacher')}} </span>
                     </a>
@@ -339,7 +343,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{URL::to('add/student')}}">
+                   <a href="{{URL::to('Addclass')}}">
                         <i class="fa fa-bell"></i>
                         <span>{{Lang::get('home.class')}} </span>
                     </a>

@@ -184,6 +184,190 @@ var Script = function () {
                 agree: "Please accept our policy"
             }
         });
+        // validate signup form on keyup and submit
+        $("#signupFormt2").validate({
+            rules: {
+                gname: "required",
+
+                username: {
+                    required: true,
+                    minlength: 4
+                },
+                password: {
+                    required: true,
+                    minlength: 5
+                },
+                confirm_password: {
+                    required: true,
+                    minlength: 5,
+                    equalTo: "#password"
+                },
+                email: {
+                    required: true,
+
+                },
+                father_name: {
+                    required: true,
+
+                },
+                mother_name: {
+                    required: true,
+
+                },
+                father_profession: {
+                    required: true,
+
+                },
+                mother_profession: {
+                    required: true,
+
+                },
+                religion: {
+                    required: true,
+
+                },
+                address: {
+                    required: true,
+
+                },
+                phone: {
+                    required: true,
+
+                },
+
+                nid: {
+                    required: true,
+
+                },
+                topic: {
+                    required: "#newsletter:checked",
+                    minlength: 2
+                },
+                agree: "required"
+            },
+            messages: {
+                gname: "Please enter a Guardian Name",
+                father_name: "Please enter students father name",
+                mother_name: "Please enter students mother name",
+                father_profession: "Please enter father profession",
+                mother_profession: "Please enter mother profession",
+                religion: "Please enter your religion",
+
+                nid: "Please enter your Natinoal Id card Number",
+                iusername: {
+                    required: "Please enter a username",
+                    minlength: "Your username must consist of at least 4 characters"
+                },
+                password: {
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 5 characters long"
+                },
+                confirm_password: {
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 5 characters long",
+                    equalTo: "Please enter the same password as above"
+                },
+                email: "Please enter a valid email",
+                user_type: "Please enter a user type",
+
+                address: "Please enter a valid  address",
+                agree: "Please accept our policy"
+            }
+        });
+        // validate signup form on keyup and submit
+        $("#signupFormt3").validate({
+            rules: {
+                firstname: "required",
+                lastname: "required",
+                username: {
+                    required: true,
+                    minlength: 4
+                },
+                password: {
+                    required: true,
+                    minlength: 5
+                },
+                confirm_password: {
+                    required: true,
+                    minlength: 5,
+                    equalTo: "#password"
+                },
+                email: {
+                    required: true,
+
+                },
+                designation: {
+                    required: true,
+
+                },
+                dbirth: {
+                    required: true,
+
+                },
+                gender: {
+                    required: true,
+
+                },
+                image: {
+                    required: true,
+
+                },
+
+                religion: {
+                    required: true,
+
+                },
+                address: {
+                    required: true,
+
+                },
+                phone: {
+                    required: true,
+
+                },
+
+                nid: {
+                    required: true,
+
+                },
+                join_date: {
+                    required: true,
+
+                },
+                topic: {
+                    required: "#newsletter:checked",
+                    minlength: 2
+                },
+                agree: "required"
+            },
+            messages: {
+                firstname: "Please enter your firstname",
+                lastname: "Please enter your lastname",
+                username: {
+                    required: "Please enter a username",
+                    minlength: "Your username must consist of at least 4 characters"
+                },
+                password: {
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 5 characters long"
+                },
+                confirm_password: {
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 5 characters long",
+                    equalTo: "Please enter the same password as above"
+                },
+                email: "Please enter a valid email",
+                designation: "Please enter a designation",
+                dbirth: "Please enter Dath of Birth",
+                gender: "Please enter a gender",
+                religion: "Please enter a religion",
+                address: "Please enter a valid  address",
+                join_date: "Please enter a joining date",
+                phone: "Please enter a phone no.",
+                nid: "Please enter National Id card No.",
+                agree: "Please accept our policy"
+            }
+        });
         // propose username by combining first- and lastname
         $("#username").focus(function() {
             var firstname = $("#firstname").val();

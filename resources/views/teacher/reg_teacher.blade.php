@@ -1,6 +1,6 @@
 @extends('layouts.submaster')
 @section('title')
-    Add Parents
+    Teachers
 @stop
 @section('head')
     <script src="{{URL::to('/')}}/js/angular/angular.min.js"></script>
@@ -12,21 +12,19 @@
     <div class="row">
         <div class="col-sm-12">
             <section class="panel">
-                <header class="panel-heading">
-                    Parents
-                        <span class="tools pull-right">
-                            <a href="javascript:;" class="fa fa-chevron-down"></a>
-                            <a href="javascript:;" class="fa fa-cog"></a>
-                            <a href="javascript:;" class="fa fa-times"></a>
-                         </span>
-                </header>
+                @if(Session::get('data'))
+                    <div class="alert alert-dismissible alert-info">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong> <h3>{{Session::get('data')}}</h3></strong>
+                    </div>
+                @endif
                 <div class="panel-body">
                     <div class="adv-table editable-table ">
                         <div ng-app="app" ng-controller="TestCtrl as test">
                             <div class="clearfix">
                                 <div class="btn-group">
                                     <a class="btn btn-primary" ng-click="test.showBoxOne = !test.showBoxOne" >
-                                        Add Parents <i class="fa fa-plus"></i>
+                                        Add New Teacher <i class="fa fa-plus"></i>
                                     </a>
                                 </div>
                                 <div class="btn-group pull-right">
@@ -38,59 +36,49 @@
                                         <li><a href="#">Export to Excel</a></li>
                                     </ul>
                                 </div>
-                                @if(Session::get('data'))
-                                    <div class="alert alert-dismissible alert-info">
-                                        <button type="button" class="close" data-dismiss="alert">×</button>
-                                        <strong> <h3>{{Session::get('data')}}</h3></strong>
-                                    </div>
-                                @endif
                                 <div class="box-one" ng-show="test.showBoxOne">
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <section class="panel">
-                                                <header class="panel-heading">
-                                                    Parents
-                        <span class="tools pull-right">
-                            <a href="javascript:;" class="fa fa-chevron-down"></a>
-                            <a href="javascript:;" class="fa fa-cog"></a>
-                            <a href="javascript:;" class="fa fa-times"></a>
-                         </span
-                                                </header>
                                                 <div class="panel-body">
-
-                                                    {!! Form::open(array('id'=>'signupFormt2','class'=>'cmxform form-horizontal')) !!}
+                                                    {!! Form::open(array('id'=>'signupFormt3','class'=>'cmxform form-horizontal','files'=>'true')) !!}
                                                     <div class="form" >
                                                         <div class="form-group ">
-                                                            <label for="gname" class="control-label col-lg-3">Guardian Name</label>
+                                                            <label for="firstname" class="control-label col-lg-3">Firstname</label>
                                                             <div class="col-lg-6">
-                                                                <input class=" form-control" id="gname" name="gname" type="text" />
+                                                                <input class=" form-control" id="firstname" name="firstname" type="text" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group ">
-                                                            <label for="father_name" class="control-label col-lg-3">Father's Name</label>
+                                                            <label for="lastname" class="control-label col-lg-3">Lastname</label>
                                                             <div class="col-lg-6">
-                                                                <input class=" form-control" id="father_name" name="father_name" type="text" />
+                                                                <input class=" form-control" id="lastname" name="lastname" type="text" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group ">
-                                                            <label for="mother_name" class="control-label col-lg-3">Mother's Name</label>
+                                                            <label for="designation" class="control-label col-lg-3">Designation</label>
                                                             <div class="col-lg-6">
-                                                                <input class=" form-control" id="mother_name" name="mother_name" type="text" />
+                                                                <input class=" form-control" id="designation" name="designation" type="text" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group ">
-                                                            <label for="father_profession" class="control-label col-lg-3">Father's Profession</label>
+                                                            <label for="dbirth" class="control-label col-lg-3">Date of Birth</label>
                                                             <div class="col-lg-6">
-                                                                <input class=" form-control" id="father_profession" name="father_profession" type="text" />
+                                                                <input class=" form-control" id="dbirth" name="dbirth" type="text" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group ">
-                                                            <label for="mother_profession" class="control-label col-lg-3">Mother's Profession</label>
+                                                            <label for="gender" class="control-label col-lg-3">Gender</label>
                                                             <div class="col-lg-6">
-                                                                <input class=" form-control" id="mother_profession" name="mother_profession" type="text" />
-                                                            </div>
-                                                        </div>
+                                                                <select class="form-control input-sm m-bot15" id="gender" name="gender" type="text">
+                                                                    <option selected>Select a Gender</option>
+                                                                    <option value="male">Male</option>
+                                                                    <option value="female">Female</option>
+                                                                    <option value="other">Other</option>
+                                                                </select>
 
+                                                            </div>
+                                                        </div>
                                                         <div class="form-group ">
                                                             <label for="religion " class="control-label col-lg-3">Religion </label>
                                                             <div class="col-lg-6">
@@ -105,6 +93,18 @@
                                                         </div>
 
                                                         <div class="form-group ">
+                                                            <label for="nid" class="control-label col-lg-3">National Id no.</label>
+                                                            <div class="col-lg-6">
+                                                                <input class=" form-control" id="nid" name="nid" type="text" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group ">
+                                                            <label for="join_date" class="control-label col-lg-3">Joining Date</label>
+                                                            <div class="col-lg-6">
+                                                                <input class=" form-control" id="join_date" name="join_date" type="text" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group ">
                                                             <label for="email" class="control-label col-lg-3">Email</label>
                                                             <div class="col-lg-6">
                                                                 <input class="form-control " id="email" name="email" type="email" />
@@ -117,10 +117,29 @@
                                                                 <input class=" form-control" id="phone" name="phone" type="text" />
                                                             </div>
                                                         </div>
-                                                        <div class="form-group ">
-                                                            <label for="nid" class="control-label col-lg-3">National Id no.</label>
-                                                            <div class="col-lg-6">
-                                                                <input class=" form-control" id="nid" name="nid" type="text" />
+                                                        <div class="form-group last">
+                                                            <label class="control-label col-md-3">Image Upload</label>
+                                                            <div class="col-md-9">
+                                                                <div class="fileupload fileupload-new" data-provides="fileupload" id="image" name="image">
+                                                                    <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                                                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                                                                    </div>
+                                                                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                                                    <div>
+                                                   <span class="btn btn-white btn-file">
+                                                   <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
+                                                   <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
+                                                   <input type="file" name="image" class="default" />
+                                                   </span>
+                                                                        <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
+                                                                    </div>
+                                                                </div>
+                                                                <span class="label label-danger">NOTE!</span>
+                                             <span>
+                                             Attached image thumbnail is
+                                             supported in Latest Firefox, Chrome, Opera,
+                                             Safari and Internet Explorer 10 only
+                                             </span>
                                                             </div>
                                                         </div>
                                                         <div class="form-group ">
