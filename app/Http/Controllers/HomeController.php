@@ -117,8 +117,9 @@ public function postAddStudent(){
 }
     public function getInstituteReg(){
        
+        $allinst=Institute::all();
         $division=Division::all()->lists('id','Division');
-      return view('admin.reg_insiatute')->with('divisionlist',$division);
+      return view('admin.reg_insiatute')->with('divisionlist',$division)->with('allinstuted',$allinst);
  
     }
 
@@ -130,7 +131,7 @@ public function postAddStudent(){
         if ($userc > 0 || $marchant > 0) {
             Session::flash('data', 'Institute or Email was already used. Please Try a different number.');
 
-            return Redirect::to('merchant/signup');
+            return Redirect::to('admin/institute/registration');
  
         } else {
             $division = Input::get('division');
