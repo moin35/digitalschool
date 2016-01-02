@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subject extends Model
 {
-    protected $table='merchant';
+    protected $table='tbl_subjects';
     // public $timestamps=false;
 }

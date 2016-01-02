@@ -45,6 +45,9 @@ Route::post('admin/add/teacher','HomeController@postAddTeacher');
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
+//Add Subject
+Route::get('admin/add/subject','HomeController@getAddSubject');
+Route::post('admin/add/subject','HomeController@postAddSubject');
 
 // Registration routes...
 Route::get('auth/register', 'Auth\AuthController@getRegister');
