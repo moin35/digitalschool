@@ -12,6 +12,8 @@
  <!--dynamic table-->
     <link href="{{URL::to('/')}}/js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
     <link href="{{URL::to('/')}}/js/advanced-datatable/css/demo_table.css" rel="stylesheet" />
+    <link href="{{URL::to('/')}}/js/advanced-datatable/css/customdatepicker.css" rel="stylesheet" />
+
     
     <!--Core CSS -->
      <link href="{{URL::to('/')}}/js/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet">
@@ -752,6 +754,9 @@
 <!-- Placed js at the end of the document so the pages load faster -->
 
 <!--Core js-->
+<script src="{{URL::to('/')}}/js/jquery.js"></script>
+<script src="{{URL::to('/')}}/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="{{URL::to('/')}}/js/bootstrap-switch.js"></script>
 <script src="{{URL::to('/')}}/js/jquery-1.8.3.min.js"></script>
 <script src="{{URL::to('/')}}/bs3/js/bootstrap.min.js"></script>
 <script class="include" type="text/javascript" src="{{URL::to('/')}}/js/jquery.dcjqaccordion.2.7.js"></script>
@@ -804,6 +809,7 @@
 <!-- start Dynamic Tables JAVASCRIPTS -->
 <script type="text/javascript" language="javascript" src="{{URL::to('/')}}/js/advanced-datatable/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/DT_bootstrap.js"></script>
+
 <!-- END JAVASCRIPTS -->
 <script>
     jQuery(document).ready(function() {
@@ -868,5 +874,55 @@
 
         });
     </script>
+<script>
+    jQuery(document).ready(function($){
+        n=1;
+        $('.model').change(function(){
+            $.get("{{ url('api/dropdown/thana')}}",
+                    { option: $(this).val() },
+                    function(data) {
+                        var model = $('#idthana');
+                        model.empty();
+
+                        $.each(data, function(index,element) {
+                            model.append("<option value='"+ element +"'>" + element + "</option>");
+                        });
+                    });
+        });
+
+
+    });
+</script>
+<script>
+    jQuery(document).ready(function($){
+        n=1;
+        $('#class').change(function(){
+            $.get("{{ url('api/dropdown/section')}}",
+                    { option: $(this).val() },
+                    function(data) {
+                        var model = $('#sectionid');
+                        model.empty();
+
+                        $.each(data, function(index,element) {
+                            model.append("<option value='"+ element +"'>" + element + "</option>");
+                        });
+                    });
+        });
+
+
+    });
+</script>
+<script>
+    $( '.datepicker' ).pickadate({
+        monthSelector: true,
+        yearSelector: true,
+        yearSelector: 100,
+        dateMin: [1960,1,1],
+        dateMax: true,
+        onStart: function() {
+            this.show(1,1960)
+        }
+    });
+</script>
 </body>
 </html>

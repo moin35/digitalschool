@@ -65,6 +65,11 @@ Route::get('api/dropdown/thana', function(){
     $items = App\Thana::where('district_name', '=', $users)->lists('thana_or_upazilla','id');
     return Response::make($items);
 });
+Route::get('api/dropdown/section', function(){
+    $user = Input::get('option');
+    $items = App\Section::where('institute_code','=',Auth::user()->institute_id)->where('class_id', '=', $user)->lists('section_name','section_id');
+    return Response::make($items);
+});
 //class info add
 Route::get('Addclass','HomeController@getaddclass');
 Route::post('Addclass','HomeController@postaddclass');

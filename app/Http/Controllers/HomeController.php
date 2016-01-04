@@ -50,67 +50,71 @@ class HomeController extends Controller {
 
     public function getAddStudent() {
         $parents=Parents::where('institute_code','=',Auth::user()->institute_id)->lists('guradian_id','guardian_name');
+        //$parents=Section::where('institute_code','=',Auth::user()->institute_id)->lists('section_id','section_name');
+        $class=ClassAdd::where('institute_code','=',Auth::user()->institute_id)->lists('class_id','class_name');
+
         //return $parents;
-        return view('superadmin.add_search_student')->with('parents',$parents);
+        return view('superadmin.add_search_student')->with('parents',$parents)->with('class',$class);
     }
  
 public function postAddStudent(){
         $iid=User::where('uid','=',Auth::user()->uid)->pluck('institute_id');
-              $name=Input::get('firstname').' '.Input::get('lastname');
-             $studentid = mt_rand('1100','9999');
-             $uid=$iid.','.Input::get('roll');
-             $address=Input::get('address');
-             $guardian=Input::get('guardian_name');
-             $gender=Input::get('gender');
-             $religion=Input::get('religion');
-             $email=Input::get('email');
-             $phone=Input::get('phone');
-             $class=Input::get('class');
-             $section=Input::get('section');
-             $roll=Input::get('roll');
-             $user_type=Input::get('user_type');
-             $transport_rent=Input::get('transport_rent');
-             $birth_certificate=Input::get('birth_certificate');
-             $image=Input::get('image');
-             $route_name=Input::get('route_name');
-             $status=Input::get('status');
-    $user_name=Input::get('username');
+
+    if(Input::hasFile('image')){
+       // return 1;
+        $extension = Input::file('image')->getClientOriginalExtension();
+        if($extension=='png'||$extension=='jpg'||$extension=='jpeg'||$extension=='bmp'||
+            $extension=='PNG'||$extension=='jpg'||$extension=='JPEG'||$extension=='BMP'){
+            $date=date('dmyhsu');
+            $fname=$date.'.'.$extension;
+            $destinationPath = 'images/';
+            Input::file('image')->move($destinationPath,$fname);
+            $final=$fname;
+        }
+    }
+    else{
+        $final='';
+    }
+//return $final;
+
     //return $password;
     //return $name.$studentid.$institute.$guardian.$gender.$religion.$email.$phone.$class.$section.$roll.$user_type.$transport_rent.$birth_certificate.$image
      //   .$route_name.$status;
             $u=new User;
-            $u->name=$name;
-            $u->uid=$uid;
+            $u->name=Input::get('firstname').' '.Input::get('lastname');
+            $u->uid=$iid.','.Input::get('roll');
             $u->priv=2;
-            $u->user_type=Input::get('user_type');
-            $u->user_name=$user_name;
-            $u->email=$email;
+            $u->user_type='Students';
+            $u->user_name=Input::get('username');
+            $u->email=Input::get('email');
             $u->password= Hash::make(Input::get('confirm_password'));
-            $u->save();
-    $su=new User;
-    $su->name=$name;
-    $su->st_id=$uid;
-    $su->institute_code=$uid;
-    $su->guardian_id=$uid;
-    $su->guardian_name=$uid;
-    $su->gender=$uid;
-    $su->religion=$uid;
-    $su->phone=$uid;
-    $su->address=$uid;
-    $su->class=$uid;
-    $su->section=$uid;
-    $su->roll=$uid;
-    $su->image=$uid;
-    $su->birth_certificate=$uid;
-    $su->tran_route_name=$uid;
-    $su->transport_rent=$uid;
-    $su->priv='2';
-    $su->user_type=Input::get('user_type');
-    $su->user_name=$user_name;
-    $su->email=$email;
+          $u->save();
+    $su=new Students;
+    $su->name=Input::get('firstname').' '.Input::get('lastname');
+    $su->st_id=$iid.','.Input::get('roll');
+    $su->institute_code=$iid;
+    $su->guardian_id=Input::get('guardian_name');
+    $su->guardian_name=Input::get('guardian_name');
+    $su->gender=Input::get('gender');
+    $su->religion=Input::get('religion');
+    $su->phone=Input::get('phone');
+    $su->address=Input::get('address');
+    $su->class=Input::get('class');
+    $su->section=Input::get('section');
+    $su->roll=Input::get('roll');
+    $su->image=$final;
+    $su->tran_route_name=Input::get('route_name');
+    $su->transport_rent=Input::get('transport_rent');
+
+    $su->user_type='Students';
+    $su->status=1;
+
+    $su->birth_certificate=Input::get('deth_of_birth');
+    $su->email=Input::get('email');
     $su->password= Hash::make(Input::get('confirm_password'));
-    $usu->save();
-             Session::flash('saved',1);
+    $su->save();
+    //return $su;
+    Session::flash('data', 'Data successfully Added !');
              return Redirect::to('add/student');
 }
     public function getInstituteReg(){
@@ -243,7 +247,7 @@ public function postAddParents(){
     return Redirect::to('admin/add/parents');
 }
     public function getAddTeacher(){
-        $teacherinfo=Teacher::all();
+        $teacherinfo=Teacher::where('institute_code','=',Auth::user()->institute_id)->get();
         //return $teacherinfo;
         return view('teacher.reg_teacher')->with('teacher', $teacherinfo);
     }
@@ -286,6 +290,7 @@ public function postAddParents(){
         $tu->email=$email;
         $tu->password=Hash::make(Input::get('confirm_password'));
         $tu->save();
+
         $ut=new Teacher;
         $ut->institute_code=$iid;
         $ut->teacher_id=$uid;
@@ -402,8 +407,8 @@ public function postAddParents(){
         }
  
 public  function getAddSubject(){
-    $teacher = Teacher::all()->lists('teacher_id', 'name');
-    $class = ClassAdd::all()->lists('class_id', 'class_name');
+    $teacher = Teacher::where('institute_code','=',Auth::user()->institute_id)->lists('teacher_id', 'name');
+    $class = ClassAdd::where('institute_code','=',Auth::user()->institute_id)->lists('class_id', 'class_name');
     $subinfo= Subject::all();
     return view('admin.addsubject')->with('teacher',$teacher)->with('class',$class)->with('allsubinfo',$subinfo);
 }

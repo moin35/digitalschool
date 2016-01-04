@@ -29,6 +29,12 @@
                                                 Add New Student <i class="fa fa-plus"></i>
                                             </a>
                                         </div>
+                                        @if(Session::get('data'))
+                                            <div class="alert alert-dismissible alert-info">
+                                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                                <strong> <h3>{{Session::get('data')}}</h3></strong>
+                                            </div>
+                                        @endif
                                         <div class="btn-group pull-right">
                                             <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
                                             </button>
@@ -51,7 +57,7 @@
                          </span>
                                                 </header>
                                                 <div class="panel-body">
-                                                    {!! Form::open(array('id'=>'signupFormt','class'=>'cmxform form-horizontal')) !!}
+                                                    {!! Form::open(array('id'=>'signupFormt','class'=>'cmxform form-horizontal','files'=>'true')) !!}
                                                     <div class="form" >
                                                             <div class="form-group ">
                                                                 <label for="firstname" class="control-label col-lg-3">Firstname</label>
@@ -66,9 +72,9 @@
                                                                 </div>
                                                             </div>
                                                         <div class="form-group">
-                                                            <label for="guardian_name" class="control-label col-lg-3">Date of Birth</label>
+                                                            <label for="deth_of_birth" class="control-label col-lg-3">Date of Birth</label>
                                                             <div class="col-lg-6">
-                                                                <input class="form-control form-control-inline input-medium default-date-picker"  size="16" type="text" value="" />
+                                                                <input class="form-control form-control-inline input-medium default-date-picker" name="deth_of_birth"  size="16" type="text" value="" />
                                                                 <span class="help-block">Select date</span>
                                                             </div>
                                                         </div>
@@ -112,7 +118,9 @@
                                                                 <div class="col-lg-6">
                                                                     <select class="form-control input-sm m-bot15" id="class" name="class" type="text">
                                                                         <option selected>Select Class</option>
-                                                                        <option value="One">One</option>
+                                                                        @foreach($class as $r=>$t)
+                                                                            <option value="{{$t}}">{{$r}}</option>
+                                                                        @endforeach
                                                                     </select>
 
                                                                 </div>
@@ -120,11 +128,9 @@
                                                             <div class="form-group ">
                                                                 <label for="section" class="control-label col-lg-3">Section</label>
                                                                 <div class="col-lg-6">
-                                                                    <select class="form-control input-sm m-bot15" id="section" name="section" type="text">
-                                                                        <option selected>Select a Guardian Name</option>
-                                                                        <option value="male">Male</option>
-                                                                        <option value="female">Female</option>
-                                                                        <option value="other">Other</option>
+                                                                    <select class="form-control input-sm m-bot15" id="sectionid" name="section" type="text">
+                                                                        <option selected>Select a Section</option>
+
                                                                     </select>
 
                                                                 </div>
@@ -147,19 +153,7 @@
                                                                     <input class=" form-control" id="transport_rent" name="transport_rent" type="text" />
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group ">
 
-                                                                <label for="user_type" class="control-label col-lg-3">User Type</label>
-                                                                <div class="col-lg-6">
-
-                                                                    <select class="form-control input-sm m-bot15" id="user_type" name="user_type" type="text">
-                                                                        <option selected>Select a User Type</option>
-                                                                        <option value="student">Student</option>
-                                                                        <option value="teacher">Teacher</option>
-                                                                        <option value="parents">Parents</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
                                                             <div class="form-group ">
                                                                 <label for="username" class="control-label col-lg-3">Username</label>
                                                                 <div class="col-lg-6">
@@ -207,7 +201,7 @@
                                                              <div class="form-group last">
                                 <label class="control-label col-md-3">Image Upload</label>
                                 <div class="col-md-9">
-                                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="fileupload fileupload-new" data-provides="fileupload" id="image" name="image">
                                         <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
                                             <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
                                         </div>
@@ -216,7 +210,7 @@
                                                    <span class="btn btn-white btn-file">
                                                    <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
                                                    <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
-                                                   <input type="file" class="default" />
+                                                   <input type="file" name="image" class="default" />
                                                    </span>
                                             <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
                                         </div>
