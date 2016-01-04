@@ -18,7 +18,7 @@ use App\InstituteInfo;
 use App\Division;
 use App\District;
 use App\Thana;
- 
+use App\Subject;
 use App\Teacher;
 use App\ClassAdd;
 use App\Parents;
@@ -195,7 +195,8 @@ public function postAddStudent(){
  
 
     public function getAddParents() {
-        return view('parent.reg_parent');
+        $parentsinfo=Parents::all();
+        return view('parent.reg_parent')->with('parents',$parentsinfo);
     }
 public function postAddParents(){
     $iid=User::where('uid','=',Auth::user()->uid)->pluck('institute_id');
@@ -245,7 +246,9 @@ public function postAddParents(){
     return Redirect::to('admin/add/parents');
 }
     public function getAddTeacher(){
-        return view('teacher.reg_teacher');
+        $teacherinfo=Teacher::all();
+        //return $teacherinfo;
+        return view('teacher.reg_teacher')->with('teacher', $teacherinfo);
     }
    public function postAddTeacher(){
         $iid=User::where('uid','=',Auth::user()->uid)->pluck('institute_id');
@@ -329,9 +332,10 @@ public function postAddParents(){
         $cl->teacher_name=$teacherName;
         $cl->note=$note;
         $cl->save();
-         Session::flash('data', 'You successfully');
+         Session::flash('data', 'Data successfully added !');
         return Redirect::to('Addclass');
     }
+ 
     
     public function getsection(){
         ///saif for admin
@@ -399,6 +403,37 @@ public function postAddParents(){
              Session::flash('data', 'You successfully');
              return Redirect::to('admin/institute/registration');
         }
+ 
+public  function getAddSubject(){
+    $teacher = Teacher::all()->lists('teacher_id', 'name');
+    $class = ClassAdd::all()->lists('class_id', 'class_name');
+    $subinfo= Subject::all();
+    return view('admin.addsubject')->with('teacher',$teacher)->with('class',$class)->with('allsubinfo',$subinfo);
+}
+ public function postAddSubject(){
+     $teacher=Input::get('subteacher');
+     $class=Input::get('subclass');
+     //return $class;
+     $teacher_name=Teacher::where('teacher_id','=',$teacher)->pluck('name');
+     $class_name=ClassAdd::where('class_id','=',$class)->pluck('class_name');
+     $iid=User::where('uid','=',Auth::user()->uid)->pluck('institute_id');
+     //return $iid;
+     $subnote=new Subject;
+     $subnote->institute_code=$iid;
+     $subnote->subject_name=Input::get('subname');
+     $subnote->subject_code=Input::get('subcode');
+     $subnote->class_id=Input::get('subclass');
+     $subnote->class_name=$class_name;
+     $subnote->teacher_id=Input::get('subteacher');
+     $subnote->teacher_name=$teacher_name;
+     $subnote->sub_author=Input::get('subauth');
+
+     $subnote->save();
+     Session::flash('data', 'Data successfully added !');
+     return Redirect::to('admin/add/subject');
+
+ }
+ 
        
  
 }
