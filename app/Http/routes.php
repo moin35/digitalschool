@@ -65,5 +65,13 @@ Route::get('api/dropdown/thana', function(){
 //class info add
 Route::get('Addclass','HomeController@getaddclass');
 Route::post('Addclass','HomeController@postaddclass');
+//Class section Add 
+Route::get('sectionAdd','HomeController@getsection');
+Route::post('sectionAdd','HomeController@postsection');
+//Institute Refistration
+Route::get('institute/details/{icode}','HomeController@viewinstuted');
+Route::get('institute/edit/{icode}','HomeController@editinstutedinfo');
+Route::post('institute/edit/{icode}','HomeController@editinstutedinfoupdate');
+Route::get('institute/delete/{icode}','HomeController@deleteinstutedinfo');
 
  
