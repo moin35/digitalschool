@@ -74,8 +74,8 @@ Class Information
                                                                                         Teacher                             </label><br>
                                                                                     <div class="col-sm-6">
 
-                                                                                        <select name='teacherName'   class="form-control"  >
-                                                                                            <option  selected="selected" >Choose Teacher</option>
+                                                                                        <select name='teacherName' required class="form-control"  >
+                                                                                            <option  >Choose Teacher</option>
                                                                                             @foreach($teacher as $r=>$t)
                                                                                             <option value="{{$t}}">{{$r}}</option>
                                                                                             @endforeach
@@ -95,13 +95,13 @@ Class Information
                                                                 <div class="form-group ">
                                                                     <label for="icode" class="control-label col-lg-3">Class Name</label>
                                                                     <div class="col-lg-6">
-                                                                        <input class="form-control " id="icode" name="className" type="text" />
+                                                                        <input class="form-control "  name="className" type="text" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group ">
                                                                     <label for="institute_name" class="control-label col-lg-3">Class Numeric</label>
                                                                     <div class="col-lg-6">
-                                                                        <input class=" form-control" id="institute_name" name="classnumeric" type="text" />
+                                                                        <input class=" form-control"  name="classnumeric" type="number" />
                                                                     </div>
                                                                 </div>
                                                                                                                               
@@ -115,7 +115,7 @@ Class Information
                                                                 <div class="form-group">
                                                                     <div class="col-lg-offset-3 col-lg-6">
                                                                         <button class="btn btn-primary" type="submit">Save</button>
-                                                                        <button class="btn btn-default" type="button">Cancel</button>
+                                                                        <button class="btn btn-default" type="reset">Cancel</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -151,7 +151,7 @@ Class Information
                     <header class="panel-heading">
                         ALL Class Information
                         <span class="tools pull-right">
-                            <a href="javascript:;" class="fa-sort-desc"></a>
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
                             <a href="javascript:;" class="fa fa-cog"></a>
                             <a href="javascript:;" class="fa fa-times"></a>
                          </span>
@@ -161,13 +161,7 @@ Class Information
                             <div class="clearfix">
                                  
                                 <div class="btn-group pull-right">
-                                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="#">Print</a></li>
-                                        <li><a href="#">Save as PDF</a></li>
-                                        <li><a href="#">Export to Excel</a></li>
-                                    </ul>
+                                     
                                 </div>
                             </div>
                             <div class="space15"></div>
@@ -190,12 +184,16 @@ Class Information
                                     <td> {{$c->class_name_numaric}}</td>
                                     <td class="center">{{$c->teacher_name}}</td>
                                     <td><a  href="a url">{{$c->note}}</a></td>
-                                    <td><a class="btn btn-round btn-warning" href=""><i class="fa fa-edit"></i> Edit</a> <a class="btn btn-round btn-danger"><i class="fa  fa-trash-o"></i>Delete</a></td>
+                                    <td> <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/class/edit/{{$c->class_id}}"><i class="fa fa-edit"></i> </a> 
+                                        <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/class/delete/{{$c->class_id}}" ><i class="fa  fa-trash-o"></i></a>
+                                    </td>
                                 </tr>
                               @endforeach
                                 </tbody>
                             </table>
                         </div>
+                        
+                        
                     </div>
                 </section>
             </div>

@@ -40,6 +40,7 @@ Institute
 </div>
                                
     @endif
+    
                             <div class="btn-group pull-right">
                                 
                             </div>
@@ -149,7 +150,7 @@ Institute
                                                                 <div class="form-group ">
                                                                     <label for="iphone" class="control-label col-lg-3">Institute Address</label>
                                                                     <div class="col-lg-6">
-                                                                        <input class="form-control " id="iphone" name="iaddress" type="text" />
+                                                                        <input class="form-control "   name="iaddress" type="text" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group ">
@@ -167,7 +168,7 @@ Institute
                                                                 <div class="form-group ">
                                                                     <label for="iusername" class="control-label col-lg-3">URL</label>
                                                                     <div class="col-lg-6">
-                                                                        <input class="form-control " id="iusername" name="inurl" type="text" placeholder="www.digitialaducation.example" />
+                                                                        <input class="form-control "  name="inurl" type="text" placeholder="www.digitialaducation.example" />
                                                                     </div>
                                                                 </div>
 
@@ -247,13 +248,7 @@ Institute
                             <div class="clearfix">
                                  
                                 <div class="btn-group pull-right">
-                                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="#">Print</a></li>
-                                        <li><a href="#">Save as PDF</a></li>
-                                        <li><a href="#">Export to Excel</a></li>
-                                    </ul>
+                                    
                                 </div>
                             </div>
                             <div class="space15"></div>

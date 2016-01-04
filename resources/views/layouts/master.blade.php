@@ -320,13 +320,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{URL::to('add/student')}}">
+                          <a href="{{URL::to('Addclass')}}">
                             <i class="fa fa-bell"></i>
                             <span>{{Lang::get('home.class')}} </span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{URL::to('add/student')}}">
+                          <a href="{{URL::to('sectionAdd')}}">
                             <i class="fa fa-edit"></i>
                             <span>{{Lang::get('home.section')}} </span>
                         </a>

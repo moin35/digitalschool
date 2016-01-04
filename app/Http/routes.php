@@ -71,11 +71,15 @@ Route::get('api/dropdown/section', function(){
     return Response::make($items);
 });
 //class info add
-Route::get('Addclass','HomeController@getaddclass');
-Route::post('Addclass','HomeController@postaddclass');
+Route::get('Addclass','InstituteController@getaddclass');
+Route::post('Addclass','InstituteController@postaddclass');
+Route::get('class/edit/{clid}','InstituteController@geteditclass');
+Route::post('class/edit/{clid}','InstituteController@postupdateclass');
+Route::get('class/delete/{clid}','InstituteController@deleteclass');
+
 //Class section Add 
-Route::get('sectionAdd','HomeController@getsection');
-Route::post('sectionAdd','HomeController@postsection');
+Route::get('sectionAdd','InstituteController@getsection');
+Route::post('sectionAdd','InstituteController@postsection');
 //Institute Refistration
 Route::get('institute/details/{icode}','HomeController@viewinstuted');
 Route::get('institute/edit/{icode}','HomeController@editinstutedinfo');

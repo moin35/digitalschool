@@ -99,7 +99,7 @@ var Script = function () {
 
                 icode: {
                     required: true,
-                    minlength: 4
+                    minlength: 10
                 },
                 password: {
                     required: true,
@@ -124,28 +124,27 @@ var Script = function () {
                 },
                 email: {
                     required: true,
-
-                },
-                icode: {
-                    required: true,
-
                 },
                 iphone: {
                     required: true,
 
                 },
-                address: {
+                iaddress: {
                     required: true,
-
-                },
+                         },
                 phone: {
                     required: true,
-
+                   
                 },
 
                 topic: {
                     required: "#newsletter:checked",
                     minlength: 2
+                },
+                
+                inurl: {
+                    required: true,
+                    
                 },
                 agree: "required"
             },
@@ -159,12 +158,12 @@ var Script = function () {
                     required: "Choose Division",                    
                 },
                 district: {
-                    required: "Choose Division",                    
+                    required: "Choose District",                    
                 },
                 thana: {
                     required: "Choose Thana/Upazilla",                    
-                },
-                password: {
+                },               
+                 password: {
                     required: "Please provide a password",
                     minlength: "Your password must be at least 5 characters long"
                 },
@@ -174,18 +173,109 @@ var Script = function () {
                     equalTo: "Please enter the same password as above"
                 },
                 email: "Please enter a valid email",
-                user_type: "Please enter a user type",
+                usiaddress: "Please enter a Local address",
                 roll: "Please enter a roll no.",
-                section: "Please enter a valid section",
-                class: "Please enter a class",
+                institute_name: "Please enter a valid Institute Name",
+                iphone: "Please enter a Valid Phone Number",
                 address: "Please enter a valid  address",
-                gender: "Please enter a valid gender",
+                inurl: "Please enter a valid Link: www.digitialaducation/Your_Academic_Name",
                 guardian_name: "Please enter a guardian name",
                 agree: "Please accept our policy"
             }
         });
-        // validate signup form on keyup and submit
-        $("#signupFormt2").validate({
+         // validate signup form instituted add
+        $("#signupinstute").validate({
+            rules: {
+                institute_name: "required",
+
+                icode: {
+                    required: true,
+                    minlength: 10
+                },
+                password: {
+                    required: true,
+                    minlength: 5
+                },                
+                division: {
+                    required: true,
+                    
+                },
+                 district: {
+                    required: true,
+                     
+                },
+                thana: {
+                    required: true,
+                    
+                },
+                confirm_password: {
+                    required: true,
+                    minlength: 5,
+                    equalTo: "#password"
+                },
+                email: {
+                    required: true,
+                },
+                iphone: {
+                    required: true,
+
+                },
+                iaddress: {
+                    required: true,
+                         },
+                phone: {
+                    required: true,
+                   
+                },
+
+                topic: {
+                    required: "#newsletter:checked",
+                    minlength: 2
+                },
+                
+                inurl: {
+                    required: true,
+                    
+                },
+                agree: "required"
+            },
+            messages: {
+                firstname: "Please enter your firstname",
+                lastname: "Please enter your lastname",
+                icode: {
+                    required: "Please enter a Insiatute Code",                    
+                },
+                 division: {
+                    required: "Choose Division",                    
+                },
+                district: {
+                    required: "Choose District",                    
+                },
+                thana: {
+                    required: "Choose Thana/Upazilla",                    
+                },               
+                 password: {
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 5 characters long"
+                },
+                confirm_password: {
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 5 characters long",
+                    equalTo: "Please enter the same password as above"
+                },
+                email: "Please enter a valid email",
+                usiaddress: "Please enter a Local address",
+                roll: "Please enter a roll no.",
+                institute_name: "Please enter a valid Institute Name",
+                iphone: "Please enter a Valid Phone Number",
+                address: "Please enter a valid  address",
+                inurl: "Please enter a valid Link: www.digitialaducation/Your_Academic_Name",
+                guardian_name: "Please enter a guardian name",
+                agree: "Please accept our policy"
+            }
+        });
+        // validate Update form on institute
+        $("#instituteupdate").validate({
             rules: {
                 gname: "required",
 
@@ -272,6 +362,29 @@ var Script = function () {
 
                 address: "Please enter a valid  address",
                 agree: "Please accept our policy"
+            }
+        });
+         // validate Class Information Add
+        $("#classinfo").validate({
+            rules: {            
+                teacherName: {
+                    required: true,                     
+                },
+                className: {
+                    required: true,                    
+                },                
+                classnumeric: {
+                    required: true,
+                    
+                }
+                  
+            },
+            messages: {
+                teacherName: "Please Choose Teacher Name",
+                className: "Please enter Class",
+                classnumeric:"Please enter Numaric Class",
+                 
+                
             }
         });
         // validate signup form on keyup and submit
