@@ -24,12 +24,7 @@ use App\ClassAdd;
 use App\Parents;
  
 class HomeController extends Controller {
- 
-
- 
- 
-
-    /**
+  /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -53,7 +48,9 @@ class HomeController extends Controller {
     }
 
     public function getAddStudent() {
-        return view('superadmin.add_search_student');
+        $parents=Parents::where('institute_code','=',Auth::user()->institute_id)->lists('guradian_id','guardian_name');
+        //return $parents;
+        return view('superadmin.add_search_student')->with('parents',$parents);
     }
  
 public function postAddStudent(){

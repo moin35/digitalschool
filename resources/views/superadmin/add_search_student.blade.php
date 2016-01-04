@@ -77,9 +77,9 @@
                                                                 <div class="col-lg-6">
                                                                     <select class="form-control input-sm m-bot15" id="guardian_name" name="guardian_name" type="text">
                                                                         <option selected>Select a Guardian Name</option>
-                                                                        <option value="male">Male</option>
-                                                                        <option value="female">Female</option>
-                                                                        <option value="other">Other</option>
+                                                                        @foreach($parents as $r=>$t)
+                                                                            <option value="{{$t}}">{{$r}}</option>
+                                                                        @endforeach
                                                                     </select>
                                                                 </div>
                                                             </div>
