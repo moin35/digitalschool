@@ -9,7 +9,10 @@
     <link rel="shortcut icon" href="{{URL::to('/')}}/images/favicon.png">
 
     <title>@yield('title')</title>
-
+ <!--dynamic table-->
+    <link href="{{URL::to('/')}}/js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
+    <link href="{{URL::to('/')}}/js/advanced-datatable/css/demo_table.css" rel="stylesheet" />
+    
     <!--Core CSS -->
      <link href="{{URL::to('/')}}/js/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/js/jvector-map/jquery-jvectormap-1.2.2.css" rel="stylesheet">
@@ -36,7 +39,8 @@
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/jquery-multi-select/css/multi-select.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/jquery-tags-input/jquery.tagsinput.css" />
 
-    <link rel="stylesheet" type="text/css" href="js/select2/select2.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/select2/select2.css" />
+        <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/gritter/css/jquery.gritter.css" />
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]>
     <script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -252,7 +256,7 @@
             <!--search & user info start-->
             <ul class="nav pull-right top-menu">
 
-                {{Lang::getLocale()}}
+                
 
                 <li>
                     <input type="text" class="form-control search" placeholder=" Search">
@@ -349,7 +353,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{URL::to('add/student')}}">
+                    <a href="{{URL::to('sectionAdd')}}">
                         <i class="fa fa-edit"></i>
                         <span>{{Lang::get('home.section')}} </span>
                     </a>
@@ -795,7 +799,11 @@
 
 <script src="{{URL::to('/')}}/js/jquery-steps/jquery.steps.js"></script>
 <script src="{{URL::to('/')}}/js/table-editable.js"></script>
-
+<script src="{{URL::to('/')}}/js/gritter.js" type="text/javascript"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/gritter/js/jquery.gritter.js"></script>
+<!-- start Dynamic Tables JAVASCRIPTS -->
+<script type="text/javascript" language="javascript" src="{{URL::to('/')}}/js/advanced-datatable/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/DT_bootstrap.js"></script>
 <!-- END JAVASCRIPTS -->
 <script>
     jQuery(document).ready(function() {

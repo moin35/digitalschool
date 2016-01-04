@@ -22,6 +22,7 @@ use App\Subject;
 use App\Teacher;
 use App\ClassAdd;
 use App\Parents;
+use App\Section;
  
 class HomeController extends Controller {
   /**
@@ -113,7 +114,7 @@ public function postAddStudent(){
              return Redirect::to('add/student');
 }
     public function getInstituteReg(){
-       
+       //saif for admin
         $allinst=Institute::all();
         $division=Division::all()->lists('id','Division');
       return view('admin.reg_insiatute')->with('divisionlist',$division)->with('allinstuted',$allinst);
@@ -121,6 +122,8 @@ public function postAddStudent(){
     }
 
     public function postInstituteReg() {
+        //saif for admin
+        
         $email = Input::get('email');
         $icode = Input::get('icode');
         $userc = User::where('institute_id', '=', $icode)->orWhere('email', '=', $email)->count();
@@ -312,6 +315,7 @@ public function postAddParents(){
     }
 
     public function postaddclass() {
+        //saif for admin
         $teacherId = Input::get('teacherName');
         $class = Input::get('className');
         $classNumaric = Input::get('classnumeric');
@@ -328,6 +332,75 @@ public function postAddParents(){
          Session::flash('data', 'Data successfully added !');
         return Redirect::to('Addclass');
     }
+ 
+    
+    public function getsection(){
+        ///saif for admin
+         $teacher = Teacher::all()->lists('teacher_id', 'name');
+         $class = ClassAdd::all()->lists('class_id', 'class_name');
+        $section=Section::all();
+        return view('admin.sectionadd')->with('section',$section)->with('teacher', $teacher)->with('allclass',$class);
+    }
+    public function postsection(){
+        //saif for admin
+        $teacherid= Input::get('teacherName');
+        $classid=  Input::get('className');
+        $sectionName=Input::get('SectionName');
+        $sectionCategory=  Input::get('sectioncategory');
+        $sectionNote=  Input::get('sectionNote');
+        // return $classid;
+        $teacherName= Teacher::where('teacher_id','=',$teacherid)->pluck('name');
+        $className=  ClassAdd::where('class_id','=',$classid)->pluck('class_name');
+        $sec=new Section;
+        $sec->institute_code=Auth::user()->institute_id;
+        $sec->section_name=$sectionName;
+        $sec->section_category=$sectionCategory;
+        $sec->class_id=$classid;
+        $sec->class_name=$className;
+        $sec->tearcher_id=$teacherid;
+        $sec->tearcher_name=$teacherName;
+        $sec->note=$sectionNote;        
+        $sec->save();
+        
+        Session::flash('data', 'You successfully');
+        return Redirect::to('sectionAdd');
+        
+    }
+    public function viewinstuted($icode){
+        //saif for admin
+        //return $icode;
+        $detailsinist=  Institute::where('institute_code','=',$icode)->first();
+        return view('admin.instutedDetails')->with('detailinf',$detailsinist);
+        
+    }
+    public function editinstutedinfo($incode){
+        //saif for admin
+        $detailsinist=  Institute::where('institute_code','=',$incode)->first();
+        return view('admin.instutededit')->with('detailinf',$detailsinist);
+        
+    }
+    public function editinstutedinfoupdate($iucode){
+        //saif admin
+            $name=  Input::get('institute_name');           
+            $district = Input::get('district');
+            $thana = Input::get('thana');          
+            $email = Input::get('email');           
+            $inphone = Input::get('phone');
+            $inaddress = Input::get('address');
+            $inurl = Input::get('url');
+        $infoupdate=  Institute::where('institute_code','=',$iucode)->update(['institute_name'=>$name,'email'=>$email,'phone'=>$inphone,'address'=>$inaddress,'district'=>$district,'thana'=>$thana,'url'=>$inurl]);
+        
+        Session::flash('data', 'You successfully');
+        return Redirect::to('institute/edit/'.$iucode);
+        }
+
+        public function deleteinstutedinfo($idcode){
+            //saif for admin
+            $infoDelete=  Institute::where('institute_code','=',$idcode)->delete();
+             Session::flash('data', 'You successfully');
+             return Redirect::to('admin/institute/registration');
+        }
+ 
 public  function getAddSubject(){
     $teacher = Teacher::all()->lists('teacher_id', 'name');
     $class = ClassAdd::all()->lists('class_id', 'class_name');
@@ -357,6 +430,7 @@ public  function getAddSubject(){
      return Redirect::to('admin/add/subject');
 
  }
+ 
        
  
 }

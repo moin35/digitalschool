@@ -201,7 +201,7 @@ Institute
                                                                 <div class="form-group">
                                                                     <div class="col-lg-offset-3 col-lg-6">
                                                                         <button class="btn btn-primary" type="submit">Save</button>
-                                                                        <button class="btn btn-default" type="button">Cancel</button>
+                                                                        <button class="btn btn-default" type="reset">Cancel</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -276,13 +276,58 @@ Institute
                                     <td>{{$a->email}}</td>
                                     <td class="center">{{$a->phone}}</td>
                                     <td><a  href="{{$a->url}}">{{$a->url}}</a></td>
-                                    <td><a   href="">View More</a></td>
+                                    <td><a class="btn btn-success tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="View More"  href="{{URL::to('/')}}/institute/details/{{$a->institute_code}}" ><i class="fa fa-eye"></i> </a>
+                                        <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/institute/edit/{{$a->institute_code}}"><i class="fa fa-edit"></i> </a> 
+                                        <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/institute/delete/{{$a->institute_code}}" ><i class="fa  fa-trash-o"></i></a>
+                                         
+                                    </td>
                                 </tr>
                                 @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                     
+                    
+                    <!---end----!>
+                      <!-- Modal -->
+                            <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">Modal Tittle</h4>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            Body goes here...
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                                            <button class="btn btn-warning" type="button"> Confirm</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                       <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>This is a large modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+                            <!-- modal -->
                 </section>
             </div>
         </div>
