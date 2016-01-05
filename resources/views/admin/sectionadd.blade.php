@@ -214,7 +214,8 @@ Section
                                 <tr>
                                     <th>#</th>
                                     <th>Class <i class="fa-caret-up"></i></th>
-                                    <th>Class Numaric</th>
+                                    <th>Section</th>
+                                     <th>Section Category</th>
                                     <th>Teacher</th>
                                     <th>Note</th>
                                     <th>Action</th>
@@ -223,12 +224,16 @@ Section
                                 <tbody>
                              @foreach($section as $c)
                                 <tr class="">
-                                    <td>{{$c->class_id}}</td>
+                                    <td>{{$c->section_id}}</td>
                                     <td> {{$c->class_name}}</td>
-                                    <td> {{$c->class_name_numaric}}</td>
-                                    <td class="center">{{$c->teacher_name}}</td>
+                                    <td> {{$c->section_name}}</td>
+                                    <td> {{$c->section_category}}</td>
+                                    <td class="center">{{$c->tearcher_name}}</td>
                                     <td><a  href="a url">{{$c->note}}</a></td>
-                                    <td><a class="btn btn-round btn-warning" href=""><i class="fa fa-edit"></i> </a> <a class="btn btn-round btn-danger"><i class="fa  fa-trash-o"></i></a></td>
+                                    <td>
+                                        <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/section/edit/{{$c->section_id}}"><i class="fa fa-edit"></i> </a> 
+                                        <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/section/delete/{{$c->section_id}}" ><i class="fa  fa-trash-o"></i></a>
+                                    </td>
                                 </tr>
                               @endforeach
                                 </tbody>

@@ -328,8 +328,8 @@ class HomeController extends Controller {
         $thana = Input::get('thana');
         $email = Input::get('email');
         $inphone = Input::get('phone');
-        $inaddress = Input::get('address');
-        $inurl = Input::get('url');
+        $inaddress = Input::get('iaddress');
+        $inurl = Input::get('inurl');
         $infoupdate = Institute::where('institute_code', '=', $iucode)->update(['institute_name' => $name, 'email' => $email, 'phone' => $inphone, 'address' => $inaddress, 'district' => $district, 'thana' => $thana, 'url' => $inurl]);
 
         Session::flash('data', 'You successfully');

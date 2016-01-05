@@ -51,7 +51,7 @@ Institute Edit
                              
                                 <div class="list-unstyled">
                                      
-                                          {!! Form::open(array('id'=>'instituteupdate','class'=>'form-horizontal bucket-form')) !!}
+                                          {!! Form::open(array('id'=>'signupinstute','class'=>'form-horizontal bucket-form')) !!}
                                       <div class="form-group">
                         <label class="col-sm-3 control-label">Institute</label>
                         <div class="col-sm-6">
@@ -73,7 +73,7 @@ Institute Edit
                                           <div class="form-group">
                         <label class="col-sm-3 control-label">Address</label>
                         <div class="col-sm-6">
-                            <input type="text" value="{{$detailinf->address}}" name="address" class="form-control round-input">
+                            <input type="text" value="{{$detailinf->address}}" name="iaddress" class="form-control round-input">
                         </div>
                     </div>
                                      
@@ -92,7 +92,7 @@ Institute Edit
                                           <div class="form-group">
                         <label class="col-sm-3 control-label">Web URL:</label>
                         <div class="col-sm-6">
-                            <input type="text" value="{{$detailinf->url}}" name="url" class="form-control round-input">
+                            <input type="text" value="{{$detailinf->url}}" name="inurl" class="form-control round-input">
                         </div>
                                           </div><br> <div class="price-actions">
                                               <button type="submit" class="btn">Update Information</button>

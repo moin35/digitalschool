@@ -184,7 +184,8 @@ Class Information
                                     <td> {{$c->class_name_numaric}}</td>
                                     <td class="center">{{$c->teacher_name}}</td>
                                     <td><a  href="a url">{{$c->note}}</a></td>
-                                    <td> <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/class/edit/{{$c->class_id}}"><i class="fa fa-edit"></i> </a> 
+                                    <td> 
+                                        <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/class/edit/{{$c->class_id}}"><i class="fa fa-edit"></i> </a> 
                                         <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/class/delete/{{$c->class_id}}" ><i class="fa  fa-trash-o"></i></a>
                                     </td>
                                 </tr>

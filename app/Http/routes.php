@@ -75,6 +75,9 @@ Route::get('class/delete/{clid}','InstituteController@deleteclass');
 //Class section Add 
 Route::get('sectionAdd','InstituteController@getsection');
 Route::post('sectionAdd','InstituteController@postsection');
+Route::get('section/edit/{secid}','InstituteController@geteditsection');
+Route::post('section/edit/{secid}','InstituteController@postupdatesection');
+Route::get('section/delete/{secid}','InstituteController@deletesection');
 //Institute Refistration
 Route::get('institute/details/{icode}','HomeController@viewinstuted');
 Route::get('institute/edit/{icode}','HomeController@editinstutedinfo');

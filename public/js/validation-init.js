@@ -1,6 +1,6 @@
 var Script = function () {
 
-    $().ready(function() {
+    $().ready(function () {
         // validate the comment form when it is submitted
         $("#commentForm").validate();
 
@@ -24,41 +24,31 @@ var Script = function () {
                 },
                 guardian_name: {
                     required: true,
-
                 },
                 gender: {
                     required: true,
-
                 },
                 religion: {
                     required: true,
-
                 },
                 address: {
                     required: true,
-
                 },
                 class: {
                     required: true,
-
                 },
                 section: {
                     required: true,
-
                 },
                 roll: {
                     required: true,
-
                 },
                 user_type: {
                     required: true,
-
                 },
                 phone: {
                     required: true,
-
                 },
-
                 topic: {
                     required: "#newsletter:checked",
                     minlength: 2
@@ -96,7 +86,6 @@ var Script = function () {
         $("#signupinstute").validate({
             rules: {
                 institute_name: "required",
-
                 icode: {
                     required: true,
                     minlength: 10
@@ -104,18 +93,15 @@ var Script = function () {
                 password: {
                     required: true,
                     minlength: 5
-                },                
+                },
                 division: {
                     required: true,
-                    
                 },
-                 district: {
+                district: {
                     required: true,
-                     
                 },
                 thana: {
                     required: true,
-                    
                 },
                 confirm_password: {
                     required: true,
@@ -127,24 +113,19 @@ var Script = function () {
                 },
                 iphone: {
                     required: true,
-
                 },
                 iaddress: {
                     required: true,
-                         },
+                },
                 phone: {
                     required: true,
-                   
                 },
-
                 topic: {
                     required: "#newsletter:checked",
                     minlength: 2
                 },
-                
                 inurl: {
                     required: true,
-                    
                 },
                 agree: "required"
             },
@@ -152,18 +133,18 @@ var Script = function () {
                 firstname: "Please enter your firstname",
                 lastname: "Please enter your lastname",
                 icode: {
-                    required: "Please enter a Insiatute Code",                    
+                    required: "Please enter a Insiatute Code",
                 },
-                 division: {
-                    required: "Choose Division",                    
+                division: {
+                    required: "Choose Division",
                 },
                 district: {
-                    required: "Choose District",                    
+                    required: "Choose District",
                 },
                 thana: {
-                    required: "Choose Thana/Upazilla",                    
-                },               
-                 password: {
+                    required: "Choose Thana/Upazilla",
+                },
+                password: {
                     required: "Please provide a password",
                     minlength: "Your password must be at least 5 characters long"
                 },
@@ -183,11 +164,10 @@ var Script = function () {
                 agree: "Please accept our policy"
             }
         });
-         // validate signup form instituted add
+        // validate signup form instituted add
         $("#signupinstute").validate({
             rules: {
                 institute_name: "required",
-
                 icode: {
                     required: true,
                     minlength: 10
@@ -195,18 +175,15 @@ var Script = function () {
                 password: {
                     required: true,
                     minlength: 5
-                },                
+                },
                 division: {
                     required: true,
-                    
                 },
-                 district: {
+                district: {
                     required: true,
-                     
                 },
                 thana: {
                     required: true,
-                    
                 },
                 confirm_password: {
                     required: true,
@@ -216,26 +193,24 @@ var Script = function () {
                 email: {
                     required: true,
                 },
-                iphone: {
+                iphaddressone: {
                     required: true,
-
                 },
                 iaddress: {
                     required: true,
-                         },
+                },
+                address: {
+                    required: true,
+                },
                 phone: {
                     required: true,
-                   
                 },
-
                 topic: {
                     required: "#newsletter:checked",
                     minlength: 2
                 },
-                
                 inurl: {
                     required: true,
-                    
                 },
                 agree: "required"
             },
@@ -243,18 +218,24 @@ var Script = function () {
                 firstname: "Please enter your firstname",
                 lastname: "Please enter your lastname",
                 icode: {
-                    required: "Please enter a Insiatute Code",                    
+                    required: "Please enter a Insiatute Code",
                 },
-                 division: {
-                    required: "Choose Division",                    
+                division: {
+                    required: "Choose Division",
                 },
                 district: {
-                    required: "Choose District",                    
+                    required: "Choose District",
                 },
                 thana: {
-                    required: "Choose Thana/Upazilla",                    
-                },               
-                 password: {
+                    required: "Choose Thana/Upazilla",
+                },
+                phone: {
+                    required: "Please enter Phone Number",
+                },
+                address: {
+                    required: "Please enter Phone Number",
+                },
+                password: {
                     required: "Please provide a password",
                     minlength: "Your password must be at least 5 characters long"
                 },
@@ -268,123 +249,31 @@ var Script = function () {
                 roll: "Please enter a roll no.",
                 institute_name: "Please enter a valid Institute Name",
                 iphone: "Please enter a Valid Phone Number",
-                address: "Please enter a valid  address",
                 inurl: "Please enter a valid Link: www.digitialaducation/Your_Academic_Name",
                 guardian_name: "Please enter a guardian name",
                 agree: "Please accept our policy"
             }
         });
         // validate Update form on institute
-        $("#instituteupdate").validate({
-            rules: {
-                gname: "required",
-
-                username: {
-                    required: true,
-                    minlength: 4
-                },
-                password: {
-                    required: true,
-                    minlength: 5
-                },
-                confirm_password: {
-                    required: true,
-                    minlength: 5,
-                    equalTo: "#password"
-                },
-                email: {
-                    required: true,
-
-                },
-                father_name: {
-                    required: true,
-
-                },
-                mother_name: {
-                    required: true,
-
-                },
-                father_profession: {
-                    required: true,
-
-                },
-                mother_profession: {
-                    required: true,
-
-                },
-                religion: {
-                    required: true,
-
-                },
-                address: {
-                    required: true,
-
-                },
-                phone: {
-                    required: true,
-
-                },
-
-                nid: {
-                    required: true,
-
-                },
-                topic: {
-                    required: "#newsletter:checked",
-                    minlength: 2
-                },
-                agree: "required"
-            },
-            messages: {
-                gname: "Please enter a Guardian Name",
-                father_name: "Please enter students father name",
-                mother_name: "Please enter students mother name",
-                father_profession: "Please enter father profession",
-                mother_profession: "Please enter mother profession",
-                religion: "Please enter your religion",
-
-                nid: "Please enter your Natinoal Id card Number",
-                iusername: {
-                    required: "Please enter a username",
-                    minlength: "Your username must consist of at least 4 characters"
-                },
-                password: {
-                    required: "Please provide a password",
-                    minlength: "Your password must be at least 5 characters long"
-                },
-                confirm_password: {
-                    required: "Please provide a password",
-                    minlength: "Your password must be at least 5 characters long",
-                    equalTo: "Please enter the same password as above"
-                },
-                email: "Please enter a valid email",
-                user_type: "Please enter a user type",
-
-                address: "Please enter a valid  address",
-                agree: "Please accept our policy"
-            }
-        });
-         // validate Class Information Add
+       
+        // validate Class Information Add
         $("#classinfo").validate({
-            rules: {            
+            rules: {
                 teacherName: {
-                    required: true,                     
+                    required: true,
                 },
                 className: {
-                    required: true,                    
-                },                
+                    required: true,
+                },
                 classnumeric: {
                     required: true,
-                    
                 }
-                  
+
             },
             messages: {
                 teacherName: "Please Choose Teacher Name",
                 className: "Please enter Class",
-                classnumeric:"Please enter Numaric Class",
-                 
-                
+                classnumeric: "Please enter Numaric Class",
             }
         });
         // validate signup form on keyup and submit
@@ -407,45 +296,33 @@ var Script = function () {
                 },
                 email: {
                     required: true,
-
                 },
                 designation: {
                     required: true,
-
                 },
                 dbirth: {
                     required: true,
-
                 },
                 gender: {
                     required: true,
-
                 },
                 image: {
                     required: true,
-
                 },
-
                 religion: {
                     required: true,
-
                 },
                 address: {
                     required: true,
-
                 },
                 phone: {
                     required: true,
-
                 },
-
                 nid: {
                     required: true,
-
                 },
                 join_date: {
                     required: true,
-
                 },
                 topic: {
                     required: "#newsletter:checked",
@@ -482,10 +359,10 @@ var Script = function () {
             }
         });
         // propose username by combining first- and lastname
-        $("#username").focus(function() {
+        $("#username").focus(function () {
             var firstname = $("#firstname").val();
             var lastname = $("#lastname").val();
-            if(firstname && lastname && !this.value) {
+            if (firstname && lastname && !this.value) {
                 this.value = firstname + "." + lastname;
             }
         });
@@ -497,7 +374,7 @@ var Script = function () {
         var topics = $("#newsletter_topics")[inital ? "removeClass" : "addClass"]("gray");
         var topicInputs = topics.find("input").attr("disabled", !inital);
         // show when newsletter is checked
-        newsletter.click(function() {
+        newsletter.click(function () {
             topics[this.checked ? "removeClass" : "addClass"]("gray");
             topicInputs.attr("disabled", !this.checked);
         });
