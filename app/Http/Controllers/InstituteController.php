@@ -134,7 +134,7 @@ class InstituteController extends Controller {
         $sectionclass = Input::get('classname');
         $sectionnote = Input::get('sectionNote');
       
-        return $sectionclass.''.$sectionteacherid;
+       // return $sectionclass.''.$sectionteacherid;
         /*
          * $classid = ClassAdd::where('class_name', '=', $sectionclass)->where('institute_code', '=', Auth::user()->institute_id)->pluck('class_name');
         $teachername = Teacher::where('name', '=', $sectionteacherid)->where('institute_code', '=', Auth::user()->institute_id)->pluck('name');

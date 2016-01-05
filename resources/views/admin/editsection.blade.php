@@ -30,10 +30,15 @@ Section Edit
                     <label class="col-sm-3 control-label">Teacher Name</label>
                     <div class="col-sm-6">
                         <select class="form-control input m-bot15" name="teachername">
-                            <option value="{{$editsection->tearcher_id}}">{{$editsection->tearcher_id}}</option>
+                        
                             @foreach($teacher as $r=>$t)
-                            <option value="{{$t}}">{{$r}}</option>
+                               @if($editsection->tearcher_name==$t)
+                            <option value="{{$t}}" selected="selected">{{$r}}</option>
+                            @else
+                               <option value="{{$t}}">{{$r}}</option>
+                               @endif
                             @endforeach
+                            
 
                         </select>
                     </div>
