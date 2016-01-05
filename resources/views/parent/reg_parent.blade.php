@@ -58,7 +58,7 @@
                                                 </header>
                                                 <div class="panel-body">
 
-                                                    {!! Form::open(array('id'=>'signupFormt2','class'=>'cmxform form-horizontal')) !!}
+                                                    {!! Form::open(array('id'=>'signupParents','class'=>'cmxform form-horizontal')) !!}
                                                     <div class="form" >
                                                         <div class="form-group ">
                                                             <label for="gname" class="control-label col-lg-3">Guardian Name</label>

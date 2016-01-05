@@ -276,8 +276,34 @@ var Script = function () {
                 classnumeric: "Please enter Numaric Class",
             }
         });
+        // validate Subject Information Add
+        $("#subjectinfo").validate({
+            rules: {
+                subname: {
+                    required: true,
+                },
+                subcode: {
+                    required: true,
+                },
+                subteacher: {
+                    required: true,
+                },
+                subclass: {
+                    required: true,
+
+                }
+
+            },
+            messages: {
+                subname: "Please Enter a Subject Name",
+                subcode: "Please Enter Subject Code",
+                subteacher:"Please choose a Teacher",
+                subclass:"Please enter choose a Class",
+
+            }
+        });
         // validate signup form on keyup and submit
-        $("#signupFormt3").validate({
+        $("#signupTeacher").validate({
             rules: {
                 firstname: "required",
                 lastname: "required",
@@ -353,6 +379,87 @@ var Script = function () {
                 religion: "Please enter a religion",
                 address: "Please enter a valid  address",
                 join_date: "Please enter a joining date",
+                phone: "Please enter a phone no.",
+                nid: "Please enter National Id card No.",
+                agree: "Please accept our policy"
+            }
+        });
+        // validate signup form on keyup and submit
+        $("#signupParents").validate({
+            rules: {
+                gname: "required",
+                father_name: "required",
+                mother_name: "required",
+                username: {
+                    required: true,
+                    minlength: 4
+                },
+                password: {
+                    required: true,
+                    minlength: 5
+                },
+                confirm_password: {
+                    required: true,
+                    minlength: 5,
+                    equalTo: "#password"
+                },
+                email: {
+                    required: true,
+
+                },
+                father_profession: {
+                    required: true,
+
+                },
+                mother_profession: {
+                    required: true,
+
+                },
+
+                religion: {
+                    required: true,
+
+                },
+                address: {
+                    required: true,
+
+                },
+                phone: {
+                    required: true,
+
+                },
+                nid: {
+                    required: true,
+
+                },
+                topic: {
+                    required: "#newsletter:checked",
+                    minlength: 2
+                },
+                agree: "required"
+            },
+            messages: {
+                gname: "Please enter a Guardian Name",
+                father_name: "Please enter father's name",
+                mother_name: "Please enter mother's name",
+                username: {
+                    required: "Please enter a username",
+                    minlength: "Your username must consist of at least 4 characters"
+                },
+                password: {
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 5 characters long"
+                },
+                confirm_password: {
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 5 characters long",
+                    equalTo: "Please enter the same password as above"
+                },
+                email: "Please enter a valid email",
+                father_profession: "Please enter father's profession",
+                mother_profession: "Please enter mother's profession",
+                religion: "Please enter a religion",
+                address: "Please enter a valid  address",
                 phone: "Please enter a phone no.",
                 nid: "Please enter National Id card No.",
                 agree: "Please accept our policy"

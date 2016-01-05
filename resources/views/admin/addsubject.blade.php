@@ -56,7 +56,7 @@
                                                 </span>
                                                 </header>
                                                 <div class="panel-body">
-                                                    {!!Form::open(array('id'=>'classinfo','class'=>'cmxform form-horizontal')) !!}
+                                                    {!!Form::open(array('id'=>'subjectinfo','class'=>'cmxform form-horizontal')) !!}
                                                     <section class="panel">
 
                                                         <div class="panel-body">
@@ -87,7 +87,7 @@
                                                                     <div class="form-group ">
                                                                         <label for="subteacher" class="control-label col-lg-3">Select Teacher</label>
                                                                         <div class="col-lg-6">
-                                                                        <select name='subteacher'   class="form-control"  >
+                                                                        <select name='subteacher' id='subteacher'   class="form-control"  >
                                                                             <option  selected="selected" >Choose Teacher</option>
                                                                             @foreach($teacher as $r=>$t)
                                                                                 <option value="{{$t}}">{{$r}}</option>
@@ -191,7 +191,12 @@
                                                 <td> {{$c->teacher_name}}</td>
                                                 <td class="center">{{$c->sub_author}}</td>
                                                 <td><a  href="a url">{{$c->subject_code}}</a></td>
-                                                <td><a   href=""> Edit</a> <a>Delete</a></td>
+                                                <td>
+                                                    <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/admin/edit/subject/{{$c->subject_code}}"><i class="fa fa-edit"></i> </a>
+                                                    <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/institute/delete/" ><i class="fa  fa-trash-o"></i></a>
+
+                                                </td>
+
                                             </tr>
                                         @endforeach
                                         </tbody>

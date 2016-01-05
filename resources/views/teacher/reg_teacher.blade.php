@@ -41,7 +41,7 @@
                                         <div class="col-sm-12">
                                             <section class="panel">
                                                 <div class="panel-body">
-                                                    {!! Form::open(array('id'=>'signupFormt3','class'=>'cmxform form-horizontal','files'=>'true')) !!}
+                                                    {!! Form::open(array('id'=>'signupTeacher','class'=>'cmxform form-horizontal','files'=>'true')) !!}
                                                     <div class="form" >
                                                         <div class="form-group ">
                                                             <label for="firstname" class="control-label col-lg-3">Firstname</label>

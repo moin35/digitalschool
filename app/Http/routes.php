@@ -19,18 +19,18 @@ Route::get('/', function () {
     return view('auth.login');
     }
 });
-
+//auth route moin
 Route::get('home',['middleware' => 'auth', 'uses' => 'HomeController@home']);
 Route::get('/lang/{lang}',['middleware' => 'auth', 'uses' => 'LangController@home']);
 
 Route::get('reg', function(){
     return view('institute.reg_institute');
 });
-//Add Student Route
+//Add Student Route moin
 Route::get('add/student','HomeController@getAddStudent');
 Route::post('add/student','HomeController@postAddStudent');
 
-//Institute Refistration
+//Institute Registration
 Route::get('admin/institute/registration','HomeController@getInstituteReg');
 Route::post('admin/institute/registration','HomeController@postInstituteReg');
 
@@ -65,6 +65,11 @@ Route::get('api/dropdown/thana', function(){
     $items = App\Thana::where('district_name', '=', $users)->lists('thana_or_upazilla','id');
     return Response::make($items);
 });
+Route::get('api/dropdown/section', function(){
+    $user = Input::get('option');
+    $items = App\Section::where('institute_code','=',Auth::user()->institute_id)->where('class_id', '=', $user)->lists('section_name','section_id');
+    return Response::make($items);
+});
 //class info add
 Route::get('Addclass','InstituteController@getaddclass');
 Route::post('Addclass','InstituteController@postaddclass');
@@ -84,4 +89,7 @@ Route::get('institute/edit/{icode}','HomeController@editinstutedinfo');
 Route::post('institute/edit/{icode}','HomeController@editinstutedinfoupdate');
 Route::get('institute/delete/{icode}','HomeController@deleteinstutedinfo');
 
+//Route edit delete subject
+Route::get('admin/edit/subject/{scode}','StudentsController@getEditSubject');
+Route::post('admin/edit/subject/{scode}','StudentsController@postUpdateSubject');
  
