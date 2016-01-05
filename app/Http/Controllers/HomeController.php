@@ -129,8 +129,8 @@ public function postAddStudent(){
         
         $email = Input::get('email');
         $icode = Input::get('icode');
-        $userc = User::where('institute_id', '=', $icode)->orWhere('email', '=', $email)->count();
-        $marchant = Institute::where('institute_code', '=', $icode)->orWhere('email', '=', $email)->count();
+        $userc = User::where('institute_id', '=', $icode)->Where('email', '=', $email)->count();
+        $marchant = Institute::where('institute_code', '=', $icode)->Where('email', '=', $email)->count();
         if ($userc > 0 || $marchant > 0) {
             Session::flash('data', 'Institute or Email was already used. Please Try a different number.');
 
@@ -312,8 +312,8 @@ public function postAddParents(){
     }
  
     public function getaddclass() {
-        $classInfo = ClassAdd::all();
-        $teacher = Teacher::all()->lists('teacher_id', 'name');
+        $classInfo = ClassAdd::where('institute_code','=',Auth::user()->institute_id)->get();
+        $teacher = Teacher::where('institute_code','=',Auth::user()->institute_id)->lists('teacher_id', 'name');
         return view('admin.ClassAdd')->with('teacher', $teacher)->with('classallinfo', $classInfo);
     }
 
@@ -323,7 +323,7 @@ public function postAddParents(){
         $class = Input::get('className');
         $classNumaric = Input::get('classnumeric');
         $note = Input::get('ClassNote');
-         $teacherName=  Teacher::where('teacher_id','=',$teacherId)->pluck('name');
+         $teacherName=  Teacher::where('teacher_id','=',$teacherId)->where('institute_code','=',Auth::user()->institute_id)->pluck('name');
         $cl = new ClassAdd;
         $cl->institute_code=Auth::user()->institute_id;
         $cl->class_name=$class;
@@ -339,9 +339,9 @@ public function postAddParents(){
     
     public function getsection(){
         ///saif for admin
-         $teacher = Teacher::all()->lists('teacher_id', 'name');
-         $class = ClassAdd::all()->lists('class_id', 'class_name');
-        $section=Section::all();
+         $teacher = Teacher::where('institute_code','=',Auth::user()->institute_id)->lists('teacher_id', 'name');
+         $class = ClassAdd::where('institute_code','=',Auth::user()->institute_id)->lists('class_id', 'class_name');
+        $section=Section::where('institute_code','=',Auth::user()->institute_id)->get();
         return view('admin.sectionadd')->with('section',$section)->with('teacher', $teacher)->with('allclass',$class);
     }
     public function postsection(){
@@ -352,8 +352,8 @@ public function postAddParents(){
         $sectionCategory=  Input::get('sectioncategory');
         $sectionNote=  Input::get('sectionNote');
         // return $classid;
-        $teacherName= Teacher::where('teacher_id','=',$teacherid)->pluck('name');
-        $className=  ClassAdd::where('class_id','=',$classid)->pluck('class_name');
+        $teacherName= Teacher::where('teacher_id','=',$teacherid)->where('institute_code','=',Auth::user()->institute_id)->pluck('name');
+        $className=  ClassAdd::where('class_id','=',$classid)->where('institute_code','=',Auth::user()->institute_id)->pluck('class_name');
         $sec=new Section;
         $sec->institute_code=Auth::user()->institute_id;
         $sec->section_name=$sectionName;
@@ -400,6 +400,7 @@ public function postAddParents(){
         public function deleteinstutedinfo($idcode){
             //saif for admin
             $infoDelete=  Institute::where('institute_code','=',$idcode)->delete();
+            $infoDelete= User::where('institute_id','=',$idcode)->delete();
              Session::flash('data', 'You successfully');
              return Redirect::to('admin/institute/registration');
         }
@@ -432,6 +433,24 @@ public  function getAddSubject(){
      Session::flash('data', 'Data successfully added !');
      return Redirect::to('admin/add/subject');
 
+ }
+ public function geteditclass($clid){
+     //saif for instituted
+     $teacherlist = Teacher::where('institute_code','=',Auth::user()->institute_id)->lists('teacher_id', 'name');
+     $classupdate=  ClassAdd::where('class_id','=',$clid)->where('institute_code','=',Auth::user()->institute_id)->first();
+      
+     return view('admin.classupdate')->with('classupdate',$classupdate)->with('teacher',$teacherlist);
+ }
+ public function postupdateclass($clsid){
+     $clname= Input::get('classname');
+      $clteachername= Input::get('teachername');
+       $clnumaric= Input::get('classnumaric');
+        $clnote= Input::get('ClassNote');
+       // return $clid;
+        
+     $classupdate =ClassAdd::where('class_id','=',$clsid)->where('institute_code','=',Auth::user()->institute_id)->update(['class_name'=>$clname,'class_name_numaric'=>$clnumaric,'teacher_name'=>$clteachername,'note'=>$clnote]);
+       Session::flash('data', 'Data successfully added !');
+     return Redirect::to('class/edit/'.$clsid);
  }
  
        
