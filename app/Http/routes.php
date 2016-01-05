@@ -19,18 +19,18 @@ Route::get('/', function () {
     return view('auth.login');
     }
 });
-
+//auth route moin
 Route::get('home',['middleware' => 'auth', 'uses' => 'HomeController@home']);
 Route::get('/lang/{lang}',['middleware' => 'auth', 'uses' => 'LangController@home']);
 
 Route::get('reg', function(){
     return view('institute.reg_institute');
 });
-//Add Student Route
+//Add Student Route moin
 Route::get('add/student','HomeController@getAddStudent');
 Route::post('add/student','HomeController@postAddStudent');
 
-//Institute Refistration
+//Institute Registration
 Route::get('admin/institute/registration','HomeController@getInstituteReg');
 Route::post('admin/institute/registration','HomeController@postInstituteReg');
 
@@ -86,4 +86,7 @@ Route::get('institute/edit/{icode}','HomeController@editinstutedinfo');
 Route::post('institute/edit/{icode}','HomeController@editinstutedinfoupdate');
 Route::get('institute/delete/{icode}','HomeController@deleteinstutedinfo');
 
+//Route edit delete subject
+Route::get('admin/edit/subject/{scode}','StudentsController@getEditSubject');
+Route::post('admin/edit/subject/{scode}','StudentsController@postUpdateSubject');
  

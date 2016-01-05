@@ -332,7 +332,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{URL::to('add/student')}}">
+                        <a href="{{URL::to('admin/add/subject')}}">
                             <i class="fa fa-bullhorn"></i>
                             <span>{{Lang::get('home.subject')}} </span>
                         </a>
