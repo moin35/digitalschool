@@ -24,7 +24,7 @@ Section Edit
                 @endif
 
 
-                {!! Form::open(array('id'=>'editsection','class'=>'form-horizontal bucket-form')) !!}
+                {!! Form::open(array('id'=>'sectioninfo','class'=>'form-horizontal bucket-form')) !!}
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Teacher Name</label>
@@ -61,7 +61,7 @@ Section Edit
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Class Name</label>
                     <div class="col-sm-6">
-                        <input type="text" name="sectionname" value="{{$editsection->section_name}}" class="form-control round-input">
+                        <input type="text" name="SectionName" value="{{$editsection->section_name}}" class="form-control round-input">
                     </div>
                 </div>
                 <div class="form-group">

@@ -78,10 +78,21 @@ Institute Edit
                     </div>
                                      
                                           <div class="form-group">
-                        <label class="col-sm-3 control-label">District</label>
-                        <div class="col-sm-6">
-                            <input type="text" value="{{$detailinf->district}}" name="district" class="form-control round-input">
-                        </div>
+                        <label class="col-sm-3 control-label">District</label>   
+                    
+                    <div class="col-sm-6">
+                        <select class="form-control input m-bot15" name="district">                            
+                            @foreach($division as $r=>$t)                            
+                            @if($detailinf->district==$t)
+                            <option value="{{$t}}" selected="selected" >{{$r}} </option>
+                            @else
+                              <option value="{{$t}}">{{$r}}</option>
+                            @endif
+                            @endforeach
+
+                        </select>
+                    </div>
+                
                     </div>
                                           <div class="form-group">
                         <label class="col-sm-3 control-label">Thana</label>
