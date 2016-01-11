@@ -92,4 +92,11 @@ Route::get('institute/delete/{icode}','HomeController@deleteinstutedinfo');
 //Route edit delete subject
 Route::get('admin/edit/subject/{scode}','StudentsController@getEditSubject');
 Route::post('admin/edit/subject/{scode}','StudentsController@postUpdateSubject');
- 
+
+//filter student by class
+Route::post('admin/student/search',['as'=>'searchstudent','uses'=>'StudentController@postStudentSearch']);
+
+//Student edit delete view
+Route::get('/student/details/{id}','StudentsController@getDetailStudents');
+Route::get('/student/edit/{id}','StudentsController@getStudentsEdit');
+Route::post('/student/edit/{id}','StudentsController@UpdateStudentsEdit');

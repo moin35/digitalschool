@@ -333,11 +333,7 @@
                     </a>
                 </li>
                 <li>
- 
-                   
- 
                     <a href="{{URL::to('admin/add/teacher')}}">
- 
                         <i class="fa fa-group"></i>
                         <span>{{Lang::get('home.teacher')}} </span>
                     </a>
@@ -896,11 +892,11 @@
 <script>
     jQuery(document).ready(function($){
         n=1;
-        $('#class').change(function(){
+        $('.class').change(function(){
             $.get("{{ url('api/dropdown/section')}}",
                     { option: $(this).val() },
                     function(data) {
-                        var model = $('#sectionid');
+                        var model = $('.sectionid');
                         model.empty();
 
                         $.each(data, function(index,element) {

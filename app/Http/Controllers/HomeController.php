@@ -55,14 +55,24 @@ class HomeController extends Controller {
         $parents=Parents::where('institute_code','=',Auth::user()->institute_id)->lists('guradian_id','guardian_name');
         //$parents=Section::where('institute_code','=',Auth::user()->institute_id)->lists('section_id','section_name');
         $class=ClassAdd::where('institute_code','=',Auth::user()->institute_id)->lists('class_id','class_name');
+        $students=Students::where('institute_code','=',Auth::user()->institute_id)->get();
 
         //return $parents;
-        return view('superadmin.add_search_student')->with('parents',$parents)->with('class',$class);
+        return view('admin.add_search_student')->with('parents',$parents)
+            ->with('class',$class)
+            ->with('students',$students);
     }
  
 public function postAddStudent(){
     //moin
     //Student Registration Post Function for asmin
+    $parents = Input::get('guardian_name');
+    $class = Input::get('class');
+
+    $parents_name = Parents::where('guradian_id', '=', $parents)->pluck('guardian_name');
+    $class_name = ClassAdd::where('class_id', '=', $class)->pluck('class_name');
+
+
     $email = Input::get('email');
     $userc = User::Where('email', '=', $email)->count();
     $marchant = Institute::Where('email', '=', $email)->count();
@@ -93,6 +103,8 @@ public function postAddStudent(){
         //return $password;
         //return $name.$studentid.$institute.$guardian.$gender.$religion.$email.$phone.$class.$section.$roll.$user_type.$transport_rent.$birth_certificate.$image
         //   .$route_name.$status;
+
+
         $u=new User;
         $u->name=Input::get('firstname').' '.Input::get('lastname');
         $u->uid=$iid.','.Input::get('roll');
@@ -102,17 +114,18 @@ public function postAddStudent(){
         $u->email=$email;
         $u->password= Hash::make(Input::get('confirm_password'));
         $u->save();
+
         $su=new Students;
         $su->name=Input::get('firstname').' '.Input::get('lastname');
         $su->st_id=$iid.','.Input::get('roll');
         $su->institute_code=$iid;
-        $su->guardian_id=Input::get('guardian_name');
-        $su->guardian_name=Input::get('guardian_name');
+        $su->guardian_id=$parents;
+        $su->guardian_name=$parents_name;
         $su->gender=Input::get('gender');
         $su->religion=Input::get('religion');
         $su->phone=Input::get('phone');
         $su->address=Input::get('address');
-        $su->class=Input::get('class');
+        $su->class=$class_name;
         $su->section=Input::get('section');
         $su->roll=Input::get('roll');
         $su->image=$final;

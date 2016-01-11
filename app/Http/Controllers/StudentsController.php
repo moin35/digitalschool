@@ -72,4 +72,91 @@ class StudentsController extends Controller
         Session::flash('data', 'Data successfully added !');
         return Redirect::to('admin/edit/subject/' .$scode);
     }
+
+public function getDetailStudents($id){
+    //Moin
+    //Student Detail get Function for admin
+    $getstudent=Students::where('institute_code', '=', Auth::user()->institute_id)->where('id', '=',$id)->first();
+    //return $getstudent->institute_code;
+    return view('admin.studentdetail',['individualstudent'=>$getstudent]);
+
+}
+
+    public function getStudentsEdit($id){
+        //Moin
+        //Student edit get Function for admin
+        $parents = Parents::where('institute_code','=',Auth::user()->institute_id)->lists('guradian_id', 'guardian_name');
+        $class = ClassAdd::where('institute_code','=',Auth::user()->institute_id)->lists('class_id', 'class_name');
+        $icode= User::where('institute_id','=',Auth::user()->institute_id)->pluck('institute_id');
+        $editstudent=Students::where('institute_code','=',Auth::user()->institute_id)->where('id','=',$id)->first();
+        //return $editstudent;
+        return view('admin.editstudents',['studentedit'=>$editstudent,'teacher'=>$parents,'class'=>$class,'icode'=>$icode]);
+    }
+    public function UpdateStudentsEdit($id){
+        //Moin
+        //Student Update Function for admin
+        $name=Input::get('name');
+        $roll=Input::get('roll');
+        $gid=Input::get('gname');
+        $class=Input::get('class');
+        $section=Input::get('section');
+        $religion=Input::get('religion');
+        $bdate=Input::get('bdate');
+        $gender=Input::get('gender');
+        $email=Input::get('email');
+        $phone=Input::get('phone');
+        $address=Input::get('address');
+        $gname = Parents::where('guradian_id', '=', $gid)->pluck('guardian_name');
+        if(Input::hasFile('image')){
+            // return 1;
+            $extension = Input::file('image')->getClientOriginalExtension();
+            if($extension=='png'||$extension=='jpg'||$extension=='jpeg'||$extension=='bmp'||
+                $extension=='PNG'||$extension=='jpg'||$extension=='JPEG'||$extension=='BMP'){
+                $date=date('dmyhsu');
+                $fname=$name.mt_rand('1', '999').'.'.$extension;
+                $destinationPath = 'images/';
+                Input::file('image')->move($destinationPath,$fname);
+                $final=$fname;
+            }
+        }
+        else{
+            $final='';
+        }
+        //return $final;
+        //return $name.'/'.$roll.'/'.$gname.'/'.$class.'/'.$section.'/'.$religion.'/'.$bdate.'/'.$gender.'/'.$email.'/'.$phone.'/'.$address.'/'.$image;
+        $studentup = Students::where('institute_code', '=', Auth::user()->institute_id)->where('id', '=', $id)
+            ->update(['name' => $name,
+                'guardian_id' => $gid,
+                'guardian_name' => $gname,
+                'gender' => $gender,
+                'religion' => $religion,
+                'email' => $email,
+                'phone' => $phone,
+                'address' => $address,
+                'class' => $class,
+                'section' => $section,
+                'roll' => $roll,
+                'image' => $final,
+                'birth_certificate' => $bdate
+                ]);
+        Session::flash('data', 'Data successfully added !');
+        return Redirect::to('student/edit/' .$id);
+    }
+    public function postStudentSearch(){
+        //return 1;
+        $procategory=Input::get('categ');
+        //return $procategory;
+        if($procategory!='')
+        {
+            //return $pname.'/'.$hprice.'/'.$lprice.'/'.$marchant;
+            $mid=AddProducts::where('category','LIKE',$procategory)->pluck('uid');
+            $categoryserarchresult=AddProducts::where('category','LIKE',"%$procategory%")
+                ->where('uid','=',$mid)
+                ->get();
+            //return  $categoryserarchresult;
+            return view('catsearchresult')->with('psearch',$categoryserarchresult);
+
+        }
+
+    }
 }
