@@ -8,6 +8,29 @@
     <link rel="shortcut icon" href="{{URL::to('/')}}/images/favicon.png">
     <title>Digital School</title>
     <!--Core CSS -->
+        <!--Core Datepicker -->
+    <!--Core saif CSS -->
+ 
+
+    <link rel="stylesheet" href="{{URL::to('/')}}/css/bootstrap-switch.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-fileupload/bootstrap-fileupload.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-datepicker/css/datepicker.css" />
+    
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-colorpicker/css/colorpicker.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-datetimepicker/css/datetimepicker.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/jquery-multi-select/css/multi-select.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/jquery-tags-input/jquery.tagsinput.css" />
+
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/select2/select2.css" />
+
+    <!-- Custom end saif styles for this template -->
+ 
+   
+
+  
+         <!--Core CSS -->
     <link href="{{URL::to('/')}}/bs3/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/js/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/css/bootstrap-reset.css" rel="stylesheet">
@@ -732,6 +755,8 @@
 </section>
 <!-- Placed js at the end of the document so the pages load faster -->
 <!--Core js-->
+
+
 <script src="{{URL::to('/')}}/js/jquery.js"></script>
 <script src="{{URL::to('/')}}/js/jquery-ui/jquery-ui-1.10.1.custom.min.js"></script>
 <script src="{{URL::to('/')}}/bs3/js/bootstrap.min.js"></script>
@@ -771,5 +796,6 @@
 <!--common script init for all pages-->
 <script src="{{URL::to('/')}}/js/scripts.js"></script>
 <!--script for this page-->
+
 </body>
 </html>
