@@ -24,15 +24,19 @@ Class Edit
                 @endif
 
 
-                {!! Form::open(array('id'=>'classupdate','class'=>'form-horizontal bucket-form')) !!}
+                {!! Form::open(array('id'=>'classinfo','class'=>'form-horizontal bucket-form')) !!}
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Teacher Name</label>
                     <div class="col-sm-6">
-                        <select class="form-control input-lg m-bot15" name="teachername">
-                            <option >{{$classupdate->teacher_name}}</option>
+                        <select class="form-control input m-bot15" name="teachername">
+                          
                             @foreach($teacher as $r=>$t)
-                            <option value="{{$t}}">{{$r}}</option>
+                            @if($classupdate->teacher_id==$t)
+                            <option value="{{$t}}" selected="selected">{{$r}}</option>
+                            @else
+                              <option value="{{$t}}">{{$r}}</option>
+                              @endif
                             @endforeach
 
                         </select>

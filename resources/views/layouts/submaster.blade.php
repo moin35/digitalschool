@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +9,11 @@
     <link rel="shortcut icon" href="{{URL::to('/')}}/images/favicon.png">
 
     <title>@yield('title')</title>
+       
  <!--dynamic table-->
     <link href="{{URL::to('/')}}/js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
     <link href="{{URL::to('/')}}/js/advanced-datatable/css/demo_table.css" rel="stylesheet" />
-    <link href="{{URL::to('/')}}/js/advanced-datatable/css/customdatepicker.css" rel="stylesheet" />
+
 
     
     <!--Core CSS -->
@@ -775,6 +776,96 @@
 <!--common script init for all pages-->
 <script src="{{URL::to('/')}}/js/scripts.js"></script>
 
+
+<script type="text/javascript" src="js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
+
+<script src="js/jquery-tags-input/jquery.tagsinput.js"></script>
+
+<!--script for this page only-->
+ 
+<!-- validition script -->
+<script type="text/javascript" src="{{URL::to('/')}}/js/jquery.validate.min.js"></script>
+<script src="{{URL::to('/')}}/js/validation-init.js"></script>
+
+<script src="{{URL::to('/')}}/js/jquery-steps/jquery.steps.js"></script>
+<script src="{{URL::to('/')}}/js/table-editable.js"></script>
+<script src="{{URL::to('/')}}/js/gritter.js" type="text/javascript"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/gritter/js/jquery.gritter.js"></script>
+<!-- start Dynamic Tables JAVASCRIPTS -->
+<script type="text/javascript" language="javascript" src="{{URL::to('/')}}/js/advanced-datatable/js/jquery.dataTables.js"></script>
+ 
+
+<!-- END JAVASCRIPTS -->
+
+
+<!-- Placed js at the end of the document so the pages load faster -->
+
+<!--Core js Exta-->
+ 
+
+<!--ENd Core js Exta-->
+ 
+<!--Easy Pie Chart--> 
+
+
+<script type="text/javascript" src="{{URL::to('/')}}/js/gritter/js/jquery.gritter.js"></script>
+<script src="{{URL::to('/')}}/js/jquery-steps/jquery.steps.js"></script>
+<script type="text/javascript" language="javascript" src="{{URL::to('/')}}/js/advanced-datatable/js/jquery.dataTables.js"></script>
+
+<script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/DT_bootstrap.js"></script>
+
+<script type="text/javascript" src="{{URL::to('/')}}/js/jquery.validate.min.js"></script>
+<script src="{{URL::to('/')}}/js/validation-init.js"></script>
+<script src="{{URL::to('/')}}/js/table-editable.js"></script>
+
+<!-- End script check for saif new for this page-->
+
+ 
+<script src="{{URL::to('/')}}/js/jquery-ui/jquery-ui-1.10.1.custom.min.js"></script>
+ 
+<script src="{{URL::to('/')}}/js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="{{URL::to('/')}}/js/jquery.scrollTo.min.js"></script>
+<script src="{{URL::to('/')}}/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
+<script src="{{URL::to('/')}}/js/jquery.nicescroll.js"></script>
+<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
+<script src="{{URL::to('/')}}/js/skycons/skycons.js"></script>
+<script src="{{URL::to('/')}}/js/jquery.scrollTo/jquery.scrollTo.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="{{URL::to('/')}}/js/calendar/clndr.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+<script src="{{URL::to('/')}}/js/calendar/moment-2.2.1.js"></script>
+<script src="{{URL::to('/')}}/js/evnt.calendar.init.js"></script>
+<script src="{{URL::to('/')}}/js/jvector-map/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="{{URL::to('/')}}/js/jvector-map/jquery-jvectormap-us-lcc-en.js"></script>
+<script src="{{URL::to('/')}}/js/gauge/gauge.js"></script>
+<!--clock init-->
+<script src="{{URL::to('/')}}/js/css3clock/js/css3clock.js"></script>
+<!--Easy Pie Chart-->
+<script src="{{URL::to('/')}}/js/easypiechart/jquery.easypiechart.js"></script>
+<!--Sparkline Chart-->
+<script src="{{URL::to('/')}}/js/sparkline/jquery.sparkline.js"></script>
+<!--Morris Chart-->
+<script src="{{URL::to('/')}}/js/morris-chart/morris.js"></script>
+<script src="{{URL::to('/')}}/js/morris-chart/raphael-min.js"></script>
+<!--jQuery Flot Chart-->
+<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.js"></script>
+<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.tooltip.min.js"></script>
+<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.resize.js"></script>
+<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.pie.resize.js"></script>
+<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.animator.min.js"></script>
+<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.growraf.js"></script>
+<script src="{{URL::to('/')}}/js/dashboard.js"></script>
+<script src="{{URL::to('/')}}/js/jquery.customSelect.min.js" ></script>
+<!--common script init for all pages-->
+<script src="{{URL::to('/')}}/js/scripts.js"></script>
+<!--script for this page-->
+<!--script check for saif new for this page-->
+ 
+<script src="{{URL::to('/')}}/js/jquery-1.8.3.min.js"></script> 
+<script src="{{URL::to('/')}}/js/jquery-ui-1.9.2.custom.min.js"></script>  
+
+<script src="{{URL::to('/')}}/js/bootstrap-switch.js"></script>
+
 <script type="text/javascript" src="{{URL::to('/')}}/js/fuelux/js/spinner.min.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-fileupload/bootstrap-fileupload.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
@@ -788,24 +879,19 @@
 <script type="text/javascript" src="{{URL::to('/')}}/js/jquery-multi-select/js/jquery.multi-select.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/jquery-multi-select/js/jquery.quicksearch.js"></script>
 
-<script type="text/javascript" src="js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
 
-<script src="js/jquery-tags-input/jquery.tagsinput.js"></script>
+<script src="{{URL::to('/')}}/js/jquery-tags-input/jquery.tagsinput.js"></script>
 
-<!--script for this page only-->
-<script src="{{URL::to('/')}}/js/table-editable.js"></script>
-<!-- validition script -->
-<script type="text/javascript" src="{{URL::to('/')}}/js/jquery.validate.min.js"></script>
-<script src="{{URL::to('/')}}/js/validation-init.js"></script>
+<script src="{{URL::to('/')}}/js/select2/select2.js"></script>
+<script src="{{URL::to('/')}}/js/select-init.js"></script> 
 
-<script src="{{URL::to('/')}}/js/jquery-steps/jquery.steps.js"></script>
-<script src="{{URL::to('/')}}/js/table-editable.js"></script>
-<script src="{{URL::to('/')}}/js/gritter.js" type="text/javascript"></script>
-<script type="text/javascript" src="{{URL::to('/')}}/js/gritter/js/jquery.gritter.js"></script>
-<!-- start Dynamic Tables JAVASCRIPTS -->
-<script type="text/javascript" language="javascript" src="{{URL::to('/')}}/js/advanced-datatable/js/jquery.dataTables.js"></script>
-<script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/DT_bootstrap.js"></script>
+<script src="{{URL::to('/')}}/js/toggle-init.js"></script>
 
+<script src="{{URL::to('/')}}/js/advanced-form.js"></script>
+<!--Easy Pie Chart-->
+ 
+<!-- End script check for saif new for this page-->
 <!-- END JAVASCRIPTS -->
 <script>
     jQuery(document).ready(function() {
@@ -821,7 +907,6 @@
             bodyTag: "section",
             transitionEffect: "slideLeft"
         });
-
         $("#wizard-vertical").steps({
             headerTag: "h2",
             bodyTag: "section",
@@ -829,8 +914,6 @@
             stepsOrientation: "vertical"
         });
     });
-
-
 </script>
      <script>
         jQuery(document).ready(function($){
@@ -847,8 +930,6 @@
                             });
                         });
             });
-
-
         });
     </script>
         <script>
@@ -860,14 +941,11 @@
                         function(data) {
                             var model = $('#idthana');
                             model.empty();
-
                             $.each(data, function(index,element) {
                                 model.append("<option value='"+ element +"'>" + element + "</option>");
                             });
                         });
             });
-
-
         });
     </script>
 <script>
@@ -879,14 +957,11 @@
                     function(data) {
                         var model = $('#idthana');
                         model.empty();
-
                         $.each(data, function(index,element) {
                             model.append("<option value='"+ element +"'>" + element + "</option>");
                         });
                     });
         });
-
-
     });
 </script>
 <script>
@@ -898,27 +973,13 @@
                     function(data) {
                         var model = $('.sectionid');
                         model.empty();
-
                         $.each(data, function(index,element) {
                             model.append("<option value='"+ element +"'>" + element + "</option>");
                         });
                     });
         });
-
-
     });
 </script>
-<script>
-    $( '.datepicker' ).pickadate({
-        monthSelector: true,
-        yearSelector: true,
-        yearSelector: 100,
-        dateMin: [1960,1,1],
-        dateMax: true,
-        onStart: function() {
-            this.show(1,1960)
-        }
-    });
-</script>
+ 
 </body>
 </html>

@@ -375,8 +375,12 @@ public function postAddStudent(){
 
     public function editinstutedinfo($incode) {
         //saif for admin
+       // $division=  Institute::where('institute_code', '=', $incode)
+        //$district=  Institute::where('institute_code', '=', $incode)
+        //$thana=  Institute::where('institute_code', '=', $incode)
+         $division=Division::all()->lists('id','Division');
         $detailsinist = Institute::where('institute_code', '=', $incode)->first();
-        return view('admin.instutededit')->with('detailinf', $detailsinist);
+        return view('admin.instutededit')->with('detailinf', $detailsinist)->with('division',$division);
     }
 
     public function editinstutedinfoupdate($iucode) {

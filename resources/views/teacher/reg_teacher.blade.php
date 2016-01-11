@@ -6,6 +6,7 @@
     <script src="{{URL::to('/')}}/js/angular/angular.min.js"></script>
     <script src="{{URL::to('/')}}/js/angular/angular-animate.min.js"></script>
     <link href="{{URL::to('/')}}/css/angular/animatedbox.css" rel="stylesheet">
+  
 @stop
 
 @section('body')
@@ -64,7 +65,9 @@
                                                         <div class="form-group ">
                                                             <label for="dbirth" class="control-label col-lg-3">Date of Birth</label>
                                                             <div class="col-lg-6">
-                                                                <input class=" form-control" id="dbirth" name="dbirth" type="text" />
+                                                                    <input  name="dbirth" id="dbirth"  class="form-control form-control-inline input-medium default-date-picker"  size="16" type="text" value="" />
+                                    <span class="help-block">Select date</span>
+                                                               
                                                             </div>
                                                         </div>
                                                         <div class="form-group ">
@@ -206,6 +209,8 @@
                                     <label for="classesID" class="col-sm-2 col-sm-offset-2 control-label">
                                         Class                                </label>
                                     <div class="col-sm-6">
+                                         <input  name="dbirth" id="dbirth"  class="form-control form-control-inline input-medium default-date-picker"  size="16" type="text" value="" />
+                                    <span class="help-block">Select date</span>
                                         <select name="classesID" id="classesID" class="form-control">
                                             <option value="0">Select Class</option>
                                             <option value="1">One</option>

@@ -32,14 +32,14 @@ class InstituteController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function getaddclass() {
-        //class info add institute //saif
+        //class info add institute //saif for admin and insti
         $classInfo = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->get();
         $teacher = Teacher::where('institute_code', '=', Auth::user()->institute_id)->lists('teacher_id', 'name');
         return view('admin.ClassAdd')->with('teacher', $teacher)->with('classallinfo', $classInfo);
     }
 
     public function postaddclass() {
-        //class info post institute //saif
+        //class info post institute //saif for admin and insti
         $teacherId = Input::get('teacherName');
         $class = Input::get('className');
         $classNumaric = Input::get('classnumeric');
@@ -58,7 +58,7 @@ class InstituteController extends Controller {
     }
 
     public function geteditclass($clid) {
-        //class info edit institute //saif
+        //class info edit institute //saif for admin and insti
         $teacherlist = Teacher::where('institute_code', '=', Auth::user()->institute_id)->lists('teacher_id', 'name');
         $classupdate = ClassAdd::where('class_id', '=', $clid)->where('institute_code', '=', Auth::user()->institute_id)->first();
 
@@ -66,7 +66,7 @@ class InstituteController extends Controller {
     }
 
     public function postupdateclass($clsid) {
-        //class info update institute //saif
+        //class info update institute //saif for admin and insti
 
         $clname = Input::get('classname');
         $clteachername = Input::get('teachername');
@@ -78,14 +78,14 @@ class InstituteController extends Controller {
     }
 
     public function deleteclass($clsid) {
-        //class info delete institute //saif
+        //class info delete institute //saif for admin and insti
         $classupdate = ClassAdd::where('class_id', '=', $clsid)->where('institute_code', '=', Auth::user()->institute_id)->delete();
         Session::flash('data', 'Data successfully Delete !');
         return Redirect::to('Addclass');
     }
 
     public function getsection() {
-        //Section info add institute //saif
+        //Section info add institute //saif for admin and insti
         $teacher = Teacher::where('institute_code', '=', Auth::user()->institute_id)->lists('teacher_id', 'name');
         $class = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id', 'class_name');
         $section = Section::where('institute_code', '=', Auth::user()->institute_id)->get();
@@ -93,7 +93,7 @@ class InstituteController extends Controller {
     }
 
     public function postsection() {
-        //Section info post institute //saif
+        //Section info post institute //saif for admin and insti
         $teacherid = Input::get('teacherName');
         $classid = Input::get('className');
         $sectionName = Input::get('SectionName');
@@ -118,7 +118,7 @@ class InstituteController extends Controller {
     }
 
     public function geteditsection($secid) {
-        //section info edit view
+        //section info edit view for admin and insti
         $class = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id', 'class_name');
         $teacherlist = Teacher::where('institute_code', '=', Auth::user()->institute_id)->lists('teacher_id', 'name');
         $editsection = Section::where('institute_code', '=', Auth::user()->institute_id)->where('section_id', '=', $secid)->first();
@@ -127,32 +127,14 @@ class InstituteController extends Controller {
     }
 
     public function postupdatesection($sectid) {
-        //section info update
-        $sectionname = Input::get('sectionname');
+        //section info update for admin and insti
+        $sectionname = Input::get('SectionName');
         $sectioncat = Input::get('sectioncategory');
         $sectionteacherid = Input::get('teachername');
         $sectionclass = Input::get('classname');
         $sectionnote = Input::get('sectionNote');
       
-       // return $sectionclass.''.$sectionteacherid;
-        /*
-         * $classid = ClassAdd::where('class_name', '=', $sectionclass)->where('institute_code', '=', Auth::user()->institute_id)->pluck('class_name');
-        $teachername = Teacher::where('name', '=', $sectionteacherid)->where('institute_code', '=', Auth::user()->institute_id)->pluck('name');
-
-        if ($sectionclass == $classid && $sectionteacherid == $teachername) {
-            // return $sectionclass.''.$sectionteacherid;
-            Session::flash('data', 'Update successfully added !');
-            $sectionupdate = Section::where('institute_code', '=', Auth::user()->institute_id)->where('section_id', '=', $sectid)->update(['section_name' => $sectionname,
-                'section_category' => $sectioncat, 'class_name' => $sectionclass, 'tearcher_name' => $sectionteacherid, 'note' => $sectionnote]);
-            return Redirect::to('section/edit/' . $sectid);
-        } elseif ($sectionclass == $classid || $sectionteacherid == $teachername) {
-
-            Session::flash('data', 'Update successfully added !');
-            $sectionupdate = Section::where('institute_code', '=', Auth::user()->institute_id)->where('section_id', '=', $sectid)->update(['section_name' => $sectionname,
-                'section_category' => $sectioncat, 'class_name' => $sectionclass, 'tearcher_name' => $sectionteacherid, 'note' => $sectionnote]);
-            return Redirect::to('section/edit/' . $sectid);
-        } else {
-            */
+        
             $classidid = ClassAdd::where('class_id', '=', $sectionclass)->where('institute_code', '=', Auth::user()->institute_id)->pluck('class_name');
             $teachernameid = Teacher::where('teacher_id', '=', $sectionteacherid)->where('institute_code', '=', Auth::user()->institute_id)->pluck('name');
           
@@ -160,15 +142,7 @@ class InstituteController extends Controller {
                 'section_category' => $sectioncat, 'class_name' => $classidid, 'class_id' => $sectionclass, 'tearcher_name' => $teachernameid, 'tearcher_id' => $sectionteacherid, 'note' => $sectionnote]);
             Session::flash('data', 'Update successfully added !');
             return Redirect::to('section/edit/' . $sectid);
-      //  }
-        /* $teachername=  Teacher::where('teacher_id', '=', $sectionteacherid)->where('institute_code', '=', Auth::user()->institute_id)->pluck('name');
-          $classid = ClassAdd::where('class_name', '=', $sectionclass)->orWhere('class_name', '=', $sectionclass)->where('institute_code', '=', Auth::user()->institute_id)->pluck('class_name');
-
-          //return $classid .'----'.$sectionclass;
-          $sectionupdate=  Section::where('institute_code','=',Auth::user()->institute_id)->where('section_id','=',$sectid)->update(['section_name'=>$sectionname,
-          'section_category'=>$sectioncat,'class_name'=>$classid,'class_id'=>$sectionclass,'tearcher_name'=>$teachername,'tearcher_id'=>$sectionteacherid,'note'=>$sectionnote]);
-          Session::flash('data', 'Update successfully added !');
-          return Redirect::to('section/edit/' . $sectid); */
+      
     }
 
 }

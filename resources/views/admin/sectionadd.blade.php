@@ -56,7 +56,7 @@ Section
                                                 </span>
                                             </header>
                                             <div class="panel-body">
-                                                {!!Form::open(array('id'=>'classinfo','class'=>'cmxform form-horizontal')) !!}
+                                                {!!Form::open(array('id'=>'sectioninfo','class'=>'cmxform form-horizontal')) !!}
                                                 <section class="panel">
 
                                                     <div class="panel-body">
@@ -114,13 +114,13 @@ Section
                                                                 <div class="form-group ">
                                                                     <label for="icode" class="control-label col-lg-3">Section</label>
                                                                     <div class="col-lg-6">
-                                                                        <input class="form-control " id="icode" name="SectionName" type="text" />
+                                                                        <input class="form-control " name="SectionName" type="text" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group ">
                                                                     <label for="institute_name" class="control-label col-lg-3">Category</label>
                                                                     <div class="col-lg-6">
-                                                                        <input class=" form-control" id="institute_name" name="sectioncategory" type="text" />
+                                                                        <input class=" form-control"  name="sectioncategory" type="text" />
                                                                     </div>
                                                                 </div>
                                                                                                                               

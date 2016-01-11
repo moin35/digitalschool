@@ -465,7 +465,30 @@ var Script = function () {
                 agree: "Please accept our policy"
             }
         });
-        // propose username by combining first- and lastname
+          // validate Section Information Add
+        $("#sectioninfo").validate({
+            rules: {
+                teacherName: {
+                    required: true,
+                },
+                className: {
+                    required: true,
+                },
+                SectionName: {
+                    required: true,
+                },                
+                sectioncategory: {
+                    required: true,
+                }
+
+            },
+            messages: {
+                teacherName: "Please Choose Teacher Name",
+                className: "Please enter Class",
+                classnumeric: "Please enter Numaric Class",
+            }
+        });
+        // section Information end
         $("#username").focus(function () {
             var firstname = $("#firstname").val();
             var lastname = $("#lastname").val();
