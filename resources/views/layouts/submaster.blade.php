@@ -747,7 +747,6 @@
 </section>
 
 
-
 <!-- Placed js at the end of the document so the pages load faster -->
 
 <!--Core js-->
@@ -772,7 +771,7 @@
 
 <script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/jquery.dataTables.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/DT_bootstrap.js"></script>
- 
+
 <!--common script init for all pages-->
 <script src="{{URL::to('/')}}/js/scripts.js"></script>
 
@@ -782,7 +781,7 @@
 <script src="js/jquery-tags-input/jquery.tagsinput.js"></script>
 
 <!--script for this page only-->
- 
+
 <!-- validition script -->
 <script type="text/javascript" src="{{URL::to('/')}}/js/jquery.validate.min.js"></script>
 <script src="{{URL::to('/')}}/js/validation-init.js"></script>
@@ -793,7 +792,7 @@
 <script type="text/javascript" src="{{URL::to('/')}}/js/gritter/js/jquery.gritter.js"></script>
 <!-- start Dynamic Tables JAVASCRIPTS -->
 <script type="text/javascript" language="javascript" src="{{URL::to('/')}}/js/advanced-datatable/js/jquery.dataTables.js"></script>
- 
+
 
 <!-- END JAVASCRIPTS -->
 
@@ -801,11 +800,11 @@
 <!-- Placed js at the end of the document so the pages load faster -->
 
 <!--Core js Exta-->
- 
+
 
 <!--ENd Core js Exta-->
- 
-<!--Easy Pie Chart--> 
+
+<!--Easy Pie Chart-->
 
 
 <script type="text/javascript" src="{{URL::to('/')}}/js/gritter/js/jquery.gritter.js"></script>
@@ -820,9 +819,9 @@
 
 <!-- End script check for saif new for this page-->
 
- 
+
 <script src="{{URL::to('/')}}/js/jquery-ui/jquery-ui-1.10.1.custom.min.js"></script>
- 
+
 <script src="{{URL::to('/')}}/js/jquery.dcjqaccordion.2.7.js"></script>
 <script src="{{URL::to('/')}}/js/jquery.scrollTo.min.js"></script>
 <script src="{{URL::to('/')}}/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
@@ -860,9 +859,9 @@
 <script src="{{URL::to('/')}}/js/scripts.js"></script>
 <!--script for this page-->
 <!--script check for saif new for this page-->
- 
-<script src="{{URL::to('/')}}/js/jquery-1.8.3.min.js"></script> 
-<script src="{{URL::to('/')}}/js/jquery-ui-1.9.2.custom.min.js"></script>  
+
+<script src="{{URL::to('/')}}/js/jquery-1.8.3.min.js"></script>
+<script src="{{URL::to('/')}}/js/jquery-ui-1.9.2.custom.min.js"></script>
 
 <script src="{{URL::to('/')}}/js/bootstrap-switch.js"></script>
 
@@ -884,13 +883,13 @@
 <script src="{{URL::to('/')}}/js/jquery-tags-input/jquery.tagsinput.js"></script>
 
 <script src="{{URL::to('/')}}/js/select2/select2.js"></script>
-<script src="{{URL::to('/')}}/js/select-init.js"></script> 
+<script src="{{URL::to('/')}}/js/select-init.js"></script>
 
 <script src="{{URL::to('/')}}/js/toggle-init.js"></script>
 
 <script src="{{URL::to('/')}}/js/advanced-form.js"></script>
 <!--Easy Pie Chart-->
- 
+
 <!-- End script check for saif new for this page-->
 <!-- END JAVASCRIPTS -->
 <script>
