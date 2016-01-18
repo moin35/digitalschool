@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c227b529-4ac7-4628-b0eb-7515408a91f4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/teacher/editteachers.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/teacher/teacherdetail.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/StudentsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/StudentsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/add_search_student.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/add_search_student.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/studentdetail.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/studentdetail.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/ClassAdd.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/ClassAdd.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/submaster.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/submaster.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/teacher/reg_teacher.blade.php" afterPath="$PROJECT_DIR$/resources/views/teacher/reg_teacher.blade.php" />
     </list>
@@ -45,17 +40,17 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.345454">
+            <state vertical-scroll-proportion="0.0">
               <caret line="108" column="73" selection-start-line="108" selection-start-column="55" selection-end-line="108" selection-end-column="73" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TeachersController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TeachersController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TeachersController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8559322">
+            <state vertical-scroll-proportion="-20.153847">
               <caret line="99" column="47" selection-start-line="99" selection-start-column="47" selection-end-line="99" selection-end-column="47" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
@@ -67,7 +62,7 @@
       <file leaf-file-name="teacherdetail.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/teacher/teacherdetail.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-24.0">
+            <state vertical-scroll-proportion="0.0">
               <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
               <folding />
             </state>
@@ -77,7 +72,7 @@
       <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-94.89091">
+            <state vertical-scroll-proportion="0.0">
               <caret line="350" column="34" selection-start-line="350" selection-start-column="34" selection-end-line="350" selection-end-column="34" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
@@ -89,8 +84,18 @@
       <file leaf-file-name="editstudents.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/editstudents.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-36.615383">
+            <state vertical-scroll-proportion="0.0">
               <caret line="56" column="90" selection-start-line="0" selection-start-column="0" selection-end-line="190" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="submaster.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/layouts/submaster.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6666667">
+              <caret line="880" column="0" selection-start-line="880" selection-start-column="0" selection-end-line="880" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -99,7 +104,7 @@
       <file leaf-file-name="editteachers.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/teacher/editteachers.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.7692307">
+            <state vertical-scroll-proportion="0.0">
               <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
               <folding />
             </state>
@@ -109,8 +114,8 @@
       <file leaf-file-name="reg_teacher.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/teacher/reg_teacher.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.5384617">
-              <caret line="286" column="202" selection-start-line="286" selection-start-column="202" selection-end-line="286" selection-end-column="217" />
+            <state vertical-scroll-proportion="-0.3090909">
+              <caret line="230" column="0" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -119,7 +124,7 @@
       <file leaf-file-name="StudentsController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StudentsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.709091">
+            <state vertical-scroll-proportion="0.0">
               <caret line="145" column="5" selection-start-line="145" selection-start-column="5" selection-end-line="151" selection-end-column="43" />
               <folding>
                 <element signature="e#39#67#0#PHP" expanded="true" />
@@ -131,7 +136,7 @@
       <file leaf-file-name="studentdetail.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/studentdetail.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.3076923">
+            <state vertical-scroll-proportion="0.0">
               <caret line="2" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="81" selection-end-column="5" />
               <folding />
             </state>
@@ -198,13 +203,13 @@
         <option value="$PROJECT_DIR$/resources/views/admin/editstudents.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/StudentsController.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/add_search_student.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/submaster.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/teacher/reg_teacher.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/studentdetail.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/teacher/teacherdetail.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/teacher/editteachers.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TeachersController.php" />
+        <option value="$PROJECT_DIR$/resources/views/teacher/reg_teacher.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/submaster.blade.php" />
       </list>
     </option>
   </component>
@@ -254,7 +259,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -471,6 +475,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -540,7 +545,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18100649" sideWeight="0.10730949" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34955752" sideWeight="0.89269054" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21601942" sideWeight="0.89269054" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.50974023" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -859,33 +864,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/submaster.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-31.923077">
-          <caret line="893" column="24" selection-start-line="893" selection-start-column="24" selection-end-line="893" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/add_search_student.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.20169492">
           <caret line="322" column="47" selection-start-line="319" selection-start-column="50" selection-end-line="322" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/teacher/reg_teacher.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.5384617">
-          <caret line="286" column="202" selection-start-line="286" selection-start-column="202" selection-end-line="286" selection-end-column="217" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/studentdetail.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3076923">
+        <state vertical-scroll-proportion="0.0">
           <caret line="2" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="81" selection-end-column="5" />
           <folding />
         </state>
@@ -893,7 +881,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/teacher/editteachers.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7692307">
+        <state vertical-scroll-proportion="0.0">
           <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
           <folding />
         </state>
@@ -901,7 +889,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/teacher/teacherdetail.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.0">
+        <state vertical-scroll-proportion="0.0">
           <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
           <folding />
         </state>
@@ -909,7 +897,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-94.89091">
+        <state vertical-scroll-proportion="0.0">
           <caret line="350" column="34" selection-start-line="350" selection-start-column="34" selection-end-line="350" selection-end-column="34" />
           <folding>
             <element signature="e#40#68#0#PHP" expanded="true" />
@@ -919,7 +907,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/editstudents.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-36.615383">
+        <state vertical-scroll-proportion="0.0">
           <caret line="56" column="90" selection-start-line="0" selection-start-column="0" selection-end-line="190" selection-end-column="5" />
           <folding />
         </state>
@@ -927,7 +915,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StudentsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.709091">
+        <state vertical-scroll-proportion="0.0">
           <caret line="145" column="5" selection-start-line="145" selection-start-column="5" selection-end-line="151" selection-end-column="43" />
           <folding>
             <element signature="e#39#67#0#PHP" expanded="true" />
@@ -937,7 +925,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.345454">
+        <state vertical-scroll-proportion="0.0">
           <caret line="108" column="73" selection-start-line="108" selection-start-column="55" selection-end-line="108" selection-end-column="73" />
           <folding />
         </state>
@@ -945,11 +933,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TeachersController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8559322">
+        <state vertical-scroll-proportion="-20.153847">
           <caret line="99" column="47" selection-start-line="99" selection-start-column="47" selection-end-line="99" selection-end-column="47" />
           <folding>
             <element signature="e#40#68#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/teacher/reg_teacher.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.3090909">
+          <caret line="230" column="0" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/submaster.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6666667">
+          <caret line="880" column="0" selection-start-line="880" selection-start-column="0" selection-end-line="880" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

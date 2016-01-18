@@ -7,6 +7,8 @@
     <script src="{{URL::to('/')}}/js/angular/angular-animate.min.js"></script>
     <link href="{{URL::to('/')}}/css/angular/animatedbox.css" rel="stylesheet">
 
+       <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-datepicker/css/datepicker.css" />
+
 @stop
 
 @section('body')
@@ -63,13 +65,14 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group ">
-                                                            <label for="dbirth" class="control-label col-lg-3">Date of Birth</label>
-                                                            <div class="col-lg-6">
-                                                                    <input  name="dbirth" id="dbirth"  class="form-control form-control-inline input-medium default-date-picker"  size="16" type="text" value="" />
-                                    <span class="help-block">Select date</span>
-                                                               
-                                                            </div>
-                                                        </div>
+                                                              <label for="dbirth" class="control-label col-lg-3">Date of Birth</label>
+                                                              <div class="col-lg-6">
+                                                                      <input  name="dbirth" id="dbirth"  class="form-control default-date-picker"  size="16" type="text" value="" />
+                                      <span class="help-block">Select date</span>
+
+                                                              </div>
+                                                          </div>
+
                                                         <div class="form-group ">
                                                             <label for="gender" class="control-label col-lg-3">Gender</label>
                                                             <div class="col-lg-6">
@@ -209,8 +212,9 @@
                                     <label for="classesID" class="col-sm-2 col-sm-offset-2 control-label">
                                         Class                                </label>
                                     <div class="col-sm-6">
-                                         <input  name="dbirth" id="dbirth"  class="form-control form-control-inline input-medium default-date-picker"  size="16" type="text" value="" />
-                                    <span class="help-block">Select date</span>
+
+                                      <div class="form-group">
+
                                         <select name="classesID" id="classesID" class="form-control">
                                             <option value="0">Select Class</option>
                                             <option value="1">One</option>
@@ -224,7 +228,11 @@
                                             <option value="9">Nine</option>
                                             <option value="10">Ten</option>
                                         </select>
+
                                     </div>
+
+                                      </div>
+
                                 </div>
                             </form>
                         </div>
@@ -249,7 +257,7 @@
                          </span>
                             </header>
                             <div class="panel-body">
-                                <div class="adv-table editable-table ">
+                                     <div class="adv-table editable-table ">
                                     <div class="clearfix">
 
                                         <div class="btn-group pull-right">
@@ -320,4 +328,3 @@
                 .controller('TestCtrl', TestCtrl)
     </script>
 @stop
-       
