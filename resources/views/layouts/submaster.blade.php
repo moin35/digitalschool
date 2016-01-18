@@ -752,8 +752,7 @@
 <!--common script init for all pages-->
 <script src="{{URL::to('/')}}/js/scripts.js"></script>
 
-<!--script for this page only-->
-<<<<<<< HEAD
+
 
 <!-- validition script -->
 <script type="text/javascript" src="{{URL::to('/')}}/js/jquery.validate.min.js"></script>
@@ -792,7 +791,7 @@
 <!--this page script for validation-->
 <script type="text/javascript" src="{{URL::to('/')}}/js/jquery.validate.min.js"></script>
 <script src="{{URL::to('/')}}/js/validation-init.js"></script>
-<<<<<<< HEAD
+
 <script src="{{URL::to('/')}}/js/table-editable.js"></script>
 
 <!-- End script check for saif new for this page-->
@@ -872,14 +871,10 @@
 <script src="{{URL::to('/')}}/js/jquery-ui-1.9.2.custom.min.js"></script>
 <!--common script init for all pages-->
 <script src="{{URL::to('/')}}/js/advanced-form.js"></script>
-<!--Easy Pie Chart-->
-
-<!-- End script check for saif new for this page-->
 
 <script src="{{URL::to('/')}}/js/jquery-ui-1.9.2.custom.min.js"></script>
  <script src="{{URL::to('/')}}/js/bootstrap-switch.js"></script>
 
-<!-- END JAVASCRIPTS -->
 <script>
     jQuery(document).ready(function() {
         EditableTable.init();

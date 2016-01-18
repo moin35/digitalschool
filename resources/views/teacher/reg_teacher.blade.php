@@ -6,12 +6,19 @@
     <script src="{{URL::to('/')}}/js/angular/angular.min.js"></script>
     <script src="{{URL::to('/')}}/js/angular/angular-animate.min.js"></script>
     <link href="{{URL::to('/')}}/css/angular/animatedbox.css" rel="stylesheet">
-
-       <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-datepicker/css/datepicker.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
 
 @stop
 
 @section('body')
+    <script>
+        $(function() {
+            $( "#datepicker" ).datepicker();
+        });
+    </script>
     <div class="row">
         <div class="col-sm-12">
             <section class="panel">
@@ -61,7 +68,7 @@
                                                         <div class="form-group ">
                                                             <label for="designation" class="control-label col-lg-3">Designation</label>
                                                             <div class="col-lg-6">
-                                                                <input class=" form-control" id="designation" name="designation" type="text" />
+                                                                <input class=" form-control" id="datepicker" name="designation" type="text" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group ">
