@@ -11,6 +11,13 @@
     <title>@yield('title')</title>
 <!--Core CSS date picker -->
 
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-fileupload/bootstrap-fileupload.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
+
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/jquery-multi-select/css/multi-select.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/jquery-tags-input/jquery.tagsinput.css" />
+
+    <link rel="stylesheet" type="text/css" href="js/select2/select2.css" />
   <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-datepicker/css/datepicker.css" />
 <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-timepicker/css/timepicker.css" />
 <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-colorpicker/css/colorpicker.css" />
@@ -765,6 +772,31 @@
 <script src="{{URL::to('/')}}/js/advanced-form.js"></script>
 <script src="{{URL::to('/')}}/js/jquery-ui-1.9.2.custom.min.js"></script>
  <script src="{{URL::to('/')}}/js/bootstrap-switch.js"></script>
+
+
+<!--common script multifile pages-->
+<script type="text/javascript" src="{{URL::to('/')}}/js/fuelux/js/spinner.min.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
+
+
+<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/jquery-multi-select/js/jquery.multi-select.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/jquery-multi-select/js/jquery.quicksearch.js"></script>
+
+<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
+
+<script src="{{URL::to('/')}}/js/jquery-tags-input/jquery.tagsinput.js"></script>
+
+<script src="{{URL::to('/')}}/js/select2/select2.js"></script>
+<script src="{{URL::to('/')}}/js/select-init.js"></script> 
+<script src="{{URL::to('/')}}/js/toggle-init.js"></script>
+
 <!-- END JAVASCRIPTS -->
 <script>
     jQuery(document).ready(function() {
