@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+<head>
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,43 +9,23 @@
     <link rel="shortcut icon" href="{{URL::to('/')}}/images/favicon.png">
 
     <title>@yield('title')</title>
-       
- <!--dynamic table-->
-    <link href="{{URL::to('/')}}/js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
-    <link href="{{URL::to('/')}}/js/advanced-datatable/css/demo_table.css" rel="stylesheet" />
+<!--Core CSS date picker -->
 
-
-    
-    <!--Core CSS -->
-     <link href="{{URL::to('/')}}/js/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet">
-    <link href="{{URL::to('/')}}/js/jvector-map/jquery-jvectormap-1.2.2.css" rel="stylesheet">
-    <link href="{{URL::to('/')}}/bs3/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{URL::to('/')}}/css/bootstrap-reset.css" rel="stylesheet">
-    <link href="{{URL::to('/')}}/font-awesome/css/font-awesome.css" rel="stylesheet" />
-
-    <link rel="{{URL::to('/')}}/stylesheet" href="js/data-tables/DT_bootstrap.css" />
-
-    <!-- Custom styles for this template -->
-    <link href="{{URL::to('/')}}/css/style.css" rel="stylesheet">
-    <link href="{{URL::to('/')}}/css/cicon.css" rel="stylesheet">
-    <link href="{{URL::to('/')}}/css/style-responsive.css" rel="stylesheet" />
- <link rel="stylesheet" href="{{URL::to('/')}}/css/jquery.steps.css">
- 
-    <link rel="stylesheet" href="css/bootstrap-switch.css" />
-    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-fileupload/bootstrap-fileupload.css" />
-    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
-    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-datepicker/css/datepicker.css" />
-    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-timepicker/compiled/timepicker.css" />
-    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-colorpicker/css/colorpicker.css" />
-    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
-    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-datetimepicker/css/datetimepicker.css" />
-    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/jquery-multi-select/css/multi-select.css" />
-    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/jquery-tags-input/jquery.tagsinput.css" />
-
-    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/select2/select2.css" />
-        <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/gritter/css/jquery.gritter.css" />
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
+  <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-datepicker/css/datepicker.css" />
+<link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-timepicker/css/timepicker.css" />
+<link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-colorpicker/css/colorpicker.css" />
+<link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+<link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-datetimepicker/css/datetimepicker.css" />
+         <!--Core CSS -->
+      <link href="{{URL::to('/')}}/bs3/css/bootstrap.min.css" rel="stylesheet">
+      <link href="{{URL::to('/')}}/css/bootstrap-reset.css" rel="stylesheet">
+      <link href="{{URL::to('/')}}/font-awesome/css/font-awesome.css" rel="stylesheet" />
+      <link rel="stylesheet" href="{{URL::to('/')}}/js/data-tables/DT_bootstrap.css" />
+      <!-- Custom styles for this template -->
+      <link href="{{URL::to('/')}}/css/style.css" rel="stylesheet">
+      <link href="{{URL::to('/')}}/css/style-responsive.css" rel="stylesheet" />
     <!--[if lt IE 9]>
+
     <script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -254,12 +234,12 @@
 </div>
 <div class="top-nav clearfix">
     <!--search & user info start-->
-    
+
         {{session('lang_msg')}}
             <!--search & user info start-->
             <ul class="nav pull-right top-menu">
 
-                
+
 
                 <li>
                     <input type="text" class="form-control search" placeholder=" Search">
@@ -416,7 +396,7 @@
                     <li><a href="form_wizard.html">Form Wizard</a></li>
                     <li><a href="form_validation.html">Form Validation</a></li>
                     <li><a href="file_upload.html">Muliple File Upload</a></li>
-                    
+
                     <li><a href="dropzone.html">Dropzone</a></li>
                     <li><a href="inline_editor.html">Inline Editor</a></li>
 
@@ -466,7 +446,7 @@
                     <li><a href="profile.html">Profile</a></li>
                     <li><a href="invoice.html">Invoice</a></li>
                     <li><a href="pricing_table.html">Pricing Table</a></li>
-                    <li><a href="timeline.html">Timeline</a></li>                    
+                    <li><a href="timeline.html">Timeline</a></li>
 <li><a href="gallery.html">Media Gallery</a></li><li><a href="404.html">404 Error</a></li>
                     <li><a href="500.html">500 Error</a></li>
                     <li><a href="registration.html">Registration</a></li>
@@ -478,7 +458,7 @@
                     <span>Login Page</span>
                 </a>
             </li>
-        </ul></div>        
+        </ul></div>
 <!-- sidebar menu end-->
     </div>
 </aside>
@@ -746,16 +726,11 @@
 
 </section>
 
-
-
-<!-- Placed js at the end of the document so the pages load faster -->
-
 <!--Core js-->
-<script src="{{URL::to('/')}}/js/jquery.js"></script>
-<script src="{{URL::to('/')}}/js/jquery-ui-1.9.2.custom.min.js"></script>
-<script src="{{URL::to('/')}}/js/bootstrap-switch.js"></script>
+
 <script src="{{URL::to('/')}}/js/jquery-1.8.3.min.js"></script>
 <script src="{{URL::to('/')}}/bs3/js/bootstrap.min.js"></script>
+
 <script class="include" type="text/javascript" src="{{URL::to('/')}}/js/jquery.dcjqaccordion.2.7.js"></script>
 <script src="{{URL::to('/')}}/js/jquery.scrollTo.min.js"></script>
 <script src="{{URL::to('/')}}/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
@@ -772,133 +747,31 @@
 
 <script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/jquery.dataTables.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/DT_bootstrap.js"></script>
- 
+
 <!--common script init for all pages-->
 <script src="{{URL::to('/')}}/js/scripts.js"></script>
-
-
-<script type="text/javascript" src="js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
-
-<script src="js/jquery-tags-input/jquery.tagsinput.js"></script>
 
 <!--script for this page only-->
- 
-<!-- validition script -->
-<script type="text/javascript" src="{{URL::to('/')}}/js/jquery.validate.min.js"></script>
-<script src="{{URL::to('/')}}/js/validation-init.js"></script>
-
-<script src="{{URL::to('/')}}/js/jquery-steps/jquery.steps.js"></script>
-<script src="{{URL::to('/')}}/js/table-editable.js"></script>
-<script src="{{URL::to('/')}}/js/gritter.js" type="text/javascript"></script>
-<script type="text/javascript" src="{{URL::to('/')}}/js/gritter/js/jquery.gritter.js"></script>
-<!-- start Dynamic Tables JAVASCRIPTS -->
-<script type="text/javascript" language="javascript" src="{{URL::to('/')}}/js/advanced-datatable/js/jquery.dataTables.js"></script>
- 
-
-<!-- END JAVASCRIPTS -->
-
-
-<!-- Placed js at the end of the document so the pages load faster -->
-
-<!--Core js Exta-->
- 
-
-<!--ENd Core js Exta-->
- 
-<!--Easy Pie Chart--> 
-
-
-<script type="text/javascript" src="{{URL::to('/')}}/js/gritter/js/jquery.gritter.js"></script>
-<script src="{{URL::to('/')}}/js/jquery-steps/jquery.steps.js"></script>
-<script type="text/javascript" language="javascript" src="{{URL::to('/')}}/js/advanced-datatable/js/jquery.dataTables.js"></script>
-
-<script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/DT_bootstrap.js"></script>
-
-<script type="text/javascript" src="{{URL::to('/')}}/js/jquery.validate.min.js"></script>
-<script src="{{URL::to('/')}}/js/validation-init.js"></script>
 <script src="{{URL::to('/')}}/js/table-editable.js"></script>
 
-<!-- End script check for saif new for this page-->
-
- 
-<script src="{{URL::to('/')}}/js/jquery-ui/jquery-ui-1.10.1.custom.min.js"></script>
- 
-<script src="{{URL::to('/')}}/js/jquery.dcjqaccordion.2.7.js"></script>
-<script src="{{URL::to('/')}}/js/jquery.scrollTo.min.js"></script>
-<script src="{{URL::to('/')}}/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
-<script src="{{URL::to('/')}}/js/jquery.nicescroll.js"></script>
-<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
-<script src="{{URL::to('/')}}/js/skycons/skycons.js"></script>
-<script src="{{URL::to('/')}}/js/jquery.scrollTo/jquery.scrollTo.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<script src="{{URL::to('/')}}/js/calendar/clndr.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
-<script src="{{URL::to('/')}}/js/calendar/moment-2.2.1.js"></script>
-<script src="{{URL::to('/')}}/js/evnt.calendar.init.js"></script>
-<script src="{{URL::to('/')}}/js/jvector-map/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="{{URL::to('/')}}/js/jvector-map/jquery-jvectormap-us-lcc-en.js"></script>
-<script src="{{URL::to('/')}}/js/gauge/gauge.js"></script>
-<!--clock init-->
-<script src="{{URL::to('/')}}/js/css3clock/js/css3clock.js"></script>
-<!--Easy Pie Chart-->
-<script src="{{URL::to('/')}}/js/easypiechart/jquery.easypiechart.js"></script>
-<!--Sparkline Chart-->
-<script src="{{URL::to('/')}}/js/sparkline/jquery.sparkline.js"></script>
-<!--Morris Chart-->
-<script src="{{URL::to('/')}}/js/morris-chart/morris.js"></script>
-<script src="{{URL::to('/')}}/js/morris-chart/raphael-min.js"></script>
-<!--jQuery Flot Chart-->
-<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.js"></script>
-<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.tooltip.min.js"></script>
-<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.resize.js"></script>
-<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.pie.resize.js"></script>
-<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.animator.min.js"></script>
-<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.growraf.js"></script>
-<script src="{{URL::to('/')}}/js/dashboard.js"></script>
-<script src="{{URL::to('/')}}/js/jquery.customSelect.min.js" ></script>
-<!--common script init for all pages-->
-<script src="{{URL::to('/')}}/js/scripts.js"></script>
-<!--script for this page-->
-<!--script check for saif new for this page-->
- 
-<script src="{{URL::to('/')}}/js/jquery-1.8.3.min.js"></script> 
-<script src="{{URL::to('/')}}/js/jquery-ui-1.9.2.custom.min.js"></script>  
-
-<script src="{{URL::to('/')}}/js/bootstrap-switch.js"></script>
-
-<script type="text/javascript" src="{{URL::to('/')}}/js/fuelux/js/spinner.min.js"></script>
-<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-fileupload/bootstrap-fileupload.js"></script>
-<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
-<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
+<!--this page script for validation-->
+<script type="text/javascript" src="{{URL::to('/')}}/js/jquery.validate.min.js"></script>
+<script src="{{URL::to('/')}}/js/validation-init.js"></script>
+<!-- date picker-->
 <script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
-<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-daterangepicker/moment.min.js"></script>
-<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-daterangepicker/daterangepicker.js"></script>
-<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
-<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
-<script type="text/javascript" src="{{URL::to('/')}}/js/jquery-multi-select/js/jquery.multi-select.js"></script>
-<script type="text/javascript" src="{{URL::to('/')}}/js/jquery-multi-select/js/jquery.quicksearch.js"></script>
 
-<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
-
-<script src="{{URL::to('/')}}/js/jquery-tags-input/jquery.tagsinput.js"></script>
-
-<script src="{{URL::to('/')}}/js/select2/select2.js"></script>
-<script src="{{URL::to('/')}}/js/select-init.js"></script> 
-
-<script src="{{URL::to('/')}}/js/toggle-init.js"></script>
-
+<script src="{{URL::to('/')}}/js/jquery-ui-1.9.2.custom.min.js"></script>
+<!--common script init for all pages-->
 <script src="{{URL::to('/')}}/js/advanced-form.js"></script>
-<!--Easy Pie Chart-->
- 
-<!-- End script check for saif new for this page-->
+<script src="{{URL::to('/')}}/js/jquery-ui-1.9.2.custom.min.js"></script>
+ <script src="{{URL::to('/')}}/js/bootstrap-switch.js"></script>
 <!-- END JAVASCRIPTS -->
 <script>
     jQuery(document).ready(function() {
         EditableTable.init();
     });
-    
 </script>
+
 <script>
     $(function ()
     {
@@ -918,7 +791,7 @@
      <script>
         jQuery(document).ready(function($){
             n=1;
-         
+
             $('#make').change(function(){
                 $.get("{{ url('api/dropdown')}}",
                         { option: $(this).val() },
@@ -980,6 +853,6 @@
         });
     });
 </script>
- 
+
 </body>
 </html>

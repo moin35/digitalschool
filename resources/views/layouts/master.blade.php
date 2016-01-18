@@ -10,13 +10,13 @@
     <!--Core CSS -->
         <!--Core Datepicker -->
     <!--Core saif CSS -->
- 
+
 
     <link rel="stylesheet" href="{{URL::to('/')}}/css/bootstrap-switch.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-fileupload/bootstrap-fileupload.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-datepicker/css/datepicker.css" />
-    
+
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-colorpicker/css/colorpicker.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-datetimepicker/css/datetimepicker.css" />
@@ -26,10 +26,10 @@
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/select2/select2.css" />
 
     <!-- Custom end saif styles for this template -->
- 
-   
 
-  
+
+
+
          <!--Core CSS -->
     <link href="{{URL::to('/')}}/bs3/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/js/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet">

@@ -29,8 +29,8 @@ Class Information
                                     Add Class  <i class="fa fa-plus"></i>
                                 </a>
                             </div>
-                           
-                            
+
+
                               @if(Session::get('data'))
                               <div class="bs-example">
     <div class="alert alert-success fade in">
@@ -38,17 +38,17 @@ Class Information
         <strong>{{Session::get('data')}}</strong>.
     </div>
 </div>
-                               
+
     @endif
                             <div class="btn-group pull-right">
-                                
+
                             </div>
                             <div class="box-one" ng-show="test.showBoxOne">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <section class="panel">
                                             <header class="panel-heading">
-                                               Class Information Add 
+                                               Class Information Add
                                                 <span class="tools pull-right">
                                                     <a href="javascript:;" class="fa fa-chevron-down"></a>
                                                     <a href="javascript:;" class="fa fa-cog"></a>
@@ -85,7 +85,7 @@ Class Information
                                                                             </div>
                                                                         </div>
 
-                                                                    </div>                                                      
+                                                                    </div>
 
                                                                 </div>
                                                             </div>
@@ -104,8 +104,8 @@ Class Information
                                                                         <input class=" form-control"  name="classnumeric" type="number" />
                                                                     </div>
                                                                 </div>
-                                                                                                                              
-   
+
+
  <div class="form-group">
                                 <label class="col-sm-3 control-label">Note</label>
                                 <div class="col-sm-6">
@@ -137,7 +137,7 @@ Class Information
                     <div class="space15"></div>
 
                 </div>
-            
+
 
             </div>
         </section>
@@ -159,9 +159,9 @@ Class Information
                     <div class="panel-body">
                         <div class="adv-table editable-table ">
                             <div class="clearfix">
-                                 
+
                                 <div class="btn-group pull-right">
-                                     
+
                                 </div>
                             </div>
                             <div class="space15"></div>
@@ -184,8 +184,8 @@ Class Information
                                     <td> {{$c->class_name_numaric}}</td>
                                     <td class="center">{{$c->teacher_name}}</td>
                                     <td><a  href="a url">{{$c->note}}</a></td>
-                                    <td> 
-                                        <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/class/edit/{{$c->class_id}}"><i class="fa fa-edit"></i> </a> 
+                                    <td>
+                                        <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/class/edit/{{$c->class_id}}"><i class="fa fa-edit"></i> </a>
                                         <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/class/delete/{{$c->class_id}}" ><i class="fa  fa-trash-o"></i></a>
                                     </td>
                                 </tr>
@@ -193,14 +193,14 @@ Class Information
                                 </tbody>
                             </table>
                         </div>
-                        
-                        
+
+
                     </div>
                 </section>
             </div>
         </div>
         <!-- page end-->
-        
+
                 </section>
             </div>
         </section>
