@@ -142,6 +142,15 @@ public function getDetailStudents($id){
         Session::flash('data', 'Data successfully added !');
         return Redirect::to('student/edit/' .$id);
     }
+    public function deleteStudentInfo($uid) {
+        //Moin
+        //Student Delete Function for admin
+
+        $infoDelete = Students::where('institute_code', '=', Auth::user()->institute_id)->where('id', '=', $uid)->delete();
+        $infoDelete = User::where('institute_id', '=', Auth::user()->institute_id)->where('uid', '=', $uid)->delete();
+        Session::flash('data', 'Data successfully deleted !');
+        return Redirect::to('add/student');
+    }
     public function postStudentSearch(){
         //return 1;
         $procategory=Input::get('categ');

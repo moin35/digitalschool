@@ -733,54 +733,64 @@
 
 </section>
 
+
 <!--Core js-->
 
 <script src="{{URL::to('/')}}/js/jquery-1.8.3.min.js"></script>
 <script src="{{URL::to('/')}}/bs3/js/bootstrap.min.js"></script>
-
 <script class="include" type="text/javascript" src="{{URL::to('/')}}/js/jquery.dcjqaccordion.2.7.js"></script>
+<!--common script init for all pages-->
+<script src="{{URL::to('/')}}/js/scripts.js"></script>
+<!--script for this page only-->
+<script src="{{URL::to('/')}}/js/gritter.js" type="text/javascript"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/gritter/js/jquery.gritter.js"></script>
+<script src="{{URL::to('/')}}/js/jquery-steps/jquery.steps.js"></script>
+
+<!-- End script check for saif new for this page-->
+<script src="{{URL::to('/')}}/js/jquery-ui/jquery-ui-1.10.1.custom.min.js"></script>
+<script src="{{URL::to('/')}}/js/jquery.dcjqaccordion.2.7.js"></script>
 <script src="{{URL::to('/')}}/js/jquery.scrollTo.min.js"></script>
 <script src="{{URL::to('/')}}/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
 <script src="{{URL::to('/')}}/js/jquery.nicescroll.js"></script>
+<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
+<script src="{{URL::to('/')}}/js/skycons/skycons.js"></script>
+<script src="{{URL::to('/')}}/js/jquery.scrollTo/jquery.scrollTo.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="{{URL::to('/')}}/js/calendar/clndr.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+<script src="{{URL::to('/')}}/js/calendar/moment-2.2.1.js"></script>
+<script src="{{URL::to('/')}}/js/evnt.calendar.init.js"></script>
+<script src="{{URL::to('/')}}/js/jvector-map/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="{{URL::to('/')}}/js/jvector-map/jquery-jvectormap-us-lcc-en.js"></script>
+<script src="{{URL::to('/')}}/js/gauge/gauge.js"></script>
+<!--clock init-->
+<script src="{{URL::to('/')}}/js/css3clock/js/css3clock.js"></script>
 <!--Easy Pie Chart-->
 <script src="{{URL::to('/')}}/js/easypiechart/jquery.easypiechart.js"></script>
 <!--Sparkline Chart-->
 <script src="{{URL::to('/')}}/js/sparkline/jquery.sparkline.js"></script>
+<!--Morris Chart-->
+<script src="{{URL::to('/')}}/js/morris-chart/morris.js"></script>
+<script src="{{URL::to('/')}}/js/morris-chart/raphael-min.js"></script>
 <!--jQuery Flot Chart-->
 <script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.js"></script>
 <script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.tooltip.min.js"></script>
 <script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.resize.js"></script>
 <script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.pie.resize.js"></script>
+<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.animator.min.js"></script>
+<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.growraf.js"></script>
+<script src="{{URL::to('/')}}/js/dashboard.js"></script>
+<script src="{{URL::to('/')}}/js/jquery.customSelect.min.js" ></script>
+<!--script check for saif new for Datepicker this page-->
 
-<script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/jquery.dataTables.js"></script>
-<script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/DT_bootstrap.js"></script>
-
-<!--common script init for all pages-->
-<script src="{{URL::to('/')}}/js/scripts.js"></script>
-
-<!--script for this page only-->
-<script src="{{URL::to('/')}}/js/table-editable.js"></script>
-
-<!--this page script for validation-->
-<script type="text/javascript" src="{{URL::to('/')}}/js/jquery.validate.min.js"></script>
-<script src="{{URL::to('/')}}/js/validation-init.js"></script>
-<!-- date picker-->
-<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-
+<script src="{{URL::to('/')}}/js/jquery-1.8.3.min.js"></script>
 <script src="{{URL::to('/')}}/js/jquery-ui-1.9.2.custom.min.js"></script>
-<!--common script init for all pages-->
-<script src="{{URL::to('/')}}/js/advanced-form.js"></script>
-<script src="{{URL::to('/')}}/js/jquery-ui-1.9.2.custom.min.js"></script>
- <script src="{{URL::to('/')}}/js/bootstrap-switch.js"></script>
-
-
-<!--common script multifile pages-->
+<script src="{{URL::to('/')}}/js/bootstrap-switch.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/fuelux/js/spinner.min.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-fileupload/bootstrap-fileupload.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
-
-
+<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-daterangepicker/moment.min.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-daterangepicker/daterangepicker.js"></script>
@@ -788,14 +798,23 @@
 <script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/jquery-multi-select/js/jquery.multi-select.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/jquery-multi-select/js/jquery.quicksearch.js"></script>
-
 <script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
-
 <script src="{{URL::to('/')}}/js/jquery-tags-input/jquery.tagsinput.js"></script>
-
 <script src="{{URL::to('/')}}/js/select2/select2.js"></script>
-<script src="{{URL::to('/')}}/js/select-init.js"></script> 
+<script src="{{URL::to('/')}}/js/select-init.js"></script>
 <script src="{{URL::to('/')}}/js/toggle-init.js"></script>
+<!--common script init for all pages-->
+<script src="{{URL::to('/')}}/js/advanced-form.js"></script>
+
+<!-- start Dynamic Tables JAVASCRIPTS -->
+<script src="{{URL::to('/')}}/js/table-editable.js"></script>
+<!--common script init for all pages-->
+<script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/jquery.dataTables.js"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/DT_bootstrap.js"></script>
+<!--this page script for validation-->
+<script type="text/javascript" src="{{URL::to('/')}}/js/jquery.validate.min.js"></script>
+<script src="{{URL::to('/')}}/js/validation-init.js"></script>
+
 
 <!-- END JAVASCRIPTS -->
 <script>

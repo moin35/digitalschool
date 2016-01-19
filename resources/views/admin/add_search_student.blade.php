@@ -314,7 +314,7 @@
                                                     <td> {{$c->name}}</td>
                                                     <td> {{$c->roll}}</td>
                                                     <td> {{$c->phone}}</td>
-                                                    <td class="center">{{$c->image}}</td>
+                                                    <td class="center"><img width="70px" height="70px" src="{{URL::to('/')}}/images/{{$c->image}} "></td>
 
                                                     <td>
                                                         <a class="btn btn-success tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="View More"  href="{{URL::to('/')}}/student/details/{{$c->id}}" ><i class="fa fa-eye"></i> </a>

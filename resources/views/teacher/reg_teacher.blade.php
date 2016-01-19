@@ -107,7 +107,7 @@
                                                         <div class="form-group ">
                                                             <label for="join_date" class="control-label col-lg-3">Joining Date</label>
                                                             <div class="col-lg-6">
-                                                                <input class=" form-control" id="join_date" name="join_date" type="text" />
+                                                                <input class="form-control form-control-inline input-medium default-date-picker"  size="16" id="join_date" name="join_date" type="text" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group ">
@@ -228,7 +228,11 @@
                                             <option value="9">Nine</option>
                                             <option value="10">Ten</option>
                                         </select>
+
+                                    </div>
+
                                       </div>
+
                                 </div>
                             </form>
                         </div>
@@ -286,7 +290,12 @@
                                                 <td>{{$a->email}}</td>
                                                 <td class="center">{{$a->phone}}</td>
                                                 <td>{{$a->designation}}</td>
-                                                <td><a   href="">View More</a></td>
+                                                <td>
+                                                    <a class="btn btn-success tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="View More"  href="{{URL::to('/')}}/teachers/details/{{$a->id}}" ><i class="fa fa-eye"></i> </a>
+                                                    <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/teachers/edit/{{$a->id}}"><i class="fa fa-edit"></i> </a>
+                                                    <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/teachers/delete/{{$a->id}}" ><i class="fa  fa-trash-o"></i></a>
+
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>

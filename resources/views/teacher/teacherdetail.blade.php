@@ -1,6 +1,6 @@
 @extends('layouts.submaster')
 @section('title')
-    Student's Details
+    Teachers's Details
 @stop
 @section('head')
 
@@ -27,24 +27,22 @@
                     <div class="col-lg-8 col-sm-8">
                         <div class="pricing-table most-popular">
                             <div class="price-actions">
-                                <a href="javascript:;" class="btn">Institute Code:{{$individualstudent->institute_code}}</a>
+                                <a href="javascript:;" class="btn">Institute Code:{{$individualTeacher->institute_code}}</a>
                             </div>
                             <div class="pricing-head">
-                                <h3 style="color: white">Name: {{$individualstudent->name}} </h3>
-
-                                <p style="color: white">Class: {{$individualstudent->class}} </p>
+                                <h3 style="color: white">Name: {{$individualTeacher->name}} </h3>
                             </div>
                             <div >
-                                <img class="pricing-quote"  src="{{URL::to('/')}}/images/{{$individualstudent->image}}">
+                                <img class="pricing-quote"  src="{{URL::to('/')}}/images/{{$individualTeacher->image}}">
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <ul class="list-unstyled">
-                                        <li><i class="fa fa-check"></i>Roll: {{$individualstudent->roll}}</li>
-                                        <li><i class="fa fa-check"></i>Date Of Birth: {{$individualstudent->birth_certificate}}</li>
-                                        <li><i class="fa fa-check"></i>Religion:  {{$individualstudent->religion}}</li>
-                                        <li><i class="fa fa-check"></i>Section: {{$individualstudent->section}}</li>
-                                        <li><i class="fa fa-check"></i>Gender: {{$individualstudent->gender}}</li>
+                                        <li><i class="fa fa-check"></i>Designation: {{$individualTeacher->designation}}</li>
+                                        <li><i class="fa fa-check"></i>Date Of Birth: {{$individualTeacher->birth_date}}</li>
+                                        <li><i class="fa fa-check"></i>Religion:  {{$individualTeacher->religion}}</li>
+                                        <li><i class="fa fa-check"></i>National id No: {{$individualTeacher->national_id}}</li>
+                                        <li><i class="fa fa-check"></i>Gender: {{$individualTeacher->gender}}</li>
 
 
 
@@ -53,10 +51,9 @@
                                 <div class="col-md-6">
                                     <ul class="list-unstyled">
 
-                                        <li><i class="fa fa-check"></i>Guardian Name: {{$individualstudent->guardian_name}}</li>
-                                        <li><i class="fa fa-check"></i>Phone no.{{$individualstudent->phone}}</li>
-                                        <li><i class="fa fa-check"></i>Email: {{$individualstudent->email}}</li>
-                                        <li><i class="fa fa-check"></i>Address: {{$individualstudent->address}}</li>
+                                        <li><i class="fa fa-check"></i>Phone no.{{$individualTeacher->phone}}</li>
+                                        <li><i class="fa fa-check"></i>Email: {{$individualTeacher->email}}</li>
+                                        <li><i class="fa fa-check"></i>Address: {{$individualTeacher->address}}</li>
 
 
                                     </ul>
@@ -66,7 +63,7 @@
 
                         </div>
                         <div class="text-center">
-                            <b>  <i class="fa fa-check"></i>Create Time: {{$individualstudent->created_at}}</b>
+                            <b>  <i class="fa fa-check"></i>Create Time: {{$individualTeacher->created_at}}</b>
                         </div>
                     </div>
 

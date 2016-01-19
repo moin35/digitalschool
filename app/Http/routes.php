@@ -100,3 +100,10 @@ Route::post('admin/student/search',['as'=>'searchstudent','uses'=>'StudentContro
 Route::get('/student/details/{id}','StudentsController@getDetailStudents');
 Route::get('/student/edit/{id}','StudentsController@getStudentsEdit');
 Route::post('/student/edit/{id}','StudentsController@UpdateStudentsEdit');
+Route::get('/student/delete/{uid}','StudentsController@deleteStudentInfo');
+
+//Teacher Edit Delete View
+Route::get('/teachers/details/{id}','TeachersController@getDetailsTeacher');
+Route::get('/teachers/edit/{id}','TeachersController@getTeacherEdit');
+Route::post('/teachers/edit/{id}','TeachersController@updateTeacherEdit');
+Route::get('/teacher/delete/{uid}','StudentsController@deleteTeachersInfo');
