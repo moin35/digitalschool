@@ -10,6 +10,8 @@
 
     <title>@yield('title')</title>
     <!--Core CSS date picker -->
+    <!-- search for table-->
+
 
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-fileupload/bootstrap-fileupload.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
@@ -808,6 +810,7 @@
 <!--common script init for all pages-->
 <script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/jquery.dataTables.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/DT_bootstrap.js"></script>
+
 <!--this page script for validation-->
 <script type="text/javascript" src="{{URL::to('/')}}/js/jquery.validate.min.js"></script>
 <script src="{{URL::to('/')}}/js/validation-init.js"></script>
@@ -819,38 +822,7 @@
         EditableTable.init();
     });
 </script>
-
-<<<<<<< HEAD
-     <script>
-        jQuery(document).ready(function($){
-            n=1;
-
-            $('#make').change(function(){
-                $.get("{{ url('api/dropdown')}}",
-                        { option: $(this).val() },
-                        function(data) {
-                            var model = $('.model');
-                            model.empty();
-                            $.each(data, function(index,element) {
-                                model.append("<option value='"+ element +"'>" + element + "</option>");
-                            });
-=======
-<script>
-    $(function ()
-    {
-        $("#wizard").steps({
-            headerTag: "h2",
-            bodyTag: "section",
-            transitionEffect: "slideLeft"
-        });
-        $("#wizard-vertical").steps({
-            headerTag: "h2",
-            bodyTag: "section",
-            transitionEffect: "slideLeft",
-            stepsOrientation: "vertical"
-        });
-    });
-</script>
+ 
 <script>
     jQuery(document).ready(function($){
         n=1;
@@ -862,33 +834,15 @@
                         model.empty();
                         $.each(data, function(index,element) {
                             model.append("<option value='"+ element +"'>" + element + "</option>");
->>>>>>> 49f9cd672d053171b0ff9e6506630ca0cf13b206
+
                         });
                     });
         });
-<<<<<<< HEAD
+   });
     </script>
 
-=======
-    });
-</script>
-<script>
-    jQuery(document).ready(function($){
-        n=1;
-        $('.model').change(function(){
-            $.get("{{ url('api/dropdown/thana')}}",
-                    { option: $(this).val() },
-                    function(data) {
-                        var model = $('#idthana');
-                        model.empty();
-                        $.each(data, function(index,element) {
-                            model.append("<option value='"+ element +"'>" + element + "</option>");
-                        });
-                    });
-        });
-    });
-</script>
->>>>>>> 49f9cd672d053171b0ff9e6506630ca0cf13b206
+
+
 <script>
     jQuery(document).ready(function($){
         n=1;

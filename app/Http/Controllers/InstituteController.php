@@ -146,17 +146,6 @@ class InstituteController extends Controller {
     Session::flash('data', 'Update successfully added !');
     return Redirect::to('section/edit/' . $sectid);
 
-    }
-    public function sectionSearchClass(){
-      $class=Input::get('classesID');
-
-     $searchClass = Section::where('institute_code', '=', Auth::user()->institute_id)->where('class_id','=', $class)->get();
-
-     $teacher = Teacher::where('institute_code', '=', Auth::user()->institute_id)->lists('teacher_id', 'name');
-     $class = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id', 'class_name');
-     $section = Section::where('institute_code', '=', Auth::user()->institute_id)->get();
-     return view('admin.sectionadd')->with('section', $section)->with('teacher', $teacher)->with('allclass', $class)->with('searchClass',$searchClass);
-    //  return $searchClass;
-    }
+    } 
 
 }

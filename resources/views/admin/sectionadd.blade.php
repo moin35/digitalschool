@@ -6,6 +6,8 @@ Section
 <script src="{{URL::to('/')}}/js/angular/angular.min.js"></script>
 <script src="{{URL::to('/')}}/js/angular/angular-animate.min.js"></script>
 <link href="{{URL::to('/')}}/css/angular/animatedbox.css" rel="stylesheet">
+<link rel="stylesheet" href="{{URL::to('/')}}/css/styledata.css">
+  <script src="{{URL::to('/')}}/js/indexdata.js"></script>
 @stop
 
 @section('body')
@@ -158,6 +160,7 @@ Section
                 </div>
 
      <div class="col-md-3"></div>
+
                         <div class="col-md-6">
                             <div class="list-group-item list-group-item-warning">
                                 <form style="" class="form-horizontal" role="form" method="post">
@@ -165,19 +168,14 @@ Section
                                         <label for="classesID" class="col-sm-2 col-sm-offset-2 control-label">
                                             Class                                </label>
                                         <div class="col-sm-6">
-                                            <select name="classesID" id="classesID" class="form-control">
-                                                <option value="0">Select Class</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                                <option value="4">Four</option>
-                                                <option value="5">Five</option>
-                                                <option value="6">Six</option>
-                                                <option value="7">Seven</option>
-                                                <option value="8">Eight</option>
-                                                <option value="9">Nine</option>
-                                                <option value="10">Ten</option>
-                                            </select>                                </div>
+                                            <select type="search" class="form-control select-table-filter " data-table="order-table">
+                                                <option value="">Reset</option>
+                                                @foreach($allclass as $r=>$t)
+                                                    <option value="{{$r}}">{{$r}}</option>
+                                                @endforeach
+                                                <select>
+
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -209,7 +207,7 @@ Section
                                 </div>
                             </div>
                             <div class="space15"></div>
-                            <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                          <table class="table table-striped table-hover table-bordered order-table" id="editable-sample">
                                 <thead>
                                 <tr>
                                     <th>#</th>
