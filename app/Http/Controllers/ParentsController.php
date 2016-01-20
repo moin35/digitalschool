@@ -78,6 +78,6 @@ public function getDetailsParents($id){
         $infoDelete = Parents::where('institute_code', '=', Auth::user()->institute_id)->where('guradian_id', '=', $uid)->delete();
         $infoDelete = User::where('institute_id', '=', Auth::user()->institute_id)->where('uid', '=', $uid)->delete();
         Session::flash('data', 'Data successfully deleted !');
-        return Redirect::to('/admin/add/teacher');
+        return Redirect::to('/admin/add/parents');
     }
 }

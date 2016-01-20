@@ -6,6 +6,8 @@
     <script src="{{URL::to('/')}}/js/angular/angular.min.js"></script>
     <script src="{{URL::to('/')}}/js/angular/angular-animate.min.js"></script>
     <link href="{{URL::to('/')}}/css/angular/animatedbox.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{URL::to('/')}}/css/styledata.css">
+    <script src="{{URL::to('/')}}/js/indexdata.js"></script>
 @stop
 
 @section('body')
@@ -255,13 +257,13 @@
                                         <label for="classesID" class="col-sm-2 col-sm-offset-2 control-label">
                                             Class                                </label>
                                         <div class="col-sm-6">
-                                            <select name="classesID" id="classesID" class="form-control">
-                                                <option>Select Class</option>
+                                            <select type="search" class="form-control select-table-filter " data-table="order-table">
+                                                <option value="">Reset</option>
                                                 @foreach($class as $r=>$t)
                                                     <option value="{{$r}}">{{$r}}</option>
                                                 @endforeach
+                                                <select>
 
-                                            </select>
                                         </div>
                                     </div>
                                 </form>
@@ -295,7 +297,7 @@
                                             </div>
                                         </div>
                                         <div class="space15"></div>
-                                        <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                                        <table class="table table-striped table-hover table-bordered order-table" id="editable-sample">
                                             <thead>
                                             <tr>
                                                 <th>#</th>
@@ -304,6 +306,7 @@
                                                 <th>Roll</th>
                                                 <th>Phone</th>
                                                 <th>Photo</th>
+                                                <th>class</th>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
@@ -314,12 +317,13 @@
                                                     <td> {{$c->name}}</td>
                                                     <td> {{$c->roll}}</td>
                                                     <td> {{$c->phone}}</td>
-                                                    <td class="center"><img width="70px" height="70px" src="{{URL::to('/')}}/images/{{$c->image}} "></td>
 
+                                                    <td class="center"><img width="70px" height="70px" src="{{URL::to('/')}}/images/{{$c->image}} "></td>
+                                                    <td> {{$c->class_name}}</td>
                                                     <td>
                                                         <a class="btn btn-success tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="View More"  href="{{URL::to('/')}}/student/details/{{$c->id}}" ><i class="fa fa-eye"></i> </a>
                                                         <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/student/edit/{{$c->id}}"><i class="fa fa-edit"></i> </a>
-                                                        <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/student/delete/{{$c->id}}" ><i class="fa  fa-trash-o"></i></a>
+                                                        <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/student/delete/{{$c->st_id}}" ><i class="fa  fa-trash-o"></i></a>
                                                     </td>
                                                 </tr>
                                             @endforeach

@@ -113,3 +113,6 @@ Route::get('/parents/details/{id}','ParentsController@getDetailsParents');
 Route::get('/parents/edit/{id}','ParentsController@getEditParents');
 Route::post('/parents/edit/{id}','ParentsController@updateParentsEdit');
 Route::get('/parents/delete/{uid}','ParentsController@deleteParentsInfo');
+
+//Search Student by Class
+Route::post('mearchent/product/search',['as'=>'searchmearchent','uses'=>'StudentsController@searchStudentsByClass']);

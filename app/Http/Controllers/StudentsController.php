@@ -146,7 +146,7 @@ public function getDetailStudents($id){
         //Moin
         //Student Delete Function for admin
 
-        $infoDelete = Students::where('institute_code', '=', Auth::user()->institute_id)->where('id', '=', $uid)->delete();
+        $infoDelete = Students::where('institute_code', '=', Auth::user()->institute_id)->where('st_id', '=', $uid)->delete();
         $infoDelete = User::where('institute_id', '=', Auth::user()->institute_id)->where('uid', '=', $uid)->delete();
         Session::flash('data', 'Data successfully deleted !');
         return Redirect::to('add/student');
@@ -168,4 +168,12 @@ public function getDetailStudents($id){
         }
 
     }
+
+    public function searchStudentsByClass(){
+        return 1;
+    }
+
+
+
+
 }

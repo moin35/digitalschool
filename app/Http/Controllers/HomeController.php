@@ -23,7 +23,7 @@ use App\Teacher;
 use App\ClassAdd;
 use App\Parents;
 use App\Section;
-
+use Illuminate\Support\Facades\DB;
 class HomeController extends Controller {
 
     /**
@@ -55,9 +55,15 @@ class HomeController extends Controller {
         $parents=Parents::where('institute_code','=',Auth::user()->institute_id)->lists('guradian_id','guardian_name');
         //$parents=Section::where('institute_code','=',Auth::user()->institute_id)->lists('section_id','section_name');
         $class=ClassAdd::where('institute_code','=',Auth::user()->institute_id)->lists('class_id','class_name');
-        $students=Students::where('institute_code','=',Auth::user()->institute_id)->get();
-
-        //return $parents;
+        //$students=Students::where('institute_code','=',Auth::user()->institute_id)->get();
+        $students = DB::table('tbl_studets')
+            ->join('tbl_class','tbl_studets.class','=','tbl_class.class_id')
+            ->select('tbl_studets.*','tbl_class.*')
+           // ->where('tbl_class.institute_code','tbl_studets.institute_code')
+            ->where('tbl_class.institute_code','=',Auth::user()->institute_id)
+            ->where('tbl_studets.institute_code','=',Auth::user()->institute_id)
+            ->get();
+        //return $students;
         return view('admin.add_search_student')->with('parents',$parents)
             ->with('class',$class)
             ->with('students',$students);
