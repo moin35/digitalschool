@@ -94,7 +94,7 @@ public function getDetailsTeacher($id){
         //Moin
         //Student Delete Function for admin
 
-        $infoDelete = Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('id', '=', $uid)->delete();
+        $infoDelete = Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('teacher_id', '=', $uid)->delete();
         $infoDelete = User::where('institute_id', '=', Auth::user()->institute_id)->where('uid', '=', $uid)->delete();
         Session::flash('data', 'Data successfully deleted !');
         return Redirect::to('/admin/add/teacher');

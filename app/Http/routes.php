@@ -107,4 +107,16 @@ Route::get('/teachers/details/{id}','TeachersController@getDetailsTeacher');
 Route::get('/teachers/edit/{id}','TeachersController@getTeacherEdit');
 Route::post('/teachers/edit/{id}','TeachersController@updateTeacherEdit');
 Route::get('/teacher/delete/{uid}','StudentsController@deleteTeachersInfo');
+<<<<<<< HEAD
 Route::post('section/search/class',['as'=>'sectionClass','uses'=>'InstituteController@sectionSearchClass']);
+=======
+
+//Parents Edit Delete View
+Route::get('/parents/details/{id}','ParentsController@getDetailsParents');
+Route::get('/parents/edit/{id}','ParentsController@getEditParents');
+Route::post('/parents/edit/{id}','ParentsController@updateParentsEdit');
+Route::get('/parents/delete/{uid}','ParentsController@deleteParentsInfo');
+
+//Search Student by Class
+Route::post('mearchent/product/search',['as'=>'searchmearchent','uses'=>'StudentsController@searchStudentsByClass']);
+>>>>>>> 49f9cd672d053171b0ff9e6506630ca0cf13b206

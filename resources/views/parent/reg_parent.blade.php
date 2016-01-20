@@ -261,7 +261,12 @@
                                                 <td>{{$a->email}}</td>
                                                 <td class="center">{{$a->phone}}</td>
 
-                                                <td><a   href="">View More</a></td>
+                                                <td>
+                                                    <a class="btn btn-success tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="View More"  href="{{URL::to('/')}}/parents/details/{{$a->id}}" ><i class="fa fa-eye"></i> </a>
+                                                    <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/parents/edit/{{$a->id}}"><i class="fa fa-edit"></i> </a>
+                                                    <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/parents/delete/{{$a->guradian_id}}" ><i class="fa  fa-trash-o"></i></a>
+
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
