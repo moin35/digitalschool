@@ -13,7 +13,7 @@
             <div class="col-sm-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        Editable Table
+                        New Student Table
                         <span class="tools pull-right">
                             <a href="javascript:;" class="fa fa-chevron-down"></a>
                             <a href="javascript:;" class="fa fa-cog"></a>
@@ -245,7 +245,7 @@
 
                             </div>
                             <div class="space15"></div>
-                            
+
                         </div>
                         <div class="col-md-3"></div>
                         <div class="col-md-6">
@@ -336,7 +336,7 @@
             </div>
         </div>
         <!-- page end-->
-        
+
 
 <script>
     function TestCtrl() {
@@ -352,4 +352,3 @@
             .controller('TestCtrl', TestCtrl)
 </script>
  @stop
-       

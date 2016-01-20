@@ -29,8 +29,8 @@ Section
                                     Add Section  <i class="fa fa-plus"></i>
                                 </a>
                             </div>
-                           
-                            
+
+
                               @if(Session::get('data'))
                               <div class="bs-example">
     <div class="alert alert-success fade in">
@@ -38,17 +38,17 @@ Section
         <strong>{{Session::get('data')}}</strong>.
     </div>
 </div>
-                               
+
     @endif
                             <div class="btn-group pull-right">
-                                
+
                             </div>
                             <div class="box-one" ng-show="test.showBoxOne">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <section class="panel">
                                             <header class="panel-heading">
-                                               Section Information Add 
+                                               Section Information Add
                                                 <span class="tools pull-right">
                                                     <a href="javascript:;" class="fa fa-chevron-down"></a>
                                                     <a href="javascript:;" class="fa fa-cog"></a>
@@ -85,7 +85,7 @@ Section
                                                                             </div>
                                                                         </div>
 
-                                                                    </div>                                                      
+                                                                    </div>
                  <div class="list-group-item list-group-item-warning">
                                                                         <div class="list-group-item list-group-item-warning">
                                                                             <div style="" class="form-horizontal" >
@@ -105,7 +105,7 @@ Section
                                                                             </div>
                                                                         </div>
 
-                                                                    </div>  
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-2"></div>
@@ -123,8 +123,8 @@ Section
                                                                         <input class=" form-control"  name="sectioncategory" type="text" />
                                                                     </div>
                                                                 </div>
-                                                                                                                              
-   
+
+
  <div class="form-group">
                                 <label class="col-sm-3 control-label">Note</label>
                                 <div class="col-sm-6">
@@ -156,7 +156,7 @@ Section
                     <div class="space15"></div>
 
                 </div>
-            
+
      <div class="col-md-3"></div>
                         <div class="col-md-6">
                             <div class="list-group-item list-group-item-warning">
@@ -203,9 +203,9 @@ Section
                     <div class="panel-body">
                         <div class="adv-table editable-table ">
                             <div class="clearfix">
-                                 
+
                                 <div class="btn-group pull-right">
-                                    
+
                                 </div>
                             </div>
                             <div class="space15"></div>
@@ -231,7 +231,7 @@ Section
                                     <td class="center">{{$c->tearcher_name}}</td>
                                     <td><a  href="a url">{{$c->note}}</a></td>
                                     <td>
-                                        <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/section/edit/{{$c->section_id}}"><i class="fa fa-edit"></i> </a> 
+                                        <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/section/edit/{{$c->section_id}}"><i class="fa fa-edit"></i> </a>
                                         <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/section/delete/{{$c->section_id}}" ><i class="fa  fa-trash-o"></i></a>
                                     </td>
                                 </tr>
@@ -244,7 +244,7 @@ Section
             </div>
         </div>
         <!-- page end-->
-        
+
                 </section>
             </div>
         </section>

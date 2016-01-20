@@ -61,7 +61,7 @@ Route::get('api/dropdown', function(){
 });
 
 Route::get('api/dropdown/thana', function(){
-    $users = Input::get('option');    
+    $users = Input::get('option');
     $items = App\Thana::where('district_name', '=', $users)->lists('thana_or_upazilla','id');
     return Response::make($items);
 });
@@ -77,7 +77,7 @@ Route::get('class/edit/{clid}','InstituteController@geteditclass');
 Route::post('class/edit/{clid}','InstituteController@postupdateclass');
 Route::get('class/delete/{clid}','InstituteController@deleteclass');
 
-//Class section Add 
+//Class section Add
 Route::get('sectionAdd','InstituteController@getsection');
 Route::post('sectionAdd','InstituteController@postsection');
 Route::get('section/edit/{secid}','InstituteController@geteditsection');
@@ -107,3 +107,4 @@ Route::get('/teachers/details/{id}','TeachersController@getDetailsTeacher');
 Route::get('/teachers/edit/{id}','TeachersController@getTeacherEdit');
 Route::post('/teachers/edit/{id}','TeachersController@updateTeacherEdit');
 Route::get('/teacher/delete/{uid}','StudentsController@deleteTeachersInfo');
+Route::post('section/search/class',['as'=>'sectionClass','uses'=>'InstituteController@sectionSearchClass']);

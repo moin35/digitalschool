@@ -823,22 +823,6 @@
     });
 </script>
 
-<script>
-    $(function ()
-    {
-        $("#wizard").steps({
-            headerTag: "h2",
-            bodyTag: "section",
-            transitionEffect: "slideLeft"
-        });
-        $("#wizard-vertical").steps({
-            headerTag: "h2",
-            bodyTag: "section",
-            transitionEffect: "slideLeft",
-            stepsOrientation: "vertical"
-        });
-    });
-</script>
      <script>
         jQuery(document).ready(function($){
             n=1;
@@ -856,22 +840,7 @@
             });
         });
     </script>
-        <script>
-        jQuery(document).ready(function($){
-            n=1;
-            $('.model').change(function(){
-                $.get("{{ url('api/dropdown/thana')}}",
-                        { option: $(this).val() },
-                        function(data) {
-                            var model = $('#idthana');
-                            model.empty();
-                            $.each(data, function(index,element) {
-                                model.append("<option value='"+ element +"'>" + element + "</option>");
-                            });
-                        });
-            });
-        });
-    </script>
+
 <script>
     jQuery(document).ready(function($){
         n=1;

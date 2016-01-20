@@ -6,7 +6,7 @@ Section Edit
 
 @stop
 
-@section('body') 
+@section('body')
 <div class="row">
     <div class="col-lg-12">
         <section class="panel">
@@ -20,7 +20,7 @@ Section Edit
                         <a href="#" class="close" data-dismiss="alert">&times;</a>
                         <strong>{{Session::get('data')}}</strong>.
                     </div>
-                </div>                               
+                </div>
                 @endif
 
 
@@ -30,7 +30,7 @@ Section Edit
                     <label class="col-sm-3 control-label">Teacher Name</label>
                     <div class="col-sm-6">
                         <select class="form-control input m-bot15" name="teachername">
-                        
+
                             @foreach($teacher as $r=>$t)
                                @if($editsection->tearcher_name==$t)
                             <option value="{{$t}}" selected="selected">{{$r}}</option>
@@ -38,7 +38,7 @@ Section Edit
                                <option value="{{$t}}">{{$r}}</option>
                                @endif
                             @endforeach
-                            
+
 
                         </select>
                     </div>
@@ -46,8 +46,8 @@ Section Edit
                  <div class="form-group">
                     <label class="col-sm-3 control-label">Class Name</label>
                     <div class="col-sm-6">
-                        <select class="form-control input m-bot15" name="classname">                            
-                            @foreach($classlist as $r=>$t)                            
+                        <select class="form-control input m-bot15" name="classname">
+                            @foreach($classlist as $r=>$t)
                             @if($editsection->class_id==$t)
                             <option value="{{$t}}" selected="selected" >{{$r}} </option>
                             @else
@@ -65,7 +65,7 @@ Section Edit
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Class Numeric</label>
+                    <label class="col-sm-3 control-label">Section Name</label>
                     <div class="col-sm-6">
                         <input type="text" name="sectioncategory" value="{{$editsection->section_category}}" class="form-control round-input">
                     </div>
