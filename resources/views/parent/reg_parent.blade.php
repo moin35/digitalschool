@@ -180,30 +180,7 @@
 
                     </div>
                     <div class="col-md-3"></div>
-                    <div class="col-md-6">
-                        <div class="list-group-item list-group-item-warning">
-                            <form style="" class="form-horizontal" role="form" method="post">
-                                <div class="form-group">
-                                    <label for="classesID" class="col-sm-2 col-sm-offset-2 control-label">
-                                        Class                                </label>
-                                    <div class="col-sm-6">
-                                        <select name="classesID" id="classesID" class="form-control">
-                                            <option value="0">Select Class</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                            <option value="4">Four</option>
-                                            <option value="5">Five</option>
-                                            <option value="6">Six</option>
-                                            <option value="7">Seven</option>
-                                            <option value="8">Eight</option>
-                                            <option value="9">Nine</option>
-                                            <option value="10">Ten</option>
-                                        </select>                                </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+
                     <div class="col-md-3"></div>
 
                 </div>
@@ -216,7 +193,7 @@
                     <div class="col-sm-12">
                         <section class="panel">
                             <header class="panel-heading">
-                                ALL Institute
+                                Parents Detail's
                         <span class="tools pull-right">
                             <a href="javascript:;" class="fa fa-chevron-down"></a>
                             <a href="javascript:;" class="fa fa-cog"></a>

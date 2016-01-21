@@ -23,6 +23,8 @@ use App\Teacher;
 use App\ClassAdd;
 use App\Parents;
 use App\Section;
+use App\Exam;
+use App\ExamSchedule;
 
 class InstituteController extends Controller {
 
@@ -147,5 +149,59 @@ class InstituteController extends Controller {
     return Redirect::to('section/edit/' . $sectid);
 
     } 
+public function getAddExam(){
+    //Moin
+    //Exam get Function for admin
+    $getexam=Exam::where('institute_code', '=', Auth::user()->institute_id)->get();
 
+    return view('admin.addexam',['examview'=>$getexam]);
+
+}
+    public function postAddExam(){
+        //Moin
+        //Exam post Function for admin
+        $examname=Input::get('examname');
+        $date=Input::get('date');
+        $note=Input::get('note');
+        //return $examname.'/'.$date.'/'.$note;
+        $save=new Exam;
+        $save-> institute_code=Auth::user()->institute_id;
+        $save-> exam_id='exam'.mt_rand('1', '9999');
+        $save-> exam_name=$examname;
+        $save-> exam_date=$date;
+        $save-> note=$note;
+        $save->save();
+        Session::flash('data', 'Update successfully added !');
+        return Redirect::to('/admin/add/exam');
+    }
+    public function getEditExam($eid){
+        //Moin
+        //Exam edit Function for admin
+        $editexam=Exam::where('exam_id','=',$eid)->where('institute_code', '=', Auth::user()->institute_id)->first();
+        return view('admin.examedit',['editexamview'=>$editexam]);
+    }
+
+    public function updateEditExam($eid) {
+        //Moin
+        //Exam update Function for admin
+        $updateexam=Exam::where('exam_id','=',$eid)->where('institute_code', '=', Auth::user()->institute_id)
+            ->update(['exam_name' => Input::get('examname'),
+                'exam_date' => Input::get('date'),
+                'note' => Input::get('note')
+                 ]);
+        Session::flash('data', 'Update successfully added !');
+        return Redirect::to('exam/edit/' . $eid);
+    }
+    public function deleteExamInfo($eid) {
+        //Moin
+        //Exam delete Function for admin
+        $classupdate = Exam::where('exam_id', '=', $eid)->where('institute_code', '=', Auth::user()->institute_id)->delete();
+        Session::flash('data', 'Data successfully Deleted !');
+        return Redirect::to('/admin/add/exam');
+    }
+    public function getExamSchedule(){
+        //Moin
+        //Exam Schedule get Function for admin
+        return view('admin.examschedule');
+    }
 }

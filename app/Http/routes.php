@@ -114,5 +114,12 @@ Route::get('/parents/edit/{id}','ParentsController@getEditParents');
 Route::post('/parents/edit/{id}','ParentsController@updateParentsEdit');
 Route::get('/parents/delete/{uid}','ParentsController@deleteParentsInfo');
 
-//Search Student by Class
-Route::post('mearchent/product/search',['as'=>'searchmearchent','uses'=>'StudentsController@searchStudentsByClass']);
+//Add edit delete Exam Info
+Route::get('/admin/add/exam','InstituteController@getAddExam');
+Route::post('/admin/add/exam','InstituteController@postAddExam');
+Route::get('/exam/edit/{eid}','InstituteController@getEditExam');
+Route::post('/exam/edit/{eid}','InstituteController@updateEditExam');
+Route::get('/exam/delete/{eid}','InstituteController@deleteExamInfo');
+
+//Add edit delete Exam Schedule
+Route::get('/admin/add/exam/schedule','InstituteController@getExamSchedule');

@@ -6,7 +6,7 @@
  * Time: 12:36 PM
  */
 return [
-    'layout' => 'ড্যাশবোর্ড',
+    'layout' => 'পরীক্ষা',
     'language'=>'বাংলা',
     'institute'=> 'প্রতিষ্ঠান',
     'student'=> 'ছাত্র / ছাত্রী যোগ করুন',

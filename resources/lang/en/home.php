@@ -6,7 +6,7 @@
  * Time: 12:36 PM
  */
 return [
-    'layout' => 'Dashboard',
+    'layout' => 'Exam',
     'language'=>'English',
     'institute'=> 'Institute',
     'student'=>'Student',

@@ -169,9 +169,7 @@ public function getDetailStudents($id){
 
     }
 
-    public function searchStudentsByClass(){
-        return 1;
-    }
+
 
 
 

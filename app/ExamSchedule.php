@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExamSchedule extends Model
 {
-    protected $table='merchant';
+    protected $table='tbl_exam_schedule';
     // public $timestamps=false;
 }

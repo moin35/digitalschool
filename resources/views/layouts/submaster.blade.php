@@ -357,6 +357,17 @@
                     </li>
                     <li class="sub-menu">
                         <a href="javascript:;">
+                            <i class="fa fa-laptop"></i>
+                            <span>{{Lang::get('home.layout')}}</span>
+                        </a>
+                        <ul class="sub">
+                            <li><a href="{{URL::to('/admin/add/exam')}}">Exam</a></li>
+                            <li><a href="horizontal_menu.html">Horizontal Menu</a></li>
+                            <li><a href="language_switch.html">Language Switch Bar</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;">
                             <i class="fa fa-book"></i>
                             <span>{{Lang::get('home.student')}}</span>
                         </a>
