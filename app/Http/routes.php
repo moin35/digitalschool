@@ -107,7 +107,7 @@ Route::get('/teachers/details/{id}','TeachersController@getDetailsTeacher');
 Route::get('/teachers/edit/{id}','TeachersController@getTeacherEdit');
 Route::post('/teachers/edit/{id}','TeachersController@updateTeacherEdit');
 Route::get('/teacher/delete/{uid}','StudentsController@deleteTeachersInfo');
- 
+
 //Parents Edit Delete View
 Route::get('/parents/details/{id}','ParentsController@getDetailsParents');
 Route::get('/parents/edit/{id}','ParentsController@getEditParents');
@@ -116,3 +116,8 @@ Route::get('/parents/delete/{uid}','ParentsController@deleteParentsInfo');
 
 //Search Student by Class
 Route::post('mearchent/product/search',['as'=>'searchmearchent','uses'=>'StudentsController@searchStudentsByClass']);
+
+
+//mark management saif........
+Route::get('mark/index','StudentsController@markIndex');
+Route::get('mark/add','StudentsController@markadd');

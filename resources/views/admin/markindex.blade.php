@@ -1,6 +1,6 @@
 @extends('layouts.submaster')
 @section('title')
-Section
+Mark
 @stop
 @section('head')
 <script src="{{URL::to('/')}}/js/angular/angular.min.js"></script>
@@ -8,6 +8,10 @@ Section
 <link href="{{URL::to('/')}}/css/angular/animatedbox.css" rel="stylesheet">
 <link rel="stylesheet" href="{{URL::to('/')}}/css/styledata.css">
   <script src="{{URL::to('/')}}/js/indexdata.js"></script>
+  <style>
+  .hideable { display:none }
+  </style>
+
 @stop
 
 @section('body')
@@ -15,7 +19,7 @@ Section
     <div class="col-sm-12">
         <section class="panel">
             <header class="panel-heading">
-               Section
+               Mark
                 <span class="tools pull-right">
                     <a href="javascript:;" class="fa fa-chevron-down"></a>
                     <a href="javascript:;" class="fa fa-cog"></a>
@@ -28,7 +32,7 @@ Section
                         <div class="clearfix">
                             <div class="btn-group">
                                 <a class="btn btn-primary" ng-click="test.showBoxOne = !test.showBoxOne" >
-                                    Add Section  <i class="fa fa-plus"></i>
+                                    Add Mark  <i class="fa fa-plus"></i>
                                 </a>
                             </div>
 
@@ -50,7 +54,7 @@ Section
                                     <div class="col-sm-12">
                                         <section class="panel">
                                             <header class="panel-heading">
-                                               Section Information Add
+                                              Mark Information Add
                                                 <span class="tools pull-right">
                                                     <a href="javascript:;" class="fa fa-chevron-down"></a>
                                                     <a href="javascript:;" class="fa fa-cog"></a>
@@ -58,7 +62,7 @@ Section
                                                 </span>
                                             </header>
                                             <div class="panel-body">
-                                                {!!Form::open(array('id'=>'sectioninfo','class'=>'cmxform form-horizontal')) !!}
+                                                {!!Form::open(array('class'=>'cmxform form-horizontal')) !!}
                                                 <section class="panel">
 
                                                     <div class="panel-body">
@@ -168,7 +172,8 @@ Section
                                         <label for="classesID" class="col-sm-2 col-sm-offset-2 control-label">
                                             Class                                </label>
                                         <div class="col-sm-6">
-                                            <select type="search" class="form-control select-table-filter " data-table="order-table">
+
+                                            <select type="search" class="form-control select-table-filter" data-table="order-table">
                                                 <option value="">Reset</option>
                                                 @foreach($allclass as $r=>$t)
                                                     <option value="{{$r}}">{{$r}}</option>
@@ -189,15 +194,18 @@ Section
 
         <div class="row">
             <div class="col-sm-12">
-                <section class="panel">
+                <section class="panel" >
                     <header class="panel-heading">
-                        ALL Section Information
+                        Mark Information
                         <span class="tools pull-right">
                             <a href="javascript:;" class="fa-sort-desc"></a>
                             <a href="javascript:;" class="fa fa-cog"></a>
                             <a href="javascript:;" class="fa fa-times"></a>
                          </span>
                     </header>
+
+
+
                     <div class="panel-body">
                         <div class="adv-table editable-table ">
                             <div class="clearfix">
@@ -250,13 +258,23 @@ Section
 </div>
 <!-- page end-->
 
+<script>
+$(function() {
+    $("#sel1").on("change",function() {
+       $(".hideable").hide();
+       var id = "#test"+(this.selectedIndex+1);
+       $(id).show();
+    }).change();
+});
 
+</script>
 <script>
             function TestCtrl() {
             var self = this;
                     self.showBoxOne = false;
                     self.showBoxTwo = false;
             }
+
     angular.module('app', ['ngAnimate'])
             .controller('TestCtrl', TestCtrl)
 </script>

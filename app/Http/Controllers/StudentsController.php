@@ -173,6 +173,21 @@ public function getDetailStudents($id){
         return 1;
     }
 
+    public function markIndex(){
+      $teacher = Teacher::where('institute_code', '=', Auth::user()->institute_id)->lists('teacher_id', 'name');
+      $class = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id', 'class_name');
+      $section = Section::where('institute_code', '=', Auth::user()->institute_id)->get();
+      return view('admin.markindex')->with('section', $section)->with('teacher', $teacher)->with('allclass', $class);
+    }
+
+    public function markadd(){
+      $examName=Exam::where('institute_code', '=', Auth::user()->institute_id)->lists('exam_id', 'exam_name');
+      $class = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id', 'class_name');
+      $examSubj=Exam::where('institute_code', '=', Auth::user()->institute_id)->lists('subject_code', 'subject_name');
+
+      return view('admin.markadd')->with('allclass', $class);
+    }
+
 
 
 
