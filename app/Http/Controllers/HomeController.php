@@ -68,7 +68,7 @@ class HomeController extends Controller {
             ->with('class',$class)
             ->with('students',$students);
     }
- 
+
 public function postAddStudent(){
     //moin
     //Student Registration Post Function for asmin
@@ -145,6 +145,9 @@ public function postAddStudent(){
         $su->email=$email;
         $su->password= Hash::make(Input::get('confirm_password'));
         $su->save();
+
+
+
         //return $su;
         Session::flash('data', 'Data successfully Added !');
         return Redirect::to('add/student');

@@ -119,5 +119,32 @@ Route::post('mearchent/product/search',['as'=>'searchmearchent','uses'=>'Student
 
 
 //mark management saif........
-Route::get('mark/index','StudentsController@markIndex');
-Route::get('mark/add','StudentsController@markadd');
+Route::get('mark/index','InstituteController@markIndex');
+Route::get('mark/add','InstituteController@markadd');
+
+
+
+
+
+
+
+//Add edit delete Exam Info
+Route::get('/admin/add/exam','InstituteController@getAddExam');
+Route::post('/admin/add/exam','InstituteController@postAddExam');
+Route::get('/exam/edit/{eid}','InstituteController@getEditExam');
+Route::post('/exam/edit/{eid}','InstituteController@updateEditExam');
+Route::get('/exam/delete/{eid}','InstituteController@deleteExamInfo');
+
+//Add edit delete Exam Schedule
+Route::get('/admin/add/exam/schedule','InstituteController@getExamSchedule');
+
+
+
+//grade/index info manage
+
+
+Route::get('grade/index','InstituteController@getgradeIndex');
+Route::post('grade/index','InstituteController@postGradeIndex');
+Route::get('grade/edit/{gid}','InstituteController@getGradeEdit');
+Route::post('grade/edit/{gid}','InstituteController@postGradeEdit');
+Route::get('grade/delete/{gid}','InstituteController@GradeDelete');

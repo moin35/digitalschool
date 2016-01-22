@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class GradeSystem extends Model
 {
-    protected $table='merchant';
-    // public $timestamps=false;
+    protected $table='tbl_grade_system';
+    public $timestamps=false;
 }

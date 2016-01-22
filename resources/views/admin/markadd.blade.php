@@ -58,7 +58,7 @@ Mark
 
                                           <select type="search" class="form-control select-table-filter" data-table="order-table">
                                               <option value="">Reset</option>
-                                              @foreach($allclass as $r=>$t)
+                                              @foreach($examName as $r=>$t)
                                                   <option value="{{$r}}">{{$r}}</option>
                                               @endforeach
                                               <select>
@@ -86,7 +86,7 @@ Mark
 
                                             <select type="search" class="form-control select-table-filter" data-table="order-table">
                                                 <option value="">Reset</option>
-                                                @foreach($allclass as $r=>$t)
+                                                @foreach($examSubj as $r=>$t)
                                                     <option value="{{$r}}">{{$r}}</option>
                                                 @endforeach
                                                 <select>
@@ -96,7 +96,7 @@ Mark
                                     <center>
                                     <div class="btn-group">
                                         <button class="btn btn-primary" >
-                                            Add Mark  <i class="fa fa-plus"></i>
+                                            Mark  <i class="fa fa-plus"></i>
                                         </button>
                                     </div></center>
                                 </form>

@@ -31,7 +31,7 @@ Mark
                     <div ng-app="app" ng-controller="TestCtrl as test">
                         <div class="clearfix">
                             <div class="btn-group">
-                                <a class="btn btn-primary" ng-click="test.showBoxOne = !test.showBoxOne" >
+                                <a class="btn btn-primary" href="{{URL::to('mark/add')}}" >
                                     Add Mark  <i class="fa fa-plus"></i>
                                 </a>
                             </div>
