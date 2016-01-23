@@ -2,14 +2,8 @@
 @section('title')
 Mark
 @stop
-@section('head')<meta name="csrf-token" content="{{ csrf_token() }}">
-<script type=text/javascript>
-    $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-    });
- </script>
+@section('head')
+
 <script src="{{URL::to('/')}}/js/angular/angular.min.js"></script>
 <script src="{{URL::to('/')}}/js/angular/angular-animate.min.js"></script>
 <link href="{{URL::to('/')}}/css/angular/animatedbox.css" rel="stylesheet">
@@ -57,7 +51,7 @@ Mark
                             <div class="list-group-item list-group-item-warning">
 
                             {!!Form::open()!!}
-                                {!! csrf_token() !!}
+                            
                                   <div class="form-group">
                                       <label for="classesID" class="col-sm-2 col-sm-offset-2 control-label">
                                           Exam                                </label>
