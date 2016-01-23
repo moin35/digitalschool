@@ -895,6 +895,26 @@
         });
     });
 </script>
+
+<!--saif add for Mark  -->
+<script>
+   jQuery(document).ready(function($){
+       n=1;
+       $('#classid').change(function(){
+           $.get("{{ url('api/dropdown/subject')}}",
+                   { option: $(this).val() },
+                   function(data) {
+                       var model = $('#subject_code');
+
+                       model.empty();
+                        $.each(data, function(index,element) {
+                            model.append("<option value='"+ element +"'>" + element + "</option>");
+                        });
+
+                   });
+       });
+   });
+ </script>
 <script>
     jQuery(document).ready(function($){
         n=1;
@@ -910,6 +930,7 @@
                     });
         });
     });
+
 </script>
 
 </body>

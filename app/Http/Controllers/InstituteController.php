@@ -329,6 +329,7 @@ public function postExamSchedule(){
             return Redirect::to('grade/index');
         }
 
+
     public function getEditExamSchedule($id){
         //Moin
         //Exam Schedule get Function for admin
@@ -382,4 +383,10 @@ public function postExamSchedule(){
         Session::flash('data', 'Data successfully Deleted !');
         return Redirect::to('admin/add/exam/schedule');
     }
+
+   public function postAddMark(){
+
+              return 1;    
+   }
+
 }

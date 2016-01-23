@@ -77,6 +77,7 @@ Route::get('api/dropdown/section', function(){
     $items = App\Section::where('institute_code','=',Auth::user()->institute_id)->where('class_id', '=', $user)->lists('section_name','section_id');
     return Response::make($items);
 });
+
 //class info add
 Route::get('Addclass','InstituteController@getaddclass');
 Route::post('Addclass','InstituteController@postaddclass');
@@ -128,7 +129,14 @@ Route::post('mearchent/product/search',['as'=>'searchmearchent','uses'=>'Student
 //mark management saif........
 Route::get('mark/index','InstituteController@markIndex');
 Route::get('mark/add','InstituteController@markadd');
+Route::post('mark/add','InstituteController@postAddMark');
 
+Route::get('api/dropdown/subject', function(){
+    $user = Input::get('option');
+    //return $user;
+    $items = App\Subject::where('institute_code','=',Auth::user()->institute_id)->where('class_id', '=', $user)->lists('subject_name','subject_code');
+    return Response::make($items);
+});
 
 
 
