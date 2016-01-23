@@ -363,7 +363,7 @@
                         </a>
                         <ul class="sub">
                             <li><a href="{{URL::to('/admin/add/exam')}}">Exam</a></li>
-                            <li><a href="horizontal_menu.html">Horizontal Menu</a></li>
+                            <li><a href="{{URL::to('admin/add/exam/schedule')}}">Add Exam Schedule</a></li>
                             <li><a href="language_switch.html">Language Switch Bar</a></li>
                         </ul>
                     </li>
