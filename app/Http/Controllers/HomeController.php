@@ -1,7 +1,6 @@
 <?php
-
 namespace App\Http\Controllers;
-
+use App\Mark;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -25,7 +24,6 @@ use App\Parents;
 use App\Section;
 use Illuminate\Support\Facades\DB;
 class HomeController extends Controller {
-
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +32,6 @@ class HomeController extends Controller {
     public function index() {
         //
     }
-
     public function home() {
         if (Auth::check()) {
             if (priv() == 1) {
@@ -48,63 +45,58 @@ class HomeController extends Controller {
             return redirect::to('/');
         }
     }
-
     public function getAddStudent() {
+
         //Moin
 //Student Registration get Function for admin
         $parents=Parents::where('institute_code','=',Auth::user()->institute_id)->lists('guradian_id','guardian_name');
         //$parents=Section::where('institute_code','=',Auth::user()->institute_id)->lists('section_id','section_name');
+
         $class=ClassAdd::where('institute_code','=',Auth::user()->institute_id)->lists('class_id','class_name');
         //$students=Students::where('institute_code','=',Auth::user()->institute_id)->get();
         $students = DB::table('tbl_studets')
             ->join('tbl_class','tbl_studets.class','=','tbl_class.class_id')
             ->select('tbl_studets.*','tbl_class.*')
-           // ->where('tbl_class.institute_code','tbl_studets.institute_code')
             ->where('tbl_class.institute_code','=',Auth::user()->institute_id)
             ->where('tbl_studets.institute_code','=',Auth::user()->institute_id)
             ->get();
-        //return $students;
+        // ->where('tbl_class.institute_code','tbl_studets.institute_code')
+      //return $students;
         return view('admin.add_search_student')->with('parents',$parents)
             ->with('class',$class)
             ->with('students',$students);
     }
 
-public function postAddStudent(){
-    //moin
-    //Student Registration Post Function for asmin
-    $parents = Input::get('guardian_name');
-    $class = Input::get('class');
-
-    $parents_name = Parents::where('guradian_id', '=', $parents)->pluck('guardian_name');
-    $class_name = ClassAdd::where('class_id', '=', $class)->pluck('class_name');
-
-
-    $email = Input::get('email');
-    $userc = User::Where('email', '=', $email)->count();
-    $marchant = Institute::Where('email', '=', $email)->count();
-    if ($userc > 0) {
-        Session::flash('data', 'This Email already used. Please Try a another email.');
-
-        return Redirect::to('add/student');
-    }else{
-        $iid=User::where('uid','=',Auth::user()->uid)->pluck('institute_id');
-
-        if(Input::hasFile('image')){
-            // return 1;
-            $extension = Input::file('image')->getClientOriginalExtension();
-            if($extension=='png'||$extension=='jpg'||$extension=='jpeg'||$extension=='bmp'||
-                $extension=='PNG'||$extension=='jpg'||$extension=='JPEG'||$extension=='BMP'){
-                $date=date('dmyhsu');
-                $fname=$date.'.'.$extension;
-                $destinationPath = 'images/';
-                Input::file('image')->move($destinationPath,$fname);
-                $final=$fname;
+    public function postAddStudent(){
+        //moin
+        //Student Registration Post Function for asmin
+        $parents = Input::get('guardian_name');
+        $class = Input::get('class');
+        $parents_name = Parents::where('guradian_id', '=', $parents)->pluck('guardian_name');
+        $class_name = ClassAdd::where('class_id', '=', $class)->pluck('class_name');
+        $email = Input::get('email');
+        $userc = User::Where('email', '=', $email)->count();
+        $marchant = Institute::Where('email', '=', $email)->count();
+        if ($userc > 0) {
+            Session::flash('data', 'This Email already used. Please Try a another email.');
+            return Redirect::to('add/student');
+        }else{
+            $iid=User::where('uid','=',Auth::user()->uid)->pluck('institute_id');
+            if(Input::hasFile('image')){
+                // return 1;
+                $extension = Input::file('image')->getClientOriginalExtension();
+                if($extension=='png'||$extension=='jpg'||$extension=='jpeg'||$extension=='bmp'||
+                    $extension=='PNG'||$extension=='jpg'||$extension=='JPEG'||$extension=='BMP'){
+                    $date=date('dmyhsu');
+                    $fname=$date.'.'.$extension;
+                    $destinationPath = 'images/';
+                    Input::file('image')->move($destinationPath,$fname);
+                    $final=$fname;
+                }
             }
-        }
-        else{
-            $final='';
-        }
-//return $final;
+            else{
+                $final='';
+            }
 
         //return $password;
         //return $name.$studentid.$institute.$guardian.$gender.$religion.$email.$phone.$class.$section.$roll.$user_type.$transport_rent.$birth_certificate.$image
@@ -137,43 +129,46 @@ public function postAddStudent(){
         $su->image=$final;
         $su->tran_route_name=Input::get('route_name');
         $su->transport_rent=Input::get('transport_rent');
-
         $su->user_type='Students';
         $su->status=1;
-
         $su->birth_certificate=Input::get('deth_of_birth');
         $su->email=$email;
         $su->password= Hash::make(Input::get('confirm_password'));
         $su->save();
 
+            $mk=new Mark;
+            $mk->student_name=Input::get('firstname').' '.Input::get('lastname');
+            $mk->student_id=$iid.','.Input::get('roll');
+            $mk->institute_code=$iid;
+            $mk->class_id=$class;
+            $mk->class_name=$class_name;
+            $mk->phone=Input::get('phone');
+            $mk->roll=Input::get('roll');
+            $mk->image=$final;
+
+            $mk->save();
 
 
         //return $su;
         Session::flash('data', 'Data successfully Added !');
         return Redirect::to('add/student');
+
     }
-
-}
-
-
+    }
     public function getInstituteReg(){
-       //saif for admin
+        //saif for admin
         $allinst=Institute::all();
         $division=Division::all()->lists('id','Division');
-      return view('admin.reg_insiatute')->with('divisionlist',$division)->with('allinstuted',$allinst);
+        return view('admin.reg_insiatute')->with('divisionlist',$division)->with('allinstuted',$allinst);
     }
-
-
     public function postInstituteReg() {
         //saif for admin
-
         $email = Input::get('email');
         $icode = Input::get('icode');
         $userc = User::where('institute_id', '=', $icode)->Where('email', '=', $email)->count();
         $marchant = Institute::where('institute_code', '=', $icode)->Where('email', '=', $email)->count();
         if ($userc > 0 || $marchant > 0) {
             Session::flash('data', 'Institute or Email was already used. Please Try a different number.');
-
             return Redirect::to('admin/institute/registration');
         } else {
             $division = Input::get('division');
@@ -187,9 +182,7 @@ public function postAddStudent(){
             $inurl = Input::get('inurl');
             $inpass = Input::get('password');
             $cofpass = Hash::make(Input::get('confirm_password'));
-
             // return $division.'/'.$district.'/'. $thana.'/'.$insiatute;
-
             $iu = new Institute;
             $iu->institute_name = $insiatutename;
             $iu->email = $email;
@@ -202,7 +195,6 @@ public function postAddStudent(){
             $iu->url = $inurl;
             $iu->status = 1;
             $iu->save();
-
             $uin = new User;
             $uin->name = $insiatutename;
             $uin->institute_id = $icode;
@@ -213,31 +205,22 @@ public function postAddStudent(){
             $uin->email = $email;
             $uin->password = $cofpass;
             $uin->save();
-
-
             $info = new InstituteInfo;
             $info->institute_code = $icode;
             $info->save();
-
-
             $incon = new InstituteContacts;
             $incon->institute_code = $icode;
             $incon->save();
-
-
-
             Session::flash('data', 'You successfully');
             return Redirect::to('admin/institute/registration');
         }
     }
-
     public function getAddParents() {
         //Moin
         //Parents Registration get Function For admin
         $parentsinfo = Parents::where('institute_code','=',Auth::user()->institute_id)->get();
         return view('parent.reg_parent')->with('parents', $parentsinfo);
     }
-
     public function postAddParents() {
         //Moin
         //Parents Registration post Function For admin
@@ -260,7 +243,6 @@ public function postAddStudent(){
             $national_id = Input::get('nid');
             $uname = Input::get('username');
             $uid = $iid . ' ' . mt_rand('1', '9999');
-
             //return $uid;
             $pu = new User;
             $pu->name = $gname;
@@ -271,7 +253,6 @@ public function postAddStudent(){
             $pu->email = $email;
             $pu->password = Hash::make(Input::get('confirm_password'));
             $pu->save();
-
             $pup = new Parents;
             $pup->guardian_name = $gname;
             $pup->institute_code = $iid;
@@ -293,9 +274,7 @@ public function postAddStudent(){
             Session::flash('data', 'Data successfully added !');
             return Redirect::to('admin/add/parents');
         }
-
     }
-
     public function getAddTeacher() {
         //Moin
         //Teacher Registration get Function For Admin
@@ -303,7 +282,6 @@ public function postAddStudent(){
         //return $teacherinfo;
         return view('teacher.reg_teacher')->with('teacher', $teacherinfo);
     }
-
     public function postAddTeacher() {
         //Moin
         //Teacher Registration post Function For Admin
@@ -350,7 +328,6 @@ public function postAddStudent(){
             $tu->email = $email;
             $tu->password = Hash::make(Input::get('confirm_password'));
             $tu->save();
-
             $ut = new Teacher;
             $ut->institute_code = $iid;
             $ut->teacher_id = $uid;
@@ -372,26 +349,22 @@ public function postAddStudent(){
             Session::flash('data', 'Data successfully added !');
             return Redirect::to('admin/add/teacher');
         }
-
     }
-
     public function viewinstuted($icode) {
         //saif for admin
         //return $icode;
         $detailsinist = Institute::where('institute_code', '=', $icode)->first();
         return view('admin.instutedDetails')->with('detailinf', $detailsinist);
     }
-
     public function editinstutedinfo($incode) {
         //saif for admin
-       // $division=  Institute::where('institute_code', '=', $incode)
+        // $division=  Institute::where('institute_code', '=', $incode)
         //$district=  Institute::where('institute_code', '=', $incode)
         //$thana=  Institute::where('institute_code', '=', $incode)
-         $division=Division::all()->lists('id','Division');
+        $division=Division::all()->lists('id','Division');
         $detailsinist = Institute::where('institute_code', '=', $incode)->first();
         return view('admin.instutededit')->with('detailinf', $detailsinist)->with('division',$division);
     }
-
     public function editinstutedinfoupdate($iucode) {
         //saif admin
         $name = Input::get('institute_name');
@@ -402,11 +375,9 @@ public function postAddStudent(){
         $inaddress = Input::get('iaddress');
         $inurl = Input::get('inurl');
         $infoupdate = Institute::where('institute_code', '=', $iucode)->update(['institute_name' => $name, 'email' => $email, 'phone' => $inphone, 'address' => $inaddress, 'district' => $district, 'thana' => $thana, 'url' => $inurl]);
-
         Session::flash('data', 'You successfully');
         return Redirect::to('institute/edit/' . $iucode);
     }
-
     public function deleteinstutedinfo($idcode) {
         //saif for admin
         $infoDelete = Institute::where('institute_code', '=', $idcode)->delete();
@@ -422,7 +393,6 @@ public function postAddStudent(){
         $subinfo= Subject::where('institute_code','=',Auth::user()->institute_id)->get();
         return view('admin.addsubject')->with('teacher',$teacher)->with('class',$class)->with('allsubinfo',$subinfo);
     }
-
     public function postAddSubject() {
         //Moin
         //Subject Adding post Function for admin
@@ -447,11 +417,7 @@ public function postAddStudent(){
         Session::flash('data', 'Data successfully added !');
         return Redirect::to('admin/add/subject');
     }
-
-
-
 }
-
 function priv() {
     return Auth::user()->priv;
 }

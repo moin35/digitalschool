@@ -167,7 +167,11 @@ class InstituteController extends Controller {
     $getexam=Exam::where('institute_code', '=', Auth::user()->institute_id)->get();
     return view('admin.addexam',['examview'=>$getexam]);
 
-    }
+}
+
+
+
+
 
     public function postAddExam(){
         //Moin
@@ -214,7 +218,11 @@ class InstituteController extends Controller {
     public function getExamSchedule(){
         //Moin
         //Exam Schedule get Function for admin
-        return view('admin.examschedule');
+        $examname=Exam::where('institute_code', '=', Auth::user()->institute_id)->lists('exam_id','exam_name');
+        $classname=ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id','class_name');
+        $subject=Subject::where('institute_code', '=', Auth::user()->institute_id)->lists('subject_code','subject_name');
+        //return $subject;
+        return view('admin.examschedule',['examview'=>$examname,'classview'=>$classname,'subjectview'=>$subject]);
     }
 
 
@@ -288,5 +296,11 @@ class InstituteController extends Controller {
             $getEditGradeDelete=GradeSystem::where('institute_code', '=', Auth::user()->institute_id)->where('grade_id','=',$gid)->delete();
             Session::flash('data', 'Delete successfully!');
             return Redirect::to('grade/index');
+        }
+
+        public function postAddMark(){
+
+          return 1;
+
         }
 }
