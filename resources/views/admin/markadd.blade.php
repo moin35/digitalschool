@@ -70,10 +70,10 @@ Mark
                                             Class                                </label>
                                         <div class="col-sm-6">
 
-                                            <select type="search" class="form-control select-table-filter" data-table="order-table">
+                                            <select  class="form-control select-table-filter" id="classid" >
                                                 <option value="">Reset</option>
                                                 @foreach($allclass as $r=>$t)
-                                                    <option value="{{$r}}">{{$r}}</option>
+                                                    <option value="{{$t}}">{{$r}}</option>
                                                 @endforeach
                                                 <select>
 
@@ -84,11 +84,8 @@ Mark
                                             Subject                                </label>
                                         <div class="col-sm-6">
 
-                                            <select type="search" class="form-control select-table-filter" data-table="order-table">
-                                                <option value="">Reset</option>
-                                                @foreach($examSubj as $r=>$t)
-                                                    <option value="{{$r}}">{{$r}}</option>
-                                                @endforeach
+                                            <select  class="form-control select-table-filter" id="subject_code">
+                                                  <option  selected="selected">First Choose Class</option>
                                                 <select>
 
                                         </div>
@@ -114,16 +111,7 @@ Mark
 </div>
 <!-- page end-->
 
-<script>
-$(function() {
-    $("#sel1").on("change",function() {
-       $(".hideable").hide();
-       var id = "#test"+(this.selectedIndex+1);
-       $(id).show();
-    }).change();
-});
 
-</script>
 <script>
             function TestCtrl() {
             var self = this;
