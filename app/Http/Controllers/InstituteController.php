@@ -220,11 +220,42 @@ class InstituteController extends Controller {
         //Exam Schedule get Function for admin
         $examname=Exam::where('institute_code', '=', Auth::user()->institute_id)->lists('exam_id','exam_name');
         $classname=ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id','class_name');
-        $subject=Subject::where('institute_code', '=', Auth::user()->institute_id)->lists('subject_code','subject_name');
-        //return $subject;
-        return view('admin.examschedule',['examview'=>$examname,'classview'=>$classname,'subjectview'=>$subject]);
+        $schedule=ExamSchedule::where('institute_code', '=', Auth::user()->institute_id)->get();
+        //return $schedule;
+        return view('admin.examschedule',['examview'=>$examname,'classview'=>$classname,'examschedule'=>$schedule]);
     }
+public function postExamSchedule(){
+    //Moin
+    //Exam Schedule get Function for admin
+    $iid=User::where('uid','=',Auth::user()->uid)->pluck('institute_id');
+    $exam=Input::get('exam');
+    $exam_name = Exam::where('institute_code', '=', Auth::user()->institute_id)->where('exam_id', '=', $exam)->pluck('exam_name');
 
+    $class = Input::get('class');
+    $class_name = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->where('class_id', '=', $class)->pluck('class_name');
+     $sub_name= Input::get('subject');
+    $sub_id = Subject::where('subject_name', '=', $sub_name)->pluck('id');
+      $section_name= Input::get('section');
+    $section_id = Section::where('institute_code', '=', Auth::user()->institute_id)->where('section_name', '=', $section_name)->pluck('section_id');
+//return $iid.'/'.$class.'/'.$class_name.'/'.'ok'.$sub_id.'ok'.'/'.$sub_name.'/'.$section_id.'/'.$section_name;
+    $su=new ExamSchedule;
+    $su->institute_code=$iid;
+    $su->exam_name=$exam_name;
+    $su->class_id=$class;
+    $su->class_name=$class_name;
+    $su->section_id=$section_id;
+    $su->section_name=$section_name;
+    $su->sub_id=$sub_id;
+    $su->sub_name=$sub_name;
+    $su->exam_date=Input::get('date');
+    $su->time_from=Input::get('timepickerfrom');
+    $su->time_to=Input::get('timepickerto');
+    $su->room_no=Input::get('room');
+    $su->save();
+    //return $su;
+    Session::flash('data', 'Data successfully Added !');
+    return Redirect::to('admin/add/exam/schedule');
+}
 
         public function markIndex(){
           //saif markIndex view for admin and teacher
@@ -297,4 +328,58 @@ class InstituteController extends Controller {
             Session::flash('data', 'Delete successfully!');
             return Redirect::to('grade/index');
         }
+
+    public function getEditExamSchedule($id){
+        //Moin
+        //Exam Schedule get Function for admin
+        $icode= User::where('institute_id','=',Auth::user()->institute_id)->pluck('institute_id');
+        $examname=Exam::where('institute_code', '=', Auth::user()->institute_id)->lists('exam_id','exam_name');
+        $classname=ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id','class_name');
+        $schedule=ExamSchedule::where('institute_code', '=', Auth::user()->institute_id)->where('id', '=', $id)->first();
+        //return $schedule;
+        return view('admin.editexamschedule',['examview'=>$examname,'classview'=>$classname,'examschedule'=>$schedule,'icode'=>$icode]);
+    }
+    public function updateEditExamSchedule($id){
+        //Moin
+        //Exam Schedule get Function for admin
+        $iid=User::where('uid','=',Auth::user()->uid)->pluck('institute_id');
+        $exam=Input::get('exam');
+        $exam_name = Exam::where('institute_code', '=', Auth::user()->institute_id)->where('exam_id', '=', $exam)->pluck('exam_name');
+
+        $class = Input::get('class');
+        $class_name = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->where('class_id', '=', $class)->pluck('class_name');
+        $sub_name= Input::get('subject');
+        $sub_id = Subject::where('subject_name', '=', $sub_name)->pluck('id');
+        $section_name= Input::get('section');
+        $section_id = Section::where('institute_code', '=', Auth::user()->institute_id)->where('section_name', '=', $section_name)->pluck('section_id');
+        $exam_date=Input::get('date');
+        $time_from=Input::get('timepickerfrom');
+        $time_to=Input::get('timepickerto');
+        $room_no=Input::get('room');
+ //return $iid.'/'.$class.'/'.$class_name.'/'.'ok'.$sub_id.'ok'.'/'.$sub_name.'/'.$section_id.'/'.$section_name;
+        $studentup = ExamSchedule::where('institute_code', '=', Auth::user()->institute_id)->where('id', '=', $id)
+            ->update(['exam_name' => $exam_name,
+                'class_id' => $class,
+                'class_name' => $class_name,
+                'section_id' => $section_id,
+                'section_name' => $section_name,
+                'sub_id' => $sub_id,
+                'sub_name' => $sub_name,
+                'exam_date' => $exam_date,
+                'time_from' => $time_from,
+                'time_to' => $time_to,
+                'room_no' => $room_no
+
+            ]);
+        //return $su;
+        Session::flash('data', 'Data successfully Added !');
+        return Redirect::to('admin/add/exam/schedule');
+    }
+    public function deleteExamScheduleInfo($id) {
+        //Moin
+        //Exam delete Function for admin
+        $classupdate = ExamSchedule::where('id', '=', $id)->where('institute_code', '=', Auth::user()->institute_id)->delete();
+        Session::flash('data', 'Data successfully Deleted !');
+        return Redirect::to('admin/add/exam/schedule');
+    }
 }

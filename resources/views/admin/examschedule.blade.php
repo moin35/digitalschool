@@ -6,10 +6,8 @@
     <script src="{{URL::to('/')}}/js/angular/angular.min.js"></script>
     <script src="{{URL::to('/')}}/js/angular/angular-animate.min.js"></script>
     <link href="{{URL::to('/')}}/css/angular/animatedbox.css" rel="stylesheet">
-    <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="css/time1.css">
-    <link rel="stylesheet" href="css/timepicker.css">
-    <script src="js/timepicker.js"></script>
+
+
 @stop
 
 @section('body')
@@ -79,7 +77,7 @@
                                                                                             Exam Name                             </label><br>
                                                                                         <div class="col-sm-6">
 
-                                                                                            <select name='division'  id="make" class="form-control"  >
+                                                                                            <select  id="exam" name="exam" class="form-control"  >
                                                                                                 <option  selected="selected" >Choose Exam Name</option>
                                                                                                 @foreach($examview as $r=>$t)
                                                                                                     <option value="{{$t}}">{{$r}}</option>
@@ -103,7 +101,7 @@
                                                                                         <label for="classesID" class="col-sm-2 col-sm-offset-2 control-label-right">
                                                                                             Section </label><br>
                                                                                         <div class="col-sm-6">
-                                                                                            <select    name="district" class="form-control sectionid" >
+                                                                                            <select    name="section" class="form-control sectionid" >
                                                                                                 <option  selected="">First Choose Class</option>
 
                                                                                             </select>
@@ -115,7 +113,7 @@
                                                                                         <label for="classesID" class="col-sm-2 col-sm-offset-2 control-label-right">
                                                                                             Subject </label><br>
                                                                                         <div class="col-sm-6">
-                                                                                            <select    name="district"  class="form-control sub" >
+                                                                                            <select    name="subject"  class="form-control sub" >
                                                                                                 <option  selected="">First Choose Class</option>
 
                                                                                             </select>
@@ -126,25 +124,25 @@
                                                                                     <div class="form-group ">
                                                                                         <label for="icode" class="col-sm-2 col-sm-offset-2 control-label-right">Date</label>
                                                                                         <div class="col-lg-6">
-                                                                                            <input class="form-control " id="icodes" name="date" type="text" />
+                                                                                            <input class="form-control form-control-inline input-medium default-date-picker" id="date" name="date" type="text" />
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="form-group ">
                                                                                         <label for="icode" class="col-sm-2 col-sm-offset-2 control-label-right">Time Form</label>
                                                                                         <div class="col-lg-6">
-                                                                                            <input class="form-control " id="input" name="icode" type="text" />
+                                                                                            <input class="form-control" id='timepicker' type='text'name='timepickerfrom' />
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="form-group ">
                                                                                         <label for="icode" class="col-sm-2 col-sm-offset-2 control-label-right">Time To</label>
                                                                                         <div class="col-lg-6">
-                                                                                            <input class="form-control " id="icodes" name="icode" type="text" />
+                                                                                            <input class="form-control" id="timeto" name="timepickerto" type="text" />
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="form-group ">
                                                                                         <label for="icode" class="col-sm-2 col-sm-offset-2 control-label-right">Room No.</label>
                                                                                         <div class="col-lg-6">
-                                                                                            <input class="form-control " id="icodes" name="icode" type="text" />
+                                                                                            <input class="form-control " id="room" name="room" type="text" />
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="form-group">
@@ -212,15 +210,33 @@
                                     <table class="table table-striped table-hover table-bordered" id="editable-sample">
                                         <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Code</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>URL</th>
+                                            <th>Exam Name</th>
+                                            <th>Class</th>
+                                            <th>Section</th>
+                                            <th>Subject</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
+                                            <th>Room</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
+                                        <tbody>
+                                        @foreach($examschedule as $a)
+                                            <tr class="">
+                                                <td>{{$a->exam_name}}</td>
+                                                <td>{{$a->class_name}}</td>
+                                                <td>{{$a->section_name}}</td>
+                                                <td class="center">{{$a->sub_name}}</td>
+                                                <td class="center">{{$a->exam_date}}</td>
+                                                <td>{{$a->time_from}}-{{$a->time_to}}</td>
+                                                <td>{{$a->room_no}}</td>
+                                                <td> <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/exam/schedule/edit/{{$a->id}}"><i class="fa fa-edit"></i> </a>
+                                                    <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/exam/schedule/delete/{{$a->id}}" ><i class="fa  fa-trash-o"></i></a>
 
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -287,4 +303,5 @@
         angular.module('app', ['ngAnimate'])
                 .controller('TestCtrl', TestCtrl)
     </script>
+
 @stop
