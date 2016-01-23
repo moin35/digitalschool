@@ -48,12 +48,12 @@ class StudentsController extends Controller
         $class = Input::get('subclass');
 
         $teacher_name = Teacher::where('teacher_id', '=', $teacher)->pluck('teacher_id');
-        $class_name = ClassAdd::where('class_id', '=', $class)->pluck('class_id');
-
+        $class_name = ClassAdd::where('class_id', '=', $class)->pluck('class_name');
+//return $class;
         $subname= Input::get('subname');
         $subcode= Input::get('subcode');
         $subclass= Input::get('subclass');
-        $class_name= $class_name;
+        $subclass= $class_name;
         $subteacher= Input::get('subteacher');
         $teacher_name= $teacher_name;
         $subauth= Input::get('subauth');
@@ -63,7 +63,7 @@ class StudentsController extends Controller
             ->update(['subject_name' => $subname,
                 'subject_code' => $subcode,
                 'class_name' => $subclass,
-                'class_id' => $class_name,
+                'class_id' => $class,
                 'teacher_name' => $subteacher,
                 'teacher_id' => $teacher_name,
                 'sub_author' => $subauth,
@@ -169,7 +169,9 @@ public function getDetailStudents($id){
 
     }
 
-
+    public function searchStudentsByClass(){
+        return 1;
+    }
 
 
 

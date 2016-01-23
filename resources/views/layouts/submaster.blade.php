@@ -886,6 +886,22 @@
         });
     });
 </script>
+<script>
+    jQuery(document).ready(function($){
+        n=1;
+        $('.class').change(function(){
+            $.get("{{ url('api/dropdown/sub')}}",
+                    { option: $(this).val() },
+                    function(data) {
+                        var model = $('.sub');
+                        model.empty();
+                        $.each(data, function(index,element) {
+                            model.append("<option value='"+ element +"'>" + element + "</option>");
+                        });
+                    });
+        });
+    });
+</script>
 
 </body>
 </html>
