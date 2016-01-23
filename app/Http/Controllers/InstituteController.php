@@ -25,6 +25,7 @@ use App\Parents;
 use App\Section;
 use App\Exam;
 use App\ExamSchedule;
+use App\GradeSystem;
 
 class InstituteController extends Controller {
 
@@ -33,6 +34,13 @@ class InstituteController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
+
+     private function getallclass(){
+
+         $class = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id', 'class_name');
+
+         return $class;
+     }
     public function getaddclass() {
         //class info add institute //saif for admin and insti
         $classInfo = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->get();
@@ -88,14 +96,10 @@ class InstituteController extends Controller {
 
     public function getsection() {
         //Section info add institute //saif for admin and insti
-        $class=Input::get('classesID');
-
-       $searchClass = Section::where('institute_code', '=', Auth::user()->institute_id)->where('class_id','=', $class)->get();
-
         $teacher = Teacher::where('institute_code', '=', Auth::user()->institute_id)->lists('teacher_id', 'name');
         $class = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id', 'class_name');
         $section = Section::where('institute_code', '=', Auth::user()->institute_id)->get();
-        return view('admin.sectionadd')->with('section', $section)->with('teacher', $teacher)->with('allclass', $class)->with('searchClass',$searchClass);
+        return view('admin.sectionadd')->with('section', $section)->with('teacher', $teacher)->with('allclass', $class);
     }
 
     public function postsection() {
@@ -148,13 +152,27 @@ class InstituteController extends Controller {
     Session::flash('data', 'Update successfully added !');
     return Redirect::to('section/edit/' . $sectid);
 
-    } 
-public function getAddExam(){
+    }
+    public function deletesection($sectid){
+      //saif section delete
+    $sectionDelete = Section::where('institute_code', '=', Auth::user()->institute_id)->where('section_id', '=', $sectid)->delete();
+    Session::flash('data', 'Delete successfully!');
+    return Redirect::to('sectionAdd');
+    }
+
+
+    public function getAddExam(){
     //Moin
     //Exam get Function for admin
     $getexam=Exam::where('institute_code', '=', Auth::user()->institute_id)->get();
     return view('admin.addexam',['examview'=>$getexam]);
+
 }
+
+
+
+
+
     public function postAddExam(){
         //Moin
         //Exam post Function for admin
@@ -206,4 +224,77 @@ public function getAddExam(){
         //return $subject;
         return view('admin.examschedule',['examview'=>$examname,'classview'=>$classname,'subjectview'=>$subject]);
     }
+
+
+        public function markIndex(){
+          //saif markIndex view for admin and teacher
+          $teacher = Teacher::where('institute_code', '=', Auth::user()->institute_id)->lists('teacher_id', 'name');
+          $class = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id', 'class_name');
+          $section = Section::where('institute_code', '=', Auth::user()->institute_id)->get();
+          return view('admin.markindex')->with('section', $section)->with('teacher', $teacher)->with('allclass', $class);
+        }
+
+        public function markadd(){
+         //saif markIndex view for admin and teacher
+          $examName=Exam::where('institute_code', '=', Auth::user()->institute_id)->lists('exam_id', 'exam_name');
+          $class = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id', 'class_name');
+          $examSubj=Subject::where('institute_code', '=', Auth::user()->institute_id)->lists('subject_code', 'subject_name');
+
+          return view('admin.markadd')->with('allclass', $class)->with('examName',$examName)->with('examSubj',$examSubj);
+        }
+
+
+        public function getgradeIndex(){
+              //admin add grade system
+          $this->getallclass();
+          $allGrade=GradeSystem::where('institute_code', '=', Auth::user()->institute_id)->get();
+          return view('admin.gradeIndex')->with('allclass',$this->getallclass())->with('allGrade',$allGrade);
+        }
+        public function postGradeIndex(){
+
+          $GradeName=Input::get('GradeName');
+          $GradePoint=Input::get('GradePoint');
+          $MarkFrom=Input::get('MarkFrom');
+          $MarkUpto=Input::get('MarkUpto');
+          $MarkNote=Input::get('MarkNote');
+
+
+          $save=new GradeSystem;
+          $save-> institute_code=Auth::user()->institute_id;
+          $save-> grade_id=mt_rand('1', '9999');
+          $save-> grade_name=$GradeName;
+          $save-> grade_point=$GradePoint;
+          $save-> mark_form=$MarkFrom;
+          $save-> mark_upto=$MarkUpto;
+          $save-> note=$MarkNote;
+          $save->save();
+          Session::flash('data', 'Update successfully added !');
+          return Redirect::to('grade/index');
+
+        }
+        public function getGradeEdit($gid){
+
+          $getEditGrade=GradeSystem::where('institute_code', '=', Auth::user()->institute_id)->where('grade_id','=',$gid)->first();
+          return view('admin.gradeEdit')->with('getEditGrade',$getEditGrade);
+        }
+
+        public function postGradeEdit($gid){
+        //  return $gid;
+          $GradeName=Input::get('GradeName');
+          $GradePoint=Input::get('GradePoint');
+          $MarkFrom=Input::get('MarkFrom');
+          $MarkUpto=Input::get('MarkUpto');
+          $MarkNote=Input::get('MarkNote');
+          $getEditGradeupdate=GradeSystem::where('institute_code', '=', Auth::user()->institute_id)->where('grade_id','=',$gid)->update(['grade_name'=>$GradeName,'grade_point'=>$GradePoint,'mark_form'=>$MarkFrom,'mark_upto'=>$MarkUpto,'note'=>$MarkNote]);
+        // return $getEditGrade;
+          Session::flash('data', 'Update successfully added !');
+          return Redirect::to('grade/edit/'.$gid);
+        }
+
+        public function GradeDelete($gid){
+
+            $getEditGradeDelete=GradeSystem::where('institute_code', '=', Auth::user()->institute_id)->where('grade_id','=',$gid)->delete();
+            Session::flash('data', 'Delete successfully!');
+            return Redirect::to('grade/index');
+        }
 }

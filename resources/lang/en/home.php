@@ -18,5 +18,6 @@ return [
     'section'=> 'Section',
     'subject'=> 'Subject',
     'grade'=> 'Grade',
+    'mark'=>"Mark"
 
 ];

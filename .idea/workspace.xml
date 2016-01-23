@@ -5,12 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c227b529-4ac7-4628-b0eb-7515408a91f4" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/admin/gradeEdit.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/admin/gradeIndex.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/admin/markadd.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/admin/markindex.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/GradeSystem.php" afterPath="$PROJECT_DIR$/app/GradeSystem.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/InstituteController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/InstituteController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/StudentsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/StudentsController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/examschedule.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/examschedule.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/bn/home.php" afterPath="$PROJECT_DIR$/resources/lang/bn/home.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/en/home.php" afterPath="$PROJECT_DIR$/resources/lang/en/home.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/sectionadd.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/sectionadd.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/submaster.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/submaster.blade.php" />
     </list>
     <ignored path="digitalschool.iws" />
@@ -44,8 +51,24 @@
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="70" column="136" selection-start-line="70" selection-start-column="136" selection-end-line="70" selection-end-column="136" />
-              <folding />
+              <caret line="95" column="78" selection-start-line="95" selection-start-column="78" selection-end-line="95" selection-end-column="78" />
+              <folding>
+                <marker date="1453533396610" expanded="false" signature="9:390" placeholder="..." />
+                <marker date="1453533396610" expanded="true" signature="405:533" placeholder="..." />
+                <marker date="1453533396610" expanded="true" signature="423:532" placeholder="..." />
+                <marker date="1453533396610" expanded="true" signature="446:483" placeholder="..." />
+                <marker date="1453533396610" expanded="true" signature="494:530" placeholder="..." />
+                <marker date="1453533396610" expanded="true" signature="730:794" placeholder="..." />
+                <marker date="1453533396610" expanded="true" signature="748:793" placeholder="..." />
+                <marker date="1453533396610" expanded="true" signature="1978:2161" placeholder="..." />
+                <marker date="1453533396610" expanded="true" signature="2005:2160" placeholder="..." />
+                <marker date="1453533396610" expanded="true" signature="2176:2375" placeholder="..." />
+                <marker date="1453533396610" expanded="true" signature="2209:2374" placeholder="..." />
+                <marker date="1453533396610" expanded="true" signature="2389:2655" placeholder="..." />
+                <marker date="1453533396610" expanded="true" signature="2420:2654" placeholder="..." />
+                <marker date="1453533396610" expanded="true" signature="2669:2944" placeholder="..." />
+                <marker date="1453533396610" expanded="true" signature="2704:2943" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -63,11 +86,9 @@
       <file leaf-file-name="InstituteController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/InstituteController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="205" column="10" selection-start-line="205" selection-start-column="10" selection-end-line="205" selection-end-column="10" />
-              <folding>
-                <element signature="e#40#68#0#PHP" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-9.576923">
+              <caret line="169" column="1" selection-start-line="169" selection-start-column="1" selection-end-line="169" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -86,7 +107,7 @@
         <entry file="file://$PROJECT_DIR$/resources/views/layouts/submaster.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-34.0">
-              <caret line="894" column="36" selection-start-line="894" selection-start-column="36" selection-end-line="894" selection-end-column="36" />
+              <caret line="902" column="36" selection-start-line="902" selection-start-column="36" selection-end-line="902" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -95,10 +116,10 @@
       <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.31748727">
-              <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.27142859">
+              <caret line="138" column="24" selection-start-line="138" selection-start-column="24" selection-end-line="138" selection-end-column="24" />
               <folding>
-                <element signature="e#38#66#0#PHP" expanded="true" />
+                <element signature="e#38#51#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -175,11 +196,11 @@
         <option value="$PROJECT_DIR$/resources/lang/bn/home.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/master.blade.php" />
         <option value="$PROJECT_DIR$/app/ExamSchedule.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/InstituteController.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/submaster.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/StudentsController.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/examschedule.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/InstituteController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
       </list>
     </option>
@@ -908,21 +929,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/InstituteController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="205" column="10" selection-start-line="205" selection-start-column="10" selection-end-line="205" selection-end-column="10" />
-          <folding>
-            <element signature="e#40#68#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="70" column="136" selection-start-line="70" selection-start-column="136" selection-end-line="70" selection-end-column="136" />
-          <folding />
+          <caret line="95" column="78" selection-start-line="95" selection-start-column="78" selection-end-line="95" selection-end-column="78" />
+          <folding>
+            <marker date="1453533396610" expanded="false" signature="9:390" placeholder="..." />
+            <marker date="1453533396610" expanded="true" signature="405:533" placeholder="..." />
+            <marker date="1453533396610" expanded="true" signature="423:532" placeholder="..." />
+            <marker date="1453533396610" expanded="true" signature="446:483" placeholder="..." />
+            <marker date="1453533396610" expanded="true" signature="494:530" placeholder="..." />
+            <marker date="1453533396610" expanded="true" signature="730:794" placeholder="..." />
+            <marker date="1453533396610" expanded="true" signature="748:793" placeholder="..." />
+            <marker date="1453533396610" expanded="true" signature="1978:2161" placeholder="..." />
+            <marker date="1453533396610" expanded="true" signature="2005:2160" placeholder="..." />
+            <marker date="1453533396610" expanded="true" signature="2176:2375" placeholder="..." />
+            <marker date="1453533396610" expanded="true" signature="2209:2374" placeholder="..." />
+            <marker date="1453533396610" expanded="true" signature="2389:2655" placeholder="..." />
+            <marker date="1453533396610" expanded="true" signature="2420:2654" placeholder="..." />
+            <marker date="1453533396610" expanded="true" signature="2669:2944" placeholder="..." />
+            <marker date="1453533396610" expanded="true" signature="2704:2943" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -951,7 +978,7 @@
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/submaster.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-34.0">
-          <caret line="894" column="36" selection-start-line="894" selection-start-column="36" selection-end-line="894" selection-end-column="36" />
+          <caret line="902" column="36" selection-start-line="902" selection-start-column="36" selection-end-line="902" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -964,12 +991,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/InstituteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.576923">
+          <caret line="169" column="1" selection-start-line="169" selection-start-column="1" selection-end-line="169" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31748727">
-          <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.27142859">
+          <caret line="138" column="24" selection-start-line="138" selection-start-column="24" selection-end-line="138" selection-end-column="24" />
           <folding>
-            <element signature="e#38#66#0#PHP" expanded="true" />
+            <element signature="e#38#51#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

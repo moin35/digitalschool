@@ -114,12 +114,26 @@ Route::get('/teachers/details/{id}','TeachersController@getDetailsTeacher');
 Route::get('/teachers/edit/{id}','TeachersController@getTeacherEdit');
 Route::post('/teachers/edit/{id}','TeachersController@updateTeacherEdit');
 Route::get('/teacher/delete/{uid}','StudentsController@deleteTeachersInfo');
- 
+
 //Parents Edit Delete View
 Route::get('/parents/details/{id}','ParentsController@getDetailsParents');
 Route::get('/parents/edit/{id}','ParentsController@getEditParents');
 Route::post('/parents/edit/{id}','ParentsController@updateParentsEdit');
 Route::get('/parents/delete/{uid}','ParentsController@deleteParentsInfo');
+
+//Search Student by Class
+Route::post('mearchent/product/search',['as'=>'searchmearchent','uses'=>'StudentsController@searchStudentsByClass']);
+
+
+//mark management saif........
+Route::get('mark/index','InstituteController@markIndex');
+Route::get('mark/add','InstituteController@markadd');
+
+
+
+
+
+
 
 //Add edit delete Exam Info
 Route::get('/admin/add/exam','InstituteController@getAddExam');
@@ -130,3 +144,14 @@ Route::get('/exam/delete/{eid}','InstituteController@deleteExamInfo');
 
 //Add edit delete Exam Schedule
 Route::get('/admin/add/exam/schedule','InstituteController@getExamSchedule');
+
+
+
+//grade/index info manage
+
+
+Route::get('grade/index','InstituteController@getgradeIndex');
+Route::post('grade/index','InstituteController@postGradeIndex');
+Route::get('grade/edit/{gid}','InstituteController@getGradeEdit');
+Route::post('grade/edit/{gid}','InstituteController@postGradeEdit');
+Route::get('grade/delete/{gid}','InstituteController@GradeDelete');

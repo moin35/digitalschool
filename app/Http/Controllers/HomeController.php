@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use App\Mark;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -96,47 +97,63 @@ class HomeController extends Controller {
             else{
                 $final='';
             }
-//return $final;
-            //return $password;
-            //return $name.$studentid.$institute.$guardian.$gender.$religion.$email.$phone.$class.$section.$roll.$user_type.$transport_rent.$birth_certificate.$image
-            //   .$route_name.$status;
-            $u=new User;
-            $u->name=Input::get('firstname').' '.Input::get('lastname');
-            $u->uid=$iid.','.Input::get('roll');
-            $u->priv=2;
-            $u->user_type='Students';
-            $u->user_name=Input::get('username');
-            $u->email=$email;
-            $u->password= Hash::make(Input::get('confirm_password'));
-            $u->save();
 
-            $su=new Students;
-            $su->name=Input::get('firstname').' '.Input::get('lastname');
-            $su->st_id=$iid.','.Input::get('roll');
-            $su->institute_code=$iid;
-            $su->guardian_id=$parents;
-            $su->guardian_name=$parents_name;
-            $su->gender=Input::get('gender');
-            $su->religion=Input::get('religion');
-            $su->phone=Input::get('phone');
-            $su->address=Input::get('address');
-            $su->class=$class_name;
-            $su->section=Input::get('section');
-            $su->roll=Input::get('roll');
-            $su->image=$final;
-            $su->tran_route_name=Input::get('route_name');
-            $su->transport_rent=Input::get('transport_rent');
-            $su->user_type='Students';
-            $su->status=1;
-            $su->birth_certificate=Input::get('deth_of_birth');
-            $su->email=$email;
-            $su->password= Hash::make(Input::get('confirm_password'));
-            $su->save();
+        //return $password;
+        //return $name.$studentid.$institute.$guardian.$gender.$religion.$email.$phone.$class.$section.$roll.$user_type.$transport_rent.$birth_certificate.$image
+        //   .$route_name.$status;
 
-            //return $su;
-            Session::flash('data', 'Data successfully Added !');
-            return Redirect::to('add/student');
-        }
+
+        $u=new User;
+        $u->name=Input::get('firstname').' '.Input::get('lastname');
+        $u->uid=$iid.','.Input::get('roll');
+        $u->priv=2;
+        $u->user_type='Students';
+        $u->user_name=Input::get('username');
+        $u->email=$email;
+        $u->password= Hash::make(Input::get('confirm_password'));
+        $u->save();
+
+        $su=new Students;
+        $su->name=Input::get('firstname').' '.Input::get('lastname');
+        $su->st_id=$iid.','.Input::get('roll');
+        $su->institute_code=$iid;
+        $su->guardian_id=$parents;
+        $su->guardian_name=$parents_name;
+        $su->gender=Input::get('gender');
+        $su->religion=Input::get('religion');
+        $su->phone=Input::get('phone');
+        $su->address=Input::get('address');
+        $su->class=$class_name;
+        $su->section=Input::get('section');
+        $su->roll=Input::get('roll');
+        $su->image=$final;
+        $su->tran_route_name=Input::get('route_name');
+        $su->transport_rent=Input::get('transport_rent');
+        $su->user_type='Students';
+        $su->status=1;
+        $su->birth_certificate=Input::get('deth_of_birth');
+        $su->email=$email;
+        $su->password= Hash::make(Input::get('confirm_password'));
+        $su->save();
+
+            $mk=new Mark;
+            $mk->student_name=Input::get('firstname').' '.Input::get('lastname');
+            $mk->student_id=$iid.','.Input::get('roll');
+            $mk->institute_code=$iid;
+            $mk->class_id=$class;
+            $mk->class_name=$class_name;
+            $mk->phone=Input::get('phone');
+            $mk->roll=Input::get('roll');
+            $mk->image=$final;
+
+            $mk->save();
+
+
+        //return $su;
+        Session::flash('data', 'Data successfully Added !');
+        return Redirect::to('add/student');
+
+    }
     }
     public function getInstituteReg(){
         //saif for admin

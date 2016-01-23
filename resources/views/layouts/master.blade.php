@@ -361,7 +361,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{URL::to('add/student')}}">
+                        <a href="{{URL::to('grade/index')}}">
                             <i class="fa fa-signal"></i>
                             <span>{{Lang::get('home.grade')}} </span>
                         </a>
@@ -376,6 +376,12 @@
                             <li><a href="horizontal_menu.html">Horizontal Menu</a></li>
                             <li><a href="language_switch.html">Language Switch Bar</a></li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="{{URL::to('mark/index')}}">
+                            <i class="fa fa-flask"></i>
+                            <span>{{Lang::get('home.mark')}} </span>
+                        </a>
                     </li>
                     <li class="sub-menu">
                         <a href="javascript:;">

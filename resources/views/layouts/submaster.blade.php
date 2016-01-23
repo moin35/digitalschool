@@ -11,7 +11,8 @@
     <title>@yield('title')</title>
     <!--Core CSS date picker -->
     <!-- search for table-->
-
+    <!--external css-->
+       <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/gritter/css/jquery.gritter.css" />
 
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-fileupload/bootstrap-fileupload.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
@@ -241,7 +242,7 @@
         <div class="top-nav clearfix">
             <!--search & user info start-->
 
-            {{session('lang_msg')}}
+
                     <!--search & user info start-->
             <ul class="nav pull-right top-menu">
 
@@ -350,7 +351,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{URL::to('add/student')}}">
+                        <a href="{{URL::to('grade/index')}}">
                             <i class="fa fa-signal"></i>
                             <span>{{Lang::get('home.grade')}} </span>
                         </a>
@@ -365,6 +366,12 @@
                             <li><a href="horizontal_menu.html">Horizontal Menu</a></li>
                             <li><a href="language_switch.html">Language Switch Bar</a></li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="{{URL::to('mark/index')}}">
+                            <i class="fa fa-flask"></i>
+                            <span>{{Lang::get('home.mark')}} </span>
+                        </a>
                     </li>
                     <li class="sub-menu">
                         <a href="javascript:;">
@@ -826,6 +833,8 @@
 <script type="text/javascript" src="{{URL::to('/')}}/js/jquery.validate.min.js"></script>
 <script src="{{URL::to('/')}}/js/validation-init.js"></script>
 
+<!--script for this page-->
+<script src="{{URL::to('/')}}/js/gritter.js" type="text/javascript"></script>
 
 <!-- END JAVASCRIPTS -->
 <script>
@@ -833,7 +842,7 @@
         EditableTable.init();
     });
 </script>
- 
+
 <script>
     jQuery(document).ready(function($){
         n=1;

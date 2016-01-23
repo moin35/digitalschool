@@ -17,4 +17,5 @@ return [
     'section'=> 'শাখা',
     'subject'=> 'বিষয়',
     'grade'=> 'গ্রেড',
+    'mark'=>'মার্ক',
 ];
