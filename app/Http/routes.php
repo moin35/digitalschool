@@ -152,8 +152,10 @@ Route::get('/exam/delete/{eid}','InstituteController@deleteExamInfo');
 
 //Add edit delete Exam Schedule
 Route::get('/admin/add/exam/schedule','InstituteController@getExamSchedule');
-
-
+Route::post('/admin/add/exam/schedule','InstituteController@postExamSchedule');
+Route::get('/exam/schedule/edit/{id}','InstituteController@getEditExamSchedule');
+Route::post('/exam/schedule/edit/{id}','InstituteController@updateEditExamSchedule');
+Route::get('/exam/schedule/delete/{id}','InstituteController@deleteExamScheduleInfo');
 
 //grade/index info manage
 

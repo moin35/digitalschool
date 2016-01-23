@@ -72,8 +72,10 @@ class HomeController extends Controller {
         //Student Registration Post Function for asmin
         $parents = Input::get('guardian_name');
         $class = Input::get('class');
+        //return $class;
         $parents_name = Parents::where('guradian_id', '=', $parents)->pluck('guardian_name');
         $class_name = ClassAdd::where('class_id', '=', $class)->pluck('class_name');
+       // return $class_name.$class ;
         $email = Input::get('email');
         $userc = User::Where('email', '=', $email)->count();
         $marchant = Institute::Where('email', '=', $email)->count();
@@ -81,6 +83,9 @@ class HomeController extends Controller {
             Session::flash('data', 'This Email already used. Please Try a another email.');
             return Redirect::to('add/student');
         }else{
+            $class = Input::get('class');
+            //return $class;
+            $parents_name = Parents::where('guradian_id', '=', $parents)->pluck('guardian_name');
             $iid=User::where('uid','=',Auth::user()->uid)->pluck('institute_id');
             if(Input::hasFile('image')){
                 // return 1;
@@ -123,7 +128,7 @@ class HomeController extends Controller {
         $su->religion=Input::get('religion');
         $su->phone=Input::get('phone');
         $su->address=Input::get('address');
-        $su->class=$class_name;
+        $su->class=$class;
         $su->section=Input::get('section');
         $su->roll=Input::get('roll');
         $su->image=$final;
@@ -145,7 +150,6 @@ class HomeController extends Controller {
             $mk->phone=Input::get('phone');
             $mk->roll=Input::get('roll');
             $mk->image=$final;
-
             $mk->save();
 
 
