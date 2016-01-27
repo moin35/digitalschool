@@ -165,3 +165,7 @@ Route::post('grade/index','InstituteController@postGradeIndex');
 Route::get('grade/edit/{gid}','InstituteController@getGradeEdit');
 Route::post('grade/edit/{gid}','InstituteController@postGradeEdit');
 Route::get('grade/delete/{gid}','InstituteController@GradeDelete');
+//routine add
+Route::get('/admin/add/routine','InstituteController@getAddRoutine');
+Route::post('/admin/add/routine','InstituteController@postAddRoutine');
+Route::post('admin/routine/search',['as'=>'searchroutine','uses'=>'InstituteController@postRoutineByClass']);

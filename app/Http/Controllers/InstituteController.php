@@ -26,6 +26,7 @@ use App\Section;
 use App\Exam;
 use App\ExamSchedule;
 use App\GradeSystem;
+use App\ClassRoutine;
 
 class InstituteController extends Controller {
 
@@ -388,5 +389,161 @@ public function postExamSchedule(){
 
               return 1;    
    }
+    public function getAddRoutine(){
+        //Moin
+        // routine get Function for admin
+        $examname=Exam::where('institute_code', '=', Auth::user()->institute_id)->lists('exam_id','exam_name');
+        $classname=ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id','class_name');
+        $schedule=ExamSchedule::where('institute_code', '=', Auth::user()->institute_id)->get();
+        //return $schedule;
+        $sid=ClassRoutine::where('class_name','LIKE',$classname)->pluck('institute_code');
+            $sat=ClassRoutine::where('class_name','=',$classname)
+                                ->where('institute_code','=',$sid)
+                                ->where('day','=','SATURDAY')
+                                ->get();
+            $sun=ClassRoutine::where('class_name','=',$classname)
+                                ->where('institute_code','=',$sid)
+                                ->where('day','=','SUNDAY')
+                                ->get();
+            $mon=ClassRoutine::where('class_name','=',$classname)
+                                ->where('institute_code','=',$sid)
+                                ->where('day','=','MONDAY')
+                                ->get();
+            $tue=ClassRoutine::where('class_name','=',$classname)
+                                ->where('institute_code','=',$sid)
+                                ->where('day','=','TUESDAY')
+                                ->get();
+            $wed=ClassRoutine::where('class_name','=',$classname)
+                                ->where('institute_code','=',$sid)
+                                ->where('day','=','WEDNESDAY')
+                                ->get();
+             $thu=ClassRoutine::where('class_name','=',$classname)
+                                ->where('institute_code','=',$sid)
+                                ->where('day','=','THURSDAY')
+                                ->get();
+            $fri=ClassRoutine::where('class_name','=',$classname)
+                                ->where('institute_code','=',$sid)
+                                ->where('day','=','FRIDAY')
+                                ->get();
+            $search1=Section::where('class_name','=',$classname)
+                                ->where('institute_code','=',$sid)
+                                ->lists('section_category','section_name');
+        $indsec=ClassRoutine::where('class_name','=',$classname)
+            ->where('institute_code','=',$sid)
+            ->where('day','=','MONDAY')
+            ->get();
+        return view('admin.addroutine',['examview'=>$examname,
+                                        'classview'=>$classname,
+                                        'examschedule'=>$schedule,
+                                        'sat'=> $sat,
+                                        'sun'=> $sun,
+                                        'mon'=> $mon,
+                                        'tue'=> $tue,
+                                        'wed'=> $wed,
+                                        'thu'=> $thu,
+                                        'fri'=> $fri,
+                                        'sec'=> $indsec,
+                                        'section'=>$search1]);
+       // return view('admin.addroutine');
+    }
+public function postAddRoutine(){
+    //Moin
+    //Exam Schedule get Function for admin
+    $iid=User::where('uid','=',Auth::user()->uid)->pluck('institute_id');
+    //$exam=Input::get('exam');
+    //$exam_name = Exam::where('institute_code', '=', Auth::user()->institute_id)->where('exam_id', '=', $exam)->pluck('exam_name');
 
+    $class = Input::get('class');
+    $class_name = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->where('class_id', '=', $class)->pluck('class_name');
+    $sub_name= Input::get('subject');
+    $sub_id = Subject::where('subject_name', '=', $sub_name)->pluck('id');
+    $section_name= Input::get('section');
+    $section_id = Section::where('institute_code', '=', Auth::user()->institute_id)->where('section_name', '=', $section_name)->pluck('section_id');
+//return $iid.'/'.$class.'/'.$class_name.'/'.'ok'.$sub_id.'ok'.'/'.$sub_name.'/'.$section_id.'/'.$section_name;
+    $su=new ClassRoutine;
+    $su->institute_code=$iid;
+    //$su->exam_name=$exam_name;
+    $su->class_id=$class;
+    $su->class_name=$class_name;
+    $su->section_id=$section_id;
+    $su->section_name=$section_name;
+    $su->subject_id=$sub_id;
+    $su->subject_name=$sub_name;
+    $su->day=Input::get('day');
+    $su->start_timeday=Input::get('timepickerform');
+    $su->end_time=Input::get('timepickerto');
+    $su->room_no=Input::get('room');
+    $su->save();
+    //return $su;
+    Session::flash('data', 'Data successfully Added !');
+    return Redirect::to('admin/add/routine');
+}
+public function postRoutineByClass(){
+  //return 1;
+  $class=Input::get('class');
+ //return $class;
+ if($class!='')
+ {
+            //return $pname.'/'.$hprice.'/'.$lprice.'/'.$marchant;
+     $examname=Exam::where('institute_code', '=', Auth::user()->institute_id)->lists('exam_id','exam_name');
+        $classname=ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id','class_name');
+        $schedule=ExamSchedule::where('institute_code', '=', Auth::user()->institute_id)->get();
+
+            $sid=ClassRoutine::where('class_name','LIKE',$class)->pluck('institute_code');
+            $sat=ClassRoutine::where('class_name','=',$class)
+                                ->where('institute_code','=',$sid)
+                                ->where('day','=','SATURDAY')
+                                ->get();
+            $sun=ClassRoutine::where('class_name','=',$class)
+                                ->where('institute_code','=',$sid)
+                                ->where('day','=','SUNDAY')
+                                ->get();
+            $mon=ClassRoutine::where('class_name','=',$class)
+                                ->where('institute_code','=',$sid)
+                                ->where('day','=','MONDAY')
+                                ->get();
+            $tue=ClassRoutine::where('class_name','=',$class)
+                                ->where('institute_code','=',$sid)
+                                ->where('day','=','TUESDAY')
+                                ->get();
+            $wed=ClassRoutine::where('class_name','=',$class)
+                                ->where('institute_code','=',$sid)
+                                ->where('day','=','WEDNESDAY')
+                                ->get();
+             $thu=ClassRoutine::where('class_name','=',$class)
+                                ->where('institute_code','=',$sid)
+                                ->where('day','=','THURSDAY')
+                                ->get();
+            $fri=ClassRoutine::where('class_name','=',$class)
+                                ->where('institute_code','=',$sid)
+                                ->where('day','=','FRIDAY')
+                                ->get();
+
+        
+     //return $search;
+            $search1=Section::where('class_name','=',$class)
+                                ->where('institute_code','=',$sid)
+                                ->orderBy('section_name', 'ASC')
+                                ->lists('section_category','section_name');
+            $indsec=ClassRoutine::where('class_name','=',$class)
+                                ->where('institute_code','=',$sid)
+                                ->where('day','=','MONDAY')
+                                ->get();
+
+     //return  $moni;
+             return view('admin.addroutine',['examview'=>$examname,
+                                            'classview'=>$classname,
+                                            'examschedule'=>$schedule,
+                                            'sat'=> $sat,
+                                            'sun'=> $sun,
+                                            'mon'=> $mon,
+                                            'tue'=> $tue,
+                                            'wed'=> $wed,
+                                            'thu'=> $thu,
+                                            'fri'=> $fri,
+                                            'sec'=> $indsec,
+                                            'section'=>$search1]);
+         }
+
+}
 }

@@ -51,7 +51,7 @@ Mark
                             <div class="list-group-item list-group-item-warning">
 
                             {!!Form::open()!!}
-                            
+
                                   <div class="form-group">
                                       <label for="classesID" class="col-sm-2 col-sm-offset-2 control-label">
                                           Exam                                </label>

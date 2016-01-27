@@ -110,7 +110,7 @@ class HomeController extends Controller {
 
         $u=new User;
         $u->name=Input::get('firstname').' '.Input::get('lastname');
-        $u->uid=$iid.','.Input::get('roll');
+        $u->uid=mt_rand('1', '999').' '.Input::get('roll').' '.$iid;
         $u->priv=2;
         $u->user_type='Students';
         $u->user_name=Input::get('username');
@@ -120,7 +120,7 @@ class HomeController extends Controller {
 
         $su=new Students;
         $su->name=Input::get('firstname').' '.Input::get('lastname');
-        $su->st_id=$iid.','.Input::get('roll');
+        $su->st_id=mt_rand('1', '999').' '.Input::get('roll').' '.$iid;
         $su->institute_code=$iid;
         $su->guardian_id=$parents;
         $su->guardian_name=$parents_name;
@@ -143,7 +143,7 @@ class HomeController extends Controller {
 
             $mk=new Mark;
             $mk->student_name=Input::get('firstname').' '.Input::get('lastname');
-            $mk->student_id=$iid.','.Input::get('roll');
+            $mk->student_id=mt_rand('1', '999').' '.Input::get('roll').' '.$iid;
             $mk->institute_code=$iid;
             $mk->class_id=$class;
             $mk->class_name=$class_name;
