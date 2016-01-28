@@ -200,18 +200,19 @@
                         </div>
                         <div class="col-md-3"></div>
                     </div>
+
             <section class="panel">
                 <header class="panel-heading tab-bg-dark-navy-blue ">
                 
                     <ul class="nav nav-tabs">
                     
                         <li class="active">
-                            <a data-toggle="tab" href="#home">All</a>
+                            <a data-toggle="tab" href="#home">All Routine</a>
                         </li>
                      
                         @foreach($section as $r=>$t)
                         <li >
-                            <a data-toggle="tab" href="#{{$r}}">{{$r}} ({{$t}})</a>
+                            <a data-toggle="tab" href="#{{$r}}">&nbsp;&nbsp;&nbsp;&nbsp;{{$r}} ({{$t}})</a>
                         </li>
                       @endforeach
                     </ul>
@@ -225,26 +226,37 @@
                               <div class="row">
                               <div class="col-md-1">SATURDAY</div>
                                   @foreach($sat as $r)
-                                  <div class="col-md-2">
-                                        {{$r->class_name}}<br>
-                                        {{$r->start_timeday}}<br>
-                                        {{$r->end_time}}<br>
-                                        {{$r->room_no}}<br>
-                                        {{$r->section_name}}<br>                                
+                                  <div class="col-md-2 round">
+                                      <label style="background-color: #56C9F5;padding: 5px;" align="center">
+
+                                        Class: {{$r->class_name}}<br>
+                                        Starting Time: {{$r->start_timeday}}<br>
+                                        Ending Time: {{$r->end_time}}<br>
+                                        Room No: {{$r->room_no}}<br>
+                                        Section: {{$r->section_name}}<br>
+                                          <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/class/routine/edit/{{$r->id}}"><i class="fa fa-edit"></i> </a>
+                                          <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/class/routine/delete/{{$r->id}}" ><i class="fa  fa-trash-o"></i></a>
+
+                                      </label>
                                   </div>
                                   @endforeach
                               </div>
                               </div>
-                                <div class="col-md-12">
+                                <div class="col-md-12" >
                                     <div class="row">
                                         <div class="col-md-1">SUNDAY</div>
                                         @foreach($sun as $r)
                                             <div class="col-md-2">
-                                                {{$r->class_name}}<br>
-                                                {{$r->start_timeday}}<br>
-                                                {{$r->end_time}}<br>
-                                                {{$r->room_no}}<br>
-                                                {{$r->section_name}}<br>
+                                                <label class=" round" style="background-color: #56C9F5;padding: 5px;" align="center">
+                                               Class: {{$r->class_name}}<br>
+                                               Starting Time: {{$r->start_timeday}}<br>
+                                               Ending Time: {{$r->end_time}}<br>
+                                               Room No: {{$r->room_no}}<br>
+                                               Section: {{$r->section_name}}<br>
+                                                    <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/class/routine/edit/{{$r->id}}"><i class="fa fa-edit"></i> </a>
+                                                    <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/class/routine/delete/{{$r->id}}" ><i class="fa  fa-trash-o"></i></a>
+
+                                                </label>
                                             </div>
                                         @endforeach
                                     </div>
@@ -254,11 +266,16 @@
                                         <div class="col-md-1">MONDAY</div>
                                         @foreach($mon as $r)
                                             <div class="col-md-2">
-                                                {{$r->class_name}}<br>
-                                                {{$r->start_timeday}}<br>
-                                                {{$r->end_time}}<br>
-                                                {{$r->room_no}}<br>
-                                                {{$r->section_name}}<br>
+                                                <label style="background-color: #56C9F5;padding: 5px;" align="center">
+                                                Class: {{$r->class_name}}<br>
+                                                Starting Time: {{$r->start_timeday}}<br>
+                                                Ending Time: {{$r->end_time}}<br>
+                                                Room No: {{$r->room_no}}<br>
+                                                Section: {{$r->section_name}}<br>
+                                                    <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/class/routine/edit/{{$r->id}}"><i class="fa fa-edit"></i> </a>
+                                                    <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/class/routine/delete/{{$r->id}}" ><i class="fa  fa-trash-o"></i></a>
+
+                                                </label>
                                             </div>
                                         @endforeach
                                     </div>
@@ -268,11 +285,16 @@
                                         <div class="col-md-1">TUESDAY</div>
                                         @foreach($tue as $r)
                                             <div class="col-md-2">
-                                                {{$r->class_name}}<br>
-                                                {{$r->start_timeday}}<br>
-                                                {{$r->end_time}}<br>
-                                                {{$r->room_no}}<br>
-                                                {{$r->section_name}}<br>
+                                                <label style="background-color: #56C9F5;padding: 5px;" align="center">
+                                                Class: {{$r->class_name}}<br>
+                                                Starting Time: {{$r->start_timeday}}<br>
+                                                Ending Time: {{$r->end_time}}<br>
+                                                Room No: {{$r->room_no}}<br>
+                                                Section: {{$r->section_name}}<br>
+                                                    <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/class/routine/edit/{{$r->id}}"><i class="fa fa-edit"></i> </a>
+                                                    <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/class/routine/delete/{{$r->id}}" ><i class="fa  fa-trash-o"></i></a>
+
+                                                </label>
                                             </div>
                                         @endforeach
                                     </div>
@@ -282,11 +304,16 @@
                                         <div class="col-md-1">WEDNESDAY</div>
                                         @foreach($wed as $r)
                                             <div class="col-md-2">
-                                                {{$r->class_name}}<br>
-                                                {{$r->start_timeday}}<br>
-                                                {{$r->end_time}}<br>
-                                                {{$r->room_no}}<br>
-                                                {{$r->section_name}}<br>
+                                                <label style="background-color: #56C9F5;padding: 5px;" align="center">
+                                                Class: {{$r->class_name}}<br>
+                                                Starting Time: {{$r->start_timeday}}<br>
+                                                Ending Time: {{$r->end_time}}<br>
+                                                Room No: {{$r->room_no}}<br>
+                                               Section: {{$r->section_name}}<br>
+                                                    <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/class/routine/edit/{{$r->id}}"><i class="fa fa-edit"></i> </a>
+                                                    <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/class/routine/delete/{{$r->id}}" ><i class="fa  fa-trash-o"></i></a>
+
+                                                </label>
                                             </div>
                                         @endforeach
                                     </div>
@@ -295,12 +322,17 @@
                                     <div class="row">
                                         <div class="col-md-1">THURSDAY</div>
                                         @foreach($thu as $r)
-                                            <div class="col-md-2">
-                                                {{$r->class_name}}<br>
-                                                {{$r->start_timeday}}<br>
-                                                {{$r->end_time}}<br>
-                                                {{$r->room_no}}<br>
-                                                {{$r->section_name}}<br>
+                                            <div class="col-md-2" >
+                                                <label style="background-color: #56C9F5;padding: 5px;" align="center">
+                                                Class: {{$r->class_name}}<br>
+                                                Starting Time: {{$r->start_timeday}}<br>
+                                                Ending Time: {{$r->end_time}}<br>
+                                                Room No: {{$r->room_no}}<br>
+                                               Section: {{$r->section_name}}<br>
+                                                    <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/class/routine/edit/{{$r->id}}"><i class="fa fa-edit"></i> </a>
+                                                    <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/class/routine/delete/{{$r->id}}" ><i class="fa  fa-trash-o"></i></a>
+
+                                                </label>
                                             </div>
                                         @endforeach
                                     </div>
@@ -309,12 +341,15 @@
                                     <div class="row">
                                         <div class="col-md-1">FRIDAY</div>
                                         @foreach($fri as $r)
-                                            <div class="col-md-2">
-                                                {{$r->class_name}}<br>
-                                                {{$r->start_timeday}}<br>
-                                                {{$r->end_time}}<br>
-                                                {{$r->room_no}}<br>
-                                                {{$r->section_name}}<br>
+                                            <div class="col-md-2" style="background-color: #56C9F5;padding: 5px;" align="center">
+                                                Class: {{$r->class_name}}<br>
+                                                Starting Time: {{$r->start_timeday}}<br>
+                                                Ending Time: {{$r->end_time}}<br>
+                                                Room No: {{$r->room_no}}<br>
+                                                Section: {{$r->section_name}}<br>
+                                                <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/class/routine/edit/{{$r->id}}"><i class="fa fa-edit"></i> </a>
+                                                <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/class/routine/delete/{{$r->id}}" ><i class="fa  fa-trash-o"></i></a>
+
                                             </div>
                                         @endforeach
                                     </div>
@@ -331,11 +366,16 @@
 
                                       <div class="col-md-2">no data</div><div class="col-md-2">no data</div>
                                       <div class="col-md-2">
-                                          {{$s->class_name}}<br>
-                                          {{$s->start_timeday}}<br>
-                                          {{$s->end_time}}<br>
-                                          {{$s->room_no}}<br>
-                                          {{$s->section_name}}<br>
+                                          <label style="background-color: #56C9F5;padding: 5px;" align="center">
+                                         Class: {{$s->class_name}}<br>
+                                         Starting Time: {{$s->start_timeday}}<br>
+                                         Ending Time: {{$s->end_time}}<br>
+                                         Room No: {{$s->room_no}}<br>
+                                         Section: {{$s->section_name}}<br>
+                                              <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/class/routine/edit/{{$r->id}}"><i class="fa fa-edit"></i> </a>
+                                              <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/class/routine/delete/{{$r->id}}" ><i class="fa  fa-trash-o"></i></a>
+
+                                          </label>
                                       </div>
                                   @else
                                       <div class="col-md-2">no data</div>
@@ -349,11 +389,16 @@
                                         @if($s=\APP\ClassRoutine::where('day','=','SUNDAY')->where('section_name','=',$r->section_name)->where('class_name','=',$r->class_name)->first())
                                             <div class="col-md-3"></div>
                                             <div class="col-md-2">
-                                                {{$s->class_name}}<br>
-                                                {{$s->start_timeday}}<br>
-                                                {{$s->end_time}}<br>
-                                                {{$s->room_no}}<br>
-                                                {{$s->section_name}}<br>
+                                                <label style="background-color: #56C9F5;padding: 5px;" align="center">
+                                              Class:  {{$s->class_name}}<br>
+                                              Starting Time:  {{$s->start_timeday}}<br>
+                                              Ending Time:  {{$s->end_time}}<br>
+                                              Room No:  {{$s->room_no}}<br>
+                                              Section:  {{$s->section_name}}<br>
+                                                    <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/class/routine/edit/{{$r->id}}"><i class="fa fa-edit"></i> </a>
+                                                    <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/class/routine/delete/{{$r->id}}" ><i class="fa  fa-trash-o"></i></a>
+
+                                                </label>
                                             </div>
                                             @else
                                             <div class="col-md-2">no data</div>
@@ -366,11 +411,16 @@
                                         @if($s=\APP\ClassRoutine::where('day','=','MONDAY')->where('section_name','=',$r->section_name)->where('class_name','=',$r->class_name)->first())
                                             <div class="col-md-1"></div>
                                             <div class="col-md-2" >
-                                                {{$s->class_name}}<br>
-                                                {{$s->start_timeday}}<br>
-                                                {{$s->end_time}}<br>
-                                                {{$s->room_no}}<br>
-                                                {{$s->section_name}}<br>
+                                                <label style="background-color: #56C9F5;padding: 5px;" align="center">
+                                                Class: {{$s->class_name}}<br>
+                                                Starting Time: {{$s->start_timeday}}<br>
+                                                Ending Time: {{$s->end_time}}<br>
+                                                Room No: {{$s->room_no}}<br>
+                                               Section:  {{$s->section_name}}<br>
+                                                    <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/class/routine/edit/{{$r->id}}"><i class="fa fa-edit"></i> </a>
+                                                    <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/class/routine/delete/{{$r->id}}" ><i class="fa  fa-trash-o"></i></a>
+
+                                                </label>
                                             </div>
                                             <div class="col-md-1"></div>
                                         @else
@@ -383,11 +433,16 @@
                                         <div class="col-md-1">TUESDAY</div>
                                         @if($s=\APP\ClassRoutine::where('day','=','TUESDAY')->where('section_name','=',$r->section_name)->where('class_name','=',$r->class_name)->first())
                                             <div class="col-md-2">
-                                                {{$s->class_name}}<br>
-                                                {{$s->start_timeday}}<br>
-                                                {{$s->end_time}}<br>
-                                                {{$s->room_no}}<br>
-                                                {{$s->section_name}}<br>
+                                                <label style="background-color: #56C9F5;padding: 5px;" align="center">
+                                                Class:{{$s->class_name}}<br>
+                                                Starting Time:{{$s->start_timeday}}<br>
+                                               Ending Time: {{$s->end_time}}<br>
+                                               Room No: {{$s->room_no}}<br>
+                                                Section:{{$s->section_name}}<br>
+                                                    <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/class/routine/edit/{{$r->id}}"><i class="fa fa-edit"></i> </a>
+                                                    <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/class/routine/delete/{{$r->id}}" ><i class="fa  fa-trash-o"></i></a>
+
+                                                </label>
                                             </div>
                                         @else
                                             <div class="col-md-2">no data</div>
@@ -399,11 +454,16 @@
                                         <div class="col-md-1">WEDNESDAY</div>
                                         @if($s=\APP\ClassRoutine::where('day','=','WEDNESDAY')->where('section_name','=',$r->section_name)->where('class_name','=',$r->class_name)->first())
                                             <div class="col-md-2">
-                                                {{$s->class_name}}<br>
-                                                {{$s->start_timeday}}<br>
-                                                {{$s->end_time}}<br>
-                                                {{$s->room_no}}<br>
-                                                {{$s->section_name}}<br>
+                                                <label style="background-color: #56C9F5;padding: 5px;" align="center">
+                                               Class: {{$s->class_name}}<br>
+                                               Starting Time: {{$s->start_timeday}}<br>
+                                               Ending Time: {{$s->end_time}}<br>
+                                               Room No: {{$s->room_no}}<br>
+                                               Section: {{$s->section_name}}<br>
+                                                    <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/class/routine/edit/{{$r->id}}"><i class="fa fa-edit"></i> </a>
+                                                    <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/class/routine/delete/{{$r->id}}" ><i class="fa  fa-trash-o"></i></a>
+
+                                                </label>
                                             </div>
                                         @else
                                             <div class="col-md-2">no data</div>
@@ -415,11 +475,16 @@
                                         <div class="col-md-1">THURSDAY</div>
                                         @if($s=\APP\ClassRoutine::where('day','=','THURSDAY')->where('section_name','=',$r->section_name)->where('class_name','=',$r->class_name)->first())
                                             <div class="col-md-2">
-                                                {{$s->class_name}}<br>
-                                                {{$s->start_timeday}}<br>
-                                                {{$s->end_time}}<br>
-                                                {{$s->room_no}}<br>
-                                                {{$s->section_name}}<br>
+                                                <label style="background-color: #56C9F5;padding: 5px;" align="center">
+                                               Class: {{$s->class_name}}<br>
+                                               Starting Time: {{$s->start_timeday}}<br>
+                                               Ending Time: {{$s->end_time}}<br>
+                                               Room No: {{$s->room_no}}<br>
+                                               Section: {{$s->section_name}}<br>
+                                                    <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/class/routine/edit/{{$r->id}}"><i class="fa fa-edit"></i> </a>
+                                                    <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/class/routine/delete/{{$r->id}}" ><i class="fa  fa-trash-o"></i></a>
+
+                                                </label>
                                             </div>
                                         @else
                                             <div class="col-md-2">no data</div>
@@ -431,11 +496,16 @@
                                         <div class="col-md-1">FRIDAY</div>
                                         @if($s=\APP\ClassRoutine::where('day','=','FRIDAY')->where('section_name','=',$r->section_name)->where('class_name','=',$r->class_name)->first())
                                             <div class="col-md-2">
-                                                {{$s->class_name}}<br>
-                                                {{$s->start_timeday}}<br>
-                                                {{$s->end_time}}<br>
-                                                {{$s->room_no}}<br>
-                                                {{$s->section_name}}<br>
+                                                <label style="background-color: #56C9F5;padding: 5px;" align="center">
+                                               Class: {{$s->class_name}}<br>
+                                              Starting Time:  {{$s->start_timeday}}<br>
+                                              Ending Time:  {{$s->end_time}}<br>
+                                              Room No:  {{$s->room_no}}<br>
+                                              Section:  {{$s->section_name}}<br>
+                                                    <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/class/routine/edit/{{$r->id}}"><i class="fa fa-edit"></i> </a>
+                                                    <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/class/routine/delete/{{$r->id}}" ><i class="fa  fa-trash-o"></i></a>
+
+                                                </label>
                                             </div>
                                         @else
                                             <div class="col-md-2">no data</div>
@@ -454,109 +524,6 @@
             </section>
 
                 </div>
-            </section>
-
-            <section class="panel">
-                <!-- page start-->
-
-                <div class="row">
-                    <div class="col-sm-12">
-                        <section class="panel">
-                            <header class="panel-heading">
-                                ALL Institute
-                        <span class="tools pull-right">
-                            <a href="javascript:;" class="fa fa-chevron-down"></a>
-                            <a href="javascript:;" class="fa fa-cog"></a>
-                            <a href="javascript:;" class="fa fa-times"></a>
-                         </span>
-                            </header>
-                            <div class="panel-body">
-                                <div class="adv-table editable-table ">
-                                    <div class="clearfix">
-
-                                        <div class="btn-group pull-right">
-
-                                        </div>
-                                    </div>
-                                    <div class="space15"></div>
-                                    <table class="table table-striped table-hover table-bordered" id="editable-sample">
-                                        <thead>
-                                        <tr>
-                                            <th>Exam Name</th>
-                                            <th>Class</th>
-                                            <th>Section</th>
-                                            <th>Subject</th>
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                            <th>Room</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($examschedule as $a)
-                                            <tr class="">
-                                                <td>{{$a->exam_name}}</td>
-                                                <td>{{$a->class_name}}</td>
-                                                <td>{{$a->section_name}}</td>
-                                                <td class="center">{{$a->sub_name}}</td>
-                                                <td class="center">{{$a->exam_date}}</td>
-                                                <td>{{$a->time_from}}-{{$a->time_to}}</td>
-                                                <td>{{$a->room_no}}</td>
-                                                <td> <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/exam/schedule/edit/{{$a->id}}"><i class="fa fa-edit"></i> </a>
-                                                    <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/exam/schedule/delete/{{$a->id}}" ><i class="fa  fa-trash-o"></i></a>
-
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
-
-                            <!---end----!>
-                              <!-- Modal -->
-                            <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title">Modal Tittle</h4>
-                                        </div>
-                                        <div class="modal-body">
-
-                                            Body goes here...
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
-                                            <button class="btn btn-warning" type="button"> Confirm</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Modal -->
-                            <div class="modal fade" id="myModal" role="dialog">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Modal Header</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>This is a large modal.</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- modal -->
-                        </section>
-                    </div>
-                </div>
-                <!-- page end-->
             </section>
         </div>
         </section>

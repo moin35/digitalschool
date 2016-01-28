@@ -479,12 +479,14 @@ public function postAddRoutine(){
     return Redirect::to('admin/add/routine');
 }
 public function postRoutineByClass(){
+    //Moin
+    //Exam routine search Function for admin
   //return 1;
   $class=Input::get('class');
  //return $class;
  if($class!='')
  {
-            //return $pname.'/'.$hprice.'/'.$lprice.'/'.$marchant;
+
      $examname=Exam::where('institute_code', '=', Auth::user()->institute_id)->lists('exam_id','exam_name');
         $classname=ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id','class_name');
         $schedule=ExamSchedule::where('institute_code', '=', Auth::user()->institute_id)->get();
@@ -546,4 +548,55 @@ public function postRoutineByClass(){
          }
 
 }
+    public function getEditClassRoutine($id){
+        //Moin
+        //Routine get Function for admin
+
+        $icode= User::where('institute_id','=',Auth::user()->institute_id)->pluck('institute_id');
+        $classname=ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id','class_name');
+        $editclassroutine=ClassRoutine::where('institute_code', '=', Auth::user()->institute_id)
+            ->where('id', '=', $id)->first();
+        //return $editclassroutine;
+        return view('admin.editroutine',['icode'=>$icode,'class'=>$classname,'classroutine'=>$editclassroutine]);
+    }
+    public function UpdateClassRoutine($id){
+        //Moin
+        //Routine Update Function for admin
+        $classid=Input::get('class');
+        $sectionname=Input::get('section');
+        $subjectname=Input::get('subject');
+        $day=Input::get('day');
+        $timepickerform=Input::get('timepickerform');
+        $timepickerto=Input::get('timepickerto');
+        $room=Input::get('room');
+
+        $classname=ClassRoutine::where('institute_code', '=', Auth::user()->institute_id)->where('class_id', '=', $classid)->pluck('class_name');
+        $sectionid=ClassRoutine::where('institute_code', '=', Auth::user()->institute_id)->where('section_name', '=', $sectionname)->pluck('section_id');
+        $subjectid=ClassRoutine::where('institute_code', '=', Auth::user()->institute_id)->where('subject_name', '=', $subjectname)->pluck('subject_id');
+
+        $classroutineupdate = ClassRoutine::where('institute_code', '=', Auth::user()->institute_id)->where('id', '=', $id)
+            ->update([
+                'class_id' => $classid,
+                'class_name' => $classname,
+                'section_id' => $subjectid,
+                'section_name' => $sectionname,
+                'subject_id' => $subjectid,
+                'subject_name' => $subjectname,
+                'day' => $day,
+                'start_timeday' => $timepickerform,
+                'end_time' => $timepickerto,
+                'room_no' => $room
+
+            ]);
+        //return $su;
+        Session::flash('data', 'Data successfully Added !');
+        return Redirect::to('class/routine/edit/'. $id);
+    }
+    public function DeleteClassRoutine($id) {
+        //Moin
+        //Class Routine delete Function for admin
+        $delete = ClassRoutine::where('id', '=', $id)->where('institute_code', '=', Auth::user()->institute_id)->delete();
+        Session::flash('data', 'Data successfully Deleted !');
+        return Redirect::to('admin/add/routine');
+    }
 }

@@ -167,5 +167,9 @@ Route::post('grade/edit/{gid}','InstituteController@postGradeEdit');
 Route::get('grade/delete/{gid}','InstituteController@GradeDelete');
 //routine add
 Route::get('/admin/add/routine','InstituteController@getAddRoutine');
-Route::post('/admin/add/routine','InstituteController@postAddRoutine');
+Route::post('/admin/add/routine','C@postAddRoutine');
 Route::post('admin/routine/search',['as'=>'searchroutine','uses'=>'InstituteController@postRoutineByClass']);
+ //Routine Edit Delete
+Route::get('/class/routine/edit/{id}','InstituteController@getEditClassRoutine');
+Route::post('/class/routine/edit/{id}','InstituteController@UpdateClassRoutine');
+Route::get('/class/routine/delete/{id}','InstituteController@DeleteClassRoutine');
