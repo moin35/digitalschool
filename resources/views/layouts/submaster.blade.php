@@ -932,6 +932,8 @@
     });
 
 </script>
+@section('scripts')
 
+@show
 </body>
 </html>

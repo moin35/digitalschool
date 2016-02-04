@@ -173,3 +173,12 @@ Route::post('admin/routine/search',['as'=>'searchroutine','uses'=>'InstituteCont
 Route::get('/class/routine/edit/{id}','InstituteController@getEditClassRoutine');
 Route::post('/class/routine/edit/{id}','InstituteController@UpdateClassRoutine');
 Route::get('/class/routine/delete/{id}','InstituteController@DeleteClassRoutine');
+
+//Accounts Section Start Here
+/*Accounts Fee Type add edit delete update*/
+Route::get('/admin/add/account/fee/type','AccountsController@getAccountType');
+Route::post('/admin/add/account/fee/type','AccountsController@postAccountType');
+Route::get('fee/type/edit/{id}','AccountsController@getEditFeeType');
+Route::put('fee/type/edit/{id}','AccountsController@getUpdateFeeType');
+Route::delete('fee/type/delete/{id}','AccountsController@getDeleteFeeType');
+
