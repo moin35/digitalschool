@@ -374,7 +374,7 @@
                         <ul class="sub">
                             <li><a href="{{URL::to('/admin/add/exam')}}">Exam</a></li>
                             <li><a href="{{URL::to('admin/add/exam/schedule')}}">Add Exam Schedule</a></li>
-                            <li><a href="language_switch.html">Language Switch Bar</a></li>
+                            <li><a href="admin/add/routine">Add Class Routine</a></li>
                         </ul>
                     </li>
                     <li>

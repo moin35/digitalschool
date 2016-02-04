@@ -178,11 +178,40 @@ Route::get('grade/edit/{gid}','InstituteController@getGradeEdit');
 Route::post('grade/edit/{gid}','InstituteController@postGradeEdit');
 Route::get('grade/delete/{gid}','InstituteController@GradeDelete');
 
-//test for mark update saif
- Route::get('add/mark/students','StudentResultMarkController@create');
- Route::post('add/mark/students','StudentResultMarkController@studentListForMarks');
-// Route::post('finally/addmake',  'StudentResultMarkController');
-//Route::resource('user','StudentResultMarkController');
+Route::get('/admin/add/routine','InstituteController@getAddRoutine');
+Route::post('/admin/add/routine','C@postAddRoutine');
+Route::post('admin/routine/search',['as'=>'searchroutine','uses'=>'InstituteController@postRoutineByClass']);
+ //Routine Edit Delete
+Route::get('/class/routine/edit/{id}','InstituteController@getEditClassRoutine');
+Route::post('/class/routine/edit/{id}','InstituteController@UpdateClassRoutine');
+Route::get('/class/routine/delete/{id}','InstituteController@DeleteClassRoutine');
 
+//Accounts Section Start Here
+/*Accounts Fee Type add edit delete update*/
+Route::get('/admin/add/account/fee/type','AccountsController@getAccountType');
+Route::post('/admin/add/account/fee/type','AccountsController@postAccountType');
+Route::get('fee/type/edit/{id}','AccountsController@getEditFeeType');
+Route::put('fee/type/edit/{id}','AccountsController@getUpdateFeeType');
+Route::delete('fee/type/delete/{id}','AccountsController@getDeleteFeeType');
+//user or sttaf crud operation
 Route::get('user/index','InstituteController@getUserIndex');
 Route::post('user/index','InstituteController@posuserinfo');
+Route::get('user/details/{uid}','InstituteController@getUserInfo');
+Route::get('user/details/edit/{uid}','InstituteController@getUserInfoedit');
+Route::post('user/details/edit/{uid}','InstituteController@getUserInfoupdate');
+Route::get('user/info/delete/{uid}','InstituteController@getuserinfodelete');
+
+//Saif Student Mark & Resul Managements
+
+//mark management saif........
+Route::get('mark/index','StudentResultMarkController@markIndex');
+Route::get('mark/add','StudentResultMarkController@markadd');
+Route::post('mark/add','StudentResultMarkController@postAddMark');
+Route::post('mark/add/all',['as'=>'postsubmark','uses'=>'StudentResultMarkController@postAddMarkall']);
+Route::get('api/dropdown/subject', function(){
+    $user = Input::get('option');
+    //return $user;
+    $items = App\Subject::where('institute_code','=',Auth::user()->institute_id)->where('class_id', '=', $user)->lists('subject_name','subject_code');
+    return Response::make($items);
+});
+Route::get('mark/view/{roll}/{cid}','StudentResultMarkController@getMarkViews');
