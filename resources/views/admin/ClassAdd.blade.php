@@ -32,12 +32,17 @@ Class Information
 
 
                               @if(Session::get('data'))
-                              <div class="bs-example">
-    <div class="alert alert-success fade in">
-        <a href="#" class="close" data-dismiss="alert">&times;</a>
-        <strong>{{Session::get('data')}}</strong>.
-    </div>
-</div>
+                            
+<div class="alert alert-success alert-block fade in">
+                                <button data-dismiss="alert" class="close close-sm" type="button">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                                <h4>
+                                    <i class="icon-ok-sign"></i>
+                                  {{Session::get('data')}}
+                                </h4>
+
+                            </div>
 
     @endif
                             <div class="btn-group pull-right">

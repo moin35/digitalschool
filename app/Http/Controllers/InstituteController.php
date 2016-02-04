@@ -26,6 +26,11 @@ use App\Section;
 use App\Exam;
 use App\ExamSchedule;
 use App\GradeSystem;
+use App\Mark;
+use Illuminate\Support\Facades\DB;
+use App\Staff;
+//use Request;
+//use Input;
 
 class InstituteController extends Controller {
 
@@ -255,24 +260,7 @@ public function postExamSchedule(){
     //return $su;
     Session::flash('data', 'Data successfully Added !');
     return Redirect::to('admin/add/exam/schedule');
-}
-
-        public function markIndex(){
-          //saif markIndex view for admin and teacher
-          $teacher = Teacher::where('institute_code', '=', Auth::user()->institute_id)->lists('teacher_id', 'name');
-          $class = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id', 'class_name');
-          $section = Section::where('institute_code', '=', Auth::user()->institute_id)->get();
-          return view('admin.markindex')->with('section', $section)->with('teacher', $teacher)->with('allclass', $class);
-        }
-
-        public function markadd(){
-         //saif markIndex view for admin and teacher
-          $examName=Exam::where('institute_code', '=', Auth::user()->institute_id)->lists('exam_id', 'exam_name');
-          $class = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id', 'class_name');
-          $examSubj=Subject::where('institute_code', '=', Auth::user()->institute_id)->lists('subject_code', 'subject_name');
-
-          return view('admin.markadd')->with('allclass', $class)->with('examName',$examName)->with('examSubj',$examSubj);
-        }
+     }
 
 
         public function getgradeIndex(){
@@ -384,9 +372,215 @@ public function postExamSchedule(){
         return Redirect::to('admin/add/exam/schedule');
     }
 
+
+      public function markIndex(){
+
+        //saif markIndex view for admin and teacher
+        //$teacher = Teacher::where('institute_code', '=', Auth::user()->institute_id)->lists('teacher_id', 'name');
+       $this->getallclass();
+      //  $section = Section::where('institute_code', '=', Auth::user()->institute_id)->where('class_id','=',$class)->get();
+      $allStudetResult=Mark::where('institute_code','=', Auth::user()->institute_id)->get();
+        return view('admin.markindex')->with('allclass', $this->getallclass())->with('allStudetResult',$allStudetResult);
+      }
+
+      public function markadd(){
+
+
+         $class=Input::get('classid');
+         $examNameviews=Input::get('examName');
+         $subJNames=Input::get('subject');
+
+         $examName=Exam::where('institute_code', '=', Auth::user()->institute_id)->lists('exam_id', 'exam_name');
+         $allclass = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id', 'class_name');
+     //  $examSubj=Subject::where('institute_code', '=', Auth::user()->institute_id)->lists('subject_code', 'subject_name');
+     $markForStdSub1=Mark::where('class_id','=',$class)->where('exam_name','=',$examNameviews)->where('exam_subject','=',$subJNames)->get();
+
+     $markForStdSub=Mark::where('institute_code','=', Auth::user()->institute_id)->where('class_id','=',$class)->where('exam_name','=',$examNameviews)->where('exam_subject','=',$subJNames)->get();
+
+         return view('admin.markadd')->with('allclass', $allclass)->with('examName',$examName)->with('addmake',$markForStdSub)->with('examNameviews',$examNameviews)->with('subJNames',$subJNames)->with('classId',$class)->with('markForStdSub1',$markForStdSub1);
+      }
+
    public function postAddMark(){
 
-              return 1;    
+      $class=Input::get('classid');
+      $examNameviews=Input::get('examName');
+      $subJNames=Input::get('subject');
+
+
+  $examName=Exam::where('institute_code', '=', Auth::user()->institute_id)->lists('exam_id', 'exam_name');
+  $allclass = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id', 'class_name');
+
+ $markForStdSub1=Mark::where('class_id','=',$class)->where('exam_name','=',$examNameviews)->where('exam_subject','=',$subJNames)->get();
+
+
+     $markForStdSub = DB::table('tbl_studets')
+         ->join('tbl_class','tbl_studets.class','=','tbl_class.class_id')
+         ->select('tbl_studets.*','tbl_class.*')
+         ->where('tbl_class.institute_code','=',Auth::user()->institute_id)
+         ->where('tbl_studets.institute_code','=',Auth::user()->institute_id)
+         ->where('tbl_studets.class','=',$class)
+         ->get();
+
+    return view('admin.markadd')->with('allclass', $allclass)->with('examName',$examName)->with('addmake',$markForStdSub)->with('examNameviews',$examNameviews)->with('subJNames',$subJNames)->with('classId',$class)->with('markForStdSub1',$markForStdSub1);
+
+
    }
+
+   public function postAddMarkall(){
+     //saif for admin or inst mark add 1/25/16
+
+
+     $clsassid=Input::get('classId');
+     $className=Input::get('ClassName');
+     $markExamName=Input::get('examName');
+     $markSubj=Input::get('subjName');
+     $std_id=Input::get('stdId');
+     $stdRoll=Input::get('stdRoll');
+     $std_name=Input::get('stdName');
+     $std_phone=Input::get('stdphone');
+     $std_image=Input::get('stdImage');
+     $mark=Input::get('mark');
+
+     $data = Input::all();
+////return $clsassid;
+
+   if($data!=" "){
+      $data = Input::all();
+      $clsassid=$data['classId'];
+      $className=$data['ClassName'];
+      $markExamName=$data['examName'];
+      $markSubj=$data['subjName'];
+      $std_id=$data['stdId'];
+      $stdRoll=$data['stdRoll'];
+      $std_name=$data['stdName'];
+      $std_phone=$data['stdphone'];
+      $std_image=$data['stdImage'];
+      $mark=$data['mark'];
+      $icode=Auth::user()->institute_id;
+
+  for($a=0;$a<count($clsassid);$a++)
+         {
+ //return $clsassid;
+ $markchecktest=Mark::where('exam_name','=',$markExamName[$a])->where('exam_subject','=',$markSubj[$a])->where('class_id','=',$clsassid[$a])->get();
+$markcheck=Mark::where('exam_name','=',$markExamName[$a])->where('exam_subject','=',$markSubj[$a])->where('class_id','=',$clsassid[$a])->count();
+
+  //return $markcheck;
+ if ($markcheck!=0) {
+for($a=0;$a<count($clsassid);$a++){
+  $updateMark[]=Mark::where('class_id','=',$clsassid[$a])->where('exam_subject','=',$markSubj[$a])->where('exam_name','=',$markExamName[$a])->where('student_id','=',$std_id[$a])->update(array('sub_mark'=>$mark[$a]));
+}
+
+//return 1;
+   }
+  else {
+//  return 2;
+  for($a=0;$a<count($clsassid);$a++){
+
+    $addmark=new Mark;
+    $addmark->institute_code=$icode[$a];
+    $addmark->exam_subject=$markSubj[$a];
+    $addmark->student_id=$std_id[$a];
+    $addmark->student_name=$std_name[$a];
+    $addmark->class_id=$clsassid[$a];
+    $addmark->class_name=$className[$a];
+    $addmark->phone=$std_phone[$a];
+    $addmark->roll=$stdRoll[$a];
+    $addmark->image=$std_image[$a];
+    $addmark->exam_name=$markExamName[$a];
+    $addmark->sub_mark=$mark[$a];
+    $addmark->save();
+  }
+
+
+}
+    }
+  return redirect()->back()->withInput();
+     }
+     else {
+      return 2;
+     redirect()->back();
+     }
+   }
+
+   public function getMarkViews($roll,$cid){
+    // mark views students admin ,institute 1/25/16
+  //  return $roll.$cid;
+   //$stdInfo=Students::where('st_id','=',Auth::user()->uid)->where('roll','=', $roll)->where('class','=',$cid)->first();
+    $stdInfo=Students::where('institute_code','=',Auth::user()->institute_id)->where('roll','=', $roll)->where('class','=',$cid)->first();
+    $stdClass=ClassAdd::where('class_id','=',$stdInfo->class)->pluck('class_name');
+    $showAllMark=Mark::where('institute_code','=',Auth::user()->institute_id)->where('roll','=', $roll)->where('class_id','=',$cid)->get();
+    return view('admin.markviews')->with('stdInfo',$stdInfo)->with('stdClass',$stdClass)->with('showAllMark',$showAllMark);
+   }
+   public function getUserIndex()
+   {
+     return view('admin.userIndex');
+   }
+   public function posuserinfo(Request $request)
+   {
+     if($request->ajax()){
+    $data=Input::all();
+
+    //$uname=$data['dbirth'];
+    //return $data;
+    $uname=$data['name'];
+    $dbirt=$data['dbirth'];
+    $gender=$data['gender'];
+    $Religion=$data['Religion'];
+    $address=$data['address'];
+    $email=$data['email'];
+    $phone=$data['phone'];
+    $jobinDate=$data['jobinDate'];
+  //  $image=$data['image'];
+
+    $type=$data['utype'];
+    $username=$data['username'];
+    //$password=$data['password'];
+  //  $confirm_pas=$data['conpass'];
+  //  return $confirm_pas;
+
+        if($request->hasFile('image'))
+   {
+       $img = $request->file('image');
+       $extension = $img->getClientMimeType();
+       dd($extension);
+   } else {
+
+       dd('No image was found');
+   }
+
+  //return $extension;;
+    $stf=new Staff;
+    $stf->institute_code=Auth::user()->institute_id;
+    $stf->name=$uname;
+    $stf->birth_date=$dbirt;
+    $stf->gender=$gender;
+    $stf->religio=$Religion;
+    $stf->email=$email;
+    $stf->phone=$phone;
+    $stf->address=$address;
+    $stf->join_date=$jobinDate;
+    $stf->image=$extension;
+    $stf->user_type=$type;
+    $stf->user_name=$username;
+    //$stf->password=$confirm_password;
+    $stf->save();
+
+    $ustf=new User;
+    $ustf->name=$uname;
+    $ustf->institute_id=Auth::user()->institute_id;
+    $ustf->user_name=$username;
+    $ustf->priv=5;
+    $ustf->user_type=$type;
+  //$ustf->password=$confirm_password;
+    $ustf->email=$email;
+    $ustf->save();
+     //  return $name=$data['name'];
+              //   Staff::create($request->all());
+                 return response()->json();
+             }
+
+   }
+
+
 
 }

@@ -49,113 +49,7 @@ Mark
                             <div class="btn-group pull-right">
 
                             </div>
-                            <div class="box-one" ng-show="test.showBoxOne">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <section class="panel">
-                                            <header class="panel-heading">
-                                              Mark Information Add
-                                                <span class="tools pull-right">
-                                                    <a href="javascript:;" class="fa fa-chevron-down"></a>
-                                                    <a href="javascript:;" class="fa fa-cog"></a>
-                                                    <a href="javascript:;" class="fa fa-times"></a>
-                                                </span>
-                                            </header>
-                                            <div class="panel-body">
-                                                {!!Form::open(array('class'=>'cmxform form-horizontal')) !!}
-                                                <section class="panel">
 
-                                                    <div class="panel-body">
-
-                                                        <br><br>
-                                                        <div class="form">
-                                                            <div class="col-md-2"></div>
-                                                            <div class="col-md-8" >
-                                                                <div class="row">
-                                                                    <div class="list-group-item list-group-item-warning">
-                                                                        <div class="list-group-item list-group-item-warning">
-                                                                            <div style="" class="form-horizontal" >
-                                                                                <div class="form-group">
-                                                                                    <label for="classesID" class="col-sm-2 col-sm-offset-2 control-label-right">
-                                                                                        Teacher                             </label><br>
-                                                                                    <div class="col-sm-6">
-
-                                                                                        <select name='teacherName'   class="form-control"  >
-                                                                                            <option  selected="selected" >Choose Teacher</option>
-                                                                                            @foreach($teacher as $r=>$t)
-                                                                                            <option value="{{$t}}">{{$r}}</option>
-                                                                                            @endforeach
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-                 <div class="list-group-item list-group-item-warning">
-                                                                        <div class="list-group-item list-group-item-warning">
-                                                                            <div style="" class="form-horizontal" >
-                                                                                <div class="form-group">
-                                                                                    <label for="classesID" class="col-sm-2 col-sm-offset-2 control-label-right">
-                                                                                       Class                            </label><br>
-                                                                                    <div class="col-sm-6">
-
-                                                                                        <select name='className'   class="form-control"  >
-                                                                                            <option  selected="selected" >Choose Class</option>
-                                                                                            @foreach($allclass as $r=>$t)
-                                                                                            <option value="{{$t}}">{{$r}}</option>
-                                                                                            @endforeach
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-2"></div>
-                                                            <div class="cmxform form-horizontal " id="signupFormt1">
-
-                                                                <div class="form-group ">
-                                                                    <label for="icode" class="control-label col-lg-3">Section</label>
-                                                                    <div class="col-lg-6">
-                                                                        <input class="form-control " name="SectionName" type="text" />
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group ">
-                                                                    <label for="institute_name" class="control-label col-lg-3">Category</label>
-                                                                    <div class="col-lg-6">
-                                                                        <input class=" form-control"  name="sectioncategory" type="text" />
-                                                                    </div>
-                                                                </div>
-
-
- <div class="form-group">
-                                <label class="col-sm-3 control-label">Note</label>
-                                <div class="col-sm-6">
-                                    <textarea class="form-control" name="sectionNote" rows="6"></textarea>
-                                </div>
-                            </div>
-                                                                <div class="form-group">
-                                                                    <div class="col-lg-offset-3 col-lg-6">
-                                                                        <button class="btn btn-primary" type="submit">Save</button>
-                                                                        <button class="btn btn-default" type="button">Cancel</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </section>
-                                                {!!Form::close()!!}
-
-                                            </div>
-
-                                        </section>
-
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                     </div>
@@ -186,72 +80,68 @@ Mark
                             </div>
                         </div>
                         <div class="col-md-3"></div>
+
+
+                                <section class="panel">
+                                     <!-- page start-->
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <section class="panel" >
+
+
+
+
+                                            <div class="panel-body">
+                                                <div class="adv-table editable-table ">
+                                                    <div class="clearfix">
+
+                                                        <div class="btn-group pull-right">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="space15"></div>
+                                                  <table class="table table-striped table-hover table-bordered order-table" id="editable-sample">
+                                                        <thead>
+                                                        <tr>
+                                                           <th>#</th>
+                                                           <th>Photo</th>
+                                                           <th>StudentName <i class="fa-caret-up"></i></th>
+                                                           <th>Phone</th>
+                                                           <th>Roll</th>
+                                                          <th>Class</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                     @foreach($allStudetResult as $c)
+                                                        <tr class="">
+                                                          <td>{{$c->id}}</td>
+                                                          <td><img src="{{URL::to('/')}}/images/{{$c->image}}" width="35px" height="35px" class="img-rounded" alt=""></td>
+                                                          <td> {{$c->student_name}}</td>
+                                                          <td><a  href="a url">{{$c->phone}}</a></td>
+                                                          <td><a  href="a url">{{$c->roll}}</a></td>
+                                                          <td><a  href="a url">{{$c->class_name}}</a></td>
+                                                            <td>
+                                                                <a class="btn btn-round btn-success tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/mark/view/{{$c->roll}}/{{$c->class_id}}"><i class="fa fa-eye"></i> </a>
+
+                                                            </td>
+                                                        </tr>
+                                                      @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                                <!-- page end-->
+
+                                        </section>
+
             </div>
         </section>
 
-        <section class="panel">
-             <!-- page start-->
-
-        <div class="row">
-            <div class="col-sm-12">
-                <section class="panel" >
-                    <header class="panel-heading">
-                        Mark Information
-                        <span class="tools pull-right">
-                            <a href="javascript:;" class="fa-sort-desc"></a>
-                            <a href="javascript:;" class="fa fa-cog"></a>
-                            <a href="javascript:;" class="fa fa-times"></a>
-                         </span>
-                    </header>
-
-
-
-                    <div class="panel-body">
-                        <div class="adv-table editable-table ">
-                            <div class="clearfix">
-
-                                <div class="btn-group pull-right">
-
-                                </div>
-                            </div>
-                            <div class="space15"></div>
-                          <table class="table table-striped table-hover table-bordered order-table" id="editable-sample">
-                                <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Class <i class="fa-caret-up"></i></th>
-                                    <th>Section</th>
-                                     <th>Section Category</th>
-                                    <th>Teacher</th>
-                                    <th>Note</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                             @foreach($section as $c)
-                                <tr class="">
-                                    <td>{{$c->section_id}}</td>
-                                    <td> {{$c->class_name}}</td>
-                                    <td> {{$c->section_name}}</td>
-                                    <td> {{$c->section_category}}</td>
-                                    <td class="center">{{$c->tearcher_name}}</td>
-                                    <td><a  href="a url">{{$c->note}}</a></td>
-                                    <td>
-                                        <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/section/edit/{{$c->section_id}}"><i class="fa fa-edit"></i> </a>
-                                        <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/section/delete/{{$c->section_id}}" ><i class="fa  fa-trash-o"></i></a>
-                                    </td>
-                                </tr>
-                              @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <!-- page end-->
-
-                </section>
             </div>
         </section>
     </div>

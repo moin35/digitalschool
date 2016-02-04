@@ -123,13 +123,25 @@ Route::post('/parents/edit/{id}','ParentsController@updateParentsEdit');
 Route::get('/parents/delete/{uid}','ParentsController@deleteParentsInfo');
 
 //Search Student by Class
-Route::post('mearchent/product/search',['as'=>'searchmearchent','uses'=>'StudentsController@searchStudentsByClass']);
 
 
 //mark management saif........
 Route::get('mark/index','InstituteController@markIndex');
 Route::get('mark/add','InstituteController@markadd');
 Route::post('mark/add','InstituteController@postAddMark');
+Route::post('mark/add/all',['as'=>'postsubmark','uses'=>'InstituteController@postAddMarkall']);
+/*
+ Route::post('mark/add/all', function(){
+  return 1;
+if(Request::ajax()){
+  $data = Input::all();
+  return $data;
+}
+else {
+  return 2;
+}
+
+});*/
 
 Route::get('api/dropdown/subject', function(){
     $user = Input::get('option');
@@ -137,7 +149,7 @@ Route::get('api/dropdown/subject', function(){
     $items = App\Subject::where('institute_code','=',Auth::user()->institute_id)->where('class_id', '=', $user)->lists('subject_name','subject_code');
     return Response::make($items);
 });
-
+Route::get('mark/view/{roll}/{cid}','InstituteController@getMarkViews');
 
 
 
@@ -165,3 +177,12 @@ Route::post('grade/index','InstituteController@postGradeIndex');
 Route::get('grade/edit/{gid}','InstituteController@getGradeEdit');
 Route::post('grade/edit/{gid}','InstituteController@postGradeEdit');
 Route::get('grade/delete/{gid}','InstituteController@GradeDelete');
+
+//test for mark update saif
+ Route::get('add/mark/students','StudentResultMarkController@create');
+ Route::post('add/mark/students','StudentResultMarkController@studentListForMarks');
+// Route::post('finally/addmake',  'StudentResultMarkController');
+//Route::resource('user','StudentResultMarkController');
+
+Route::get('user/index','InstituteController@getUserIndex');
+Route::post('user/index','InstituteController@posuserinfo');

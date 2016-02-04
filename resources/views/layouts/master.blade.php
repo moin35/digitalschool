@@ -337,7 +337,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{URL::to('add/student')}}">
+                        <a href="{{URL::to('user/index')}}">
                             <i class="fa fa-user"></i>
                             <span>{{Lang::get('home.user')}} </span>
                         </a>

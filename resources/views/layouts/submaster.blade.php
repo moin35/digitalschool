@@ -34,6 +34,7 @@
     <!-- Custom styles for this template -->
     <link href="{{URL::to('/')}}/css/style.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/css/style-responsive.css" rel="stylesheet" />
+
     <!--[if lt IE 9]>
     <script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -327,7 +328,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{URL::to('add/student')}}">
+                        <a href="{{URL::to('user/index')}}">
                             <i class="fa fa-user"></i>
                             <span>{{Lang::get('home.user')}} </span>
                         </a>
@@ -835,6 +836,7 @@
 
 <!--script for this page-->
 <script src="{{URL::to('/')}}/js/gritter.js" type="text/javascript"></script>
+<script src="{{URL::to('/')}}/ajaxfile/usertest.js" type="text/javascript"></script>
 
 <!-- END JAVASCRIPTS -->
 <script>

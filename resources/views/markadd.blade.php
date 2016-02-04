@@ -130,8 +130,11 @@ Mark
 
                                                    </div>
                                                </div>
+                                               <div id="msj-success" class="alert alert-success alert-dismissible" role="alert" style="display:none">
+    		<strong> Genero Agregado Correctamente.</strong>
+		</div>
                                                <div class="space15"></div>
-                                        {!!Form::open(array('class'=>'cmxform form-horizontal','id'=>'myform','action'=>'InstituteController@postAddMarkall')) !!}
+                                        {!!Form::open(array('class'=>'cmxform form-horizontal','action'=>'StudentResultMarkController@store')) !!}
                                                <table class="table table-striped table-hover table-bordered" id="editable-sample">
                                                    <thead>
                                                    <tr>
@@ -156,6 +159,7 @@ Mark
                                           <td> {{$c->name}}</td>
                                           <td><a  href="a url">{{$c->phone}}</a></td>
                                           <td><a  href="a url">{{$c->roll}}</a></td>
+                                          <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
                                            <input type="hidden" value="{{$c->class_id}}"  name="classId[]">
                                          <input type="hidden" value="{{$c->class_name}}"  name="ClassName[]">
                                            <input type="hidden" value="{{$examNameviews}}"  name="examName[]">
@@ -184,8 +188,8 @@ Mark
                                                   <td> {{$c->name}}</td>
                                                   <td><a  href="a url">{{$c->phone}}</a></td>
                                                   <td><a  href="a url">{{$c->roll}}</a></td>
-                                                 <input type="hidden" value="{{$c->class_id}}"  name="classId[]">
-                                                   <input type="hidden" value="{{$c->class_name}}"  name="ClassName[]">
+                                                 <input type="hidden" id="classId[]" value="{{$c->class_id}}"  name="classId[]">
+                                                   <input type="hidden" id="ClassName[]" value="{{$c->class_name}}"  name="ClassName[]">
                                                    <input type="hidden" value="{{$examNameviews}}"  name="examName[]">
                                                    <input type="hidden" value="{{$subJNames}}"  name="subjName[]">
                                                    <input type="hidden" value="{{$c->student_id}}"  name="stdId[]">
@@ -217,7 +221,9 @@ Mark
                                                </table>
 
 
-                                             <center>  <button class="btn btn-primary" type="submit">  Add  Mark  <i class="fa fa-plus"></i></button>
+                                             <center>
+
+		{!!link_to('#', $title=' Add+ test Mark', $attributes = ['id'=>'registro', 'class'=>'btn btn-primary'], $secure = null)!!}
 
                                        </center>
                                      {!!Form::close()!!}
@@ -238,9 +244,33 @@ Mark
     </div>
 </div>
 <!-- page end-->
+<script>
+$("#registro").click(function(){
+	var dato = $("#ClassName[]").val();
+	var tt=$("#ClassName[]").val();
+	var route = "finally/addmake";
+	var token = $("#token").val();
 
+	$.ajax({
+		url: route,
+		headers: {'X-CSRF-TOKEN': token},
+		type: 'POST',
+		dataType: 'json',
+		data:{ClassName[]: dato, ClassName[]: tt},
+
+		success:function(){
+			$("#msj-success").fadeIn();
+		},
+		error:function(msj){
+			$("#msj").html(msj.responseJSON.genre);
+			$("#msj-error").fadeIn();
+		}
+	});
+});
+</script>
  <script>
 
+/*
  var formData = $("#myform").serializeArray();
  var URL = $("#myform").attr("action");
  $.post(URL,

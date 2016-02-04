@@ -253,6 +253,9 @@
                         </section>
         </div>
     </div>
+  </section>
+</div>
+</div>
     <!-- page end-->
 
 
@@ -270,4 +273,3 @@
                 .controller('TestCtrl', TestCtrl)
     </script>
 @stop
-       
