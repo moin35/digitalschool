@@ -13,6 +13,8 @@ use App\Exam;
 use App\ClassAdd;
 use App\Staff;
 use Illuminate\Support\Facades\DB;
+use App\Students;
+use App\GradeSystem;
 
 
 class StudentResultMarkController extends Controller
@@ -107,8 +109,10 @@ class StudentResultMarkController extends Controller
           public function markIndex(){
 
           $this->getallclass();
-          $allStudetResult=Mark::where('institute_code','=', Auth::user()->institute_id)->get();
-          return view('admin.markindex')->with('allclass', $this->getallclass())->with('allStudetResult',$allStudetResult);
+        //  $allStudetResult=Mark::where('institute_code', '=', Auth::user()->institute_id)->groupBy('student_id')->distinct()->get(['class_name']);
+            $allStudetResult=Mark::where('institute_code', '=', Auth::user()->institute_id)->select('image','phone','student_name','class_name','roll','section','class_id')->distinct()->get();
+         //return  $allStudetResult;
+          return view('admin.resultMark.markindex')->with('allclass', $this->getallclass())->with('allStudetResult',$allStudetResult);
           }
 
           public function markadd(){
@@ -117,7 +121,7 @@ class StudentResultMarkController extends Controller
           $class=Input::get('classid');
           $examNameviews=Input::get('examName');
           $subJNames=Input::get('subject');
-
+          $sectionName=Input::get('section');
           $examName=Exam::where('institute_code', '=', Auth::user()->institute_id)->lists('exam_id', 'exam_name');
           $allclass = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id', 'class_name');
 
@@ -125,7 +129,8 @@ class StudentResultMarkController extends Controller
 
           $markForStdSub=Mark::where('institute_code','=', Auth::user()->institute_id)->where('class_id','=',$class)->where('exam_name','=',$examNameviews)->where('exam_subject','=',$subJNames)->get();
 
-          return view('admin.markadd')->with('allclass', $allclass)->with('examName',$examName)->with('addmake',$markForStdSub)->with('examNameviews',$examNameviews)->with('subJNames',$subJNames)->with('classId',$class)->with('markForStdSub1',$markForStdSub1);
+          return view('admin.resultMark.markadd')->with('allclass', $allclass)->with('examName',$examName)->with('addmake',$markForStdSub)->with('examNameviews',$examNameviews)->with('subJNames',$subJNames)->with('classId',$class)
+          ->with('markForStdSub1',$markForStdSub1)->with('section',$sectionName);
           }
 
           public function postAddMark(){
@@ -133,6 +138,7 @@ class StudentResultMarkController extends Controller
           $class=Input::get('classid');
           $examNameviews=Input::get('examName');
           $subJNames=Input::get('subject');
+          $sectionName=Input::get('section');
           $examName=Exam::where('institute_code', '=', Auth::user()->institute_id)->lists('exam_id', 'exam_name');
           $allclass = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id', 'class_name');
           $markForStdSub1=Mark::where('class_id','=',$class)->where('exam_name','=',$examNameviews)->where('exam_subject','=',$subJNames)->get();
@@ -144,7 +150,9 @@ class StudentResultMarkController extends Controller
           ->where('tbl_studets.class','=',$class)
           ->get();
 
-          return view('admin.markadd')->with('allclass', $allclass)->with('examName',$examName)->with('addmake',$markForStdSub)->with('examNameviews',$examNameviews)->with('subJNames',$subJNames)->with('classId',$class)->with('markForStdSub1',$markForStdSub1);
+          return view('admin.resultMark.markadd')->with('allclass', $allclass)->with('examName',$examName)->with('addmake',$markForStdSub)
+          ->with('examNameviews',$examNameviews)->with('subJNames',$subJNames)->with('classId',$class)
+          ->with('markForStdSub1',$markForStdSub1)->with('section',$sectionName);
 
 
           }
@@ -162,9 +170,11 @@ class StudentResultMarkController extends Controller
         $std_phone=Input::get('stdphone');
         $std_image=Input::get('stdImage');
         $mark=Input::get('mark');
+        $sectionName=Input::get('sectionName');
 
+        $icode=Auth::user()->institute_id;
         $data = Input::all();
-        ////return $clsassid;
+       //return $sectionName;
 
         if($data!=" "){
         $data = Input::all();
@@ -178,8 +188,9 @@ class StudentResultMarkController extends Controller
         $std_phone=$data['stdphone'];
         $std_image=$data['stdImage'];
         $mark=$data['mark'];
-        $icode=Auth::user()->institute_id;
-
+        $sectionName=$data['sectionName'];
+        $icode=$data['iid'];
+      //  return $icode;
         for($a=0;$a<count($clsassid);$a++)
         {
         //return $clsassid;
@@ -190,7 +201,8 @@ class StudentResultMarkController extends Controller
         if ($markcheck!=0) {
 
         for($a=0;$a<count($clsassid);$a++){
-        $updateMark[]=Mark::where('class_id','=',$clsassid[$a])->where('exam_subject','=',$markSubj[$a])->where('exam_name','=',$markExamName[$a])->where('student_id','=',$std_id[$a])->update(array('sub_mark'=>$mark[$a]));
+        $updateMark[]=Mark::where('class_id','=',$clsassid[$a])->where('exam_subject','=',$markSubj[$a])->where('exam_name','=',$markExamName[$a])
+        ->where('student_id','=',$std_id[$a])->where('section','=',$sectionName[$a])->update(array('sub_mark'=>$mark[$a]));
         }
         }
         else {
@@ -200,6 +212,7 @@ class StudentResultMarkController extends Controller
         $addmark->institute_code=$icode[$a];
         $addmark->exam_subject=$markSubj[$a];
         $addmark->student_id=$std_id[$a];
+        $addmark->section=$sectionName[$a];
         $addmark->student_name=$std_name[$a];
         $addmark->class_id=$clsassid[$a];
         $addmark->class_name=$className[$a];
@@ -225,10 +238,43 @@ class StudentResultMarkController extends Controller
         }
 
         public function getMarkViews($roll,$cid){
-           $stdInfo=Students::where('institute_code','=',Auth::user()->institute_id)->where('roll','=', $roll)->where('class','=',$cid)->first();
+        $stdInfo=Students::where('institute_code','=',Auth::user()->institute_id)->where('roll','=', $roll)->where('class','=',$cid)->first();
         $stdClass=ClassAdd::where('class_id','=',$stdInfo->class)->pluck('class_name');
         $showAllMark=Mark::where('institute_code','=',Auth::user()->institute_id)->where('roll','=', $roll)->where('class_id','=',$cid)->get();
-        return view('admin.markviews')->with('stdInfo',$stdInfo)->with('stdClass',$stdClass)->with('showAllMark',$showAllMark);
+
+        $MarkViewGrade=Mark::where('institute_code','=',Auth::user()->institute_id)->where('roll','=', $roll)->where('class_id','=',$cid)->first();
+        //return $showAllMark->sub_mark;
+        $allGrad=GradeSystem::where('institute_code','=',Auth::user()->institute_id)->get();
+        $MarkViewGrade=Mark::where('institute_code','=',Auth::user()->institute_id)->where('roll','=', $roll)->where('class_id','=',$cid)->get();
+
+      /*  foreach ($allGrad as $key => $value) {
+         //return $MarkViewGrade->sub_mark;
+         $MarkViewGrade=Mark::where('institute_code','=',Auth::user()->institute_id)->where('roll','=', $roll)->where('class_id','=',$cid)->get();
+
+         //return $MarkViewGrade;
+         foreach ($MarkViewGrade as $key => $markget) {
+    //  return $value->mark_form;
+           if ($markget->sub_mark>=$value->mark_form && $markget->sub_mark<=$value->mark_upto) {
+
+            $point=$value->grade_point ;
+            $grade=$value->grade_name ;
+            return view('admin.resultMark.markviews')->with('stdInfo',$stdInfo)->with('stdClass',$stdClass)
+            ->with('showAllMark',$showAllMark)->with('MarkViewGrade',$MarkViewGrade)->with('allGrad',$allGrad)->with('point',$point)->with('grade',$grade);
+
+           }
+
+           else {
+             return 2 ;
+           }
+         }
+
+
+
+       }*/
+        //  return $point.$grade;
+
+        return view('admin.resultMark.markviews')->with('stdInfo',$stdInfo)->with('stdClass',$stdClass)
+        ->with('showAllMark',$showAllMark)->with('MarkViewGrade',$MarkViewGrade)->with('allGrad',$allGrad);
         }
 
 }

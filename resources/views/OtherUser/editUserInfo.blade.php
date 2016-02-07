@@ -64,7 +64,7 @@
                                             <div class="col-md-7">
                                                 <div class="fileupload fileupload-new" data-provides="fileupload" id="image" name="image">
                                                     <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                                                        <img src="{{URL::to('/')}}/images/{{$editUser->image}}" alt="" />                                                        
+                                                        <img src="{{URL::to('/')}}/images/{{$editUser->image}}" alt="" />
                                                     </div>
                                                     <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                                                     <div>
@@ -152,7 +152,7 @@
                                 </div>
 
                                 <br> <div class="price-actions">
-                                    <button type="submit"   class="btn">Update Information</button>
+                                    <button type="submit" class="btn"  >Update Information</button>
 
                                 </div>
 

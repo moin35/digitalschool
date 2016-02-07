@@ -34,8 +34,8 @@
     <!-- Custom styles for this template -->
     <link href="{{URL::to('/')}}/css/style.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/css/style-responsive.css" rel="stylesheet" />
-
-    <!--[if lt IE 9]>
+<!-- process button design-->
+   <!--[if lt IE 9]>
     <script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -839,6 +839,7 @@
 <script src="{{URL::to('/')}}/ajaxfile/usertest.js" type="text/javascript"></script>
 
 <!-- END JAVASCRIPTS -->
+
 <script>
     jQuery(document).ready(function() {
         EditableTable.init();
@@ -907,6 +908,7 @@
                    { option: $(this).val() },
                    function(data) {
                        var model = $('#subject_code');
+                 //console.log(model);
 
                        model.empty();
                         $.each(data, function(index,element) {
@@ -917,6 +919,9 @@
        });
    });
  </script>
+
+
+
 <script>
     jQuery(document).ready(function($){
         n=1;
