@@ -87,9 +87,9 @@ Mark
                   <div class="panel-body profile-information">
 <center> <h1> Mark Information</h1></center>
 <div class="panel-body">
-  @foreach($showAllMark as $c)
 
-<center>  <h2>{{$c->exam_name}}</h2></center>
+
+
         <div class="clearfix">
 
             <div class="btn-group pull-right">
@@ -97,6 +97,7 @@ Mark
             </div>
         </div>
         <div class="space15"></div>
+
       <table class="table table-striped table-hover table-bordered order-table" >
             <thead>
             <tr>
@@ -109,7 +110,7 @@ Mark
             </tr>
             </thead>
             <tbody>
-
+  @foreach($showAllMark as $c)
             <tr class="">
               <td>{{$c->id}}</td>
               <td><a  href="a url">{{$c->exam_subject}}</a></td>
@@ -117,7 +118,7 @@ Mark
 
                  @foreach ($allGrad as $key => $value)
                   @foreach ($MarkViewGrade as $key => $markget)
-                  @if ($markget->sub_mark>=$value->mark_form && $markget->sub_mark<=$value->mark_upto)
+                  @if ($markget->sub_mark>=$value->mark_form && $markget->sub_mark<=$value->mark_upto && $markget->exam_name==$c->exam_name && $markget->exam_subject==$c->exam_subject)
                     <td>{{$value->grade_point}} </td>
                    <td>{{$value->grade_name}} </td>
 
@@ -128,10 +129,10 @@ Mark
                   @endforeach
 
             </tr>
-
+  @endforeach
             </tbody>
         </table>
-      @endforeach
+
 
                   </div>
               </section>

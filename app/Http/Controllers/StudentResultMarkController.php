@@ -241,7 +241,8 @@ class StudentResultMarkController extends Controller
         $stdInfo=Students::where('institute_code','=',Auth::user()->institute_id)->where('roll','=', $roll)->where('class','=',$cid)->first();
         $stdClass=ClassAdd::where('class_id','=',$stdInfo->class)->pluck('class_name');
         $showAllMark=Mark::where('institute_code','=',Auth::user()->institute_id)->where('roll','=', $roll)->where('class_id','=',$cid)->get();
-
+      //$showAllMarkExamName=Mark::where('institute_code', '=', Auth::user()->institute_id)->select('id','exam_subject','exam_name','sub_mark')->distinct()->get();
+        $showAllMarkExamName=Mark::where('institute_code','=',Auth::user()->institute_id)->where('roll','=', $roll)->where('class_id','=',$cid)->get();
         $MarkViewGrade=Mark::where('institute_code','=',Auth::user()->institute_id)->where('roll','=', $roll)->where('class_id','=',$cid)->first();
         //return $showAllMark->sub_mark;
         $allGrad=GradeSystem::where('institute_code','=',Auth::user()->institute_id)->get();
@@ -274,7 +275,7 @@ class StudentResultMarkController extends Controller
         //  return $point.$grade;
 
         return view('admin.resultMark.markviews')->with('stdInfo',$stdInfo)->with('stdClass',$stdClass)
-        ->with('showAllMark',$showAllMark)->with('MarkViewGrade',$MarkViewGrade)->with('allGrad',$allGrad);
+        ->with('showAllMark',$showAllMark)->with('MarkViewGrade',$MarkViewGrade)->with('allGrad',$allGrad)->with('showAllMarkExamName',$showAllMarkExamName);
         }
 
 }
