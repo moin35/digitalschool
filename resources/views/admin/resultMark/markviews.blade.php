@@ -88,7 +88,10 @@ Mark
 <center> <h1> Mark Information</h1></center>
 <div class="panel-body">
 
+  @foreach($showAllMarkExamName as $x)
 
+
+<center>  <h2>{{$x->exam_name}}</h2></center>
 
         <div class="clearfix">
 
@@ -112,8 +115,9 @@ Mark
             <tbody>
   @foreach($showAllMark as $c)
             <tr class="">
+              @if($x->exam_name==$c->exam_name)
               <td>{{$c->id}}</td>
-              <td><a  href="a url">{{$c->exam_subject}}</a></td>
+              <td>{{$c->exam_subject}}</td>
                 <td> {{$c->sub_mark}}</td>
 
                  @foreach ($allGrad as $key => $value)
@@ -128,12 +132,14 @@ Mark
 
                   @endforeach
 
+                  @endif
+
             </tr>
   @endforeach
             </tbody>
         </table>
 
-
+@endforeach
                   </div>
               </section>
 
