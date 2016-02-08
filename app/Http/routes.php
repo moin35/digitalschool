@@ -77,7 +77,18 @@ Route::get('api/dropdown/section', function(){
     $items = App\Section::where('institute_code','=',Auth::user()->institute_id)->where('class_id', '=', $user)->lists('section_name','section_id');
     return Response::make($items);
 });
-
+Route::get('api/dropdown/invoice', function(){
+    $user = Input::get('option');
+    //return $user;
+    $items = App\Students::where('institute_code','=',Auth::user()->institute_id)->where('class', '=', $user)->lists('name','st_id');
+    return Response::make($items);
+});
+Route::get('api/dropdown/invoice/section', function(){
+    $user = Input::get('option');
+    //return $user;
+    $items = App\Section::where('institute_code','=',Auth::user()->institute_id)->where('class_id', '=', $user)->lists('section_name','section_id');
+    return Response::make($items);
+});
 //class info add
 Route::get('Addclass','InstituteController@getaddclass');
 Route::post('Addclass','InstituteController@postaddclass');
@@ -215,3 +226,7 @@ Route::get('api/dropdown/subject', function(){
     return Response::make($items);
 });
 Route::get('mark/view/{roll}/{cid}','StudentResultMarkController@getMarkViews');
+
+//Accounts Invoice Add Edit Delete view Update
+Route::get('/admin/add/invoice','AccountsController@getInvoice');
+Route::post('/admin/add/invoice','AccountsController@postInvoice');
