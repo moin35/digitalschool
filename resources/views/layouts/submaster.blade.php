@@ -377,10 +377,10 @@
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-book"></i>
-                            <span>{{Lang::get('home.student')}}</span>
+                            <span>{{Lang::get('home.account')}}</span>
                         </a>
                         <ul class="sub">
-                            <li><a href="{{URL::to('add/student')}}">{{Lang::get('home.student')}}</a></li>
+                            <li><a href="{{URL::to('admin/add/account/fee/type')}}">Add Fee Type</a></li>
                             <li><a href="buttons.html">Buttons</a></li>
                             <li><a href="typography.html">Typography</a></li>
                             <li><a href="widget.html">Widget</a></li>
@@ -934,6 +934,43 @@
     });
 
 </script>
+
+<!-- for invoice add -->
+<script>
+    jQuery(document).ready(function($){
+        n=1;
+        $('.invoiceclass').change(function(){
+            $.get("{{ url('api/dropdown/invoice')}}",
+                    { option: $(this).val() },
+                    function(data) {
+                        var model = $('.invoicestudent');
+                        model.empty();
+                        $.each(data, function(index,element) {
+                            model.append("<option value='"+ element +"'>" + element + "</option>");
+                        });
+                    });
+        });
+    });
+
+</script>
+<script>
+    jQuery(document).ready(function($){
+        n=1;
+        $('.invoiceclass').change(function(){
+            $.get("{{ url('api/dropdown/invoice/section')}}",
+                    { option: $(this).val() },
+                    function(data) {
+                        var model = $('.invoicesection');
+                        model.empty();
+                        $.each(data, function(index,element) {
+                            model.append("<option value='"+ element +"'>" + element + "</option>");
+                        });
+                    });
+        });
+    });
+
+</script>
+
 @section('scripts')
 
 @show
