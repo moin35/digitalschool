@@ -109,6 +109,7 @@ Mark
                                                            <th>StudentName <i class="fa-caret-up"></i></th>
                                                            <th>Phone</th>
                                                            <th>Roll</th>
+                                                           <th>Section</th>
                                                           <th>Class</th>
                                                             <th>Action</th>
                                                         </tr>
@@ -121,6 +122,7 @@ Mark
                                                           <td> {{$c->student_name}}</td>
                                                           <td><a  href="a url">{{$c->phone}}</a></td>
                                                           <td><a  href="a url">{{$c->roll}}</a></td>
+                                                            <td><a  href="a url">{{$c->section}}</a></td>
                                                           <td><a  href="a url">{{$c->class_name}}</a></td>
                                                             <td>
                                                                 <a class="btn btn-round btn-success tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/mark/view/{{$c->roll}}/{{$c->class_id}}"><i class="fa fa-eye"></i> </a>

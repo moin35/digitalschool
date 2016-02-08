@@ -48,7 +48,7 @@ Mark
      <div class="col-md-3"></div>
                <div class="col-md-6">
                             <div class="list-group-item list-group-item-warning">
- 
+
                                   {!!Form::open(array('class'=>'cmxform form-horizontal')) !!}
 
 
@@ -71,12 +71,22 @@ Mark
                                             Class                                </label>
                                         <div class="col-sm-6">
 
-                                            <select  class="form-control select-table-filter" name="classid" id="classid" >
+                                            <select  class="form-control select-table-filter class" name="classid" id="classid" >
                                                 <option value="">Reset</option>
                                                 @foreach($allclass as $r=>$t)
                                                     <option value="{{$t}}">{{$r}}</option>
                                                 @endforeach
                                                 <select>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="classesID" class="col-sm-2 col-sm-offset-2 control-label">Section</label>
+                                        <div class="col-lg-6">
+                                            <select class="form-control input-sm m-bot15 sectionid" id="classid" name="section" type="text">
+                                                <option selected>Select a Section</option>
+
+                                            </select>
 
                                         </div>
                                     </div>
@@ -91,6 +101,8 @@ Mark
 
                                         </div>
                                     </div>
+
+
                                     <center>
 
                                       <button class="btn btn-primary" type="submit">    Mark  <i class="fa fa-plus"></i></button>
@@ -161,11 +173,13 @@ Mark
                                          <input type="hidden" value="{{$c->class_name}}"  name="ClassName[]">
                                            <input type="hidden" value="{{$examNameviews}}"  name="examName[]">
                                            <input type="hidden" value="{{$subJNames}}"  name="subjName[]">
+                                            <input type="hidden" value="{{$section}}"  name="sectionName[]">
                                            <input type="hidden" value="{{$c->st_id}}"  name="stdId[]">
-                                             <input type="hidden" value="{{$c->roll}}"  name="stdRoll[]">
+                                            <input type="hidden" value="{{$c->roll}}"  name="stdRoll[]">
                                            <input type="hidden" value="{{$c->name}}"  name="stdName[]">
                                            <input type="hidden" value="{{$c->image}}"  name="stdImage[]">
-                                                 <input type="hidden" value="{{$c->phone}}"  name="stdphone[]">
+                                           <input type="hidden" value="{{$c->phone}}"  name="stdphone[]">
+                                              <input type="hidden" value="{{Auth::user()->institute_id}}"  name="iid[]">
 
                                                   <td>
                           <input class="form-control mark" style="width:90px;" maxlength="100" type="number" value=""  name="mark[]">
