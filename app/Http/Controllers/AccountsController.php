@@ -63,11 +63,9 @@ class AccountsController extends Controller
 
     public function getEditFeeType($id)
     {
-
         $this->free=AccountFeeType::find($id);
         return response()->json($this->free);
     }
-
 
     public function getUpdateFeeType(Request $request, $id)
     {
@@ -108,7 +106,8 @@ class AccountsController extends Controller
             $paidamount=$data['paid'];
            // $dueamount=$data['due'];
             $date=$data['date'];
-
+            $answer=$data['answer'];
+//return $answer;
             $classname=ClassAdd::where('institute_code','=',Auth::user()->institute_id)->where('class_id','=',$cls)->pluck('class_name');
             $feetype=AccountFeeType::where('institute_code','=',Auth::user()->institute_id)->where('fee_id','=',$fee)->pluck('fee_type');
          //return $feetype;
@@ -116,7 +115,7 @@ class AccountsController extends Controller
             $s=new Invoice;
             $s->class_id=$cls;
             $s->class_name=$classname;
-            $s->invoice_id=$iid.' '.mt_rand('1', '9999');
+            $s->invoice_id=mt_rand('1', '9999').' '.$iid;
             $s->student_name=$std;
             $s->fee_id=$fee;
             $s->fee_type=$feetype;
@@ -125,6 +124,7 @@ class AccountsController extends Controller
             $s->section_id=$sec;
             $s->date=$date;
             $s->institute_code=$iid;
+            $s->due_amount=$answer;
             $s->status=0;
             $s->save();
             return response()->json([

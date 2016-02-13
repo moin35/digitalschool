@@ -213,7 +213,26 @@
 
 @stop
 @section('scripts')
+<script >
+$(".num2").keyup(function(){
+  $("#answer").html('');
+  var n1 = $('input[name="amount"]').val();
+  var n2 = $('input[name="paid"]').val();
+  var ans = n1 - n2;
+  $("#answer").val(ans);
+  // $("#answer").append("<input value='"+ ans +"'>");
+});
 
+$(".num1").keyup(function(){
+  $("#answer").html('');
+  var n1 = $('input[name="amount"]').val();
+  var n2 = $('input[name="paid"]').val();
+  var ans = n1 - n2;
+   $("#answer").val(ans);
+  //$("#answer").append("<input value='"+ ans +"'>");
+});
+</script>
     <script src="{{URL::to('/')}}/ajaxjs/invoice.js" type="text/javascript"></script>
     <script src="{{URL::to('/')}}/ajaxjs/invoiceup.js" type="text/javascript"></script>
 @endsection
+
