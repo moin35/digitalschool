@@ -43,13 +43,22 @@
 <div class="form-group ">
     <label for="amountid" class="col-sm-2 col-sm-offset-2 control-label-right">Total Amount</label>
     <div class="col-lg-6">
-        <input class="form-control" id="amountid" name="amount" type="text" />
+        <input class="form-control num1" id="amountid" min='0' name="amount" type="text" />
     </div>
 </div>
 <div class="form-group ">
     <label for="amountid" class="col-sm-2 col-sm-offset-2 control-label-right">Paid Amount</label>
     <div class="col-lg-6">
-        <input class="form-control" id="paidamountid" name="paid" type="text" />
+        <input class="form-control num2" id="paidamountid" min='0' name="paid" type="text" />
+    </div>
+</div>
+
+<div class="form-group ">
+    <label for="amountid" class="col-sm-2 col-sm-offset-2 control-label-right">Due Amount</label>
+    <div class="col-lg-6">
+
+
+      <p id='answer'  type="text" readonly/></p>
     </div>
 </div>
 <div class="form-group ">
