@@ -6,6 +6,7 @@ $("#invoiceadd").click(function(){
 	var amn = $("#amountid").val();
 	var date = $("#dateid").val();
 	var pamount = $("#paidamountid").val();
+	var answer = $("#answer").val();
 
 	var route = "/admin/add/invoice";
 	var token = $("#token").val();
@@ -15,14 +16,14 @@ $("#invoiceadd").click(function(){
 		headers: {'X-CSRF-TOKEN': token},
 		type: 'POST',
 		dataType: 'json',
-		data:{class: cls,section:sec,student:std,feetype:fee,amount:amn,date:date,paid:pamount},
+		data:{class: cls,section:sec,student:std,feetype:fee,amount:amn,date:date,paid:pamount,answer:answer},
 
 		//data: $("#invoiceadd").serialize(),
 
 		success:function(){
 
 			$("#msj-success").fadeIn();
-
+			location.reload();
 					},
 		error:function(msj){
 			$("#msj").html(msj.responseJSON.genre);

@@ -44,6 +44,7 @@
     <label for="amountid" class="col-sm-2 col-sm-offset-2 control-label-right">Total Amount</label>
     <div class="col-lg-6">
         <input class="form-control num1" id="amountid" min='0' name="amount" type="text" />
+
     </div>
 </div>
 <div class="form-group ">
@@ -58,7 +59,12 @@
     <div class="col-lg-6">
 
 
+<<<<<<< HEAD
       <p id='answer'  type="text" readonly/></p
+=======
+      <input id='answer' name="answer" type="text" readonly/>
+
+>>>>>>> 71b412afbadc62877815f5d3ac4381d86241eb7d
     </div>
 </div>
 <div class="form-group ">
@@ -67,3 +73,4 @@
         <input class="form-control form-control-inline input-medium default-date-picker" id="dateid" name="date" type="text" />
     </div>
 </div>
+

@@ -85,9 +85,13 @@ class AccountsController extends Controller
         $this->free->delete();
         return response()->json(["mensaje"=>"borrado"]);
     }
-    public  function  getInvoice(){
+    public  function  getInvoice(Request $request){
         $classname=ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id','class_name');
         $fee=AccountFeeType::where('institute_code', '=', Auth::user()->institute_id)->lists('fee_id','fee_type');
+        if ($request->ajax()) {
+            $invoice = Invoice::all();
+            return response()->json($invoice);
+        }
         return view('admin.invoice.addinvoice',['classview'=>$classname,'feetype'=>$fee]);
     }
     public function postInvoice(Request $request)
@@ -100,25 +104,28 @@ class AccountsController extends Controller
             $fee=$data['feetype'];
             $amn=$data['amount'];
             $paidamount=$data['paid'];
-            $dueamount=$data['due'];
+           // $dueamount=$data['due'];
             $date=$data['date'];
-
+            $answer=$data['answer'];
+//return $answer;
             $classname=ClassAdd::where('institute_code','=',Auth::user()->institute_id)->where('class_id','=',$cls)->pluck('class_name');
             $feetype=AccountFeeType::where('institute_code','=',Auth::user()->institute_id)->where('fee_id','=',$fee)->pluck('fee_type');
-         return $feetype;
+         //return $feetype;
             $iid=Auth::user()->institute_id;
             $s=new Invoice;
             $s->class_id=$cls;
             $s->class_name=$classname;
-            $s->invoice_id=$iid.' '.mt_rand('1', '9999');
+            $s->invoice_id=mt_rand('1', '9999').' '.$iid;
             $s->student_name=$std;
             $s->fee_id=$fee;
             $s->fee_type=$feetype;
             $s->total_amount=$amn;
             $s->payment_ammount=$paidamount;
-            $s->due_amount=$std;
+            $s->section_id=$sec;
             $s->date=$date;
             $s->institute_code=$iid;
+            $s->due_amount=$answer;
+            $s->status=0;
             $s->save();
             return response()->json([
                 "message" => "created"
