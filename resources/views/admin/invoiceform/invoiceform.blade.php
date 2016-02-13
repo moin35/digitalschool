@@ -58,7 +58,7 @@
     <div class="col-lg-6">
 
 
-      <p id='answer'  type="text" readonly/></p>
+      <p id='answer'  type="text" readonly/></p
     </div>
 </div>
 <div class="form-group ">
