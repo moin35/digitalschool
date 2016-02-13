@@ -210,9 +210,10 @@
             EditableTable.init();
         });
     </script>
+
 @stop
 @section('scripts')
 
     <script src="{{URL::to('/')}}/ajaxjs/invoice.js" type="text/javascript"></script>
-    <script src="{{URL::to('/')}}/ajaxjs/script2.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/ajaxjs/invoiceup.js" type="text/javascript"></script>
 @endsection

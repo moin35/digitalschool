@@ -43,18 +43,31 @@
 <div class="form-group ">
     <label for="amountid" class="col-sm-2 col-sm-offset-2 control-label-right">Total Amount</label>
     <div class="col-lg-6">
-        <input class="form-control" id="amountid" name="amount" type="text" />
+        <input class="form-control sub" id="amountid" name="amount" type="number" />
     </div>
 </div>
 <div class="form-group ">
     <label for="amountid" class="col-sm-2 col-sm-offset-2 control-label-right">Paid Amount</label>
     <div class="col-lg-6">
-        <input class="form-control" id="paidamountid" name="paid" type="text" />
+        <input class="form-control sub" id="paidamountid" name="paid" type="number" />
     </div>
 </div>
+<p id="answer">ok</p>
 <div class="form-group ">
     <label for="date" class="col-sm-2 col-sm-offset-2 control-label-right">Date</label>
     <div class="col-lg-6">
         <input class="form-control form-control-inline input-medium default-date-picker" id="dateid" name="date" type="text" />
     </div>
 </div>
+<script>
+    $(".sub").focusout(function() {
+        $("#answer").html('');
+
+        var num1 = $('input[name="amount"]').val();
+        var num2 = $('input[name="paid"]').val();
+
+        var answer =num1 - num2;
+        //console.log(answer);
+        $("#answer").html(answer);
+    });
+</script>
