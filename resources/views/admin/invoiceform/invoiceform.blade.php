@@ -29,7 +29,7 @@
     </div>
 </div>
 <div class="form-group">
-    <label for="classesID" class="col-sm-2 col-sm-offset-2 control-label-right">
+    <label for="feetype" class="col-sm-2 col-sm-offset-2 control-label-right">
         Fee Type </label><br>
     <div class="col-sm-6">
         <select  id="feeid"  name="feetype" class="form-control fee" >
@@ -41,14 +41,20 @@
     </div>
 </div>
 <div class="form-group ">
-    <label for="icode" class="col-sm-2 col-sm-offset-2 control-label-right">Amount</label>
+    <label for="amountid" class="col-sm-2 col-sm-offset-2 control-label-right">Total Amount</label>
     <div class="col-lg-6">
         <input class="form-control" id="amountid" name="amount" type="text" />
     </div>
 </div>
 <div class="form-group ">
-    <label for="icode" class="col-sm-2 col-sm-offset-2 control-label-right">Date</label>
+    <label for="amountid" class="col-sm-2 col-sm-offset-2 control-label-right">Paid Amount</label>
     <div class="col-lg-6">
-        <input class="form-control form-control-inline input-medium default-date-picker" id="date" name="date" type="text" />
+        <input class="form-control" id="paidamountid" name="paid" type="text" />
+    </div>
+</div>
+<div class="form-group ">
+    <label for="date" class="col-sm-2 col-sm-offset-2 control-label-right">Date</label>
+    <div class="col-lg-6">
+        <input class="form-control form-control-inline input-medium default-date-picker" id="dateid" name="date" type="text" />
     </div>
 </div>

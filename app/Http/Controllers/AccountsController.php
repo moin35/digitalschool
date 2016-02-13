@@ -94,13 +94,30 @@ class AccountsController extends Controller
     {
         if($request->ajax()){
             $data=Input::all();
-         return $data;
+            $cls=$data['class'];
+            $sec=$data['section'];
+            $std=$data['student'];
+            $fee=$data['feetype'];
+            $amn=$data['amount'];
+            $paidamount=$data['paid'];
+            $dueamount=$data['due'];
+            $date=$data['date'];
+
+            $classname=ClassAdd::where('institute_code','=',Auth::user()->institute_id)->where('class_id','=',$cls)->pluck('class_name');
+            $feetype=AccountFeeType::where('institute_code','=',Auth::user()->institute_id)->where('fee_id','=',$fee)->pluck('fee_type');
+         return $feetype;
             $iid=Auth::user()->institute_id;
-            $s=new AccountFeeType;
-            $s->ac_id=mt_rand('100', '9999').$iid;
-            $s->fee_type=$type;
-            $s->fee_id='fee'.mt_rand('100', '9999');
-            $s->note=$note;
+            $s=new Invoice;
+            $s->class_id=$cls;
+            $s->class_name=$classname;
+            $s->invoice_id=$iid.' '.mt_rand('1', '9999');
+            $s->student_name=$std;
+            $s->fee_id=$fee;
+            $s->fee_type=$feetype;
+            $s->total_amount=$amn;
+            $s->payment_ammount=$paidamount;
+            $s->due_amount=$std;
+            $s->date=$date;
             $s->institute_code=$iid;
             $s->save();
             return response()->json([
