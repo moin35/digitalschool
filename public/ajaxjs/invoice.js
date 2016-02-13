@@ -1,6 +1,11 @@
 $("#invoiceadd").click(function(){
-	//var fee = $("#feetype").val();
-	//var note = $("#note").val();
+	var cls = $("#classid").val();
+	var sec = $("#sectionid").val();
+	var std = $("#studentid").val();
+	var fee = $("#feeid").val();
+	var amn = $("#amountid").val();
+	var date = $("#dateid").val();
+	var pamount = $("#paidamountid").val();
 
 	var route = "/admin/add/invoice";
 	var token = $("#token").val();
@@ -10,7 +15,7 @@ $("#invoiceadd").click(function(){
 		headers: {'X-CSRF-TOKEN': token},
 		type: 'POST',
 		dataType: 'json',
-		//data:{feetype: fee,note:note},
+		data:{class: cls,section:sec,student:std,feetype:fee,amount:amn,date:date,paid:pamount},
 
 		//data: $("#invoiceadd").serialize(),
 
