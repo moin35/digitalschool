@@ -63,11 +63,9 @@ class AccountsController extends Controller
 
     public function getEditFeeType($id)
     {
-
         $this->free=AccountFeeType::find($id);
         return response()->json($this->free);
     }
-
 
     public function getUpdateFeeType(Request $request, $id)
     {
