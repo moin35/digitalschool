@@ -11,9 +11,14 @@ function Carga(){
 	$.get(route, function(res){
 		$(res).each(function(key,value){
 			tablaDatos.append("<tr>" +
-				"<td>"+value.id+"</td>"+
 				"<td>"+value.invoice_id+"</td>"+
+				"<td>"+value.student_name+"</td>"+
+				"<td>"+value.fee_type+"</td>"+
+				"<td>"+value.status+"</td>"+
+				"<td>"+value.date+"</td>"+
 				"<td>"+value.total_amount+"</td>"+
+				"<td>"+value.payment_ammount+"</td>"+
+				"<td>"+value.due_amount+"</td>"+
 				"<td><button value="+value.id+" OnClick='EditFun(this);' class='btn btn-primary' data-toggle='modal' data-target='#myModal'>Edit</button><button class='btn btn-danger' value="+value.id+" OnClick='DeleteFee(this);'>Delete</button></td>" +
 				"</tr>");
 		});

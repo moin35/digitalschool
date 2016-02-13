@@ -166,10 +166,14 @@
                                     <table class="table table-striped table-hover table-bordered" id="editable-sample">
                                         <thead>
                                         <tr>
-                                            <th>#Account Id</th>
-                                            <th>Fee Type <i class="fa-caret-up"></i></th>
-
-                                            <th>Note</th>
+                                            <th>#Invoice Number</th>
+                                            <th>Student</th>
+                                            <th>Fee Type</th>
+                                            <th>Payment Status</th>
+                                            <th>Date</th>
+                                            <th>Amount</th>
+                                            <th>Paid Amount</th>
+                                            <th>Due Amount</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>

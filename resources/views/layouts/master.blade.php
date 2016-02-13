@@ -386,11 +386,11 @@
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-book"></i>
-                            <span></span>
+                            <span>{{Lang::get('home.account')}}</span>
                         </a>
                         <ul class="sub">
-                            <li><a href="">{{Lang::get('home.student')}}</a></li>
-                            <li><a href="buttons.html">Buttons</a></li>
+                            <li><a href="{{URL::to('admin/add/account/fee/type')}}">Add Fee Type</a></li>
+                            <li><a href="{{URL::to('admin/add/invoice')}}">Create Invoice</a></li>
                             <li><a href="typography.html">Typography</a></li>
                             <li><a href="widget.html">Widget</a></li>
                             <li><a href="slider.html">Slider</a></li>
