@@ -113,7 +113,7 @@
                                                                                         <label for="classesID" class="col-sm-2 col-sm-offset-2 control-label-right">
                                                                                             Subject </label><br>
                                                                                         <div class="col-sm-6">
-                                                                                            <select    name="subject"  class="form-control sub" >
+                                                                                            <select    name="subject"  class="form-control subject" >
                                                                                                 <option  selected="">First Choose Class</option>
 
                                                                                             </select>

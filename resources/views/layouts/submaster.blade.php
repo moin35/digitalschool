@@ -929,6 +929,7 @@
             $.get("{{ url('api/dropdown/sub')}}",
                     { option: $(this).val() },
                     function(data) {
+
                         var model = $('.subject');
                         model.empty();
                         $.each(data, function(index,element) {

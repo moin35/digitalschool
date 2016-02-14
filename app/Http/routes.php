@@ -65,7 +65,9 @@ Route::get('api/dropdown/thana', function(){
     $items = App\Thana::where('district_name', '=', $users)->lists('thana_or_upazilla','id');
     return Response::make($items);
 });
+
 Route::get('api/dropdown/sub', function(){
+    //for exam schedule
     $users = Input::get('option');
     //return $users;
     $items = App\Subject::where('institute_code','=',Auth::user()->institute_id)->where('class_id' ,'=', $users)->lists('subject_name','id');

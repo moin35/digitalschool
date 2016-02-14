@@ -59,7 +59,6 @@
     <div class="col-lg-6">
 
       <input id='answer' name="answer" type="text" readonly/>
-
     </div>
 </div>
 <div class="form-group ">
