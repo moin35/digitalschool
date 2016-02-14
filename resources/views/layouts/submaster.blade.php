@@ -929,7 +929,7 @@
             $.get("{{ url('api/dropdown/sub')}}",
                     { option: $(this).val() },
                     function(data) {
-                        var model = $('.sub');
+                        var model = $('.sub');//need to change
                         model.empty();
                         $.each(data, function(index,element) {
                             model.append("<option value='"+ element +"'>" + element + "</option>");
