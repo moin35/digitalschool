@@ -975,7 +975,38 @@
     });
 
 </script>
+<script language="JavaScript" type="text/javascript">
 
+ $(function(){
+$('#addAllMarks').on('submit',function(e){
+    $.ajaxSetup({
+        header:$('meta[name="_token"]').attr('content')
+    })
+    e.preventDefault(e);
+
+        $.ajax({
+        type:"POST",
+        url:'/mark/add/all/',
+        data:$(this).serialize(),
+        dataType: 'json',
+        success:function(data){
+
+    			$("#msj-success").fadeIn();
+
+    					},
+    		error:function(data){
+    			$("#msj").html(msj.responseJSON.genre);
+    			$("#msj-error").fadeIn();
+    		}
+    })
+    });
+});
+ </script>
+ <script type="text/javascript">
+ $.ajaxSetup({
+    headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+ });
+ </script>
 @section('scripts')
 
 @show
