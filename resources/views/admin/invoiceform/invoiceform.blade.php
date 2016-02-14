@@ -59,8 +59,6 @@
     <div class="col-lg-6">
 
       <input id='answer' name="answer" type="text" readonly/>
-
-
     </div>
 </div>
 <div class="form-group ">
@@ -69,4 +67,3 @@
         <input class="form-control form-control-inline input-medium default-date-picker" id="dateid" name="date" type="text" />
     </div>
 </div>
-
