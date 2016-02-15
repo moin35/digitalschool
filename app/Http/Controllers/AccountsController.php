@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Route;
 use App\AccountFeeType;
 use App\Invoice;
+use App\Expance;
 class AccountsController extends Controller
 {
 
@@ -130,6 +131,37 @@ class AccountsController extends Controller
             return response()->json([
                 "message" => "created"
             ]);
+        }
+    }
+
+
+    public function getExpense()
+    {
+      # saif acount moodule Expense
+      $allViews=Expance::where('institute_code','=',Auth::user()->institute_id)->get();
+      return view('admin.invoice.Expenses')->with('allresultViews',$allViews);
+    }
+
+    public function postExpense(Request $request){
+      if($request->ajax()){
+          $data=Input::all();
+         $eName=$data['expensesName'];
+         $eDate=$data['edateid'];
+         $eAmount=$data['amountid'];
+         $eNote=$data['enote'];
+        $iid=Auth::user()->institute_id;
+        $user=Auth::user()->user_name;
+          $edata=new Expance;
+          $edata->institute_code=$iid;
+          $edata->name=$eName;
+          $edata->users=$user;
+          $edata->date=$eDate;
+          $edata->amount=$eAmount;
+          $edata->note=$eNote;
+          $edata->action=0;
+          $edata->save();
+          return response()->json(["message" => "created"]);
+
         }
     }
 

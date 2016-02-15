@@ -232,3 +232,12 @@ Route::get('mark/view/{roll}/{cid}','StudentResultMarkController@getMarkViews');
 //Accounts Invoice Add Edit Delete view Update
 Route::get('/admin/add/invoice','AccountsController@getInvoice');
 Route::post('/admin/add/invoice','AccountsController@postInvoice');
+
+//Account Module For  Expense saif
+Route::get('admin/add/Expense','AccountsController@getExpense');
+Route::post('admin/add/Expense','AccountsController@postExpense');
+//Route::get('admin/add/Expense','AccountsController@getExpense');
+//Route::get('admin/add/Expense','AccountsController@getExpense');
+//Route::get('admin/add/Expense','AccountsController@getExpense');
+//Route::get('admin/add/Expense','AccountsController@getExpense');
+//Route::get('admin/add/Expense','AccountsController@getExpense');
