@@ -15,6 +15,7 @@ use App\Staff;
 use Illuminate\Support\Facades\DB;
 use App\Students;
 use App\GradeSystem;
+use Illuminate\Support\Facades\Session;
 
 
 class StudentResultMarkController extends Controller
@@ -125,7 +126,7 @@ class StudentResultMarkController extends Controller
           $examName=Exam::where('institute_code', '=', Auth::user()->institute_id)->lists('exam_id', 'exam_name');
           $allclass = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id', 'class_name');
 
-          $markForStdSub1=Mark::where('class_id','=',$class)->where('exam_name','=',$examNameviews)->where('exam_subject','=',$subJNames)->get();
+          $markForStdSub1=Mark::where('class_id','=',$class)->where('exam_name','=',$examNameviews)->where('exam_subject','=',$subJNames)->where('section','=',$sectionName)->get();
 
           $markForStdSub=Mark::where('institute_code','=', Auth::user()->institute_id)->where('class_id','=',$class)->where('exam_name','=',$examNameviews)->where('exam_subject','=',$subJNames)->get();
 
@@ -141,7 +142,7 @@ class StudentResultMarkController extends Controller
           $sectionName=Input::get('section');
           $examName=Exam::where('institute_code', '=', Auth::user()->institute_id)->lists('exam_id', 'exam_name');
           $allclass = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id', 'class_name');
-          $markForStdSub1=Mark::where('class_id','=',$class)->where('exam_name','=',$examNameviews)->where('exam_subject','=',$subJNames)->get();
+          $markForStdSub1=Mark::where('class_id','=',$class)->where('exam_name','=',$examNameviews)->where('exam_subject','=',$subJNames)->where('section','=',$sectionName)->get();
           $markForStdSub = DB::table('tbl_studets')
           ->join('tbl_class','tbl_studets.class','=','tbl_class.class_id')
           ->select('tbl_studets.*','tbl_class.*')
@@ -149,6 +150,7 @@ class StudentResultMarkController extends Controller
           ->where('tbl_studets.institute_code','=',Auth::user()->institute_id)
           ->where('tbl_studets.class','=',$class)
           ->get();
+        //  return $markForStdSub;
 
           return view('admin.resultMark.markadd')->with('allclass', $allclass)->with('examName',$examName)->with('addmake',$markForStdSub)
           ->with('examNameviews',$examNameviews)->with('subJNames',$subJNames)->with('classId',$class)
@@ -156,10 +158,10 @@ class StudentResultMarkController extends Controller
 
 
           }
-          public function postAddMarkall(){
+          public function postAddMarkall(Request $request){
         //saif for admin or inst mark add 1/25/16
 
-
+             //return 1;
         $clsassid=Input::get('classId');
         $className=Input::get('ClassName');
         $markExamName=Input::get('examName');
@@ -176,7 +178,7 @@ class StudentResultMarkController extends Controller
         $data = Input::all();
        //return $sectionName;
 
-        if($data!=" "){
+        if($request->ajax()){
         $data = Input::all();
         $clsassid=$data['classId'];
         $className=$data['ClassName'];
@@ -189,6 +191,7 @@ class StudentResultMarkController extends Controller
         $std_image=$data['stdImage'];
         $mark=$data['mark'];
         $sectionName=$data['sectionName'];
+        //return $sectionName;
         $icode=$data['iid'];
       //  return $icode;
         for($a=0;$a<count($clsassid);$a++)
@@ -204,6 +207,8 @@ class StudentResultMarkController extends Controller
         $updateMark[]=Mark::where('class_id','=',$clsassid[$a])->where('exam_subject','=',$markSubj[$a])->where('exam_name','=',$markExamName[$a])
         ->where('student_id','=',$std_id[$a])->where('section','=',$sectionName[$a])->update(array('sub_mark'=>$mark[$a]));
         }
+      //  Session::flash('data', 'You successfully');
+          return response()->json();
         }
         else {
         for($a=0;$a<count($clsassid);$a++){
@@ -224,11 +229,12 @@ class StudentResultMarkController extends Controller
         $addmark->save();
         }
 
-
+      //  Session::flash('data', 'You successfully');
+          return response()->json();
         }
         }
-        return redirect()->back()->withInput();
-
+      //  Session::flash('data', 'You successfully');
+          return response()->json();
         }
         else {
       //  return 2;

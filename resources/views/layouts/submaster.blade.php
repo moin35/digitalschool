@@ -382,6 +382,7 @@
                         <ul class="sub">
                             <li><a href="{{URL::to('admin/add/account/fee/type')}}">Add Fee Type</a></li>
                             <li><a href="{{URL::to('admin/add/invoice')}}">Create Invoice</a></li>
+<<<<<<< HEAD
                             <li><a href="{{URL::to('admin/view/balance')}}">Balance</a></li>
                             <li><a href="widget.html">Widget</a></li>
                             <li><a href="slider.html">Slider</a></li>
@@ -390,6 +391,9 @@
                             <li><a href="grids.html">Grids</a></li>
                             <li><a href="calendar.html">Calender</a></li>
                             <li><a href="draggable_portlet.html">Draggable Portlet</a></li>
+=======
+                          <li><a href="{{URL::to('admin/add/Expense')}}">Expense</a></li>
+>>>>>>> 73d947ec66386feb8c7e5d3d2167e1e268b943dc
                         </ul>
                     </li>
                     <li>
@@ -976,7 +980,65 @@
     });
 
 </script>
+<script language="JavaScript" type="text/javascript">
 
+ $(function(){
+$('#addAllMarks').on('submit',function(e){
+    $.ajaxSetup({
+        header:$('meta[name="_token"]').attr('content')
+    })
+    e.preventDefault(e);
+
+        $.ajax({
+        type:"POST",
+        url:'/mark/add/all/',
+        data:$(this).serialize(),
+        dataType: 'json',
+        success:function(data){
+
+    			$("#msj-success").fadeIn();
+
+    					},
+    		error:function(data){
+    			$("#msj").html(msj.responseJSON.genre);
+    			$("#msj-error").fadeIn();
+    		}
+    })
+    });
+});
+ </script>
+ <script language="JavaScript" type="text/javascript">
+
+  $(function(){
+ $('#ExpenseTest').on('submit',function(e){
+     $.ajaxSetup({
+         header:$('meta[name="_token"]').attr('content')
+     })
+     e.preventDefault(e);
+
+         $.ajax({
+         type:"POST",
+         url:'/admin/add/Expense',
+         data:$(this).serialize(),
+         dataType: 'json',
+         success:function(data){
+
+     			$("#msj-success").fadeIn();
+
+     					},
+     		error:function(data){
+     			$("#msj").html(msj.responseJSON.genre);
+     			$("#msj-error").fadeIn();
+     		}
+     })
+     });
+ });
+  </script>
+ <script type="text/javascript">
+ $.ajaxSetup({
+    headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+ });
+ </script>
 @section('scripts')
 
 @show

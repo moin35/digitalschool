@@ -7,9 +7,8 @@ Mark
 <script src="{{URL::to('/')}}/js/angular/angular-animate.min.js"></script>
 <link href="{{URL::to('/')}}/css/angular/animatedbox.css" rel="stylesheet">
 <link rel="stylesheet" href="{{URL::to('/')}}/css/styledata.css">
-  <script src="{{URL::to('/')}}/js/indexdata.js"></script>
-
-
+<script src="{{URL::to('/')}}/js/indexdata.js"></script>
+<meta name="_token" content="{{ csrf_token() }}" />
 @stop
 
 @section('body')
@@ -144,8 +143,13 @@ Mark
                                                    </div>
                                                </div>
                                                <div class="space15"></div>
-                                        {!!Form::open(array('class'=>'cmxform form-horizontal','id'=>'myform','action'=>'InstituteController@postAddMarkall')) !!}
-                                               <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                                        {!!Form::open(array('class'=>'form-horizontal','id'=>'addAllMarks')) !!}
+                                      
+                                        <div id="msj-success"  class="alert alert-success fade in" role="alert" style="display:none">
+                                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                            <strong>Your successfully</strong>.
+                                        </div>
+                                                   <table class="table table-striped table-hover table-bordered" id="editable-sample">
                                                    <thead>
                                                    <tr>
                                                        <th>#</th>
@@ -203,12 +207,13 @@ Mark
                                                    <input type="hidden" value="{{$c->class_name}}"  name="ClassName[]">
                                                    <input type="hidden" value="{{$examNameviews}}"  name="examName[]">
                                                    <input type="hidden" value="{{$subJNames}}"  name="subjName[]">
+                                                     <input type="hidden" value="{{$section}}"  name="sectionName[]">
                                                    <input type="hidden" value="{{$c->student_id}}"  name="stdId[]">
                                                      <input type="hidden" value="{{$c->roll}}"  name="stdRoll[]">
                                                    <input type="hidden" value="{{$c->student_name}}"  name="stdName[]">
                                                    <input type="hidden" value="{{$c->image}}"  name="stdImage[]">
                                                    <input type="hidden" value="{{$c->phone}}"  name="stdphone[]">
-
+                                              <input type="hidden" value="{{Auth::user()->institute_id}}"  name="iid[]">
                                                        <td>
                                                    <input class="form-control mark" style="width:90px;" maxlength="100" type="number" value="{{$c->sub_mark}}"  name="mark[]">
 
@@ -254,44 +259,6 @@ Mark
 </div>
 <!-- page end-->
 
- <script>
-
- var formData = $("#myform").serializeArray();
- var URL = $("#myform").attr("action");
- $.post(URL,
- 	formData,
- 	function(data, textStatus, jqXHR)
- 	{
- 		//data: Data from Server
- 	}).fail(function(jqXHR, textStatus, errorThrown)
- 	{
- 	});
-
-/*
-
-$("document").ready(function(){
-        var base_url = 'http://localhost';
-
-        $("#myform").submit(function(e){
-            e.preventDefault();
-
-          //  var examName = $("input#examName").val();
-            //var classid = $("input#classid").val();
-            //var stock = $("input#subject_code").val();
-
-          //  var dataString = 'examName='+size+'&amp;classid='+option_id+'&amp;stock='+stock+'&amp;';
-            $.ajax({
-                type: "POST",
-                url : base_url + "/mark/add/all",
-                data : dataString,
-                success : function(data){
-                    console.log(data);
-                }
-            },"html");
-
-    });
- });*/
- </script>
 <script>
     jQuery(document).ready(function() {
         EditableTable.init();
