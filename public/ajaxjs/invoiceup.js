@@ -42,12 +42,13 @@ function DeleteFee(btn){
 }
 
 function EditFun(btn){
-	var route = "http://localhost:8000/fee/type/edit/"+btn.value;
+	var route = "http://localhost:8000/admin/edit/invoice/"+btn.value;
 	//alert(route);
 	$.get(route, function(res){
 //alert(res.note);
-		$("#typeedit").val(res.fee_type);
-		$("#noteedit").val(res.note);
+		$("#feeid").val(res.fee_type);
+		$("#sectionid").val(res.section_id);
+		$("#amountid").val(res.total_amount);
 		$("#id").val(res.id);
 		//alert(res.feetype);
 		//console.log(val(res.note));

@@ -382,7 +382,7 @@
                         <ul class="sub">
                             <li><a href="{{URL::to('admin/add/account/fee/type')}}">Add Fee Type</a></li>
                             <li><a href="{{URL::to('admin/add/invoice')}}">Create Invoice</a></li>
-                            <li><a href="typography.html">Typography</a></li>
+                            <li><a href="{{URL::to('admin/view/balance')}}">Balance</a></li>
                             <li><a href="widget.html">Widget</a></li>
                             <li><a href="slider.html">Slider</a></li>
                             <li><a href="tree_view.html">Tree View</a></li>

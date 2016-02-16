@@ -227,8 +227,15 @@ Route::get('api/dropdown/subject', function(){
     $items = App\Subject::where('institute_code','=',Auth::user()->institute_id)->where('class_id', '=', $user)->lists('subject_name','subject_code');
     return Response::make($items);
 });
+
 Route::get('mark/view/{roll}/{cid}','StudentResultMarkController@getMarkViews');
 
 //Accounts Invoice Add Edit Delete view Update
 Route::get('/admin/add/invoice','AccountsController@getInvoice');
 Route::post('/admin/add/invoice','AccountsController@postInvoice');
+Route::get('/admin/edit/invoice/{id}','AccountsController@editInvoice');
+Route::post('/admin/edit/invoice/{id}','AccountsController@updateInvoice');
+Route::get('/admin/invoice/delete/{id}','AccountsController@deleteInvoice');
+Route::get('view/invoice/{id}','AccountsController@viewInvoice');
+Route::get('print/invoice/{id}','AccountsController@printInvoice');
+Route::get('admin/view/balance','AccountsController@viewBalance');
