@@ -997,38 +997,7 @@ $('#addAllMarks').on('submit',function(e){
     });
 });
  </script>
- <script language="JavaScript" type="text/javascript">
-
-  $(function(){
- $('#ExpenseTest').on('submit',function(e){
-     $.ajaxSetup({
-         header:$('meta[name="_token"]').attr('content')
-     })
-     e.preventDefault(e);
-
-         $.ajax({
-         type:"POST",
-         url:'/admin/add/Expense',
-         data:$(this).serialize(),
-         dataType: 'json',
-         success:function(data){
-
-     			$("#msj-success").fadeIn();
-
-     					},
-     		error:function(data){
-     			$("#msj").html(msj.responseJSON.genre);
-     			$("#msj-error").fadeIn();
-     		}
-     })
-     });
- });
-  </script>
- <script type="text/javascript">
- $.ajaxSetup({
-    headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
- });
- </script>
+   <script src="{{URL::to('/')}}/ajaxjs/exprence.js" type="text/javascript"></script>
 @section('scripts')
 
 @show
