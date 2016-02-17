@@ -151,7 +151,8 @@
                                                                                         <td> {{$c->amount}} </td>
                                                                                       <td> {{$c->note}} </td>
                                                                                         <td>
-                                                                                            <a class="btn btn-round btn-success tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/mark/view/{{$c->id}}"><i class="fa fa-eye"></i> </a>
+                                                                                          <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/admin/edit/expenses/{{$c->id}}"><i class="fa fa-edit"></i> </a>
+                                                                                          <a class="btn btn-round btn-danger tooltips" title=""  data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/admin/delete/expenses/{{$c->id}}" ><i class="fa  fa-trash-o"></i></a>
 
                                                                                         </td>
                                                                                     </tr>
@@ -159,6 +160,21 @@
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
+
+
+                                                                         <div class="col-sm-3" style="float: right;">
+
+                                                                            <div class="well well-sm">
+                                                                                                        <table style="width:100%; margin:0px;">
+                                                                                                            <tbody><tr>
+                                                                                                                <td width="50%">
+                                                                                                                    Total :                                     </td>
+                                                                                                                <td style="width:50%;padding-left:10px">
+                                                                                                                  {{$totalExpance}} TK                                    </td>
+                                                                                                            </tr>
+                                                                                                        </tbody></table>
+                                                                                                    </div>
+                                                                                                  </div>
                             </div>
 
                         </div>
@@ -203,26 +219,6 @@
     headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
  });
  </script>
-<script >
 
-
-$(".num2").keyup(function(){
-  $("#answer").html('');
-  var n1 = $('input[name="amount"]').val();
-  var n2 = $('input[name="paid"]').val();
-  var ans = n1 - n2;
-  $("#answer").val(ans);
-  // $("#answer").append("<input value='"+ ans +"'>");
-});
-
-$(".num1").keyup(function(){
-  $("#answer").html('');
-  var n1 = $('input[name="amount"]').val();
-  var n2 = $('input[name="paid"]').val();
-  var ans = n1 - n2;
-   $("#answer").val(ans);
-  //$("#answer").append("<input value='"+ ans +"'>");
-});
-</script>
 
 @endsection

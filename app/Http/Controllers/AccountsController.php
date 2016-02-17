@@ -139,18 +139,22 @@ class AccountsController extends Controller
     {
       # saif acount moodule Expense
       $allViews=Expance::where('institute_code','=',Auth::user()->institute_id)->get();
-      return view('admin.invoice.Expenses')->with('allresultViews',$allViews);
+    $ExpanceSum=Expance::where('institute_code','=',Auth::user()->institute_id)->sum('amount');
+      //return $ExpanceSum;
+      return view('admin.invoice.Expenses')->with('allresultViews',$allViews)->with('totalExpance',$ExpanceSum);
     }
 
     public function postExpense(Request $request){
       if($request->ajax()){
           $data=Input::all();
+
          $eName=$data['expensesName'];
          $eDate=$data['edateid'];
          $eAmount=$data['amountid'];
          $eNote=$data['enote'];
         $iid=Auth::user()->institute_id;
         $user=Auth::user()->user_name;
+        //  return $eAmount;
           $edata=new Expance;
           $edata->institute_code=$iid;
           $edata->name=$eName;
@@ -163,7 +167,36 @@ class AccountsController extends Controller
           return response()->json(["message" => "created"]);
 
         }
+      }
+        public function editExpense($id){
+          //return $id;
+          $editExpense=Expance::where('institute_code','=',Auth::user()->institute_id)->where('id','=',$id)->first();
+          //return $editExpense;
+          return view('admin.invoice.editExpenses')->with('editExpense',$editExpense);
+        }
+        public function updateExpense($id){
+
+                  $eName=Input::get('expensesName');
+                  $eDate=Input::get('edateid');
+                  $eAmount=Input::get('amountid');
+                  $eNote=Input::get('enote');
+                   //$eName=$data['expensesName'];
+                   //$eDate=$data['edateid'];
+                   //$eAmount=$data['amountid'];
+                   //$eNote=$data['enote'];
+                  // $id=$data['id'];
+                  $iid=Auth::user()->institute_id;
+                  $user=Auth::user()->user_name;
+                  $UpdateExpense=Expance::where('institute_code','=',Auth::user()->institute_id)->where('id','=',$id)
+                  ->update(['name'=>$eName,'date'=>$eDate,'amount'=>$eAmount,'note'=>$eNote]);
+                    Session::flash('data', 'Data successfully  Update !');
+                  return redirect()->back();
+
+        }
+        public function deleteExpense($id){
+             $DeleteExpense=Expance::where('institute_code','=',Auth::user()->institute_id)->where('id','=',$id)->delete();
+             Session::flash('data', 'Data successfully  Delete !');
+            return redirect()->back();
+        }
+
     }
-
-
-}

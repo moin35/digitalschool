@@ -236,8 +236,8 @@ Route::post('/admin/add/invoice','AccountsController@postInvoice');
 //Account Module For  Expense saif
 Route::get('admin/add/Expense','AccountsController@getExpense');
 Route::post('admin/add/Expense','AccountsController@postExpense');
-//Route::get('admin/add/Expense','AccountsController@getExpense');
-//Route::get('admin/add/Expense','AccountsController@getExpense');
-//Route::get('admin/add/Expense','AccountsController@getExpense');
+Route::get('admin/edit/expenses/{id}','AccountsController@editExpense');
+Route::post('admin/edit/expenses/{id}','AccountsController@updateExpense');
+Route::get('admin/delete/expenses/{id}','AccountsController@deleteExpense');
 //Route::get('admin/add/Expense','AccountsController@getExpense');
 //Route::get('admin/add/Expense','AccountsController@getExpense');
