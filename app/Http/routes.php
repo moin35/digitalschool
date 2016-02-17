@@ -239,6 +239,8 @@ Route::get('/admin/invoice/delete/{id}','AccountsController@deleteInvoice');
 Route::get('view/invoice/{id}','AccountsController@viewInvoice');
 Route::get('print/invoice/{id}','AccountsController@printInvoice');
 Route::get('admin/view/balance','AccountsController@viewBalance');
+Route::get('admin/view/individual/balance/{name}','AccountsController@individualBalance');
+Route::get('print/individual/report/{name}','AccountsController@individualReportPrint');
 
 
 //Account Module For  Expense saif

@@ -77,15 +77,15 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Student Name <i class="fa-caret-up"></i></th>
+                                            <th>Student Name </th>
 
                                             <th>Class</th>
-                                            <th>Phone</th>
+                                            <!--<th>Phone</th>
                                             <th>Photo</th>
                                             <th>Total Payment</th>
                                             <th>Paid Payment</th>
                                             <th>Due</th>
-                                            <th>Total Balance</th>
+                                            <th>Total Balance</th>-->
                                             <th>Action</th>
 
                                         </tr>
@@ -93,17 +93,17 @@
                                         <tbody>
                                         @foreach($balance as $c)
                                             <tr class="">
-                                                <td>{{$c->id}}</td>
+
                                                 <td> {{$c->student_name}}</td>
                                                 <td> {{$c->class_name}}</td>
-                                                <td> {{$c->phone}}</td>
+                                             <!--<td> {{$c->phone}}</td>
 
                                                 <td class="center"><img width="70px" height="70px" src="{{URL::to('/')}}/images/{{$c->image}} "></td>
                                                 <td> {{$c->total_amount}}</td>
                                                 <td> {{$c->payment_ammount}}</td>
                                                 <td> {{$c->due_amount}}</td>
-                                                <td> {{$c->payment_ammount}}</td>
-                                                <td><a href="">Detail</a> </td>
+                                                <td> {{$c->payment_ammount}}</td>-->
+                                                <td><a class="btn btn-round btn-success" href="{{URL::to('/')}}/admin/view/individual/balance/{{$c->student_name}}">Detail</a> </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -134,4 +134,16 @@
         angular.module('app', ['ngAnimate'])
                 .controller('TestCtrl', TestCtrl)
     </script>
+<!-- JAvascript view auto increment number for table start-->
+    <script>
+        var tables = document.getElementsByTagName('table');
+        var table = tables[tables.length - 1];
+        var rows = table.rows;
+        for(var i = 1, td; i < rows.length; i++){
+            td = document.createElement('td');
+            td.appendChild(document.createTextNode(i + 0));
+            rows[i].insertBefore(td, rows[i].firstChild);
+        }
+    </script>
+    <!-- JAvascript view auto increment number for table End-->
 @stop

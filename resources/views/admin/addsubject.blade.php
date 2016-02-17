@@ -174,7 +174,7 @@
                                     <table class="table table-striped table-hover table-bordered" id="editable-sample">
                                         <thead>
                                         <tr>
-
+                                            <th>#</th>
                                             <th>Class <i class="fa-caret-up"></i></th>
                                             <th>Subject Name</th>
                                             <th>Teacher</th>
@@ -232,4 +232,16 @@
             EditableTable.init();
         });
     </script>
+    <!-- JAvascript view auto increment number for table start-->
+    <script>
+        var tables = document.getElementsByTagName('table');
+        var table = tables[tables.length - 1];
+        var rows = table.rows;
+        for(var i = 1, td; i < rows.length; i++){
+            td = document.createElement('td');
+            td.appendChild(document.createTextNode(i + 0));
+            rows[i].insertBefore(td, rows[i].firstChild);
+        }
+    </script>
+    <!-- JAvascript view auto increment number for table End-->
 @stop

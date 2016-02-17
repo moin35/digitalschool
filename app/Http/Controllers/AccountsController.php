@@ -108,6 +108,8 @@ class AccountsController extends Controller
             $date=$data['date'];
             $answer=$data['answer'];
 //return $answer;
+            $studentid=Students::where('institute_code','=',Auth::user()->institute_id)->where('name','=',$std)->where('class','=',$cls)->pluck('st_id');
+            //return $studentid;
             $classname=ClassAdd::where('institute_code','=',Auth::user()->institute_id)->where('class_id','=',$cls)->pluck('class_name');
             $feetype=AccountFeeType::where('institute_code','=',Auth::user()->institute_id)->where('fee_id','=',$fee)->pluck('fee_type');
          //return $feetype;
@@ -117,6 +119,7 @@ class AccountsController extends Controller
             $s->class_name=$classname;
             $s->invoice_id=mt_rand('1', '9999').' '.$iid;
             $s->student_name=$std;
+            $s->student_id=$studentid;
             $s->fee_id=$fee;
             $s->fee_type=$feetype;
             $s->total_amount=$amn;
@@ -153,6 +156,8 @@ class AccountsController extends Controller
             $answer=Input::get('answer');
             $date=Input::get('date');
         //return $paidamountid;
+        $studentid=Students::where('institute_code','=',Auth::user()->institute_id)->where('name','=',$student)->where('class','=',$class)->pluck('st_id');
+        return $studentid;
         $classname=ClassAdd::where('institute_code','=',Auth::user()->institute_id)->where('class_id','=',$class)->pluck('class_name');
         $feetypename=AccountFeeType::where('institute_code','=',Auth::user()->institute_id)->where('fee_id','=',$feetype)->pluck('fee_type');
         $up=Invoice::where('institute_code','=',Auth::user()->institute_id)->where('id','=',$id)
@@ -160,6 +165,7 @@ class AccountsController extends Controller
                       'class_name'=>$classname,
                         'section_id'=>$section,
                         'student_name'=>$student,
+                        'student_id'=>$studentid,
                         'fee_type'=>$feetypename,
                         'fee_id'=>$feetype,
                         'total_amount'=>$amount,
@@ -177,6 +183,7 @@ class AccountsController extends Controller
         return redirect::to('admin/add/invoice');
     }
 public function viewInvoice($id){
+
     $printview=Invoice::where('institute_code','=',Auth::user()->institute_id)->where('id','=',$id)->first();
     $institute=Institute::where('institute_code','=',Auth::user()->institute_id)->first();
     //return $printview;
@@ -193,9 +200,10 @@ public function viewInvoice($id){
 
        $classname=ClassAdd::where('institute_code','=',Auth::user()->institute_id)->lists('class_id','class_name');
        $balance=Invoice::where('institute_code','=',Auth::user()->institute_id)
-                           ->select('student_name')
+                           ->select('student_name','class_id','class_name')
                             ->distinct()
                             ->get();
+
 //return $balance;
        return view('admin.balance',['balance'=>$balance,'class'=>$classname]);
    }
@@ -230,6 +238,30 @@ public function viewInvoice($id){
 
         }
     }
-
-
+public function individualBalance($name){
+    $printview=Invoice::where('institute_code','=',Auth::user()->institute_id)->where('student_name','=',$name)->first();
+    $paidtotal=Invoice::where('institute_code','=',Auth::user()->institute_id)->where('student_name','=',$name)->sum('payment_ammount');
+    $duetotal=Invoice::where('institute_code','=',Auth::user()->institute_id)->where('student_name','=',$name)->sum('due_amount');
+    $totalamount=Invoice::where('institute_code','=',Auth::user()->institute_id)->where('student_name','=',$name)->sum('total_amount');
+   //return $duetotal;
+    $institute=Institute::where('institute_code','=',Auth::user()->institute_id)->first();
+    $balance=Invoice::where('institute_code','=',Auth::user()->institute_id)
+        ->where('student_name','=',$name)
+        ->get();
+//return $balance;
+    return view('admin.individualbalance',['balance'=>$balance,'print'=>$printview,'iis'=>$institute,'paid'=>$paidtotal,'due'=>$duetotal,'total'=>$totalamount]);
+}
+    public function individualReportPrint($name){
+        $printview=Invoice::where('institute_code','=',Auth::user()->institute_id)->where('student_name','=',$name)->first();
+        $paidtotal=Invoice::where('institute_code','=',Auth::user()->institute_id)->where('student_name','=',$name)->sum('payment_ammount');
+        $duetotal=Invoice::where('institute_code','=',Auth::user()->institute_id)->where('student_name','=',$name)->sum('due_amount');
+        $totalamount=Invoice::where('institute_code','=',Auth::user()->institute_id)->where('student_name','=',$name)->sum('total_amount');
+        //return $duetotal;
+        $institute=Institute::where('institute_code','=',Auth::user()->institute_id)->first();
+        $balance=Invoice::where('institute_code','=',Auth::user()->institute_id)
+            ->where('student_name','=',$name)
+            ->get();
+//return $balance;
+        return view('admin.individualreportprint',['balance'=>$balance,'print'=>$printview,'iis'=>$institute,'paid'=>$paidtotal,'due'=>$duetotal,'total'=>$totalamount]);
+    }
 }
