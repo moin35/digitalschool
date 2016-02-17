@@ -192,8 +192,11 @@ public function viewInvoice($id){
    public function viewBalance(){
 
        $classname=ClassAdd::where('institute_code','=',Auth::user()->institute_id)->lists('class_id','class_name');
-       $balance=Invoice::where('institute_code','=',Auth::user()->institute_id)->get();
-       
+       $balance=Invoice::where('institute_code','=',Auth::user()->institute_id)
+                           ->select('student_name')
+                            ->distinct()
+                            ->get();
+//return $balance;
        return view('admin.balance',['balance'=>$balance,'class'=>$classname]);
    }
 

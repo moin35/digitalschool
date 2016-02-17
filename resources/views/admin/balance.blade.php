@@ -86,6 +86,7 @@
                                             <th>Paid Payment</th>
                                             <th>Due</th>
                                             <th>Total Balance</th>
+                                            <th>Action</th>
 
                                         </tr>
                                         </thead>
@@ -102,6 +103,7 @@
                                                 <td> {{$c->payment_ammount}}</td>
                                                 <td> {{$c->due_amount}}</td>
                                                 <td> {{$c->payment_ammount}}</td>
+                                                <td><a href="">Detail</a> </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
