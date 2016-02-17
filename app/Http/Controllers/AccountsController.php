@@ -86,14 +86,13 @@ class AccountsController extends Controller
         $this->free->delete();
         return response()->json(["mensaje"=>"borrado"]);
     }
-    public  function  getInvoice(Request $request){
+    public  function  getInvoice(){
         $classname=ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id','class_name');
         $fee=AccountFeeType::where('institute_code', '=', Auth::user()->institute_id)->lists('fee_id','fee_type');
-        if ($request->ajax()) {
-            $invoice = Invoice::all();
-            return response()->json($invoice);
-        }
-        return view('admin.invoice.addinvoice',['classview'=>$classname,'feetype'=>$fee]);
+
+        $allinvoice=Invoice::where('institute_code', '=', Auth::user()->institute_id)->get();
+
+        return view('admin.invoice.addinvoice',['classview'=>$classname,'feetype'=>$fee,'allinvoice'=>$allinvoice]);
     }
     public function postInvoice(Request $request)
     {
@@ -133,6 +132,73 @@ class AccountsController extends Controller
             ]);
         }
     }
+    public function editInvoice($id)
+    {
+        $classname=ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id','class_name');
+        $fee=AccountFeeType::where('institute_code', '=', Auth::user()->institute_id)->lists('fee_id','fee_type');
+
+        //$allinvoice=Invoice::where('institute_code', '=', Auth::user()->institute_id)->get();
+        //return $allinvoice;
+      $invoice=Invoice::where('institute_code','=',Auth::user()->institute_id)->where('id','=',$id)->first();
+        return view('admin.invoice.invoiceedit',['classview'=>$classname,'feetype'=>$fee,'voucher'=>$invoice]);
+    }
+
+    public function updateInvoice($id){
+            $class=Input::get('class');
+            $section=Input::get('section');
+            $student=Input::get('student');
+            $feetype=Input::get('feetype');
+            $amount=Input::get('amount');
+            $paidamountid=Input::get('paid');
+            $answer=Input::get('answer');
+            $date=Input::get('date');
+        //return $paidamountid;
+        $classname=ClassAdd::where('institute_code','=',Auth::user()->institute_id)->where('class_id','=',$class)->pluck('class_name');
+        $feetypename=AccountFeeType::where('institute_code','=',Auth::user()->institute_id)->where('fee_id','=',$feetype)->pluck('fee_type');
+        $up=Invoice::where('institute_code','=',Auth::user()->institute_id)->where('id','=',$id)
+            ->update(['class_id'=>$class,
+                      'class_name'=>$classname,
+                        'section_id'=>$section,
+                        'student_name'=>$student,
+                        'fee_type'=>$feetypename,
+                        'fee_id'=>$feetype,
+                        'total_amount'=>$amount,
+                        'payment_ammount'=>$paidamountid,
+                        'due_amount'=>$answer,
+                        'date'=>$date,
+                        ]);
+        Session::flash('data', 'Success!');
+        return redirect::to('admin/edit/invoice/'.$id);
+    }
+
+    public function deleteInvoice($id){
+        $delete=Invoice::where('institute_code','=',Auth::user()->institute_id)->where('id','=',$id)->delete();
+        Session::flash('data', 'Data successfully deleted !');
+        return redirect::to('admin/add/invoice');
+    }
+public function viewInvoice($id){
+    $printview=Invoice::where('institute_code','=',Auth::user()->institute_id)->where('id','=',$id)->first();
+    $institute=Institute::where('institute_code','=',Auth::user()->institute_id)->first();
+    //return $printview;
+        return view('admin.invoice.viewinvoice',['print'=>$printview,'iis'=>$institute]);
+}
+    public function printInvoice($id){
+        //return 'OK';
+        $printview=Invoice::where('institute_code','=',Auth::user()->institute_id)->where('id','=',$id)->first();
+        $institute=Institute::where('institute_code','=',Auth::user()->institute_id)->first();
+        //return $printview;
+        return view('admin.invoice.printinvoice',['print'=>$printview,'iis'=>$institute]);
+    }
+   public function viewBalance(){
+
+       $classname=ClassAdd::where('institute_code','=',Auth::user()->institute_id)->lists('class_id','class_name');
+       $balance=Invoice::where('institute_code','=',Auth::user()->institute_id)
+                           ->select('student_name')
+                            ->distinct()
+                            ->get();
+//return $balance;
+       return view('admin.balance',['balance'=>$balance,'class'=>$classname]);
+   }
 
 
     public function getExpense()

@@ -391,8 +391,8 @@
                         <ul class="sub">
                             <li><a href="{{URL::to('admin/add/account/fee/type')}}">Add Fee Type</a></li>
                             <li><a href="{{URL::to('admin/add/invoice')}}">Create Invoice</a></li>
+                            <li><a href="{{URL::to('admin/view/balance')}}">Balance</a></li>
                             <li><a href="{{URL::to('admin/add/Expense')}}">Expense</a></li>
-
                         </ul>
                     </li>
                     <li>
