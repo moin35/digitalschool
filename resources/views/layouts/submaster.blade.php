@@ -273,13 +273,13 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <img alt="" src="{{URL::to('/')}}/images/avatar1_small.jpg">
-                        <span class="username">John Doe</span>
+                        <span class="username">{{Auth::user()->user_name}}</span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
                         <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
                         <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                        <li><a href="login.html"><i class="fa fa-key"></i> Log Out</a></li>
+                        <li><a href="{{URL::to('auth/logout')}}"><i class="fa fa-key"></i> Log Out</a></li>
                     </ul>
                 </li>
                 <!-- user login dropdown end -->
@@ -297,12 +297,6 @@
         <div id="sidebar" class="nav-collapse">
             <!-- sidebar menu start-->            <div class="leftside-navigation">
                 <ul class="sidebar-menu" id="nav-accordion">
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-dashboard"></i>
-                            <span>{{Lang::get('home.layout')}}</span>
-                        </a>
-                    </li>
                     <li>
                         <a href="{{URL::to('admin/institute/registration')}}">
                             <i class="fa fa-building-o"></i>
@@ -387,9 +381,9 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="fontawesome.html">
+                        <a href="{{URL::to('Institute/Setting')}}">
                             <i class="fa fa-bullhorn"></i>
-                            <span>Fontawesome </span>
+                            <span>Institute Setting </span>
                         </a>
                     </li>
                     <li class="sub-menu">

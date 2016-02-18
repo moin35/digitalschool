@@ -322,7 +322,7 @@
                                                     <td> {{$c->class_name}}</td>
                                                     <td>
                                                         <a class="btn btn-success tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="View More"  href="{{URL::to('/')}}/student/details/{{$c->id}}" ><i class="fa fa-eye"></i> </a>
-                                                        <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/student/edit/{{$c->id}}"><i class="fa fa-edit"></i> </a>
+                                                        <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/student/edit/{{$c->st_id}}"><i class="fa fa-edit"></i> </a>
                                                         <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/student/delete/{{$c->st_id}}" ><i class="fa  fa-trash-o"></i></a>
                                                     </td>
                                                 </tr>

@@ -252,3 +252,6 @@ Route::get('admin/delete/expenses/{id}','AccountsController@deleteExpense');
 //Route::get('admin/add/Expense','AccountsController@getExpense');
 //Route::get('admin/add/Expense','AccountsController@getExpense');
 
+
+Route::get('admin/allreport','AccountsController@getReport');
+
