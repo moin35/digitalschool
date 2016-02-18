@@ -4,7 +4,7 @@
     Setting
 @stop
 @section('head')
-
+<meta name="_token" content="{{ csrf_token() }}" />
 @stop
 
 @section('body')
@@ -45,18 +45,22 @@
 
                             <div class="unstyled">
 
-                                {!! Form::open(array('id'=>'subjectinfo','class'=>'form-horizontal bucket-form','files'=>'true')) !!}
+                                {!! Form::open(array('id'=>'iiSetting','class'=>'form-horizontal bucket-form')) !!}
 
+                                  <div id="msj-success"  class="alert alert-success fade in" role="alert" style="display:none">
+                                      <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                      <strong>Your successfully</strong>.
+                                  </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">URL</label>
                                     <div class="col-sm-6">
-                                        <input type="text" value="{{$Isetting->url}}" name="name" class="form-control input">
+                                        <input type="text" value="{{$Isetting->url}}" name="iurl" class="form-control input">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Site Title/Name </label>
                                     <div class="col-sm-6">
-                                        <input type="text" value="{{$Isetting->institute_name}}" name="name" class="form-control input">
+                                        <input type="text" value="{{$Isetting->institute_name}}" name="iname" class="form-control input">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -117,106 +121,8 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-
-                                    <div class="col-sm-6">
-                                        <div class="row">
-                                            <div class="form-group last">
-                                                <label class="control-label col-md-5">Change Logo</label>
-                                                <div class="col-md-7">
-                                                    <div class="fileupload fileupload-new" data-provides="fileupload" id="image" name="image">
-                                                        <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                                                            <img src="{{URL::to('/')}}/images/{{$Isetting->image}}" alt="" />
-                                                        </div>
-                                                        <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
-                                                        <div>
-                                                   <span class="btn btn-white btn-file">
-                                                   <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
-                                                   <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
-                                                   <input type="file" name="image" class="default" />
-                                                   </span>
-                                                            <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
 
 
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-
-                                    <div class="col-sm-6">
-                                        <div class="row">
-                                            <div class="form-group last">
-                                                <label class="control-label col-md-5">Change Icon</label>
-                                                <div class="col-md-7">
-                                                    <div class="fileupload fileupload-new" data-provides="fileupload" id="image" name="image">
-                                                        <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                                                            <img src="{{URL::to('/')}}/images/{{$Isetting->image}}" alt="" />
-                                                        </div>
-                                                        <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
-                                                        <div>
-                                                   <span class="btn btn-white btn-file">
-                                                   <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
-                                                   <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
-                                                   <input type="file" name="image" class="default" />
-                                                   </span>
-                                                            <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-
-                                    <div class="col-sm-6">
-                                        <div class="row">
-                                            <div class="form-group last">
-                                                <label class="control-label col-md-5">Change Banner</label>
-                                                <div class="col-md-7">
-                                                    <div class="fileupload fileupload-new" data-provides="fileupload" id="image" name="image">
-                                                        <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                                                            <img src="{{URL::to('/')}}/images/{{$Isetting->image}}" alt="" />
-                                                        </div>
-                                                        <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
-                                                        <div>
-                                                   <span class="btn btn-white btn-file">
-                                                   <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
-                                                   <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
-                                                   <input type="file" name="image" class="default" />
-                                                   </span>
-                                                            <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-
-                                    <div class="col-sm-6">
-                                        <div class="row">
-                                          <form id="upload" method="post" action="upload.php" enctype="multipart/form-data">
-                              <div id="drop">
-                                  Drop Here
-
-                                  <a>Browse</a>
-                                  <input type="file" name="upl" multiple />
-                              </div>
-
-                              <ul>
-                                  <!-- The file uploads will be shown here -->
-                              </ul>
-
-                          </form>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <br> <div class="price-actions">
                                     <button type="submit" class="btn">Update Information</button>

@@ -693,11 +693,64 @@ public function postRoutineByClass(){
         return Redirect::to('user/index');
         }
         public function getInstitute(){
+
             $division=Division::all()->lists('id','Division');
-          $Isetting=Institute::where('institute_code', '=', Auth::user()->institute_id)->first();
+            $Isetting=Institute::where('institute_code', '=', Auth::user()->institute_id)->first();
             $divisionName=Division::where('id','=',$Isetting->division)->pluck('Division');
         //  return $Isetting->division;
           return view('admin.instituteSetting')->with('Isetting',$Isetting)->with('divisionlist',$division)->with('divisionName',$divisionName);
+        }
+
+       public function PostInstitute(Request $request )
+        {
+          if($request->ajax()){
+          $data = Input::all();
+          $iurl=$data['iurl'];
+          $iphone=$data['phone'];
+          $iname=$data['iname'];
+          $iemail=$data['email'];
+          $idivision=$data['division'];
+          $idistric=$data['district'];
+          $iThana=$data['thana'];
+          $iaddress=$data['address'];
+        //  return $idivision.$idistric.$iThana;
+          $userc = User::where('institute_id', '=', Auth::user()->institute_id)->Where('email', '=', $iemail)->count();
+          $marchant = Institute::where('institute_code', '=', Auth::user()->institute_id)->Where('email', '=', $iemail)->count();
+          if ($userc > 0 || $marchant > 0) {
+
+            // return $iemail;
+
+           $IsettingUpdate=User::where('institute_id','=', Auth::user()->institute_id)->update(['email'=>$iemail,'name'=>$iname]);
+              //$IsettingUpdate=User::where('institute_id','=', Auth::user()->institute_id)->get();
+            //  return $IsettingUpdate;
+
+              $IUsersettingUpdate=Institute::where('institute_code', '=', Auth::user()->institute_id)
+              ->update(['email'=>$iemail,'institute_name'=>$iname,'phone'=>$iphone,'address'=>$iaddress,'url'=>$iurl,'division'=>$idivision,'district'=>$idistric,'thana'=>$iThana]);
+                return response()->json();
+
+          }
+          else {
+
+            $userc = User::where('institute_id', '=', Auth::user()->institute_id)->Where('email', '=', $iemail)->count();
+            $marchant = Institute::where('institute_code', '=', Auth::user()->institute_id)->Where('email', '=', $iemail)->count();
+            if ($userc > 0 || $marchant > 0) {
+
+
+              Session::flash('data', 'Institute or Email was already used. Please Try a different number.');
+            return Redirect::to('Institute/Setting');
+            }
+            else {
+
+              $IsettingUpdate=User::where('institute_id', '=', Auth::user()->institute_id)->update(['email'=>$iemail,'name'=>$iname]);
+              $IUsersettingUpdate=Institute::where('institute_code', '=', Auth::user()->institute_id)
+              ->update(['email'=>$iemail,'institute_name'=>$iname,'phone'=>$iphone,'address'=>$iaddress,'url'=>$iurl,'division'=>$idivision,'district'=>$idistric,'thana'=>$iThana]);
+                return response()->json();
+            }
+
+
+          }
+
+        }
         }
 
 

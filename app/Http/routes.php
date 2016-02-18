@@ -13,7 +13,13 @@
 
 Route::get('/', function () {
     if(Auth::check()){
-        return view('welcome');
+      $totalInstitute=App\Institute::where('status','=',1)->count();
+      $totalStudents=App\Students::where('status','=',1)->count();
+      $totalStudentsMale=App\Students::where('status','=',1)->where('gender','=','Male')->count();
+      $totalStudentsFemale=App\Students::where('status','=',1)->where('gender','=','Female')->count();
+      
+        return view('welcome')->with('totalInstitute',$totalInstitute)
+        ->with('totalStudents',$totalStudents)->with('totalStudentsMale',$totalStudentsMale)->with('totalStudentsFemale',$totalStudentsFemale);
     }
     else{
     return view('auth.login');
@@ -250,4 +256,4 @@ Route::get('admin/edit/expenses/{id}','AccountsController@editExpense');
 Route::post('admin/edit/expenses/{id}','AccountsController@updateExpense');
 Route::get('admin/delete/expenses/{id}','AccountsController@deleteExpense');
 Route::get('Institute/Setting','InstituteController@getInstitute');
-//Route::get('admin/add/Expense','AccountsController@getExpense');
+Route::post('Institute/Setting','InstituteController@PostInstitute');
