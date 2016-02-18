@@ -692,6 +692,13 @@ public function postRoutineByClass(){
         //$deleteUserInfo=Staff::where('institute_code', '=', Auth::user()->institute_id)->Where('id', '=', $uid)->delete();
         return Redirect::to('user/index');
         }
+        public function getInstitute(){
+            $division=Division::all()->lists('id','Division');
+          $Isetting=Institute::where('institute_code', '=', Auth::user()->institute_id)->first();
+            $divisionName=Division::where('id','=',$Isetting->division)->pluck('Division');
+        //  return $Isetting->division;
+          return view('admin.instituteSetting')->with('Isetting',$Isetting)->with('divisionlist',$division)->with('divisionName',$divisionName);
+        }
 
 
 
