@@ -107,20 +107,21 @@ class HomeController extends Controller {
         //return $name.$studentid.$institute.$guardian.$gender.$religion.$email.$phone.$class.$section.$roll.$user_type.$transport_rent.$birth_certificate.$image
         //   .$route_name.$status;
 
-
+        $randomid=mt_rand('1', '999');
         $u=new User;
         $u->name=Input::get('firstname').' '.Input::get('lastname');
-        $u->uid=mt_rand('1', '999').' '.Input::get('roll').' '.$iid;
+        $u->uid=$randomid.' '.Input::get('roll').' '.$iid;
         $u->priv=2;
         $u->user_type='Students';
         $u->user_name=Input::get('username');
         $u->email=$email;
+        $u->institute_id=$iid;
         $u->password= Hash::make(Input::get('confirm_password'));
         $u->save();
 
         $su=new Students;
         $su->name=Input::get('firstname').' '.Input::get('lastname');
-        $su->st_id=mt_rand('1', '999').' '.Input::get('roll').' '.$iid;
+        $su->st_id=$randomid.' '.Input::get('roll').' '.$iid;
         $su->institute_code=$iid;
         $su->guardian_id=$parents;
         $su->guardian_name=$parents_name;
@@ -143,7 +144,7 @@ class HomeController extends Controller {
 
             $mk=new Mark;
             $mk->student_name=Input::get('firstname').' '.Input::get('lastname');
-            $mk->student_id=mt_rand('1', '999').' '.Input::get('roll').' '.$iid;
+            $mk->student_id=$randomid.' '.Input::get('roll').' '.$iid;
             $mk->institute_code=$iid;
             $mk->class_id=$class;
             $mk->class_name=$class_name;

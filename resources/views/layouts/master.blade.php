@@ -280,7 +280,7 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <img alt="" src="{{URL::to('/')}}/images/avatar1_small.jpg">
-                        <span class="username">John Doe</span>
+                        <span class="username">{{Auth::user()->user_name}}</span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
@@ -306,18 +306,16 @@
             <!-- sidebar menu start-->
             <div class="leftside-navigation">
                 <ul class="sidebar-menu" id="nav-accordion">
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-dashboard"></i>
-                            <span>{{Lang::get('home.layout')}}</span>
-                        </a>
-                    </li>
+                    @if(Auth::check())
+                        @if(Auth::user()->priv==1)
                     <li>
                         <a href="{{URL::to('admin/institute/registration')}}">
                             <i class="fa fa-building-o"></i>
                             <span>{{Lang::get('home.institute')}} </span>
                         </a>
                     </li>
+                    @endif
+                    @endif
                     <li>
                         <a href="{{URL::to('add/student')}}">
                             <i class="fa fa-male"></i>
@@ -395,12 +393,12 @@
                             <li><a href="{{URL::to('admin/add/Expense')}}">Expense</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="fontawesome.html">
-                            <i class="fa fa-bullhorn"></i>
-                            <span>Fontawesome </span>
-                        </a>
-                    </li>
+                        <li>
+                            <a href="{{URL::to('Institute/Setting')}}">
+                                <i class="fa fa-bullhorn"></i>
+                                <span>Institute Setting </span>
+                            </a>
+                        </li>
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-th"></i>

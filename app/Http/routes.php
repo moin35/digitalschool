@@ -17,7 +17,7 @@ Route::get('/', function () {
       $totalStudents=App\Students::where('status','=',1)->count();
       $totalStudentsMale=App\Students::where('status','=',1)->where('gender','=','Male')->count();
       $totalStudentsFemale=App\Students::where('status','=',1)->where('gender','=','Female')->count();
-      
+
         return view('welcome')->with('totalInstitute',$totalInstitute)
         ->with('totalStudents',$totalStudents)->with('totalStudentsMale',$totalStudentsMale)->with('totalStudentsFemale',$totalStudentsFemale);
     }
@@ -257,3 +257,6 @@ Route::post('admin/edit/expenses/{id}','AccountsController@updateExpense');
 Route::get('admin/delete/expenses/{id}','AccountsController@deleteExpense');
 Route::get('Institute/Setting','InstituteController@getInstitute');
 Route::post('Institute/Setting','InstituteController@PostInstitute');
+//Route::get('admin/add/Expense','AccountsController@getExpense');
+//Route::get('admin/add/Expense','AccountsController@getExpense');
+Route::get('admin/allreport','AccountsController@getReport');

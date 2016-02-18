@@ -88,7 +88,7 @@ public function getDetailStudents($id){
         $parents = Parents::where('institute_code','=',Auth::user()->institute_id)->lists('guradian_id', 'guardian_name');
         $class = ClassAdd::where('institute_code','=',Auth::user()->institute_id)->lists('class_id', 'class_name');
         $icode= User::where('institute_id','=',Auth::user()->institute_id)->pluck('institute_id');
-        $editstudent=Students::where('institute_code','=',Auth::user()->institute_id)->where('id','=',$id)->first();
+        $editstudent=Students::where('institute_code','=',Auth::user()->institute_id)->where('st_id','=',$id)->first();
         //return $editstudent;
         return view('admin.editstudents',['studentedit'=>$editstudent,'teacher'=>$parents,'class'=>$class,'icode'=>$icode]);
     }
@@ -107,40 +107,109 @@ public function getDetailStudents($id){
         $phone=Input::get('phone');
         $address=Input::get('address');
         $gname = Parents::where('guradian_id', '=', $gid)->pluck('guardian_name');
-        if(Input::hasFile('image')){
-            // return 1;
-            $extension = Input::file('image')->getClientOriginalExtension();
-            if($extension=='png'||$extension=='jpg'||$extension=='jpeg'||$extension=='bmp'||
-                $extension=='PNG'||$extension=='jpg'||$extension=='JPEG'||$extension=='BMP'){
-                $date=date('dmyhsu');
-                $fname=$name.mt_rand('1', '999').'.'.$extension;
-                $destinationPath = 'images/';
-                Input::file('image')->move($destinationPath,$fname);
-                $final=$fname;
+
+        //$sid=Students::where('institute_id', '=', Auth::user()->institute_id)->;
+
+        //return $id.'/'.$name.'/'.$email;
+        //return $name.'/'.$roll.'/'.$gname.'/'.$class.'/'.$section.'/'.$religion.'/'.$bdate.'/'.$gender.'/'.$email.'/'.$phone.'/'.$address.'/'.$image;
+        $userc=User::where('uid','=',$id)->where('email','=',$email)->count();
+        $marchant=Students::where('st_id','=',$id)->where('email','=',$email)->count();
+        //return $userc.$marchant;
+        if($userc >0 && $marchant>0){
+           // return 1;
+            if (Input::hasFile('image')) {
+
+                $extension = Input::file('image')->getClientOriginalExtension();
+                if($extension=='png'||$extension=='jpg'||$extension=='jpeg'||$extension=='bmp'||
+                    $extension=='PNG'||$extension=='jpg'||$extension=='JPEG'||$extension=='BMP'){
+                    $date=date('dmyhsu');
+                    $fname=mt_rand('199', '999').'.'.$extension;
+                    $destinationPath = 'images/';
+                    Input::file('image')->move($destinationPath,$fname);
+                    $final=$fname;
+
+                    $re1 = Students::where('institute_code', '=', Auth::user()->institute_id)->where('st_id', '=', $id)->update(['image' => $final]);
+                }
+                else {
+                    $re = Students::where('institute_code', '=', Auth::user()->institute_id)->where('st_id', '=', $id)->update(['image' => '']);
+                }
             }
+            $studentup = Students::where('institute_code', '=', Auth::user()->institute_id)->where('st_id', '=', $id)
+                       ->update(['name' => $name,
+                    'guardian_id' => $gid,
+                    'guardian_name' => $gname,
+                    'gender' => $gender,
+                    'religion' => $religion,
+                    'email' => $email,
+                    'phone' => $phone,
+                    'address' => $address,
+                    'class' => $class,
+                    'section' => $section,
+                    'roll' => $roll,
+                   // 'image' => $final,
+                    'birth_certificate' => $bdate
+                ]);
+            $studentuser = User::where('institute_id', '=', Auth::user()->institute_id)->where('uid', '=', $id)
+                       ->update(['name' => $name,'email' => $email]);
+            Session::flash('data', 'Data successfully added !');
+            return Redirect::to('student/edit/' .$id);
+
         }
         else{
-            $final='';
+
+
+            $userc=User::where('email','=',$email)->count();
+            $marchant=Students::where('email','=',$email)->count();
+            if($userc >0 && $marchant>0){
+               // return 3;
+                Session::flash('data', 'Email Already Used !');
+
+                return Redirect::to('student/edit/' .$id);
+            }
+            else{
+                //return 4;
+                if (Input::hasFile('image')) {
+
+                    $extension = Input::file('image')->getClientOriginalExtension();
+                    if($extension=='png'||$extension=='jpg'||$extension=='jpeg'||$extension=='bmp'||
+                        $extension=='PNG'||$extension=='jpg'||$extension=='JPEG'||$extension=='BMP'){
+                        $date=date('dmyhsu');
+                        $fname=mt_rand('199', '999').'.'.$extension;
+                        $destinationPath = 'images/';
+                        Input::file('image')->move($destinationPath,$fname);
+                        $final=$fname;
+
+                        $re1 = Students::where('institute_code', '=', Auth::user()->institute_id)->where('st_id', '=', $id)->update(['image' => $final]);
+                    }
+                    else {
+                        $re = Students::where('institute_code', '=', Auth::user()->institute_id)->where('st_id', '=', $id)->update(['image' => '']);
+                    }
+                }
+                $studentup = Students::where('institute_code', '=', Auth::user()->institute_id)->where('st_id', '=', $id)
+                    ->update(['name' => $name,
+                        'guardian_id' => $gid,
+                        'guardian_name' => $gname,
+                        'gender' => $gender,
+                        'religion' => $religion,
+                        'email' => $email,
+                        'phone' => $phone,
+                        'address' => $address,
+                        'class' => $class,
+                        'section' => $section,
+                        'roll' => $roll,
+                        //'image' => $final,
+                        'birth_certificate' => $bdate
+                    ]);
+                $studentuser = User::where('institute_id', '=', Auth::user()->institute_id)->where('uid', '=', $id)
+                    ->update(['name' => $name,'email' => $email]);
+                Session::flash('data', 'Data successfully added !');
+            return Redirect::to('student/edit/' .$id);
+            }
         }
-        //return $final;
-        //return $name.'/'.$roll.'/'.$gname.'/'.$class.'/'.$section.'/'.$religion.'/'.$bdate.'/'.$gender.'/'.$email.'/'.$phone.'/'.$address.'/'.$image;
-        $studentup = Students::where('institute_code', '=', Auth::user()->institute_id)->where('id', '=', $id)
-            ->update(['name' => $name,
-                'guardian_id' => $gid,
-                'guardian_name' => $gname,
-                'gender' => $gender,
-                'religion' => $religion,
-                'email' => $email,
-                'phone' => $phone,
-                'address' => $address,
-                'class' => $class,
-                'section' => $section,
-                'roll' => $roll,
-                'image' => $final,
-                'birth_certificate' => $bdate
-                ]);
-        Session::flash('data', 'Data successfully added !');
-        return Redirect::to('student/edit/' .$id);
+
+
+        //return $studentuser;
+
     }
     public function deleteStudentInfo($uid) {
         //Moin

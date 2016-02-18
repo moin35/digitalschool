@@ -37,7 +37,7 @@ class AccountsController extends Controller
     public function getAccountType(Request $request)
     {
         if ($request->ajax()) {
-            $feetyp = AccountFeeType::all();
+            $feetyp = AccountFeeType::where('institute_code', '=', Auth::user()->institute_id)->get();
             return response()->json($feetyp);
         }
         return view('admin.add_fee_type');
@@ -302,6 +302,8 @@ public function individualBalance($name){
              Session::flash('data', 'Data successfully  Delete !');
             return redirect()->back();
         }
-
+public function getReport(){
+    return view('admin.schoolreport');
+}
     }
 
