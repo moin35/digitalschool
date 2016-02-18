@@ -68,7 +68,7 @@
                                                         <div class="form-group ">
                                                             <label for="designation" class="control-label col-lg-3">Designation</label>
                                                             <div class="col-lg-6">
-                                                                <input class=" form-control" id="datepicker" name="designation" type="text" />
+                                                                <input class=" form-control" id="" name="designation" type="text" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group ">
@@ -281,6 +281,7 @@
                                     <table class="table table-striped table-hover table-bordered" id="editable-sample">
                                         <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th>Name</th>
                                             <th>Teacher Id</th>
                                             <th>Email</th>
@@ -334,4 +335,16 @@
         angular.module('app', ['ngAnimate'])
                 .controller('TestCtrl', TestCtrl)
     </script>
+    <!-- JAvascript view auto increment number for table start-->
+    <script>
+        var tables = document.getElementsByTagName('table');
+        var table = tables[tables.length - 1];
+        var rows = table.rows;
+        for(var i = 1, td; i < rows.length; i++){
+            td = document.createElement('td');
+            td.appendChild(document.createTextNode(i + 0));
+            rows[i].insertBefore(td, rows[i].firstChild);
+        }
+    </script>
+    <!-- JAvascript view auto increment number for table End-->
 @stop

@@ -88,7 +88,7 @@ var Script = function () {
                 institute_name: "required",
                 icode: {
                     required: true,
-                    minlength: 10
+                    minlength: 4
                 },
                 password: {
                     required: true,

@@ -150,7 +150,7 @@
                                         <tbody>
                                         @foreach($examview as $c)
                                             <tr class="">
-                                                <td>{{$c->id}}</td>
+
                                                 <td> {{$c->exam_name}}</td>
                                                 <td> {{$c->exam_date}}</td>
                                                 <td><a  href="a url">{{$c->note}}</a></td>
@@ -194,4 +194,16 @@
             EditableTable.init();
         });
     </script>
+    <!-- JAvascript view auto increment number for table start-->
+    <script>
+        var tables = document.getElementsByTagName('table');
+        var table = tables[tables.length - 1];
+        var rows = table.rows;
+        for(var i = 1, td; i < rows.length; i++){
+            td = document.createElement('td');
+            td.appendChild(document.createTextNode(i + 0));
+            rows[i].insertBefore(td, rows[i].firstChild);
+        }
+    </script>
+    <!-- JAvascript view auto increment number for table End-->
 @stop
