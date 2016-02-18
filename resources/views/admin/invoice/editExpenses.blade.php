@@ -15,8 +15,8 @@ Expense Edit
             </header>
             <div class="panel-body">
                 @if(Session::get('data'))
-                <div class="bs-example">
-                    <div class="alert alert-success fade in">
+                <div class="bs-example" >
+                    <div id="BodyField" class="alert alert-success fade in">
                         <a href="#" class="close" data-dismiss="alert">&times;</a>
                         <strong>{{Session::get('data')}}</strong>.
                     </div>
@@ -50,7 +50,7 @@ Expense Edit
                                     <div class="col-lg-6">
                                       <input class="form-control form-control-inline input-medium default-date-picker"   value="{{$editExpense->date}}" id="edateid" name="edateid" type="text" />  </div>
                                 </div>
-                              
+
                                 <div class="form-group ">
                                     <label for="institute_name" class="control-label col-lg-3">Amount</label>
                                     <div class="col-lg-6">
@@ -85,6 +85,8 @@ Expense Edit
 
 
 
-
+<script>
+$("#BodyField").delay(5000).fadeOut();
+</script>
 
 @stop

@@ -247,6 +247,5 @@ Route::post('admin/add/Expense','AccountsController@postExpense');
 Route::get('admin/edit/expenses/{id}','AccountsController@editExpense');
 Route::post('admin/edit/expenses/{id}','AccountsController@updateExpense');
 Route::get('admin/delete/expenses/{id}','AccountsController@deleteExpense');
+Route::get('Institute/Setting','InstituteController@getInstitute');
 //Route::get('admin/add/Expense','AccountsController@getExpense');
-//Route::get('admin/add/Expense','AccountsController@getExpense');
-
