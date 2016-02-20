@@ -318,7 +318,7 @@
                     @endif
                     <li>
                         <a href="{{URL::to('add/student')}}">
-                            <i class="fa fa-male"></i>
+                            <i class="fa fa-users"></i>
                             <span>{{Lang::get('home.student')}} </span>
                         </a>
                     </li>
