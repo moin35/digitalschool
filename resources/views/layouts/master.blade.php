@@ -316,18 +316,18 @@
                     </li>
                     @endif
                     @endif
-                    <li>
-                        <a href="{{URL::to('add/student')}}">
-                            <i class="fa fa-male"></i>
-                            <span>{{Lang::get('home.student')}} </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{URL::to('admin/add/parents')}}">
-                            <i class="fa fa-sitemap"></i>
-                            <span>{{Lang::get('home.parents')}} </span>
-                        </a>
-                    </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-th"></i>
+                                <span>Student Addmission</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a href="{{URL::to('add/student')}}">{{Lang::get('home.student')}}</a></li>
+                                <li><a href="{{URL::to('admin/add/parents')}}">{{Lang::get('home.parents')}}</a></li>
+                               <!-- <li><a href="dynamic_table.html">Dynamic Table</a></li>
+                                <li><a href="editable_table.html">Editable Table</a></li>-->
+                            </ul>
+                        </li>
                     <li>
                         <a href="{{URL::to('admin/add/teacher')}}">
                             <i class="fa fa-group"></i>
@@ -340,47 +340,38 @@
                             <span>{{Lang::get('home.user')}} </span>
                         </a>
                     </li>
-                    <li>
-                          <a href="{{URL::to('Addclass')}}">
-                            <i class="fa fa-bell"></i>
-                            <span>{{Lang::get('home.class')}} </span>
-                        </a>
-                    </li>
-                    <li>
-                          <a href="{{URL::to('sectionAdd')}}">
-                            <i class="fa fa-edit"></i>
-                            <span>{{Lang::get('home.section')}} </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{URL::to('admin/add/subject')}}">
-                            <i class="fa fa-bullhorn"></i>
-                            <span>{{Lang::get('home.subject')}} </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{URL::to('grade/index')}}">
-                            <i class="fa fa-signal"></i>
-                            <span>{{Lang::get('home.grade')}} </span>
-                        </a>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="fa fa-laptop"></i>
-                            <span>{{Lang::get('home.layout')}}</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="{{URL::to('/admin/add/exam')}}">Exam</a></li>
-                            <li><a href="{{URL::to('admin/add/exam/schedule')}}">Add Exam Schedule</a></li>
-                            <li><a href="admin/add/routine">Add Class Routine</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="{{URL::to('mark/index')}}">
-                            <i class="fa fa-flask"></i>
-                            <span>{{Lang::get('home.mark')}} </span>
-                        </a>
-                    </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-tasks"></i>
+                                <span>Basic Info</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a href="{{URL::to('Addclass')}}">{{Lang::get('home.class')}}</a></li>
+                                <li><a href="{{URL::to('admin/add/subject')}}">{{Lang::get('home.subject')}}</a></li>
+                                <li><a href="{{URL::to('sectionAdd')}}">{{Lang::get('home.section')}}</a></li>
+                             <!--   <li><a href="form_validation.html">Form Validation</a></li>
+                                <li><a href="file_upload.html">Muliple File Upload</a></li>
+
+                                <li><a href="dropzone.html">Dropzone</a></li>
+                                <li><a href="inline_editor.html">Inline Editor</a></li>
+                            -->
+                            </ul>
+                        </li>
+
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-laptop"></i>
+                                <span>{{Lang::get('home.layout')}}</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a href=" {{URL::to('admin/add/routine')}}">Add Class Routine</a></li>
+                                <li><a href="{{URL::to('/admin/add/exam')}}">Exam</a></li>
+                                <li><a href="{{URL::to('admin/add/exam/schedule')}}">Add Exam Schedule</a></li>
+                                <li><a href="{{URL::to('mark/index')}}">{{Lang::get('home.mark')}}</a></li>
+                                <li><a href="{{URL::to('grade/index')}}">{{Lang::get('home.grade')}}</a></li>
+                            </ul>
+                        </li>
+
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-book"></i>
@@ -399,36 +390,9 @@
                                 <span>Institute Setting </span>
                             </a>
                         </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="fa fa-th"></i>
-                            <span>Data Tables</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="basic_table.html">Basic Table</a></li>
-                            <li><a href="responsive_table.html">Responsive Table</a></li>
-                            <li><a href="dynamic_table.html">Dynamic Table</a></li>
-                            <li><a href="editable_table.html">Editable Table</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="fa fa-tasks"></i>
-                            <span>Form Components</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="form_component.html">Form Elements</a></li>
-                            <li><a href="advanced_form.html">Advanced Components</a></li>
-                            <li><a href="form_wizard.html">Form Wizard</a></li>
-                            <li><a href="form_validation.html">Form Validation</a></li>
-                            <li><a href="file_upload.html">Muliple File Upload</a></li>
 
-                            <li><a href="dropzone.html">Dropzone</a></li>
-                            <li><a href="inline_editor.html">Inline Editor</a></li>
 
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
+             <!--       <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-envelope"></i>
                             <span>Mail </span>
@@ -479,6 +443,7 @@
                         </ul>
                     </li>
                     <li>
+                    -->
                         <a href="login.html">
                             <i class="fa fa-user"></i>
                             <span>Login Page</span>

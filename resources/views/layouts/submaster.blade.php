@@ -7,47 +7,52 @@
     <meta name="description" content="">
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="{{URL::to('/')}}/images/favicon.png">
-
     <title>@yield('title')</title>
-    <!--Core CSS date picker -->
-    <!-- search for table-->
-    <!--external css-->
     <!--Core CSS -->
+    <link href="{{URL::to('/')}}/bs3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{URL::to('/')}}/css/bootstrap-reset.css" rel="stylesheet">
+    <link href="{{URL::to('/')}}/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <!-- DATE PICKER AND FILE UPLOAD START -->
+    <link rel="stylesheet" href="{{URL::to('/')}}/css/bootstrap-switch.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-fileupload/bootstrap-fileupload.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-datepicker/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-timepicker/compiled/timepicker.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-colorpicker/css/colorpicker.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-datetimepicker/css/datetimepicker.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/jquery-multi-select/css/multi-select.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/jquery-tags-input/jquery.tagsinput.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/select2/select2.css" />
+    <!-- DATE PICKER AND FILE UPLOAD end -->
+<!-- Data Table CSS start -->
+    <!--dynamic table-->
+    <link href="{{URL::to('/')}}/js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
+    <link href="{{URL::to('/')}}/js/advanced-datatable/css/demo_table.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{URL::to('/')}}/js/data-tables/DT_bootstrap.css" />
+    <!-- Data Table CSS End -->
+    <!-- Custom styles for this template -->
+    <link href="{{URL::to('/')}}/css/style.css" rel="stylesheet">
+    <link href="{{URL::to('/')}}/css/style-responsive.css" rel="stylesheet" />
+    <!--
     <link href="{{URL::to('/')}}/bs3/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/css/bootstrap-reset.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="{{URL::to('/')}}/css/style.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/css/style-responsive.css" rel="stylesheet" />
-
-       <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/gritter/css/jquery.gritter.css" />
-
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/gritter/css/jquery.gritter.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-fileupload/bootstrap-fileupload.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
-
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/jquery-multi-select/css/multi-select.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/jquery-tags-input/jquery.tagsinput.css" />
-
-    <link rel="stylesheet" type="text/css" href="js/select2/select2.css" />
+    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/select2/select2.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-datepicker/css/datepicker.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-timepicker/css/timepicker.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-colorpicker/css/colorpicker.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-datetimepicker/css/datetimepicker.css" />
-
-
     <link rel="stylesheet" href="{{URL::to('/')}}/js/data-tables/DT_bootstrap.css" />
-    <!-- Custom styles for this template -->
-
-<!-- process button design-->
-   <!--[if lt IE 9]>
-    <script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-    <!--Core CSS -->
+    -->
     @yield('head')
 </head>
 <body>
@@ -311,17 +316,17 @@
                             </li>
                         @endif
                     @endif
-                    <li>
-                        <a href="{{URL::to('add/student')}}">
-                            <i class="fa icon-student"></i>
-                            <span>{{Lang::get('home.student')}} </span>
+                    <li class="sub-menu">
+                        <a href="javascript:;">
+                            <i class="fa fa-th"></i>
+                            <span>Student Addmission</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="{{URL::to('admin/add/parents')}}">
-                            <i class="fa fa-sitemap"></i>
-                            <span>{{Lang::get('home.parents')}} </span>
-                        </a>
+                        <ul class="sub">
+                            <li><a href="{{URL::to('add/student')}}">{{Lang::get('home.student')}}</a></li>
+                            <li><a href="{{URL::to('admin/add/parents')}}">{{Lang::get('home.parents')}}</a></li>
+                            <!-- <li><a href="dynamic_table.html">Dynamic Table</a></li>
+                             <li><a href="editable_table.html">Editable Table</a></li>-->
+                        </ul>
                     </li>
                     <li>
                         <a href="{{URL::to('admin/add/teacher')}}">
@@ -335,47 +340,38 @@
                             <span>{{Lang::get('home.user')}} </span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{URL::to('Addclass')}}">
-                            <i class="fa fa-bell"></i>
-                            <span>{{Lang::get('home.class')}} </span>
+                    <li class="sub-menu">
+                        <a href="javascript:;">
+                            <i class="fa fa-tasks"></i>
+                            <span>Basic Info</span>
                         </a>
+                        <ul class="sub">
+                            <li><a href="{{URL::to('Addclass')}}">{{Lang::get('home.class')}}</a></li>
+                            <li><a href="{{URL::to('admin/add/subject')}}">{{Lang::get('home.subject')}}</a></li>
+                            <li><a href="{{URL::to('sectionAdd')}}">{{Lang::get('home.section')}}</a></li>
+                            <!--   <li><a href="form_validation.html">Form Validation</a></li>
+                               <li><a href="file_upload.html">Muliple File Upload</a></li>
+
+                               <li><a href="dropzone.html">Dropzone</a></li>
+                               <li><a href="inline_editor.html">Inline Editor</a></li>
+                           -->
+                        </ul>
                     </li>
-                    <li>
-                        <a href="{{URL::to('sectionAdd')}}">
-                            <i class="fa fa-edit"></i>
-                            <span>{{Lang::get('home.section')}} </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{URL::to('admin/add/subject')}}">
-                            <i class="fa fa-bullhorn"></i>
-                            <span>{{Lang::get('home.subject')}} </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{URL::to('grade/index')}}">
-                            <i class="fa fa-signal"></i>
-                            <span>{{Lang::get('home.grade')}} </span>
-                        </a>
-                    </li>
+
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-laptop"></i>
                             <span>{{Lang::get('home.layout')}}</span>
                         </a>
                         <ul class="sub">
+                            <li><a href=" {{URL::to('admin/add/routine')}}">Add Class Routine</a></li>
                             <li><a href="{{URL::to('/admin/add/exam')}}">Exam</a></li>
                             <li><a href="{{URL::to('admin/add/exam/schedule')}}">Add Exam Schedule</a></li>
-                            <li><a href="admin/add/routine">Add Class Routine</a></li>
+                            <li><a href="{{URL::to('mark/index')}}">{{Lang::get('home.mark')}}</a></li>
+                            <li><a href="{{URL::to('grade/index')}}">{{Lang::get('home.grade')}}</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="{{URL::to('mark/index')}}">
-                            <i class="fa fa-flask"></i>
-                            <span>{{Lang::get('home.mark')}} </span>
-                        </a>
-                    </li>
+
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-book"></i>
@@ -384,7 +380,8 @@
                         <ul class="sub">
                             <li><a href="{{URL::to('admin/add/account/fee/type')}}">Add Fee Type</a></li>
                             <li><a href="{{URL::to('admin/add/invoice')}}">Create Invoice</a></li>
-                          <li><a href="{{URL::to('admin/add/Expense')}}">Expense</a></li>
+                            <li><a href="{{URL::to('admin/view/balance')}}">Balance</a></li>
+                            <li><a href="{{URL::to('admin/add/Expense')}}">Expense</a></li>
                         </ul>
                     </li>
                     <li>
@@ -393,92 +390,66 @@
                             <span>Institute Setting </span>
                         </a>
                     </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;" class="active">
-                            <i class="fa fa-th"></i>
-                            <span>Data Tables</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="basic_table.html">Basic Table</a></li>
-                            <li><a href="responsive_table.html">Responsive Table</a></li>
-                            <li><a href="dynamic_table.html">Dynamic Table</a></li>
-                            <li class="active"><a href="editable_table.html">Editable Table</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="fa fa-tasks"></i>
-                            <span>Form Components</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="form_component.html">Form Elements</a></li>
-                            <li><a href="advanced_form.html">Advanced Components</a></li>
-                            <li><a href="form_wizard.html">Form Wizard</a></li>
-                            <li><a href="form_validation.html">Form Validation</a></li>
-                            <li><a href="file_upload.html">Muliple File Upload</a></li>
 
-                            <li><a href="dropzone.html">Dropzone</a></li>
-                            <li><a href="inline_editor.html">Inline Editor</a></li>
 
-                        </ul>
+                    <!--       <li class="sub-menu">
+                               <a href="javascript:;">
+                                   <i class="fa fa-envelope"></i>
+                                   <span>Mail </span>
+                               </a>
+                               <ul class="sub">
+                                   <li><a href="mail.html">Inbox</a></li>
+                                   <li><a href="mail_compose.html">Compose Mail</a></li>
+                                   <li><a href="mail_view.html">View Mail</a></li>
+                               </ul>
+                           </li>
+                           <li class="sub-menu">
+                               <a href="javascript:;">
+                                   <i class=" fa fa-bar-chart-o"></i>
+                                   <span>Charts</span>
+                               </a>
+                               <ul class="sub">
+                                   <li><a href="morris.html">Morris</a></li>
+                                   <li><a href="chartjs.html">Chartjs</a></li>
+                                   <li><a href="flot_chart.html">Flot Charts</a></li>
+                                   <li><a href="c3_chart.html">C3 Chart</a></li>
+                               </ul>
+                           </li>
+                           <li class="sub-menu">
+                               <a href="javascript:;">
+                                   <i class=" fa fa-bar-chart-o"></i>
+                                   <span>Maps</span>
+                               </a>
+                               <ul class="sub">
+                                   <li><a href="google_map.html">Google Map</a></li>
+                                   <li><a href="vector_map.html">Vector Map</a></li>
+                               </ul>
+                           </li>
+                           <li class="sub-menu">
+                               <a href="javascript:;">
+                                   <i class="fa fa-glass"></i>
+                                   <span>Extra</span>
+                               </a>
+                               <ul class="sub">
+                                   <li><a href="blank.html">Blank Page</a></li>
+                                   <li><a href="lock_screen.html">Lock Screen</a></li>
+                                   <li><a href="profile.html">Profile</a></li>
+                                   <li><a href="invoice.html">Invoice</a></li>
+                                   <li><a href="pricing_table.html">Pricing Table</a></li>
+                                   <li><a href="timeline.html">Timeline</a></li>
+                                   <li><a href="gallery.html">Media Gallery</a></li><li><a href="404.html">404 Error</a></li>
+                                   <li><a href="500.html">500 Error</a></li>
+                                   <li><a href="registration.html">Registration</a></li>
+                               </ul>
+                           </li>
+                           <li>
+                           -->
+                    <a href="login.html">
+                        <i class="fa fa-user"></i>
+                        <span>Login Page</span>
+                    </a>
                     </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="fa fa-envelope"></i>
-                            <span>Mail </span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="mail.html">Inbox</a></li>
-                            <li><a href="mail_compose.html">Compose Mail</a></li>
-                            <li><a href="mail_view.html">View Mail</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class=" fa fa-bar-chart-o"></i>
-                            <span>Charts</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="morris.html">Morris</a></li>
-                            <li><a href="chartjs.html">Chartjs</a></li>
-                            <li><a href="flot_chart.html">Flot Charts</a></li>
-                            <li><a href="c3_chart.html">C3 Chart</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class=" fa fa-bar-chart-o"></i>
-                            <span>Maps</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="google_map.html">Google Map</a></li>
-                            <li><a href="vector_map.html">Vector Map</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="fa fa-glass"></i>
-                            <span>Extra</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="blank.html">Blank Page</a></li>
-                            <li><a href="lock_screen.html">Lock Screen</a></li>
-                            <li><a href="profile.html">Profile</a></li>
-                            <li><a href="invoice.html">Invoice</a></li>
-                            <li><a href="pricing_table.html">Pricing Table</a></li>
-                            <li><a href="timeline.html">Timeline</a></li>
-                            <li><a href="gallery.html">Media Gallery</a></li><li><a href="404.html">404 Error</a></li>
-                            <li><a href="500.html">500 Error</a></li>
-                            <li><a href="registration.html">Registration</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="login.html">
-                            <i class="fa fa-user"></i>
-                            <span>Login Page</span>
-                        </a>
-                    </li>
-                </ul></div>
+                </ul>     </div>
             <!-- sidebar menu end-->
         </div>
     </aside>
@@ -746,59 +717,20 @@
 
 </section>
 
-
 <!--Core js-->
 <script src="{{URL::to('/')}}/js/jquery.js"></script>
 <script src="{{URL::to('/')}}/js/jquery-1.8.3.min.js"></script>
 <script src="{{URL::to('/')}}/bs3/js/bootstrap.min.js"></script>
+<script src="{{URL::to('/')}}/js/jquery-ui-1.9.2.custom.min.js"></script>
 <script class="include" type="text/javascript" src="{{URL::to('/')}}/js/jquery.dcjqaccordion.2.7.js"></script>
-<!--common script init for all pages-->
-<script src="{{URL::to('/')}}/js/scripts.js"></script>
-<!--script for this page only-->
-<script src="{{URL::to('/')}}/js/gritter.js" type="text/javascript"></script>
-<script type="text/javascript" src="{{URL::to('/')}}/js/gritter/js/jquery.gritter.js"></script>
-<script src="{{URL::to('/')}}/js/jquery-steps/jquery.steps.js"></script>
-
-<!-- End script check for saif new for this page-->
-<script src="{{URL::to('/')}}/js/jquery-ui/jquery-ui-1.10.1.custom.min.js"></script>
-<script src="{{URL::to('/')}}/js/jquery.dcjqaccordion.2.7.js"></script>
 <script src="{{URL::to('/')}}/js/jquery.scrollTo.min.js"></script>
+<script src="{{URL::to('/')}}/js/easypiechart/jquery.easypiechart.js"></script>
 <script src="{{URL::to('/')}}/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
 <script src="{{URL::to('/')}}/js/jquery.nicescroll.js"></script>
-<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
-<script src="{{URL::to('/')}}/js/skycons/skycons.js"></script>
-<script src="{{URL::to('/')}}/js/jquery.scrollTo/jquery.scrollTo.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<script src="{{URL::to('/')}}/js/calendar/clndr.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
-<script src="{{URL::to('/')}}/js/calendar/moment-2.2.1.js"></script>
-<script src="{{URL::to('/')}}/js/evnt.calendar.init.js"></script>
-<script src="{{URL::to('/')}}/js/jvector-map/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="{{URL::to('/')}}/js/jvector-map/jquery-jvectormap-us-lcc-en.js"></script>
-<script src="{{URL::to('/')}}/js/gauge/gauge.js"></script>
-<!--clock init-->
-<script src="{{URL::to('/')}}/js/css3clock/js/css3clock.js"></script>
-<!--Easy Pie Chart-->
-<script src="{{URL::to('/')}}/js/easypiechart/jquery.easypiechart.js"></script>
-<!--Sparkline Chart-->
-<script src="{{URL::to('/')}}/js/sparkline/jquery.sparkline.js"></script>
-<!--Morris Chart-->
-<script src="{{URL::to('/')}}/js/morris-chart/morris.js"></script>
-<script src="{{URL::to('/')}}/js/morris-chart/raphael-min.js"></script>
-<!--jQuery Flot Chart-->
-<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.js"></script>
-<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.tooltip.min.js"></script>
-<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.resize.js"></script>
-<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.pie.resize.js"></script>
-<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.animator.min.js"></script>
-<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.growraf.js"></script>
-<script src="{{URL::to('/')}}/js/dashboard.js"></script>
-<script src="{{URL::to('/')}}/js/jquery.customSelect.min.js" ></script>
-<!--script check for saif new for Datepicker this page-->
+<script src="{{URL::to('/')}}/js/jquery.nicescroll.js"></script>
 
-<script src="{{URL::to('/')}}/js/jquery-1.8.3.min.js"></script>
-<script src="{{URL::to('/')}}/js/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="{{URL::to('/')}}/js/bootstrap-switch.js"></script>
+
 <script type="text/javascript" src="{{URL::to('/')}}/js/fuelux/js/spinner.min.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-fileupload/bootstrap-fileupload.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
@@ -811,28 +743,47 @@
 <script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/jquery-multi-select/js/jquery.multi-select.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/jquery-multi-select/js/jquery.quicksearch.js"></script>
+
 <script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
+
 <script src="{{URL::to('/')}}/js/jquery-tags-input/jquery.tagsinput.js"></script>
+
 <script src="{{URL::to('/')}}/js/select2/select2.js"></script>
 <script src="{{URL::to('/')}}/js/select-init.js"></script>
-<script src="{{URL::to('/')}}/js/toggle-init.js"></script>
-<!--common script init for all pages-->
-<script src="{{URL::to('/')}}/js/advanced-form.js"></script>
 
-<!-- start Dynamic Tables JAVASCRIPTS -->
-<script src="{{URL::to('/')}}/js/table-editable.js"></script>
+
 <!--common script init for all pages-->
+<script src="{{URL::to('/')}}/js/scripts.js"></script>
+<!--dynamic table-->
 <script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/jquery.dataTables.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/data-tables/DT_bootstrap.js"></script>
+<script src="{{URL::to('/')}}/js/toggle-init.js"></script>
 
-<!--this page script for validation-->
+<script src="{{URL::to('/')}}/js/advanced-form.js"></script>
+<!--Easy Pie Chart-->
+<script src="{{URL::to('/')}}/js/easypiechart/jquery.easypiechart.js"></script>
+<!--Sparkline Chart-->
+<script src="{{URL::to('/')}}/js/sparkline/jquery.sparkline.js"></script>
+<!--jQuery Flot Chart-->
+<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.js"></script>
+<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.tooltip.min.js"></script>
+<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.resize.js"></script>
+<script src="{{URL::to('/')}}/js/flot-chart/jquery.flot.pie.resize.js"></script>
+
+<!-- validition script -->
 <script type="text/javascript" src="{{URL::to('/')}}/js/jquery.validate.min.js"></script>
 <script src="{{URL::to('/')}}/js/validation-init.js"></script>
 
-<!--script for this page-->
+<script src="{{URL::to('/')}}/js/jquery-steps/jquery.steps.js"></script>
+<script src="{{URL::to('/')}}/js/table-editable.js"></script>
 <script src="{{URL::to('/')}}/js/gritter.js" type="text/javascript"></script>
-<script src="{{URL::to('/')}}/ajaxfile/usertest.js" type="text/javascript"></script>
+<script type="text/javascript" src="{{URL::to('/')}}/js/gritter/js/jquery.gritter.js"></script>
+<!-- start Dynamic Tables JAVASCRIPTS -->
+<script type="text/javascript" language="javascript" src="{{URL::to('/')}}/js/advanced-datatable/js/jquery.dataTables.js"></script>
 
+<!--dynamic table initialization start-->
+<script src="{{URL::to('/')}}/js/dynamic_table_init.js"></script>
+<!--dynamic table initialization end-->
 <!-- END JAVASCRIPTS -->
 
 <script>
