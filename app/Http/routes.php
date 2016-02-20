@@ -168,12 +168,6 @@ Route::get('api/dropdown/subject', function(){
     $items = App\Subject::where('institute_code','=',Auth::user()->institute_id)->where('class_id', '=', $user)->lists('subject_name','subject_code');
     return Response::make($items);
 });
-Route::get('mark/view/{roll}/{cid}','InstituteController@getMarkViews');
-
-
-
-
-
 //Add edit delete Exam Info
 Route::get('/admin/add/exam','InstituteController@getAddExam');
 Route::post('/admin/add/exam','InstituteController@postAddExam');
