@@ -998,10 +998,11 @@ $('#addAllMarks').on('submit',function(e){
     });
 });
  </script>
+   <script src="{{URL::to('/')}}/ajaxjs/exprence.js" type="text/javascript"></script>
  <script language="JavaScript" type="text/javascript">
 
   $(function(){
- $('#ExpenseTest').on('submit',function(e){
+ $('#iiSetting').on('submit',function(e){
      $.ajaxSetup({
          header:$('meta[name="_token"]').attr('content')
      })
@@ -1009,7 +1010,7 @@ $('#addAllMarks').on('submit',function(e){
 
          $.ajax({
          type:"POST",
-         url:'/admin/add/Expense',
+         url:'/Institute/Setting',
          data:$(this).serialize(),
          dataType: 'json',
          success:function(data){

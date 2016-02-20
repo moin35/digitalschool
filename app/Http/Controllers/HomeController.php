@@ -380,6 +380,8 @@ class HomeController extends Controller {
         $inaddress = Input::get('iaddress');
         $inurl = Input::get('inurl');
         $infoupdate = Institute::where('institute_code', '=', $iucode)->update(['institute_name' => $name, 'email' => $email, 'phone' => $inphone, 'address' => $inaddress, 'district' => $district, 'thana' => $thana, 'url' => $inurl]);
+        $infoupdate = Institute::where('institute_code', '=', $iucode)->update(['email' => $email,'name' => $name]);
+
         Session::flash('data', 'You successfully');
         return Redirect::to('institute/edit/' . $iucode);
     }

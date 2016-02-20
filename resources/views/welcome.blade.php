@@ -6,6 +6,87 @@
 @stop
 @section('body')
 
+<!--mini statistics start-->
+<div class="row">
+    <div class="col-md-3">
+        <div class="mini-stat clearfix">
+            <span class="mini-stat-icon orange"><i class="fa fa-suitcase"></i></span>
+            <div class="mini-stat-info">
+                <span> {{$totalInstitute}}</span>
+                Total Institute<br>
+
+
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="mini-stat clearfix">
+            <span class="mini-stat-icon tar"><i class="fa fa-users"></i></span>
+            <div class="mini-stat-info">
+                <span>{{$totalStudents}}</span>Students<br>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="mini-stat clearfix">
+            <span class="mini-stat-icon pink"><i class="fa fa-male"></i></span>
+            <div class="mini-stat-info">
+                  <span>{{$totalStudentsMale}}</span>Male
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="mini-stat clearfix">
+            <span class="mini-stat-icon green"><i class="fa fa-female"></i></span>
+            <div class="mini-stat-info">
+
+                  <span>{{$totalStudentsFemale}}</span>Female
+            </div>
+        </div>
+    </div>
+</div>
+<!--mini statistics start-->
+<div class="row">
+    <div class="col-md-3">
+        <div class="mini-stat clearfix">
+            <span class="mini-stat-icon orange"><i class="fa fa-suitcase"></i></span>
+            <div class="mini-stat-info">
+                <span> {{$totalInstitute}}</span>
+                Total Institute<br>
+
+
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="mini-stat clearfix">
+            <span class="mini-stat-icon tar"><i class="fa fa-users"></i></span>
+            <div class="mini-stat-info">
+                <span>{{$totalStudents}}</span>Students<br>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="mini-stat clearfix">
+            <span class="mini-stat-icon pink"><i class="fa fa-male"></i></span>
+            <div class="mini-stat-info">
+                  <span>{{$totalStudentsMale}}</span>Male
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="mini-stat clearfix">
+            <span class="mini-stat-icon green"><i class="fa fa-female"></i></span>
+            <div class="mini-stat-info">
+
+                  <span>{{$totalStudentsFemale}}</span>Female
+            </div>
+        </div>
+    </div>
+</div>
+
         <!--mini statistics start-->
     <div class="row">
         <div class="col-md-3">
@@ -189,48 +270,7 @@
             <!--widget weather end-->
         </div>
     </div>
-    <!--mini statistics start-->
-    <div class="row">
-        <div class="col-md-3">
-            <div class="mini-stat clearfix">
-                <span class="mini-stat-icon orange"><i class="fa fa-gavel"></i></span>
-                <div class="mini-stat-info">
-                    <span>320</span>
-                    New Order Received
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="mini-stat clearfix">
-                <span class="mini-stat-icon tar"><i class="fa fa-tag"></i></span>
-                <div class="mini-stat-info">
-                    <span>22,450</span>
-                    Copy Sold Today
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="mini-stat clearfix">
-                <span class="mini-stat-icon pink"><i class="fa fa-money"></i></span>
-                <div class="mini-stat-info">
-                    <span>34,320</span>
-                    Dollar Profit Today
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="mini-stat clearfix">
-                <span class="mini-stat-icon green"><i class="fa fa-eye"></i></span>
-                <div class="mini-stat-info">
-                    <span>32720</span>
-                    Unique Visitors
-                </div>
-            </div>
-        </div>
-    </div>
     <!--mini statistics end-->
-
-
     <div class="row">
         <div class="col-md-8">
             <div class="event-calendar clearfix">
@@ -241,7 +281,11 @@
                 <div class="col-lg-5 event-list-block">
                     <div class="cal-day">
                         <span>Today</span>
-                        Friday
+                       <?php
+                       $mydate=getdate(date("U"));
+                      echo "$mydate[weekday]";
+
+                       ?>
                     </div>
                     <ul class="event-list">
                         <li>Lunch with jhon @ 3:30 <a href="#" class="event-close"><i class="ico-close2"></i></a></li>
@@ -409,9 +453,15 @@
             <div class="profile-nav alt">
                 <section class="panel">
                     <div class="user-heading alt clock-row terques-bg">
-                        <h1>December 14</h1>
-                        <p class="text-left">2014, Friday</p>
-                        <p class="text-left">7:53 PM</p>
+
+
+
+
+                        <h1><?php $mydate=getdate(date("U")); echo "$mydate[year]" ?></h1>
+                        <p class="text-left"><?php $mydate=getdate(date("U")); echo "$mydate[weekday],$mydate[month] $mydate[mday]" ?></p>
+                        <p class="text-left" id="timecontainer"><?php $timezone = date_default_timezone_get('UTC +6:00 Dhaka'); echo date("h:i:s a", time());?></p>
+
+
                     </div>
                     <ul id="clock">
                         <li id="sec"></li>
@@ -665,4 +715,57 @@
             <!--todolist end-->
         </div>
     </div>
+
+    <script type="text/javascript">
+
+/***********************************************
+* Local Time script- (c) Dynamic Drive (http://www.dynamicdrive.com)
+* Please keep this notice intact
+* Visit http://www.dynamicdrive.com/ for this script and 100s more.
+***********************************************/
+
+var weekdaystxt=["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"]
+
+function showLocalTime(container, servermode, offsetMinutes, displayversion){
+if (!document.getElementById || !document.getElementById(container)) return
+this.container=document.getElementById(container)
+this.displayversion=displayversion
+var servertimestring=(servermode=="server-php")? '<? print date("F d, Y H:i:s", time())?>' : (servermode=="server-ssi")? '<!--#config timefmt="%B %d, %Y %H:%M:%S"--><!--#echo var="DATE_LOCAL" -->' : '<%= Now() %>'
+this.localtime=this.serverdate=new Date(servertimestring)
+this.localtime.setTime(this.serverdate.getTime()+offsetMinutes*60*1000) //add user offset to server time
+this.updateTime()
+this.updateContainer()
+}
+
+showLocalTime.prototype.updateTime=function(){
+var thisobj=this
+this.localtime.setSeconds(this.localtime.getSeconds()+1)
+setTimeout(function(){thisobj.updateTime()}, 1000) //update time every second
+}
+
+showLocalTime.prototype.updateContainer=function(){
+var thisobj=this
+if (this.displayversion=="long")
+this.container.innerHTML=this.localtime.toLocaleString()
+else{
+var hour=this.localtime.getHours()
+var minutes=this.localtime.getMinutes()
+var seconds=this.localtime.getSeconds()
+var ampm=(hour>=12)? "PM" : "AM"
+var dayofweek=weekdaystxt[this.localtime.getDay()]
+this.container.innerHTML=formatField(hour, 1)+":"+formatField(minutes)+":"+formatField(seconds)+" "+ampm+" ("+dayofweek+")"
+}
+setTimeout(function(){thisobj.updateContainer()}, 1000) //update container every second
+}
+
+function formatField(num, isHour){
+if (typeof isHour!="undefined"){ //if this is the hour field
+var hour=(num>12)? num-12 : num
+return (hour==0)? 12 : hour
+}
+return (num<=9)? "0"+num : num//if this is minute or sec field
+}
+
+</script>
+
 @stop
