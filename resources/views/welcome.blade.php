@@ -12,7 +12,7 @@
         <div class="mini-stat clearfix">
             <span class="mini-stat-icon orange"><i class="fa fa-suitcase"></i></span>
             <div class="mini-stat-info">
-                <span> {{$totalInstitute}}</span>
+                <span> </span>
                 Total Institute<br>
 
 
@@ -24,7 +24,7 @@
         <div class="mini-stat clearfix">
             <span class="mini-stat-icon tar"><i class="fa fa-users"></i></span>
             <div class="mini-stat-info">
-                <span>{{$totalStudents}}</span>Students<br>
+                <span></span>Students<br>
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
         <div class="mini-stat clearfix">
             <span class="mini-stat-icon pink"><i class="fa fa-male"></i></span>
             <div class="mini-stat-info">
-                  <span>{{$totalStudentsMale}}</span>Male
+                  <span></span>Male
             </div>
         </div>
     </div>
@@ -41,51 +41,12 @@
             <span class="mini-stat-icon green"><i class="fa fa-female"></i></span>
             <div class="mini-stat-info">
 
-                  <span>{{$totalStudentsFemale}}</span>Female
+                  <span></span>Female
             </div>
         </div>
     </div>
 </div>
 <!--mini statistics start-->
-<div class="row">
-    <div class="col-md-3">
-        <div class="mini-stat clearfix">
-            <span class="mini-stat-icon orange"><i class="fa fa-suitcase"></i></span>
-            <div class="mini-stat-info">
-                <span> {{$totalInstitute}}</span>
-                Total Institute<br>
-
-
-            </div>
-
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="mini-stat clearfix">
-            <span class="mini-stat-icon tar"><i class="fa fa-users"></i></span>
-            <div class="mini-stat-info">
-                <span>{{$totalStudents}}</span>Students<br>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="mini-stat clearfix">
-            <span class="mini-stat-icon pink"><i class="fa fa-male"></i></span>
-            <div class="mini-stat-info">
-                  <span>{{$totalStudentsMale}}</span>Male
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="mini-stat clearfix">
-            <span class="mini-stat-icon green"><i class="fa fa-female"></i></span>
-            <div class="mini-stat-info">
-
-                  <span>{{$totalStudentsFemale}}</span>Female
-            </div>
-        </div>
-    </div>
-</div>
 
         <!--mini statistics start-->
     <div class="row">

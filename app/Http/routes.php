@@ -13,13 +13,15 @@
 
 Route::get('/', function () {
     if(Auth::check()){
-      $totalInstitute=App\Institute::where('status','=',1)->count();
+    /*  $totalInstitute=App\Institute::where('status','=',1)->count();
       $totalStudents=App\Students::where('status','=',1)->count();
       $totalStudentsMale=App\Students::where('status','=',1)->where('gender','=','Male')->count();
       $totalStudentsFemale=App\Students::where('status','=',1)->where('gender','=','Female')->count();
 
         return view('welcome')->with('totalInstitute',$totalInstitute)
         ->with('totalStudents',$totalStudents)->with('totalStudentsMale',$totalStudentsMale)->with('totalStudentsFemale',$totalStudentsFemale);
+   */
+        return view('welcome');
     }
     else{
     return view('auth.login');
