@@ -113,11 +113,13 @@ class AccountsController extends Controller
             $classname=ClassAdd::where('institute_code','=',Auth::user()->institute_id)->where('class_id','=',$cls)->pluck('class_name');
             $feetype=AccountFeeType::where('institute_code','=',Auth::user()->institute_id)->where('fee_id','=',$fee)->pluck('fee_type');
          //return $feetype;
+            $price = DB::table('tbl_ac_invoice_create')->where('institute_code','=',Auth::user()->institute_id)->max('invoice_id');
+            $price++;
             $iid=Auth::user()->institute_id;
             $s=new Invoice;
             $s->class_id=$cls;
             $s->class_name=$classname;
-            $s->invoice_id=mt_rand('1', '9999').' '.$iid;
+            $s->invoice_id=$price;
             $s->student_name=$std;
             $s->student_id=$studentid;
             $s->fee_id=$fee;
@@ -130,6 +132,8 @@ class AccountsController extends Controller
             $s->due_amount=$answer;
             $s->status=0;
             $s->save();
+
+            //return $insertedId;
             return response()->json([
                 "message" => "created"
             ]);

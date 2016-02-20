@@ -12,6 +12,13 @@
     <!--Core CSS date picker -->
     <!-- search for table-->
     <!--external css-->
+    <!--Core CSS -->
+    <link href="{{URL::to('/')}}/bs3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{URL::to('/')}}/css/bootstrap-reset.css" rel="stylesheet">
+    <link href="{{URL::to('/')}}/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="{{URL::to('/')}}/css/style.css" rel="stylesheet">
+    <link href="{{URL::to('/')}}/css/style-responsive.css" rel="stylesheet" />
+
        <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/gritter/css/jquery.gritter.css" />
 
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-fileupload/bootstrap-fileupload.css" />
@@ -26,14 +33,11 @@
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-colorpicker/css/colorpicker.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-datetimepicker/css/datetimepicker.css" />
-    <!--Core CSS -->
-    <link href="{{URL::to('/')}}/bs3/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{URL::to('/')}}/css/bootstrap-reset.css" rel="stylesheet">
-    <link href="{{URL::to('/')}}/font-awesome/css/font-awesome.css" rel="stylesheet" />
+
+
     <link rel="stylesheet" href="{{URL::to('/')}}/js/data-tables/DT_bootstrap.css" />
     <!-- Custom styles for this template -->
-    <link href="{{URL::to('/')}}/css/style.css" rel="stylesheet">
-    <link href="{{URL::to('/')}}/css/style-responsive.css" rel="stylesheet" />
+
 <!-- process button design-->
    <!--[if lt IE 9]>
     <script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -297,12 +301,16 @@
         <div id="sidebar" class="nav-collapse">
             <!-- sidebar menu start-->            <div class="leftside-navigation">
                 <ul class="sidebar-menu" id="nav-accordion">
-                    <li>
-                        <a href="{{URL::to('admin/institute/registration')}}">
-                            <i class="fa fa-building-o"></i>
-                            <span>{{Lang::get('home.institute')}} </span>
-                        </a>
-                    </li>
+                    @if(Auth::check())
+                        @if(Auth::user()->priv==1)
+                            <li>
+                                <a href="{{URL::to('admin/institute/registration')}}">
+                                    <i class="fa fa-building-o"></i>
+                                    <span>{{Lang::get('home.institute')}} </span>
+                                </a>
+                            </li>
+                        @endif
+                    @endif
                     <li>
                         <a href="{{URL::to('add/student')}}">
                             <i class="fa icon-student"></i>
@@ -740,7 +748,7 @@
 
 
 <!--Core js-->
-
+<script src="{{URL::to('/')}}/js/jquery.js"></script>
 <script src="{{URL::to('/')}}/js/jquery-1.8.3.min.js"></script>
 <script src="{{URL::to('/')}}/bs3/js/bootstrap.min.js"></script>
 <script class="include" type="text/javascript" src="{{URL::to('/')}}/js/jquery.dcjqaccordion.2.7.js"></script>

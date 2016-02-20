@@ -1,8 +1,16 @@
 @extends('layouts.submaster')
 @section('title')
-    Student's Details
+    Mark
 @stop
 @section('head')
+    <script src="{{URL::to('/')}}/js/angular/angular.min.js"></script>
+    <script src="{{URL::to('/')}}/js/angular/angular-animate.min.js"></script>
+    <link href="{{URL::to('/')}}/css/angular/animatedbox.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{URL::to('/')}}/css/styledata.css">
+    <script src="{{URL::to('/')}}/js/indexdata.js"></script>
+    <style>
+        .hideable { display:none }
+    </style>
 
 @stop
 
@@ -11,72 +19,93 @@
         <div class="col-sm-12">
             <section class="panel">
                 <header class="panel-heading">
-                    Institute Details Information
-                        <span class="tools pull-right">
-                            <a href="javascript:;" class="fa fa-chevron-down"></a>
-                            <a href="javascript:;" class="fa fa-cog"></a>
-                            <a href="javascript:;" class="fa fa-times"></a>
-                         </span>
+                    Mark
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+                    <a href="javascript:;" class="fa fa-cog"></a>
+                    <a href="javascript:;" class="fa fa-times"></a>
+                </span>
                 </header>
-                <div class="panel-body">
-                    <!--price start-->
-
-                    <div class="col-lg-2 col-sm-2">
-
-                    </div>
-                    <div class="col-lg-8 col-sm-8">
-                        <div class="pricing-table most-popular">
-                            <div class="price-actions">
-                                <a href="javascript:;" class="btn">Institute Code:{{$individualstudent->institute_code}}</a>
-                            </div>
-                            <div class="pricing-head">
-                                <h3 style="color: white">Name: {{$individualstudent->name}} </h3>
-
-                                <p style="color: white">Class: {{$individualstudent->class}} </p>
-                            </div>
-                            <div >
-                                <img class="pricing-quote"  src="{{URL::to('/')}}/images/{{$individualstudent->image}}">
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <ul class="list-unstyled">
-                                        <li><i class="fa fa-check"></i>Roll: {{$individualstudent->roll}}</li>
-                                        <li><i class="fa fa-check"></i>Date Of Birth: {{$individualstudent->birth_certificate}}</li>
-                                        <li><i class="fa fa-check"></i>Religion:  {{$individualstudent->religion}}</li>
-                                        <li><i class="fa fa-check"></i>Section: {{$individualstudent->section}}</li>
-                                        <li><i class="fa fa-check"></i>Gender: {{$individualstudent->gender}}</li>
-
-
-
-                                    </ul>
-                                </div>
-                                <div class="col-md-6">
-                                    <ul class="list-unstyled">
-
-                                        <li><i class="fa fa-check"></i>Guardian Name: {{$individualstudent->guardian_name}}</li>
-                                        <li><i class="fa fa-check"></i>Phone no.{{$individualstudent->phone}}</li>
-                                        <li><i class="fa fa-check"></i>Email: {{$individualstudent->email}}</li>
-                                        <li><i class="fa fa-check"></i>Address: {{$individualstudent->address}}</li>
-
-
-                                    </ul>
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <div class="text-center">
-                            <b>  <i class="fa fa-check"></i>Create Time: {{$individualstudent->created_at}}</b>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-2 col-sm-2">
-
-                    </div>
-                    <!--price end-->
-                </div>
             </section>
+            <section class="panel">
+                <div class="panel-body profile-information">
+                    <center> <h1> Personal Information</h1> </center>
+                    <div class="col-md-3">
+                        <div class="profile-pic text-center">
+                            <img src="{{URL::to('/')}}/images/{{$individualstudent->image}}"  class="img-rounded"  alt=""/>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="profile-desk">
+                            <h1>{{$individualstudent->name}}</h1>
+                            <strong class="btn btn-primary">Roll: {{$individualstudent->roll}}</strong>
+                            <span class="text-muted"></span><br>
+                            <p style="font-size: 20px;">
+                              <strong>Class:</strong>   {{$classname}}<br>
+                               <strong>Section:</strong>  {{$individualstudent->section}}<br>
+                                <strong>Gender:</strong>  {{$individualstudent->gender}}<br>
+                                <strong>Date Of Birth:</strong>  {{$individualstudent->birth_certificate}}<br>
+                                <strong>Religion :</strong>    {{$individualstudent->religion}}<br>
+                                <strong>Phone:</strong>  {{$individualstudent->phone}}<br>
+                                <strong>Email:</strong>   {{$individualstudent->email}}
+                            </p>
+                            <br>
+                            <label><strong>Address:</strong></label>
+                            <p>
+                                {{$individualstudent->address}}
+                            </p>
+                            <br>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="profile-statistics">
+
+
+                            <h1><p style="font-size: 15px">*** Guradian Information ***</p>
+                                <p>Name: {{$individualstudent->guardian_name}}</p><br>
+                               Phone: {{App\Parents::where('guradian_id','=',$individualstudent->guardian_id)->pluck('phone')}} </h1>
+
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a href="#">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-google-plus"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="panel-body profile-information">
+
+                    <div class="panel-body">
+
+                            <div class="clearfix">
+
+                                <div class="btn-group pull-right">
+
+                                </div>
+                            </div>
+                            <div class="space15"></div>
+
+                    </div>
+            </section>
+
         </div>
     </div>
     <!-- page end-->
+
 @stop

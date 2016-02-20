@@ -77,8 +77,9 @@ public function getDetailStudents($id){
     //Moin
     //Student Detail get Function for admin
     $getstudent=Students::where('institute_code', '=', Auth::user()->institute_id)->where('id', '=',$id)->first();
+    $getclass=ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->where('class_id', '=',$getstudent->class)->pluck('class_name');
     //return $getstudent->institute_code;
-    return view('admin.studentdetail',['individualstudent'=>$getstudent]);
+    return view('admin.studentdetail',['individualstudent'=>$getstudent,'classname'=>$getclass]);
 
 }
 
