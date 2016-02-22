@@ -263,3 +263,8 @@ Route::post('Institute/Setting','InstituteController@PostInstitute');
 //Route::get('admin/add/Expense','AccountsController@getExpense');
 //Route::get('admin/add/Expense','AccountsController@getExpense');
 Route::get('admin/allreport','AccountsController@getReport');
+
+//******   Individual Page For Institute    *****
+Route::get('{url}','InstituteController@getIndividualInstituteUrl');
+
+

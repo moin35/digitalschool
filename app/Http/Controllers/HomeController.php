@@ -30,18 +30,41 @@ class HomeController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        //
+//
     }
     public function home() {
         if (Auth::check()) {
             if (priv() == 1) {
-              $AtotalInstitute=Institute::where('status','=',1)->count();
+                 $AtotalInstitute=Institute::where('status','=',1)->count();
                 $AtotalStudents=Students::where('status','=',1)->count();
                 $AtotalStudentsMale=Students::where('status','=',1)->where('gender','=','Male')->count();
                 $AtotalStudentsFemale=Students::where('status','=',1)->where('gender','=','Female')->count();
 
               return view('welcome')->with('atotalInstitute',$AtotalInstitute)->with('atotalStudents',$AtotalStudents)->with('atotalStudentsMale',$AtotalStudentsMale)->with('atotalStudentsFemale',$AtotalStudentsFemale);
-            } else {
+
+            }
+            elseif(priv()==2){
+                return "Student";
+            }
+            elseif(priv()==3){
+                $totalStudents=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->count();
+                $totalStudentsMale=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Male')->count();
+                $totalStudentsFemale=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Female')->count();
+                $totalTeachesrs=Teacher::where('institute_code', '=', Auth::user()->institute_id)->count();
+                // return $AtotalInstitute;
+                return view('welcome')->with('totalStudents',$totalStudents)->with('totalTeachesrs',$totalTeachesrs)
+                    ->with('totalStudentsMale',$totalStudentsMale)->with('totalStudentsFemale',$totalStudentsFemale);
+
+            }
+            elseif(priv()==4){
+                return "Teacher";
+            }
+            elseif(priv()==5){
+                return "Parents";
+            }
+
+            else {
+
                 Session::flash('data', 'Not Logged In! Please Login to Continue.');
                 return redirect::to('/');
             }
