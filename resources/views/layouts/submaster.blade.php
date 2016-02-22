@@ -801,6 +801,7 @@
                     function(data) {
                         var model = $('.model');
                         model.empty();
+                        model.append("<option>" + "Select District/Zilla" + "</option>");
                         $.each(data, function(index,element) {
                             model.append("<option value='"+ element +"'>" + element + "</option>");
 
@@ -821,6 +822,7 @@
                     function(data) {
                         var model = $('#idthana');
                         model.empty();
+                          model.append("<option>" + "Select Thana/Upazilla" + "</option>");
                         $.each(data, function(index,element) {
                             model.append("<option value='"+ element +"'>" + element + "</option>");
                         });
