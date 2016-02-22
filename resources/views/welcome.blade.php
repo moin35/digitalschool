@@ -5,6 +5,7 @@
 @section('head')
 @stop
 @section('body')
+
 @if(Auth::check())
 @if(Auth::user()->priv==1)
 <!--mini statistics start-->
@@ -13,8 +14,8 @@
         <div class="mini-stat clearfix">
             <span class="mini-stat-icon orange"><i class="fa fa-suitcase"></i></span>
             <div class="mini-stat-info">
-                <span> </span>
-                Total Institute<br>
+                <span>{{$atotalInstitute}} </span>
+                Total Teacher<br>
 
 
             </div>
@@ -25,7 +26,7 @@
         <div class="mini-stat clearfix">
             <span class="mini-stat-icon tar"><i class="fa fa-users"></i></span>
             <div class="mini-stat-info">
-                <span></span>Students<br>
+                <span>{{$atotalStudents}}</span>Students<br>
             </div>
         </div>
     </div>
@@ -33,7 +34,7 @@
         <div class="mini-stat clearfix">
             <span class="mini-stat-icon pink"><i class="fa fa-male"></i></span>
             <div class="mini-stat-info">
-                  <span></span>Male
+                  <span>{{$atotalStudentsMale}}</span>Male
             </div>
         </div>
     </div>
@@ -42,7 +43,7 @@
             <span class="mini-stat-icon green"><i class="fa fa-female"></i></span>
             <div class="mini-stat-info">
 
-                  <span></span>Female
+                  <span>{{$atotalStudentsFemale}}</span>Female
             </div>
         </div>
     </div>
@@ -52,14 +53,15 @@
     @endif
     @if(Auth::check())
     @if(Auth::user()->priv==3)
-            <!--mini statistics start-->
+
+    <!--mini statistics start-->
     <div class="row">
         <div class="col-md-3">
             <div class="mini-stat clearfix">
-                <span class="mini-stat-icon orange"><i class="fa fa-suitcase"></i></span>
+                <span class="mini-stat-icon orange"><i class="fa  ico-users"></i></span>
                 <div class="mini-stat-info">
-                    <span> </span>
-                    Total Institute<br>
+                    <span> {{$totalTeachesrs}}</span>
+                    Total Teachers
 
 
                 </div>
@@ -69,7 +71,7 @@
             <div class="mini-stat clearfix">
                 <span class="mini-stat-icon tar"><i class="fa fa-users"></i></span>
                 <div class="mini-stat-info">
-                    <span></span>Students<br>
+                    <span>{{$totalStudents}}</span>Students<br>
                 </div>
             </div>
         </div>
@@ -77,7 +79,7 @@
             <div class="mini-stat clearfix">
                 <span class="mini-stat-icon pink"><i class="fa fa-male"></i></span>
                 <div class="mini-stat-info">
-                    <span></span>Male
+                      <span>{{$totalStudentsMale}}</span>Male
                 </div>
             </div>
         </div>
@@ -86,12 +88,11 @@
                 <span class="mini-stat-icon green"><i class="fa fa-female"></i></span>
                 <div class="mini-stat-info">
 
-                    <span></span>Female
+                      <span>{{$totalStudentsFemale}}</span>Female
                 </div>
             </div>
         </div>
     </div>
-    <!--mini statistics start-->
     @endif
     @endif
         <!--mini statistics start-->
