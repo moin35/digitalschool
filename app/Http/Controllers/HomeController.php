@@ -30,13 +30,27 @@ class HomeController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        //
+//
     }
     public function home() {
         if (Auth::check()) {
             if (priv() == 1) {
                 return view('welcome');
-            } else {
+            }
+            elseif(priv()==2){
+                return "Student";
+            }
+            elseif(priv()==3){
+                return view('welcome');
+            }
+            elseif(priv()==4){
+                return "Teacher";
+            }
+            elseif(priv()==5){
+                return "Parents";
+            }
+
+            else {
                 Session::flash('data', 'Not Logged In! Please Login to Continue.');
                 return redirect::to('/');
             }

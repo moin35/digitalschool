@@ -749,7 +749,9 @@ public function postRoutineByClass(){
 
         }
         }
-
+public function getIndividualInstituteUrl($url){
+    return "<h1 align='center'>Individual School Web Page</h1>";
+}
 
 
 
