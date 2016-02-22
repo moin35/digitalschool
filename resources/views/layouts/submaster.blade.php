@@ -384,12 +384,16 @@
                             <li><a href="{{URL::to('admin/add/Expense')}}">Expense</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="{{URL::to('Institute/Setting')}}">
-                            <i class="fa fa-bullhorn"></i>
-                            <span>Institute Setting </span>
-                        </a>
-                    </li>
+                        @if(Auth::check())
+                            @if(Auth::user()->priv==3)
+                                <li>
+                                    <a href="{{URL::to('Institute/Setting')}}">
+                                        <i class="fa fa-bullhorn"></i>
+                                        <span>Institute Setting </span>
+                                    </a>
+                                </li>
+                                @endif
+                                @endif
 
 
                     <!--       <li class="sub-menu">
