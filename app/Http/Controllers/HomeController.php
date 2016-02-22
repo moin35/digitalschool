@@ -35,7 +35,12 @@ class HomeController extends Controller {
     public function home() {
         if (Auth::check()) {
             if (priv() == 1) {
-                return view('welcome');
+              $AtotalInstitute=Institute::where('status','=',1)->count();
+                $AtotalStudents=Students::where('status','=',1)->count();
+                $AtotalStudentsMale=Students::where('status','=',1)->where('gender','=','Male')->count();
+                $AtotalStudentsFemale=Students::where('status','=',1)->where('gender','=','Female')->count();
+
+              return view('welcome')->with('atotalInstitute',$AtotalInstitute)->with('atotalStudents',$AtotalStudents)->with('atotalStudentsMale',$AtotalStudentsMale)->with('atotalStudentsFemale',$AtotalStudentsFemale);
             } else {
                 Session::flash('data', 'Not Logged In! Please Login to Continue.');
                 return redirect::to('/');

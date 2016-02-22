@@ -25,7 +25,7 @@ Route::get('/', function () {
      $totalStudentsMale=App\Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Male')->count();
      $totalStudentsFemale=App\Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Female')->count();
      $totalTeachesrs=App\Teacher::where('institute_code', '=', Auth::user()->institute_id)->count();
-    //  return $totalTeachesrs;
+   // return $AtotalInstitute;
     return view('welcome')->with('totalStudents',$totalStudents)->with('totalTeachesrs',$totalTeachesrs)
     ->with('totalStudentsMale',$totalStudentsMale)->with('totalStudentsFemale',$totalStudentsFemale)->with('atotalInstitute',$AtotalInstitute)
     ->with('atotalStudents',$AtotalStudents)->with('atotalStudentsMale',$AtotalStudentsMale)->with('atotalStudentsFemale',$AtotalStudentsFemale);
