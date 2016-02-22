@@ -21,7 +21,11 @@ Route::get('/', function () {
         return view('welcome')->with('totalInstitute',$totalInstitute)
         ->with('totalStudents',$totalStudents)->with('totalStudentsMale',$totalStudentsMale)->with('totalStudentsFemale',$totalStudentsFemale);
    */
-        return view('welcome');
+     $totalStudents=App\Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->count();
+     $totalStudentsMale=App\Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Male')->count();
+     $totalStudentsFemale=App\Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Female')->count();
+
+        return view('welcome')->with('totalStudents',$totalStudents)->with('totalStudentsMale',$totalStudentsMale)->with('totalStudentsFemale',$totalStudentsFemale);
     }
     else{
     return view('auth.login');

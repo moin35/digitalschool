@@ -24,7 +24,7 @@
         <div class="mini-stat clearfix">
             <span class="mini-stat-icon tar"><i class="fa fa-users"></i></span>
             <div class="mini-stat-info">
-                <span></span>Students<br>
+                <span>{{$totalStudents}}</span>Students<br>
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
         <div class="mini-stat clearfix">
             <span class="mini-stat-icon pink"><i class="fa fa-male"></i></span>
             <div class="mini-stat-info">
-                  <span></span>Male
+                  <span>{{$totalStudentsMale}}</span>Male
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
             <span class="mini-stat-icon green"><i class="fa fa-female"></i></span>
             <div class="mini-stat-info">
 
-                  <span></span>Female
+                  <span>{{$totalStudentsFemale}}</span>Female
             </div>
         </div>
     </div>
