@@ -12,10 +12,10 @@
 <div class="row">
     <div class="col-md-3">
         <div class="mini-stat clearfix">
-            <span class="mini-stat-icon orange"><i class="fa fa-suitcase"></i></span>
+            <span class="mini-stat-icon orange"><i class="fa ico-users"></i></span>
             <div class="mini-stat-info">
                 <span>{{$atotalInstitute}} </span>
-                Total Teacher<br>
+                Total Institutes<br>
 
 
             </div>
@@ -34,7 +34,7 @@
         <div class="mini-stat clearfix">
             <span class="mini-stat-icon pink"><i class="fa fa-male"></i></span>
             <div class="mini-stat-info">
-                  <span>{{$atotalStudentsMale}}</span>Male
+                  <span>{{$atotalStudentsMale}}</span>Males
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@
             <span class="mini-stat-icon green"><i class="fa fa-female"></i></span>
             <div class="mini-stat-info">
 
-                  <span>{{$atotalStudentsFemale}}</span>Female
+                  <span>{{$atotalStudentsFemale}}</span>Females
             </div>
         </div>
     </div>
