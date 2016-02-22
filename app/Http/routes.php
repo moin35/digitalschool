@@ -13,19 +13,22 @@
 
 Route::get('/', function () {
     if(Auth::check()){
-    /*  $totalInstitute=App\Institute::where('status','=',1)->count();
-      $totalStudents=App\Students::where('status','=',1)->count();
-      $totalStudentsMale=App\Students::where('status','=',1)->where('gender','=','Male')->count();
-      $totalStudentsFemale=App\Students::where('status','=',1)->where('gender','=','Female')->count();
-
-        return view('welcome')->with('totalInstitute',$totalInstitute)
-        ->with('totalStudents',$totalStudents)->with('totalStudentsMale',$totalStudentsMale)->with('totalStudentsFemale',$totalStudentsFemale);
+    $AtotalInstitute=App\Institute::where('status','=',1)->count();
+      $AtotalStudents=App\Students::where('status','=',1)->count();
+      $AtotalStudentsMale=App\Students::where('status','=',1)->where('gender','=','Male')->count();
+      $AtotalStudentsFemale=App\Students::where('status','=',1)->where('gender','=','Female')->count();
+  /*
+        return view('welcome')->with('atotalInstitute',$AtotalInstitute)
+        ->with('atotalStudents',$AtotalStudents)->with('atotalStudentsMale',$AtotalStudentsMale)->with('atotalStudentsFemale',$AtotalStudentsFemale);
    */
      $totalStudents=App\Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->count();
      $totalStudentsMale=App\Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Male')->count();
      $totalStudentsFemale=App\Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Female')->count();
-
-        return view('welcome')->with('totalStudents',$totalStudents)->with('totalStudentsMale',$totalStudentsMale)->with('totalStudentsFemale',$totalStudentsFemale);
+     $totalTeachesrs=App\Teacher::where('institute_code', '=', Auth::user()->institute_id)->count();
+    //  return $totalTeachesrs;
+    return view('welcome')->with('totalStudents',$totalStudents)->with('totalTeachesrs',$totalTeachesrs)
+    ->with('totalStudentsMale',$totalStudentsMale)->with('totalStudentsFemale',$totalStudentsFemale)->with('atotalInstitute',$AtotalInstitute)
+    ->with('atotalStudents',$AtotalStudents)->with('atotalStudentsMale',$AtotalStudentsMale)->with('atotalStudentsFemale',$AtotalStudentsFemale);
     }
     else{
     return view('auth.login');
