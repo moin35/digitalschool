@@ -247,7 +247,7 @@ class HomeController extends Controller {
             $phone = Input::get('phone');
             $national_id = Input::get('nid');
             $uname = Input::get('username');
-            $uid = $iid . ' ' . mt_rand('1', '9999');
+            $uid = mt_rand('1', '9999'). ' ' .$iid;
             //return $uid;
             $pu = new User;
             $pu->name = $gname;
@@ -257,7 +257,9 @@ class HomeController extends Controller {
             $pu->priv = 4;
             $pu->email = $email;
             $pu->password = Hash::make(Input::get('confirm_password'));
+            $pu->institute_id= $iid;
             $pu->save();
+
             $pup = new Parents;
             $pup->guardian_name = $gname;
             $pup->institute_code = $iid;
@@ -308,7 +310,7 @@ class HomeController extends Controller {
             $join_date = Input::get('join_date');
             $phone = Input::get('phone');
             $username = Input::get('username');
-            $uid = $iid . ' ' . mt_rand('00000', '99999');
+            $uid =  mt_rand('00000', '99999'). ' ' .$iid ;
 //$i=Input::get('image');
             if (Input::hasFile('image')) {
                 //return 1;
@@ -332,7 +334,9 @@ class HomeController extends Controller {
             $tu->priv = 4;
             $tu->email = $email;
             $tu->password = Hash::make(Input::get('confirm_password'));
+            $tu->institute_id = $iid;
             $tu->save();
+
             $ut = new Teacher;
             $ut->institute_code = $iid;
             $ut->teacher_id = $uid;

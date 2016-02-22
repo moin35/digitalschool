@@ -77,7 +77,7 @@ Section
                                                                                     <div class="col-sm-6">
 
                                                                                         <select name='teacherName'   class="form-control"  >
-                                                                                            <option  selected="selected" >Choose Teacher</option>
+                                                                                            <option  selected="selected" >Choose a Class Teacher</option>
                                                                                             @foreach($teacher as $r=>$t)
                                                                                             <option value="{{$t}}">{{$r}}</option>
                                                                                             @endforeach

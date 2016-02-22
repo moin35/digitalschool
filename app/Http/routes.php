@@ -135,7 +135,7 @@ Route::get('/student/delete/{uid}','StudentsController@deleteStudentInfo');
 Route::get('/teachers/details/{id}','TeachersController@getDetailsTeacher');
 Route::get('/teachers/edit/{id}','TeachersController@getTeacherEdit');
 Route::post('/teachers/edit/{id}','TeachersController@updateTeacherEdit');
-Route::get('/teacher/delete/{uid}','StudentsController@deleteTeachersInfo');
+Route::get('/teachers/delete/{uid}','TeachersController@deleteTeachersInfo');
 
 //Parents Edit Delete View
 Route::get('/parents/details/{id}','ParentsController@getDetailsParents');
@@ -194,7 +194,7 @@ Route::post('grade/edit/{gid}','InstituteController@postGradeEdit');
 Route::get('grade/delete/{gid}','InstituteController@GradeDelete');
 
 Route::get('/admin/add/routine','InstituteController@getAddRoutine');
-Route::post('/admin/add/routine','C@postAddRoutine');
+Route::post('/admin/add/routine','InstituteController@postAddRoutine');
 Route::post('admin/routine/search',['as'=>'searchroutine','uses'=>'InstituteController@postRoutineByClass']);
  //Routine Edit Delete
 Route::get('/class/routine/edit/{id}','InstituteController@getEditClassRoutine');

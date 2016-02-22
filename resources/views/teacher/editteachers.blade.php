@@ -1,9 +1,4 @@
-/**
-* Created by PhpStorm.
-* User: Moin
-* Date: 1/18/2016
-* Time: 12:25 PM
-*/
+
 @extends('layouts.submaster')
 @section('title')
     Edit | Teacher's

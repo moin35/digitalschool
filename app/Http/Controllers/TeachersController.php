@@ -36,7 +36,7 @@ public function getDetailsTeacher($id){
         //Moin
         //Teacher's Edit get Function for admin
         $icode= User::where('institute_id','=',Auth::user()->institute_id)->pluck('institute_id');
-        $editteacher=Teacher::where('institute_code','=',Auth::user()->institute_id)->where('id','=',$id)->first();
+        $editteacher=Teacher::where('institute_code','=',Auth::user()->institute_id)->where('teacher_id','=',$id)->first();
         //return $editteacher;
         return view('teacher.editteachers',['teacheredit'=>$editteacher,'icode'=>$icode]);
     }
@@ -55,39 +55,93 @@ public function getDetailsTeacher($id){
         $phone=Input::get('phone');
         $address=Input::get('address');
         $national_id=Input::get('national_id');
-        if(Input::hasFile('image')){
-            // return 1;
-            $extension = Input::file('image')->getClientOriginalExtension();
-            if($extension=='png'||$extension=='jpg'||$extension=='jpeg'||$extension=='bmp'||
-                $extension=='PNG'||$extension=='jpg'||$extension=='JPEG'||$extension=='BMP'){
-                $date=date('dmyhsu');
-                $fname=$name.mt_rand('1', '999').'.'.$extension;
-                $destinationPath = 'images/';
-                Input::file('image')->move($destinationPath,$fname);
-                $final=$fname;
-            }
-        }
-        else{
-            $final='';
-        }
+
         //return $final;
         //return $name.'/'.$roll.'/'.$designation.'/'.$dbirth.'/'.$gender.'/'.$religion.'/'.$join_date.'/'.$email.'/'.$phone.'/'.$address.'/'.$final;
-        $teacherupdate = Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('id', '=', $id)
-            ->update(['name' => $name,
-                'designation' => $designation,
-                'birth_date' => $dbirth,
-                'gender' => $gender,
-                'religion' => $religion,
-                'email' => $email,
-                'phone' => $phone,
-                'address' => $address,
-                'join_date' => $join_date,
-                'national_id' => $national_id,
-                'image' => $final
+        $userc=User::where('uid','=',$id)->where('email','=',$email)->count();
+        $marchant=Teacher::where('teacher_id','=',$id)->where('email','=',$email)->count();
+        if($userc >0 && $marchant>0){
+            if (Input::hasFile('image')) {
 
-            ]);
-        Session::flash('data', 'Data successfully added !');
-        return Redirect::to('/teachers/edit/' .$id);
+                $extension = Input::file('image')->getClientOriginalExtension();
+                if($extension=='png'||$extension=='jpg'||$extension=='jpeg'||$extension=='bmp'||
+                    $extension=='PNG'||$extension=='jpg'||$extension=='JPEG'||$extension=='BMP'){
+                    $date=date('dmyhsu');
+                    $fname=mt_rand('199', '999').'.'.$extension;
+                    $destinationPath = 'images/';
+                    Input::file('image')->move($destinationPath,$fname);
+                    $final=$fname;
+
+                    $re1 = Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('teacher_id', '=', $id)->update(['image' => $final]);
+                }
+                else {
+                    $re = Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('teacher_id', '=', $id)->update(['image' => '']);
+                }
+            }
+            $teacherupdate = Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('teacher_id', '=', $id)
+                ->update(['name' => $name,
+                    'designation' => $designation,
+                    'birth_date' => $dbirth,
+                    'gender' => $gender,
+                    'religion' => $religion,
+                    'email' => $email,
+                    'phone' => $phone,
+                    'address' => $address,
+                    'join_date' => $join_date,
+                    'national_id' => $national_id
+
+                ]);
+            $user = User::where('institute_id', '=', Auth::user()->institute_id)->where('uid', '=', $id)
+                ->update(['name' => $name,'email' => $email]);
+            Session::flash('data', 'Data successfully added !');
+            return Redirect::to('/teachers/edit/' .$id);
+        }
+        else{
+            $userc=User::where('email','=',$email)->count();
+            $marchant=Teacher::where('email','=',$email)->count();
+            if($userc >0 && $marchant>0){
+                Session::flash('data', 'Email Already Used !');
+                return Redirect::to('/teachers/edit/' .$id);
+            }
+
+            else{
+                if (Input::hasFile('image')) {
+
+                    $extension = Input::file('image')->getClientOriginalExtension();
+                    if($extension=='png'||$extension=='jpg'||$extension=='jpeg'||$extension=='bmp'||
+                        $extension=='PNG'||$extension=='jpg'||$extension=='JPEG'||$extension=='BMP'){
+                        $date=date('dmyhsu');
+                        $fname=mt_rand('199', '999').'.'.$extension;
+                        $destinationPath = 'images/';
+                        Input::file('image')->move($destinationPath,$fname);
+                        $final=$fname;
+
+                        $re1 = Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('teacher_id', '=', $id)->update(['image' => $final]);
+                    }
+                    else {
+                        $re = Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('teacher_id', '=', $id)->update(['image' => '']);
+                    }
+                }
+                $teacherupdate = Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('teacher_id', '=', $id)
+                    ->update(['name' => $name,
+                        'designation' => $designation,
+                        'birth_date' => $dbirth,
+                        'gender' => $gender,
+                        'religion' => $religion,
+                        'email' => $email,
+                        'phone' => $phone,
+                        'address' => $address,
+                        'join_date' => $join_date,
+                        'national_id' => $national_id
+
+                    ]);
+                $user = User::where('institute_id', '=', Auth::user()->institute_id)->where('uid', '=', $id)
+                    ->update(['name' => $name,'email' => $email]);
+                Session::flash('data', 'Data successfully added !');
+                return Redirect::to('/teachers/edit/' .$id);
+            }
+        }
+
 
     }
     public function deleteTeachersInfo($uid) {
