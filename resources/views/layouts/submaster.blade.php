@@ -349,6 +349,7 @@
                             <li><a href="{{URL::to('Addclass')}}">{{Lang::get('home.class')}}</a></li>
                             <li><a href="{{URL::to('admin/add/subject')}}">{{Lang::get('home.subject')}}</a></li>
                             <li><a href="{{URL::to('sectionAdd')}}">{{Lang::get('home.section')}}</a></li>
+                            <li><a href=" {{URL::to('admin/add/routine')}}">Add Class Routine</a></li>
                             <!--   <li><a href="form_validation.html">Form Validation</a></li>
                                <li><a href="file_upload.html">Muliple File Upload</a></li>
 
@@ -364,7 +365,7 @@
                             <span>{{Lang::get('home.layout')}}</span>
                         </a>
                         <ul class="sub">
-                            <li><a href=" {{URL::to('admin/add/routine')}}">Add Class Routine</a></li>
+
                             <li><a href="{{URL::to('/admin/add/exam')}}">Exam</a></li>
                             <li><a href="{{URL::to('admin/add/exam/schedule')}}">Add Exam Schedule</a></li>
                             <li><a href="{{URL::to('mark/index')}}">{{Lang::get('home.mark')}}</a></li>

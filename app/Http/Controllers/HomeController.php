@@ -142,6 +142,7 @@ class HomeController extends Controller {
         $su->password= Hash::make(Input::get('confirm_password'));
         $su->save();
 
+            /*
             $mk=new Mark;
             $mk->student_name=Input::get('firstname').' '.Input::get('lastname');
             $mk->student_id=$randomid.' '.Input::get('roll').' '.$iid;
@@ -152,7 +153,7 @@ class HomeController extends Controller {
             $mk->roll=Input::get('roll');
             $mk->image=$final;
             $mk->save();
-
+            */
 
         //return $su;
         Session::flash('data', 'Data successfully Added !');

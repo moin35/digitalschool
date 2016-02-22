@@ -341,9 +341,6 @@ public function postExamSchedule(){
         Session::flash('data', 'Data successfully Deleted !');
         return Redirect::to('admin/add/exam/schedule');
     }
-   public function postAddMark(){
-              return 1;
-   }
     public function getAddRoutine(){
         //Moin
         // routine get Function for admin
@@ -383,9 +380,9 @@ public function postExamSchedule(){
             $search1=Section::where('class_name','=',$classname)
                                 ->where('institute_code','=',$sid)
                                 ->lists('section_category','section_name');
+
         $indsec=ClassRoutine::where('class_name','=',$classname)
             ->where('institute_code','=',$sid)
-            ->where('day','=','MONDAY')
             ->get();
         return view('admin.addroutine',['examview'=>$examname,
                                         'classview'=>$classname,
@@ -473,16 +470,16 @@ public function postRoutineByClass(){
                                 ->where('day','=','FRIDAY')
                                 ->get();
 
-     //return $search;
+
             $search1=Section::where('class_name','=',$class)
                                 ->where('institute_code','=',$sid)
                                 ->orderBy('section_name', 'ASC')
                                 ->lists('section_category','section_name');
+
             $indsec=ClassRoutine::where('class_name','=',$class)
                                 ->where('institute_code','=',$sid)
-                                ->where('day','=','MONDAY')
                                 ->get();
-     //return  $moni;
+     //return $indsec;
              return view('admin.addroutine',['examview'=>$examname,
                                             'classview'=>$classname,
                                             'examschedule'=>$schedule,
