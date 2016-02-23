@@ -461,13 +461,11 @@
             <div class="profile-nav alt">
                 <section class="panel">
                     <div class="user-heading alt clock-row terques-bg">
-
-
-
-
-                        <h1><?php $mydate=getdate(date("U")); echo "$mydate[year]" ?></h1>
-                        <p class="text-left"><?php $mydate=getdate(date("U")); echo "$mydate[weekday],$mydate[month] $mydate[mday]" ?></p>
-                        <p class="text-left" id="timecontainer"><?php $timezone = date_default_timezone_get('UTC +6:00 Dhaka'); echo date("h:i:s a", time());?></p>
+                        <p class="text-left"><?php $mydate=getdate(date("U")); echo "$mydate[year]" ?> - <?php $mydate=getdate(date("U")); echo "$mydate[weekday],$mydate[month] $mydate[mday]" ?></p>
+                        <p class="text-left " align="right"><form name="clockForm">
+                            <input class="btn btn-success" type="button" name="clockButton" value="Loading..." onClick="showDate()" />
+                            <p></p>
+                        </form></p>
 
 
                     </div>
@@ -775,5 +773,42 @@ return (num<=9)? "0"+num : num//if this is minute or sec field
 }
 
 </script>
-
+<script language="JavaScript">
+<!--
+function clock(){
+var time = new Date()
+var hr = time.getHours()
+var min = time.getMinutes()
+var sec = time.getSeconds()
+var ampm = " PM "
+if (hr < 12){
+ampm = " AM "
+}
+if (hr > 12){
+hr -= 12
+}
+if (hr < 10){
+hr = " " + hr
+}
+if (min < 10){
+min = "0" + min
+}
+if (sec < 10){
+sec = "0" + sec
+}
+document.clockForm.clockButton.value = hr + ":" + min + ":" + sec + ampm
+setTimeout("clock()", 1000)
+}
+function showDate(){
+var date = new Date()
+var year = date.getYear()
+if(year < 1000){
+year += 1900
+}
+var monthArray = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
+alert( monthArray[date.getMonth()] + " " + date.getDate() + ", " + year)
+}
+window.onload=clock;
+//-->
+</script>
 @stop

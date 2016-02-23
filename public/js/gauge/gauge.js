@@ -429,7 +429,7 @@
         length: 0.8,
         strokeWidth: 0.035
       },
-      angle: 0.15,
+      angle: 0.30,
       lineWidth: 0.44,
       fontSize: 40,
       limitMax: false,

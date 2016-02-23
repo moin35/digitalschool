@@ -266,5 +266,8 @@ Route::get('admin/allreport','AccountsController@getReport');
 
 //******   Individual Page For Institute    *****
 Route::get('{url}','InstituteController@getIndividualInstituteUrl');
+// ******************************************************//
 
+//Library //
+Route::get('public/library','LibraryController@getLibrary');
 

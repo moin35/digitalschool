@@ -62,7 +62,7 @@
         <!--logo start-->
         <div class="brand">
 
-            <a href="index.html" class="logo">
+            <a href="{{URL::to('/')}}" class="logo">
                 <img src="{{URL::to('/')}}/images/logo.png" alt="">
             </a>
             <div class="sidebar-toggle-box">
@@ -385,6 +385,12 @@
                             <li><a href="{{URL::to('admin/add/Expense')}}">Expense</a></li>
                         </ul>
                     </li>
+                        <li>
+                            <a href="{{URL::to('public/library')}}">
+                                <i class="fa fa-user"></i>
+                                <span>Library </span>
+                            </a>
+                        </li>
                         @if(Auth::check())
                             @if(Auth::user()->priv==3)
                         <li>
