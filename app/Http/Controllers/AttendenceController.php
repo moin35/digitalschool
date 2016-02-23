@@ -14,9 +14,9 @@ class AttendenceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getTeacherAttendence()
     {
-        //
+        return view('admin.attendence.teacherattendence');
     }
 
     /**

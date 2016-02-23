@@ -271,6 +271,6 @@ Route::get('{url}','InstituteController@getIndividualInstituteUrl');
 //Library //
 Route::get('public/library','LibraryController@getLibrary');
 
-//Attendence ///
-//Route::get('teacher/attendence','AttendenceController');
+//Attendence //
+Route::get('teacher/attendence','AttendenceController@getTeacherAttendence');
 
