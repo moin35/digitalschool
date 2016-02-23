@@ -274,3 +274,6 @@ Route::get('public/library','LibraryController@getLibrary');
 //Attendence //
 Route::get('teacher/attendence','AttendenceController@getTeacherAttendence');
 
+
+//Attendance for Students
+Route::get('students/attendence','AttendenceController@getStudentsAttendence');

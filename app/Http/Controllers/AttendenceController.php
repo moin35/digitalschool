@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\ClassAdd;
 class AttendenceController extends Controller
 {
     /**
@@ -14,9 +14,19 @@ class AttendenceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     private function getallclass(){
+         $class = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id', 'class_name');
+         return $class;
+     }
     public function getTeacherAttendence()
     {
         return view('admin.attendence.teacherattendence');
+    }
+
+
+    public function getStudentsAttendence(){
+       $this->getallclass();
+      return view('admin.attendence.studentsAttendence')->with('allclass',$this->getallclass());
     }
 
     /**
