@@ -1,12 +1,38 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Mark;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\ClassAdd;
+=======
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+use App\User;
+use App\Students;
+use App\Institute;
+use App\InstituteContacts;
+use Illuminate\Support\Facades\Hash;
+use App\InstituteInfo;
+use App\Division;
+use App\District;
+use App\Thana;
+use App\Subject;
+use App\Teacher;
+use App\ClassAdd;
+use App\Parents;
+use App\Section;
+use App\Attendence;
+use Illuminate\Support\Facades\DB;
+
+>>>>>>> cee05a5d634d1c4e57ac0132ef4d0c39637f819f
 class AttendenceController extends Controller
 {
     /**
@@ -20,7 +46,9 @@ class AttendenceController extends Controller
      }
     public function getTeacherAttendence()
     {
-        return view('admin.attendence.teacherattendence');
+        $teacher=Teacher::where('institute_code','=',Auth::user()->institute_id)->get();
+        //return $teacher;
+        return view('admin.attendence.teacherattendence',['teacher'=>$teacher]);
     }
 
 
@@ -34,9 +62,20 @@ class AttendenceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function postTeacherAttendence($tid)
     {
-        //
+        $teacher=Teacher::where('institute_code','=',Auth::user()->institute_id)->where('teacher_id','=',$tid)->first();
+        $uid=$teacher->teacher_id;
+        $iid=$teacher->institute_code;
+        $type=$teacher->user_type;
+        $up=new Attendence;
+        $up->institute_code=$iid;
+        $up->uid=$uid;
+        $up->type=$type;
+        $up->status=1;
+        $up->save();
+        Session::flash('data', 'Please Take Next Attendence');
+        return redirect::to('teacher/attendence');
     }
 
     /**
