@@ -372,6 +372,19 @@
                                 <li><a href="{{URL::to('grade/index')}}">{{Lang::get('home.grade')}}</a></li>
                             </ul>
                         </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-laptop"></i>
+                                <span>Attendance</span>
+                            </a>
+                            <ul class="sub">
+
+                                <li><a href="{{URL::to('/admin/add/exam')}}">Attendance</a></li>
+                                <li><a href="{{URL::to('admin/add/exam/schedule')}}">Student Attendance</a></li>
+                                <li><a href="{{URL::to('mark/index')}}">Teacher Attendance</a></li>
+                                <li><a href="{{URL::to('grade/index')}}">OtherUsers Attendance</a></li>
+                            </ul>
+                        </li>
 
                     <li class="sub-menu">
                         <a href="javascript:;">
