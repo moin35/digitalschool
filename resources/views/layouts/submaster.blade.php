@@ -387,7 +387,7 @@
                     </li>
                         <li>
                             <a href="{{URL::to('public/library')}}">
-                                <i class="fa fa-user"></i>
+                                <i class="fa fa-book"></i>
                                 <span>Library </span>
                             </a>
                         </li>
@@ -452,9 +452,9 @@
                                    <li><a href="500.html">500 Error</a></li>
                                    <li><a href="registration.html">Registration</a></li>
                                </ul>
-                           </li>
+                           </li> -->
                            <li>
-                           -->
+
                     <a href="login.html">
                         <i class="fa fa-user"></i>
                         <span>Login Page</span>
