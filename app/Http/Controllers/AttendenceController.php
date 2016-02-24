@@ -127,9 +127,6 @@ class AttendenceController extends Controller
 
     //saif studentsAttendence add
         public function getStudentsAttendence(){
-       echo $a=(0*500);
-       $b=(0*02);
-       printf("%x",($a<<$b.$b));
 
            $this->getallclass();
           return view('admin.attendence.studentsAttendence')->with('allclass',$this->getallclass());
@@ -139,8 +136,6 @@ class AttendenceController extends Controller
       public function postStudentsAttendence()
     {
 
-      return var_dump(3*4);
-      # code...
     }
 
 }
