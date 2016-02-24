@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 use App\Mark;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\ClassAdd;
+=======
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +32,7 @@ use App\Section;
 use App\Attendence;
 use Illuminate\Support\Facades\DB;
 
+>>>>>>> cee05a5d634d1c4e57ac0132ef4d0c39637f819f
 class AttendenceController extends Controller
 {
     /**
@@ -33,11 +40,21 @@ class AttendenceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     private function getallclass(){
+         $class = ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id', 'class_name');
+         return $class;
+     }
     public function getTeacherAttendence()
     {
         $teacher=Teacher::where('institute_code','=',Auth::user()->institute_id)->get();
         //return $teacher;
         return view('admin.attendence.teacherattendence',['teacher'=>$teacher]);
+    }
+
+
+    public function getStudentsAttendence(){
+       $this->getallclass();
+      return view('admin.attendence.studentsAttendence')->with('allclass',$this->getallclass());
     }
 
     /**

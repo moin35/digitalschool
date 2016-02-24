@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="ThemeBucket">
-    <link rel="shortcut icon" href="{{URL::to('/')}}/images/favicon.png">
+    <link rel="shortcut icon" href="{{URL::to('/')}}/images/faveicon.png">
     <title>@yield('title')</title>
     <!--Core CSS -->
     <link href="{{URL::to('/')}}/bs3/css/bootstrap.min.css" rel="stylesheet">
