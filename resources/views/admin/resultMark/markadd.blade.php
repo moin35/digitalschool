@@ -144,7 +144,7 @@ Mark
                                                </div>
                                                <div class="space15"></div>
                                         {!!Form::open(array('class'=>'form-horizontal','id'=>'addAllMarks')) !!}
-                                      
+
                                         <div id="msj-success"  class="alert alert-success fade in" role="alert" style="display:none">
                                             <a href="#" class="close" data-dismiss="alert">&times;</a>
                                             <strong>Your successfully</strong>.

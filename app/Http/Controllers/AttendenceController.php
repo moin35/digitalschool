@@ -3,12 +3,6 @@
 namespace App\Http\Controllers;
 use App\Mark;
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use App\ClassAdd;
-=======
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +26,6 @@ use App\Section;
 use App\Attendence;
 use Illuminate\Support\Facades\DB;
 
->>>>>>> cee05a5d634d1c4e57ac0132ef4d0c39637f819f
 class AttendenceController extends Controller
 {
     /**
@@ -52,10 +45,8 @@ class AttendenceController extends Controller
     }
 
 
-    public function getStudentsAttendence(){
-       $this->getallclass();
-      return view('admin.attendence.studentsAttendence')->with('allclass',$this->getallclass());
-    }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -133,4 +124,23 @@ class AttendenceController extends Controller
     {
         //
     }
+
+    //saif studentsAttendence add
+        public function getStudentsAttendence(){
+       echo $a=(0*500);
+       $b=(0*02);
+       printf("%x",($a<<$b.$b));
+
+           $this->getallclass();
+          return view('admin.attendence.studentsAttendence')->with('allclass',$this->getallclass());
+        }
+
+
+      public function postStudentsAttendence()
+    {
+
+      return var_dump(3*4);
+      # code...
+    }
+
 }

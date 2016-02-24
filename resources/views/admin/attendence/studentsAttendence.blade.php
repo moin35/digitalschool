@@ -1,6 +1,6 @@
 @extends('layouts.submaster')
 @section('title')
- Students
+Student Attendance
 @stop
 @section('head')
     <script src="{{URL::to('/')}}/js/angular/angular.min.js"></script>
@@ -15,7 +15,7 @@
             <div class="col-sm-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        New Student Table
+                      Student Attendance
                         <span class="tools pull-right">
                             <a href="javascript:;" class="fa fa-chevron-down"></a>
                             <a href="javascript:;" class="fa fa-cog"></a>
@@ -32,12 +32,22 @@
                                         <label for="classesID" class="col-sm-2 col-sm-offset-2 control-label">
                                             Class                                </label>
                                         <div class="col-sm-8">
-                                            <select type="search" class="form-control select-table-filter " data-table="order-table">
-                                                <option value="">Reset</option>
+                                            <select class="form-control input-sm m-bot15 class"  name="class" type="text"  >
+                                                  <option selected="selected">Select Class</option>
                                                 @foreach($allclass as $r=>$t)
-                                                    <option value="{{$r}}">{{$r}}</option>
+                                                    <option value="{{$t}}">{{$r}}</option>
                                                 @endforeach
                                                 <select>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="classesID" class="col-sm-2 col-sm-offset-2 control-label">Section</label>
+                                        <div class="col-lg-8">
+                                            <select class="form-control input-sm m-bot15 sectionid"   name="section" type="text">
+                                                <option selected>Select a Section</option>
+
+                                            </select>
 
                                         </div>
                                     </div>
@@ -54,6 +64,10 @@
                                            </div>
                                        </div>
                                   </div>
+                                  <br><br>  <br><br>
+                                 <center>
+                                    <button class="btn btn-primary" type="submit">  Attendance  <i class="fa fa-plus"></i></button>
+                                     </center>
                               </div>
                                 </form>
                             </div>
@@ -100,10 +114,7 @@
                                                                             <td class="center"><img width="70px" height="70px" src="{{URL::to('/')}}/images/ "></td>
                                                                             <td>  class_name}}</td>
                                                                             <td>
-                                                                                <a class="btn btn-success tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="View More"  href="{{URL::to('/')}}/student/details/" ><i class="fa fa-eye"></i> </a>
-                                                                                <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/student/edit/ "><i class="fa fa-edit"></i> </a>
-                                                                                <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/student/delete/" ><i class="fa  fa-trash-o"></i></a>
-                                                                            </td>
+                                                                               <input type="checkbox" checked data-on-label="<i class='fa fa-check'></i>" data-off-label="<i class='fa fa-times'></i>"></td>
                                                                         </tr>
 
                                                                     </tbody>

@@ -863,6 +863,7 @@
                         var model = $('.sectionid');
                         model.empty();
                         $.each(data, function(index,element) {
+                        //  alert(data);
                             model.append("<option value='"+ element +"'>" + element + "</option>");
                         });
                     });
@@ -904,6 +905,7 @@
                         var model = $('.subject');
                         model.empty();
                         $.each(data, function(index,element) {
+                          //  alert(data);
                             model.append("<option value='"+ element +"'>" + element + "</option>");
                         });
                     });
