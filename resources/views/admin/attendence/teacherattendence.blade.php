@@ -40,6 +40,19 @@
                                 </div>
                             </div>
                             <div class="space15"></div>
+                            @if(Session::get('data'))
+                                <div class="bs-example">
+                                    <div class="alert alert-success fade in">
+                                        <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                        <strong>{{Session::get('data')}}</strong>.
+                                    </div>
+                                </div>
+
+                            @endif
+                      <form name="clockForm">
+                                    <input class="btn btn-success" type="button" name="clockButton" value="Loading..." onClick="showDate()" />
+
+                      </form>
                             <table class="table table-striped table-hover table-bordered" id="editable-sample">
                                 <thead>
                                 <tr>
@@ -61,7 +74,10 @@
                                         <td class="center">{{$a->phone}}</td>
                                         <td>{{$a->designation}}</td>
                                         <td>
-                                            <a class="btn btn-success tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="View More"  href="{{URL::to('/')}}/give/attendence/teacher/{{$a->teacher_id}}" ><div class="fa fa-check"></div> </a>
+                                            <a class="btn btn-success tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="View More"  href="{{URL::to('/')}}/give/attendence/teacher/{{$a->teacher_id}}" >
+
+                                                <div class="fa fa-check"></div>
+                                            </a>
                                             <!--<a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/teachers/edit/{{$a->teacher_id}}"><i class="fa fa-edit"></i> </a>
                                             <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/teachers/delete/{{$a->teacher_id}}" ><i class="fa  fa-trash-o"></i></a>
                                             -->
@@ -89,4 +105,43 @@
         }
     </script>
     <!-- JAvascript view auto increment number for table End-->
+
+    <script language="JavaScript">
+        <!--
+        function clock(){
+            var time = new Date()
+            var hr = time.getHours()
+            var min = time.getMinutes()
+            var sec = time.getSeconds()
+            var ampm = " PM "
+            if (hr < 12){
+                ampm = " AM "
+            }
+            if (hr > 12){
+                hr -= 12
+            }
+            if (hr < 10){
+                hr = " " + hr
+            }
+            if (min < 10){
+                min = "0" + min
+            }
+            if (sec < 10){
+                sec = "0" + sec
+            }
+            document.clockForm.clockButton.value = hr + ":" + min + ":" + sec + ampm
+            setTimeout("clock()", 1000)
+        }
+        function showDate(){
+            var date = new Date()
+            var year = date.getYear()
+            if(year < 1000){
+                year += 1900
+            }
+            var monthArray = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
+            alert( monthArray[date.getMonth()] + " " + date.getDate() + ", " + year)
+        }
+        window.onload=clock;
+        //-->
+    </script>
 @stop
