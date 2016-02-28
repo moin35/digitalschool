@@ -32,16 +32,7 @@
                                     </a>
                                 </div>
 
-
-                                @if(Session::get('data'))
-                                    <div class="bs-example">
-                                        <div class="alert alert-success fade in">
-                                            <a href="#" class="close" data-dismiss="alert">&times;</a>
-                                            <strong>{{Session::get('data')}}</strong>.
-                                        </div>
-                                    </div>
-
-                                @endif
+ 
                                 <div class="btn-group pull-right">
 
                                 </div>

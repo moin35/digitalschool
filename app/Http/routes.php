@@ -281,3 +281,4 @@ Route::get('attendence/result/teacher','AttendenceController@getReportTeacherAtt
 
 //Attendance for Students
 Route::get('students/attendence','AttendenceController@getStudentsAttendence');
+Route::post('students/attendence','AttendenceController@postStudentsAttendence');

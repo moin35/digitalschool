@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\Mark;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -49,10 +48,8 @@ class AttendenceController extends Controller
     }
 
 
-    public function getStudentsAttendence(){
-       $this->getallclass();
-      return view('admin.attendence.studentsAttendence')->with('allclass',$this->getallclass());
-    }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -189,4 +186,18 @@ return $c;
     {
         //
     }
+
+    //saif studentsAttendence add
+        public function getStudentsAttendence(){
+
+           $this->getallclass();
+          return view('admin.attendence.studentsAttendence')->with('allclass',$this->getallclass());
+        }
+
+
+      public function postStudentsAttendence()
+    {
+
+    }
+
 }
