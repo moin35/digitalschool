@@ -976,7 +976,11 @@ $('#addAllMarks').on('submit',function(e){
     });
 });
  </script>
+ <script language="JavaScript" type="text/javascript">
+
+ </script>
    <script src="{{URL::to('/')}}/ajaxjs/exprence.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/ajaxjs/attendance.js" type="text/javascript"></script>
  <script language="JavaScript" type="text/javascript">
 
   $(function(){

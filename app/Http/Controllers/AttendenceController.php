@@ -127,14 +127,35 @@ class AttendenceController extends Controller
 
     //saif studentsAttendence add
         public function getStudentsAttendence(){
-
+            //$this->postStudentsAttendence();
+          //  $data=Input::all();
+             $dateTime=Input::get('date');
+             $clasId=Input::get('class');
+             $sectionName=Input::get('section');
+           $GetStudents=students::where('institute_code','=',Auth::user()->institute_id)->where('class','=',$clasId)->where('section','=',$sectionName)->get();
+           //$GetStudents=students::where('institute_code','=',Auth::user()->institute_id)->get();
+           //   return $GetStudents->count();
            $this->getallclass();
-          return view('admin.attendence.studentsAttendence')->with('allclass',$this->getallclass());
+          return view('admin.attendence.studentsAttendence')->with('allclass',$this->getallclass())->with('GetStudents',$GetStudents)
+          ->with('sectionName',$sectionName)->with('classId',$clasId)->with('dateTime',$dateTime);
         }
 
 
       public function postStudentsAttendence()
     {
+     //  Request $request
+
+      // return $GetStudents;
+      $dateTime=Input::get('date');
+      $clasId=Input::get('class');
+      $sectionName=Input::get('section');
+
+      $GetStudents=students::where('institute_code','=',Auth::user()->institute_id)->where('class','=',$clasId)->where('section','=',$sectionName)->get();
+
+     return view('admin.attendence.studentsAttendence')->with('allclass',$this->getallclass())->with('GetStudents',$GetStudents)
+     ->with('sectionName',$sectionName)->with('classId',$clasId)->with('dateTime',$dateTime);
+
+       //return $GetStudents;
 
     }
 
