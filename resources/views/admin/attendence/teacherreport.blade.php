@@ -1,6 +1,6 @@
 @extends('layouts.submaster')
 @section('title')
-    Teacher Attendence
+    Teacher Attendence Report
 @stop
 @section('head')
     <script src="{{URL::to('/')}}/js/angular/angular.min.js"></script>
@@ -10,7 +10,7 @@
     <script src="{{URL::to('/')}}/js/indexdata.js"></script>
 @stop
 @section('body')
-    <h1 align="center">Teacher Attendence</h1>
+    <h1 align="center">Teacher Attendence Report</h1>
     <section class="panel">
         <!-- page start-->
 
@@ -18,7 +18,7 @@
             <div class="col-sm-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        ALL Institute
+                        Teacher attendence report
                         <span class="tools pull-right">
                             <a href="javascript:;" class="fa fa-chevron-down"></a>
                             <a href="javascript:;" class="fa fa-cog"></a>
@@ -68,7 +68,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($teacher as $a)
+                                @foreach($at as $a)
                                     <tr class="" id="tid">
                                         <td > {{$a->name}}</td>
                                         <td>{{$a->teacher_id}}</td>
@@ -77,16 +77,12 @@
                                         <td>{{$a->designation}}</td>
                                 @if(\App\Attendence::where('uid','=',$a->teacher_id)->where('created_at','LIKE',"%$p%")->pluck('created_at')!='')
                                         <td>
-                                            <a class="btn btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="View More"  href="{{URL::to('/')}}/give/attendence/teacher/end/{{$a->teacher_id}}" >
+                                            <a class="btn btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="View More"  href="{{URL::to('/')}}/give/attendence/teacher/{{$a->teacher_id}}" >
                                                 <div class="fa fa-check"></div>End Work
                                             </a>
                                             <!--<a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/teachers/edit/{{$a->teacher_id}}"><i class="fa fa-edit"></i> </a>
                                             <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/teachers/delete/{{$a->teacher_id}}" ><i class="fa  fa-trash-o"></i></a>
                                             -->
-                                        </td>
-                                        @elseif(\App\Attendence::where('uid','=',$a->teacher_id)->where('created_at','LIKE',"%$p%")->pluck('status')=='0')
-                                <td>
-                                  OK
                                         </td>
                                 @else
                                         <td>
