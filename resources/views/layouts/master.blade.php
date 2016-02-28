@@ -379,10 +379,11 @@
                             </a>
                             <ul class="sub">
 
-                                <li><a href="{{URL::to('/admin/add/exam')}}">Attendance</a></li>
-                                <li><a href="{{URL::to('admin/add/exam/schedule')}}">Student Attendance</a></li>
-                                <li><a href="{{URL::to('mark/index')}}">Teacher Attendance</a></li>
+                                
+                                <li><a href="{{URL::to('students/attendence')}}">Student Attendance</a></li>
+                                <li><a href="{{URL::to('teacher/attendence')}}">Teacher Attendance</a></li>
                                 <li><a href="{{URL::to('grade/index')}}">OtherUsers Attendance</a></li>
+                                <li><a href="{{URL::to('attendence/result/teacher')}}">Teacher Attendance Report</a></li>
                             </ul>
                         </li>
 
