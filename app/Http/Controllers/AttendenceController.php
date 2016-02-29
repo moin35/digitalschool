@@ -109,19 +109,27 @@ $today4 = date("Y-m-d g:i A");                   // 2001-03-10 17:16:18 (the MyS
          $c=Attendence::where('institute_code','=',Auth::user()->institute_id)
         ->where('type','=','Teacher')
         ->where('created_at','LIKE',"%$today%")
-        ->get();
-return $c;
-        $data=Attendence::where('institute_code','=',Auth::user()->institute_id)
+        ->pluck('created_at');
+//return $c;
+        $data1=Attendence::where('institute_code','=',Auth::user()->institute_id)
+        ->where('type','=','Teacher')
+        ->where('created_at','LIKE',"%$today%")
+        ->where('uid','LIKE','12632 1212')
+        ->pluck('created_at');
+             $data2=Attendence::where('institute_code','=',Auth::user()->institute_id)
+        ->where('type','=','Teacher')
+        ->where('created_at','LIKE',"%$today%")
+        ->where('uid','LIKE','12632 1212')
+        ->pluck('updated_at');
+
+$diff_seconds  = strtotime($data2) - strtotime($data1);
+$stat = floor($diff_seconds/3600).'H:'.floor(($diff_seconds%3600)/60).'M';
+return $today;
+             /*  $data1=Attendence::where('institute_code','=',Auth::user()->institute_id)
         ->where('type','=','Teacher')
         ->where('created_at','LIKE',"%$today%")
         ->where('uid','LIKE','18967 1212')
-        ->max('created_at');
-     
-               $data1=Attendence::where('institute_code','=',Auth::user()->institute_id)
-        ->where('type','=','Teacher')
-        ->where('created_at','LIKE',"%$today%")
-        ->where('uid','LIKE','18967 1212')
-        ->min('created_at');
+        ->min('created_at');*/
 
            
           $d1=date("H:i:s", strtotime($data));
