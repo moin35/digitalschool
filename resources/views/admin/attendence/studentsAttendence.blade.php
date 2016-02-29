@@ -9,6 +9,58 @@ Student Attendance
     <link rel="stylesheet" href="{{URL::to('/')}}/css/styledata.css">
     <script src="{{URL::to('/')}}/js/indexdata.js"></script>
     <meta name="_token" content="{{ csrf_token() }}" />
+    <style>
+
+    .flipswitch
+    {
+        position: relative;
+        background: white;
+        width: 120px;
+        height: 40px;
+        -webkit-appearance: initial;
+        border-radius: 3px;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        outline:none;
+        font-size: 14px;
+        font-family: Trebuchet, Arial, sans-serif;
+        font-weight: bold;
+        cursor:pointer;
+        border:1px solid #ddd;
+    }
+    .flipswitch:after
+    {
+        position:absolute;
+        top:5%;
+        display:block;
+        line-height:32px;
+        width:45%;
+        height:90%;
+        background:#fff;
+        box-sizing:border-box;
+        text-align:center;
+        transition: all 0.3s ease-in 0s;
+        color:black;
+        border:#888 1px solid;
+        border-radius:3px;
+    }
+    .flipswitch:after
+    {
+        left:5%;
+        content: "X A";
+        background-color: red;
+        value:0;
+    }
+    .flipswitch:checked:after
+    {
+        left:73%;
+        content:  "✓ P";
+        background-color: #3e8c22;
+        color: #78d158;
+        value:1;
+
+    }
+
+    </style>
 @stop
 
 @section('body')
@@ -34,7 +86,7 @@ Student Attendance
                                         <label for="classesID" class="col-sm-2 col-sm-offset-2 control-label">
                                             Class                                </label>
                                         <div class="col-sm-8">
-                                            <select class="form-control input-sm m-bot15 class" id="aClassId" name="class" type="text"  >
+                                            <select class="form-control input-sm m-bot15 class"   name="class" type="text"  >
                                                   <option selected="selected">Select Class</option>
                                                 @foreach($allclass as $r=>$t)
 
@@ -52,7 +104,7 @@ Student Attendance
                                     <div class="form-group ">
                                         <label for="classesID" class="col-sm-2 col-sm-offset-2 control-label">Section</label>
                                         <div class="col-lg-8">
-                                            <select class="form-control input-sm m-bot15 sectionid" id="sectionid"  name="section" type="text">
+                                            <select class="form-control input-sm m-bot15 sectionid"  name="section" type="text">
 
                                                 @if($sectionName=='')
                                                   <option selected>Select a Section</option>
@@ -103,6 +155,7 @@ Student Attendance
                                                                     </div>
                                                                 </div>
                                                                 <div class="space15"></div>
+
                                                                 <table class="table table-striped table-hover table-bordered order-table" id="editable-sample">
                                                                     <thead>
                                                                     <tr>
@@ -113,7 +166,7 @@ Student Attendance
                                                                         <th>Phone</th>
                                                                         <th>Photo</th>
                                                                         <th>class</th>
-                                                                        <th><input id="selectall" name="selectall" type="checkbox" /></th>
+                                                                        <th>Action</th>
                                                                     </tr>
                                                                     </thead>
                                                                     <tbody >
@@ -127,15 +180,22 @@ Student Attendance
                                                                             <td class="center"><img width="70px" height="70px" src="{{URL::to('/')}}/images/{{$value->image}} "></td>
                                                                             <td> {{$value->class}}</td>
                                                                             <td>
-<input class="cboxes" name="repeatedbox[]" type="checkbox" value="yes" />
-
-                                               </td>
+                                                                                  {!!Form::open(array('class'=>'form-horizontal','id'=>'studentsAttendence')) !!}
+                                                                              <input type="hidden" name="stdUid[]" value="{{$value->st_id}}">
+                                                                         <input onchange='this.form.submit()' type="checkbox" value="A"  checked  name="stdAttendence[]"  class="flipswitch" />
+                                                                         <noscript>{!!Form::submit('Submit',['class'=>'','type'=>'submit','value'=>'Submit'])!!}</noscript>
+                                                                                   {!!Form::close()!!}
+                                                                          </td>
                                                                            </tr>
                                                                         @endforeach
 
 
                                                                     </tbody>
                                                                 </table>
+
+
+
+
                                                             </div>
                                                         </div>
                                                     </section>
@@ -151,23 +211,11 @@ Student Attendance
         </div>
         <!-- page end-->
 
-        <script>
-        jQuery(document).ready(function($) {
-            $('#selectall').click(function(event) {  //on click
-                if(this.checked) { // check select status
-                    $('.cboxes').each(function() { //loop through each checkbox
-                        this.checked = true;  //select all checkboxes with class "checkbox1"
-                    });
-                }else{
-                    $('.cboxes').each(function() { //loop through each checkbox
-                        this.checked = false; //deselect all checkboxes with class "checkbox1"
-                    });
-                }
-            });
 
-        });
-        </script>
 <script>
+
+
+
     function TestCtrl() {
         var self = this;
 

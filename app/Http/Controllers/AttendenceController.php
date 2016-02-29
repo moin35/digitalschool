@@ -40,7 +40,7 @@ class AttendenceController extends Controller
      }
     public function getTeacherAttendence()
     {
-        $today = date("Y-m-d");   
+        $today = date("Y-m-d");
       //$t= Attendence::where('institute_code','=',Auth::user()->institute_id)->MAX('id')->pluck('created_at');
         $teacher=Teacher::where('institute_code','=',Auth::user()->institute_id)->get();
         //return $t;
@@ -62,20 +62,20 @@ class AttendenceController extends Controller
 // Assuming today is March 10th, 2001, 5:16:18 pm, and that we are in the
 // Mountain Standard Time (MST) Time Zone
 
-$today = date("F j, Y, g:i a");                 // March 10, 2001, 5:16 pm
-$today = date("m.d.y");                         // 03.10.01
-$today = date("j, n, Y");                       // 10, 3, 2001
-$today = date("Ymd");                           // 20010310
-$today1 = date('h-i-s, j-m-y, it is w Day');     // 05-16-18, 10-03-01, 1631 1618 6 Satpm01
-$today = date('\i\t \i\s \t\h\e jS \d\a\y.');   // it is the 10th day.
-$today = date("D M j G:i:s T Y");               // Sat Mar 10 17:16:18 MST 2001
-$today2 = date('H:m:s \m \i\s\ \m\o\n\t\h');     // 17:03:18 m is month
+          $today = date("F j, Y, g:i a");                 // March 10, 2001, 5:16 pm
+          $today = date("m.d.y");                         // 03.10.01
+          $today = date("j, n, Y");                       // 10, 3, 2001
+          $today = date("Ymd");                           // 20010310
+          $today1 = date('h-i-s, j-m-y, it is w Day');     // 05-16-18, 10-03-01, 1631 1618 6 Satpm01
+          $today = date('\i\t \i\s \t\h\e jS \d\a\y.');   // it is the 10th day.
+          $today = date("D M j G:i:s T Y");               // Sat Mar 10 17:16:18 MST 2001
+          $today2 = date('H:m:s \m \i\s\ \m\o\n\t\h');     // 17:03:18 m is month
 
-$today5 = time('H:m:s');                            // 17:16:18
-$today4 = date("Y-m-d g:i A");                   // 2001-03-10 17:16:18 (the MySQL DATETIME format)
+          $today5 = time('H:m:s');                            // 17:16:18
+          $today4 = date("Y-m-d g:i A");                   // 2001-03-10 17:16:18 (the MySQL DATETIME format)
                // 2001-03-10 17:16:18 (the MySQL DATETIME format)
 //return $today3;
-        $time = date("H:i:s"); 
+        $time = date("H:i:s");
         $teacher=Teacher::where('institute_code','=',Auth::user()->institute_id)->where('teacher_id','=',$tid)->first();
         $uid=$teacher->teacher_id;
         $iid=$teacher->institute_code;
@@ -110,20 +110,20 @@ $today4 = date("Y-m-d g:i A");                   // 2001-03-10 17:16:18 (the MyS
         ->where('type','=','Teacher')
         ->where('created_at','LIKE',"%$today%")
         ->get();
-return $c;
+        return $c;
         $data=Attendence::where('institute_code','=',Auth::user()->institute_id)
         ->where('type','=','Teacher')
         ->where('created_at','LIKE',"%$today%")
         ->where('uid','LIKE','18967 1212')
         ->max('created_at');
-     
+
                $data1=Attendence::where('institute_code','=',Auth::user()->institute_id)
         ->where('type','=','Teacher')
         ->where('created_at','LIKE',"%$today%")
         ->where('uid','LIKE','18967 1212')
         ->min('created_at');
 
-           
+
           $d1=date("H:i:s", strtotime($data));
           $d2=date("H:i:s", strtotime($data1));
            $tdate=date("H:i:s", strtotime($data))-date("H:i:s", strtotime($data1));
@@ -131,7 +131,7 @@ return $c;
 //printf("Now: %s", Carbon::now());
 //echo Carbon::minValue();
 //$order = DB::table('tbl_attendence')->where('id', DB::raw("(select max('id') from tbl_attendence)"))->get();
-    
+
        // return $order;
        //return $data->created_at->format('M jS Y g:ia');
        //$data = DB::table('tbl_teacher')
@@ -214,11 +214,31 @@ return $c;
 
       $GetStudents=students::where('institute_code','=',Auth::user()->institute_id)->where('class','=',$clasId)->where('section','=',$sectionName)->get();
 
+      foreach ($GetStudents as $key => $value) {
+
+      //  return $value->st_id;
+
+      $stdAtn=new Attendence;
+      $stdAtn->institute_code=Auth::user()->institute_id;
+      $stdAtn->uid=$value->st_id;
+      $stdAtn->type="Student";
+      $stdAtn->status=0;
+      $stdAtn->save();
+
+      }
+
      return view('admin.attendence.studentsAttendence')->with('allclass',$this->getallclass())->with('GetStudents',$GetStudents)
      ->with('sectionName',$sectionName)->with('classId',$clasId)->with('dateTime',$dateTime);
 
        //return $GetStudents;
 
+    }
+    public function postAllStudentsAttendence(Request $request){
+      if($request->ajax()){
+        $data=Input::all();
+        return $data;
+
+      }
     }
 
 }

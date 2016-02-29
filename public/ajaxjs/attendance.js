@@ -1,4 +1,6 @@
 
+
+
   $(function(){
  $('#studentsAttendence').on('submit',function(e){
      $.ajaxSetup({
@@ -6,9 +8,17 @@
      })
      e.preventDefault(e);
 
+     $('#at').on('change', function () {
+       this.value = this.checked ? 1 : 0;
+         //console.log(this.value);
+         //alert(this.value);
+     }).change();
+
+
+
          $.ajax({
          type:"POST",
-         url:'/students/attendence/',
+         url:'/all/students/attendence/',
          data:$(this).serialize(),
          dataType: 'json',
          success:function(data){
