@@ -12,8 +12,8 @@
     <link href="{{URL::to('/')}}/bs3/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/css/bootstrap-reset.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <!-- DATE PICKER AND FILE UPLOAD START -->
-    <link rel="stylesheet" href="{{URL::to('/')}}/css/bootstrap-switch.css" />
+    <!-- DATE PICKER AND FILE UPLOAD START
+    <link rel="stylesheet" href="{{URL::to('/')}}//css/bootstrap-switch.css" />-->
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-fileupload/bootstrap-fileupload.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-datepicker/css/datepicker.css" />
@@ -379,7 +379,7 @@
                             </a>
                             <ul class="sub">
 
-                                
+
                                 <li><a href="{{URL::to('students/attendence')}}">Student Attendance</a></li>
                                 <li><a href="{{URL::to('teacher/attendence')}}">Teacher Attendance</a></li>
                                 <li><a href="{{URL::to('grade/index')}}">OtherUsers Attendance</a></li>
@@ -977,7 +977,11 @@ $('#addAllMarks').on('submit',function(e){
     });
 });
  </script>
+ <script language="JavaScript" type="text/javascript">
+
+ </script>
    <script src="{{URL::to('/')}}/ajaxjs/exprence.js" type="text/javascript"></script>
+    <script src="{{URL::to('/')}}/ajaxjs/attendance.js" type="text/javascript"></script>
  <script language="JavaScript" type="text/javascript">
 
   $(function(){
