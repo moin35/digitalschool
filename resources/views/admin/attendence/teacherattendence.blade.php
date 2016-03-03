@@ -8,6 +8,7 @@
     <link href="{{URL::to('/')}}/css/angular/animatedbox.css" rel="stylesheet">
     <link rel="stylesheet" href="{{URL::to('/')}}/css/styledata.css">
     <script src="{{URL::to('/')}}/js/indexdata.js"></script>
+
 @stop
 @section('body')
     <h1 align="center">Teacher Attendence</h1>

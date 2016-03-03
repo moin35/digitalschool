@@ -32,7 +32,7 @@
               "class": "switch-left",
               html: function() {
                 var html, label;
-                html = "ON";
+              //  html = "ON";
                 label = $element.data("on-label");
                 if (label != null) {
                   html = label;
@@ -44,7 +44,7 @@
               "class": "switch-right",
               html: function() {
                 var html, label;
-                html = "OFF";
+              //  html = "OFF";
                 label = $element.data("off-label");
                 if (label != null) {
                   html = label;
@@ -82,7 +82,7 @@
             };
             $element.data("bootstrap-switch", true);
             if ($element.attr("class")) {
-              $.each(["switch-mini", "switch-small", "switch-large"], function(i, cls) {
+              $.each(["switch-mini"], function(i, cls) {
                 if ($element.attr("class").indexOf(cls) >= 0) {
                   $switchLeft.addClass(cls);
                   $label.addClass(cls);
@@ -351,7 +351,7 @@
           $switchLeft = $element.siblings(".switch-left");
           $label = $element.siblings("label");
           $switchRight = $element.siblings(".switch-right");
-          $.each(["switch-mini", "switch-small", "switch-large"], function(i, cls) {
+          $.each(["switch-mini"], function(i, cls) {
             if (cls !== value) {
               $switchLeft.removeClass(cls);
               $label.removeClass(cls);
