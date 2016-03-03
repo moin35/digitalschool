@@ -85,7 +85,7 @@ Mark
                   </div>
                   <hr>
                   <div class="panel-body profile-information">
-<center> <h1> Mark Information</h1></center>
+<center> <h1> Attendance Information</h1></center>
 
               </section>
 
