@@ -277,8 +277,8 @@ Route::get('give/attendence/teacher/{tid}','AttendenceController@postTeacherAtte
 Route::get('give/attendence/teacher/end/{tid}','AttendenceController@postEndTeacherAttendence');
 
 Route::get('attendence/result/teacher','AttendenceController@getReportTeacherAttendence');
-
-
+Route::get('view/attendence/teacher/{tid}','AttendenceController@detailReportIndividualTeacher');
+Route::get('give/absence/teacher/{iid}','AttendenceController@absenceReportTeacher');
 //Attendance for Students
 Route::get('students/attendence','AttendenceController@getStudentsAttendence');
 Route::post('students/attendence','AttendenceController@postStudentsAttendence');

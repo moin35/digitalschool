@@ -8,6 +8,11 @@
     <link href="{{URL::to('/')}}/css/angular/animatedbox.css" rel="stylesheet">
     <link rel="stylesheet" href="{{URL::to('/')}}/css/styledata.css">
     <script src="{{URL::to('/')}}/js/indexdata.js"></script>
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+    <script src="{{URL::to('/')}}/filtertimedate/jquery.mtz.monthpicker.js"></script>
 @stop
 @section('body')
     <h1 align="center">Teacher Attendence Report</h1>
@@ -61,10 +66,10 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Teacher Id</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Designation</th>
-                                    <th>Action</th>
+                                    <th>Today</th>
+                                    <th>Month</th>
+                                    <th>Year</th>
+                                    <th>Search</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -72,29 +77,34 @@
                                     <tr class="" id="tid">
                                         <td > {{$a->name}}</td>
                                         <td>{{$a->teacher_id}}</td>
-                                        <td>{{$a->email}}</td>
-                                        <td class="center">{{$a->phone}}</td>
-                                        <td>{{$a->designation}}</td>
-                                @if(\App\Attendence::where('uid','=',$a->teacher_id)->where('created_at','LIKE',"%$p%")->pluck('created_at')!='')
+                                        <td> 
+                                            <input class="default-date-picker" name="date"  size="16" type="text" value="" />
+                                        </td>
+                                        <td class="center">
+                                                <select name="month">
+                                                    <option value="">Select Month</option>
+                                                    <option value="01">Jan</option>
+                                                </select>
+                                                <select name="year">
+                                                    <option value="">Select Year</option>
+                                                    <option value="2016">2016</option>
+                                                </select>
+                                        </td>
+                                        <td> 
+                                           <select>
+                                           <option selected="selected" value=" ">Search with year</option>
+                                           <option value="2016">2016</option>
+                                           </select>
+                                        </td>
                                         <td>
-                                            <a class="btn btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="View More"  href="{{URL::to('/')}}/give/attendence/teacher/{{$a->teacher_id}}" >
-                                                <div class="fa fa-check"></div>End Work
+                                            <a class="btn btn-success tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="View More"  href="{{URL::to('/')}}/view/attendence/teacher/{{$a->teacher_id}}" >
+                                                <div class="fa fa-check"></div>View Detail
                                             </a>
                                             <!--<a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/teachers/edit/{{$a->teacher_id}}"><i class="fa fa-edit"></i> </a>
                                             <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/teachers/delete/{{$a->teacher_id}}" ><i class="fa  fa-trash-o"></i></a>
                                             -->
                                         </td>
-                                @else
-                                        <td>
-                                            <a class="btn btn-success tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="View More"  href="{{URL::to('/')}}/give/attendence/teacher/{{$a->teacher_id}}" >
-                                                <div class="fa fa-check"></div>Start Work
-                                            </a>
-                                            <!--<a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/teachers/edit/{{$a->teacher_id}}"><i class="fa fa-edit"></i> </a>
-                                            <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/teachers/delete/{{$a->teacher_id}}" ><i class="fa  fa-trash-o"></i></a>
-                                            -->
-                                        </td>
-                                  @endif
-                                    </tr>
+                                   </tr>
                                 @endforeach
                                 </tbody>
                             </table>
@@ -156,4 +166,35 @@
         window.onload=clock;
         //-->
     </script>
+<script>
+$('#demo-1').monthpicker();
+$('#demo-2').monthpicker({pattern: 'mm-yyyy', 
+    selectedYear: 2015,
+    startYear: 1900,
+    finalYear: 2212,});
+    var options = {
+    selectedYear: 2015,
+    startYear: 2008,
+    finalYear: 2018,
+    openOnFocus: false // Let's now use a button to show the widget
+};
+
+$('#demo-3').monthpicker(options);
+
+$('#demo-3').monthpicker().bind('monthpicker-change-year', function (e, year) {
+    $('#demo-3').monthpicker('disableMonths', []); // (re)enables all
+    if (year === '2015') {
+        $('#demo-3').monthpicker('disableMonths', [1, 2, 3, 4]);
+    }
+    if (year === '2014') {
+        $('#demo-3').monthpicker('disableMonths', [9, 10, 11, 12]);
+    }
+});
+
+$('#demo-3-button').bind('click', function () {
+    $('#demo-3').monthpicker('show');
+});
+</script>
+
+
 @stop

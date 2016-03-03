@@ -55,7 +55,7 @@
                                     <input class="btn btn-success" type="button" name="clockButton" value="Loading..." onClick="showDate()" />
 
                       </form>
-                      <div></div>
+                      <div class=""><a  class="btn btn-danger tooltips" href="{{URL::to('/')}}/give/absence/teacher/{{$iid}}">Take</a></div>
                             <table class="table table-striped table-hover table-bordered" id="editable-sample">
                                 <thead>
                                 <tr>
@@ -66,17 +66,20 @@
                                     <th>Phone</th>
                                     <th>Designation</th>
                                     <th>Action</th>
+                                    
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($teacher as $a)
+
                                     <tr class="" id="tid">
+
                                         <td > {{$a->name}}</td>
                                         <td>{{$a->teacher_id}}</td>
                                         <td>{{$a->email}}</td>
                                         <td class="center">{{$a->phone}}</td>
                                         <td>{{$a->designation}}</td>
-                                @if(\App\Attendence::where('uid','=',$a->teacher_id)->where('created_at','LIKE',"%$p%")->pluck('created_at')!='')
+                                @if(\App\Attendence::where('uid','=',$a->teacher_id)->where('created_at','LIKE',"%$p%")->where('status','=',0)->pluck('created_at')!='')
                                         <td>
                                             <a class="btn btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="View More"  href="{{URL::to('/')}}/give/attendence/teacher/end/{{$a->teacher_id}}" >
                                                 <div class="fa fa-check"></div>End Work
@@ -85,14 +88,21 @@
                                             <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/teachers/delete/{{$a->teacher_id}}" ><i class="fa  fa-trash-o"></i></a>
                                             -->
                                         </td>
-                                        @elseif(\App\Attendence::where('uid','=',$a->teacher_id)->where('created_at','LIKE',"%$p%")->pluck('status')=='0')
+                                        @elseif(\App\Attendence::where('uid','=',$a->teacher_id)->where('created_at','LIKE',"%$p%")->pluck('status')=='2')
                                 <td>
-                                  OK
+                                  Absence
+                                        </td>
+                                         @elseif(\App\Attendence::where('uid','=',$a->teacher_id)->where('created_at','LIKE',"%$p%")->pluck('status')=='1')
+                                <td>
+                                  Present
                                         </td>
                                 @else
                                         <td>
                                             <a class="btn btn-success tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="View More"  href="{{URL::to('/')}}/give/attendence/teacher/{{$a->teacher_id}}" >
                                                 <div class="fa fa-check"></div>Start Work
+                                            </a>
+                                               <a class="btn btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="View More"  href="{{URL::to('/')}}/give/absence/teacher/{{$a->teacher_id}}" >
+                                                <div class="fa fa-check"></div>A
                                             </a>
                                             <!--<a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/teachers/edit/{{$a->teacher_id}}"><i class="fa fa-edit"></i> </a>
                                             <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/teachers/delete/{{$a->teacher_id}}" ><i class="fa  fa-trash-o"></i></a>
