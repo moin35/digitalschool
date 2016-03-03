@@ -41,10 +41,17 @@ class AttendenceController extends Controller
     public function getTeacherAttendence()
     {
         $today = date("Y-m-d");
-      //$t= Attendence::where('institute_code','=',Auth::user()->institute_id)->MAX('id')->pluck('created_at');
-        $teacher=Teacher::where('institute_code','=',Auth::user()->institute_id)->get();
-        //return $t;
-        return view('admin.attendence.teacherattendence',['teacher'=>$teacher,'p'=>$today]);
+      $iid= Teacher::where('institute_code','=',Auth::user()->institute_id)->pluck('institute_code');
+        
+       $teacher = DB::table('tbl_attendence')
+            ->join('tbl_teacher', 'tbl_attendence.institute_code', '=', 'tbl_teacher.institute_code')
+            ->select('tbl_teacher.teacher_id','tbl_teacher.phone','tbl_teacher.name','tbl_teacher.designation','tbl_teacher.email','tbl_attendence.status')
+            ->where('tbl_attendence.created_at','LIKE',"%$today%")
+
+          //  ->select('tbl_teacher.teacher_id','tbl_teacher.phone','tbl_teacher.name','tbl_teacher.designation','tbl_teacher.email', 'tbl_attendence.status')
+            ->get();
+          return $teacher;
+        return view('admin.attendence.teacherattendence',['teacher'=>$teacher,'p'=>$today,'iid'=>$iid]);
     }
 
 
@@ -74,7 +81,7 @@ class AttendenceController extends Controller
           $today5 = time('H:m:s');                            // 17:16:18
           $today4 = date("Y-m-d g:i A");                   // 2001-03-10 17:16:18 (the MySQL DATETIME format)
                // 2001-03-10 17:16:18 (the MySQL DATETIME format)
-//return $today3;
+//return $today4;
         $time = date("H:i:s");
         $teacher=Teacher::where('institute_code','=',Auth::user()->institute_id)->where('teacher_id','=',$tid)->first();
         $uid=$teacher->teacher_id;
@@ -92,8 +99,9 @@ class AttendenceController extends Controller
     }
     public function postEndTeacherAttendence($tid)
     {
+        $today= date("Y-m-d");  
         $teacher=Attendence::where('institute_code','=',Auth::user()->institute_id)
-        ->where('uid','=',$tid)->update(['status'=>'1']);
+        ->where('uid','=',$tid)->where('created_at','LIKE',"%$today%")->update(['status'=>'1']);
         Session::flash('data', 'Please Take Next Attendence');
         return redirect::to('teacher/attendence');
     }
@@ -106,60 +114,12 @@ class AttendenceController extends Controller
     public function getReportTeacherAttendence()
     {
          $today = date("Y-m-d");
-         $c=Attendence::where('institute_code','=',Auth::user()->institute_id)
-        ->where('type','=','Teacher')
-        ->where('created_at','LIKE',"%$today%")
-
-        ->pluck('created_at');
-//return $c;
-        $data1=Attendence::where('institute_code','=',Auth::user()->institute_id)
-        ->where('type','=','Teacher')
-        ->where('created_at','LIKE',"%$today%")
-        ->where('uid','LIKE','12632 1212')
-        ->pluck('created_at');
-             $data2=Attendence::where('institute_code','=',Auth::user()->institute_id)
-        ->where('type','=','Teacher')
-        ->where('created_at','LIKE',"%$today%")
-        ->where('uid','LIKE','12632 1212')
-        ->pluck('updated_at');
-
-$diff_seconds  = strtotime($data2) - strtotime($data1);
-$stat = floor($diff_seconds/3600).'H:'.floor(($diff_seconds%3600)/60).'M';
-return $today;
-             /*  $data1=Attendence::where('institute_code','=',Auth::user()->institute_id)
-
+         $c=Teacher::where('institute_code','=',Auth::user()->institute_id)
+     
         ->get();
-        return $c;
-        $data=Attendence::where('institute_code','=',Auth::user()->institute_id)
-        ->where('type','=','Teacher')
-        ->where('created_at','LIKE',"%$today%")
-        ->where('uid','LIKE','18967 1212')
-        ->max('created_at');
+//return $c;
 
-               $data1=Attendence::where('institute_code','=',Auth::user()->institute_id)
->>>>>>> 13f203b77af4e7fbdc7fac068582b2f5610d3488
-        ->where('type','=','Teacher')
-        ->where('created_at','LIKE',"%$today%")
-        ->where('uid','LIKE','18967 1212')
-        ->min('created_at');*/
-
-
-          $d1=date("H:i:s", strtotime($data));
-          $d2=date("H:i:s", strtotime($data1));
-           $tdate=date("H:i:s", strtotime($data))-date("H:i:s", strtotime($data1));
-          return  date("H:i:s", strtotime($tdate)).'start:'.$d1.'<br>'.'End:'.$d2;
-//printf("Now: %s", Carbon::now());
-//echo Carbon::minValue();
-//$order = DB::table('tbl_attendence')->where('id', DB::raw("(select max('id') from tbl_attendence)"))->get();
-
-       // return $order;
-       //return $data->created_at->format('M jS Y g:ia');
-       //$data = DB::table('tbl_teacher')
-    //->join('tbl_attendence', 'tbl_attendence.uid', '=', 'tbl_teacher.teacher_id')
-   // ->where('tbl_attendence.created_at','=','2016-02-25 13:26:11.000')
-    //->get(array('tbl_attendence.id'));
-    //return $data;
-            return view('admin.attendence.teacherreport',['p'=>$today]);
+            return view('admin.attendence.teacherreport',['p'=>$today,'at'=>$c]);
     }
 
     /**
@@ -168,9 +128,23 @@ return $today;
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function detailReportIndividualTeacher($tid)
     {
-        //
+                $data1=Attendence::where('institute_code','=',Auth::user()->institute_id)
+        ->where('type','=','Teacher')
+        ->where('created_at','LIKE',"%$today%")
+        ->where('uid','LIKE',$tid)
+        ->pluck('created_at');
+             $data2=Attendence::where('institute_code','=',Auth::user()->institute_id)
+        ->where('type','=','Teacher')
+        ->where('created_at','LIKE',"%$today%")
+        ->where('uid','LIKE',$tid)
+        ->pluck('updated_at');
+
+$diff_seconds  = strtotime($data2) - strtotime($data1);
+$stat = floor($diff_seconds/3600).'H:'.floor(($diff_seconds%3600)/60).'M';
+
+        return view('',['stat'=>$stat]);
     }
 
     /**
@@ -179,9 +153,24 @@ return $today;
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function absenceReportTeacher($iid)
     {
-        //
+      //return 1;
+      //$time = date("H:i:s");
+$v=Teacher::where('institute_code','=',$iid)->get();
+        foreach ($v as $key => $value) {
+//return $value->teacher_id;
+           $up=new Attendence;
+        $up->institute_code=$iid;
+        $up->uid=$value->teacher_id;
+        $up->type='Teacher';
+        //$up->time=$time;
+        $up->status=2;//status 2 meaning absence this teacher
+        $up->save();
+        }
+      
+        Session::flash('data', 'Please Take Next Attendence');
+        return redirect::to('teacher/attendence');
     }
 
     /**
