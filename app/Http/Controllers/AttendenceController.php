@@ -42,14 +42,20 @@ class AttendenceController extends Controller
     {
         $today = date("Y-m-d");
       $iid= Teacher::where('institute_code','=',Auth::user()->institute_id)->pluck('institute_code');
-        
-       $teacher = DB::table('tbl_attendence')
-            ->join('tbl_teacher', 'tbl_attendence.institute_code', '=', 'tbl_teacher.institute_code')
-            ->select('tbl_teacher.teacher_id','tbl_teacher.phone','tbl_teacher.name','tbl_teacher.designation','tbl_teacher.email','tbl_attendence.status')
+
+      $iid= Teacher::where('institute_code','=',Auth::user()->institute_id)->get();
+
+
+       $teacher = DB::table('tbl_teacher')
+            ->join('tbl_attendence', 'tbl_teacher.institute_code', '=', 'tbl_attendence.institute_code')
+            ->select('tbl_teacher.*','tbl_attendence.*')
             ->where('tbl_attendence.created_at','LIKE',"%$today%")
+            ->where('tbl_attendence.created_at','=','Teacher')
+            ->where('tbl_attendence.status','=',2)
+            ->get();
 
           //  ->select('tbl_teacher.teacher_id','tbl_teacher.phone','tbl_teacher.name','tbl_teacher.designation','tbl_teacher.email', 'tbl_attendence.status')
-            ->get();
+
           return $teacher;
         return view('admin.attendence.teacherattendence',['teacher'=>$teacher,'p'=>$today,'iid'=>$iid]);
     }
@@ -99,7 +105,7 @@ class AttendenceController extends Controller
     }
     public function postEndTeacherAttendence($tid)
     {
-        $today= date("Y-m-d");  
+        $today= date("Y-m-d");
         $teacher=Attendence::where('institute_code','=',Auth::user()->institute_id)
         ->where('uid','=',$tid)->where('created_at','LIKE',"%$today%")->update(['status'=>'1']);
         Session::flash('data', 'Please Take Next Attendence');
@@ -115,7 +121,7 @@ class AttendenceController extends Controller
     {
          $today = date("Y-m-d");
          $c=Teacher::where('institute_code','=',Auth::user()->institute_id)
-     
+
         ->get();
 //return $c;
 
@@ -168,7 +174,7 @@ $v=Teacher::where('institute_code','=',$iid)->get();
         $up->status=2;//status 2 meaning absence this teacher
         $up->save();
         }
-      
+
         Session::flash('data', 'Please Take Next Attendence');
         return redirect::to('teacher/attendence');
     }
