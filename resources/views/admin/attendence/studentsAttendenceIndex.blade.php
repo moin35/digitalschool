@@ -78,7 +78,13 @@ Student Attendance
                     </header>
                     <div class="panel-body">
 
-                        <div class="col-md-3"></div>
+                        <div class="col-md-3">
+                          <div class="btn-group">
+                              <a class="btn btn-primary" href="{{URL::to('students/attendence')}}" >
+                                  Add Attendance  <i class="fa fa-plus"></i>
+                              </a>
+                          </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="list-group-item list-group-item-warning">
 
@@ -91,11 +97,8 @@ Student Attendance
                                                   <option selected="selected">Select Class</option>
                                                 @foreach($allclass as $r=>$t)
 
-                                                  @if($classId==$t)
-                                                    <option value="{{$t}}" selected="selected">{{$r}}</option>
-                                                    @else
                                                     <option value="{{$t}}">{{$r}}</option>
-                                                    @endif
+
 
                                                 @endforeach
                                                 <select>
@@ -107,30 +110,16 @@ Student Attendance
                                         <div class="col-lg-8">
                                             <select class="form-control input-sm m-bot15 sectionid"  name="section" type="text">
 
-                                                @if($sectionName=='')
+
                                                   <option selected>Select a Section</option>
-                                                  @else
-                                                  <option value="{{$sectionName}}" selected="selected">{{$sectionName}}</option>
-                                                  @endif
+
 
                                             </select>
 
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                      <label for="classesID" class="col-sm-2 col-sm-offset-2 control-label">
-                                        Datetime                               </label>
 
-                                  <div class="col-md-8">
-                                    <div data-date="2012-12-21T15:25:00Z" class="input-group date form_datetime-adv">
-                                           <input type="text" class="form-control" readonly="" value='{{$dateTime}}' name="date" size="16">
-                                           <div class="input-group-btn">
-                                               <button type="button" class="btn btn-primary date-reset"><i class="fa fa-times"></i></button>
-                                               <button type="button" class="btn btn-warning date-set"><i class="fa fa-calendar"></i></button>
-                                           </div>
-                                       </div>
-                                  </div>
-                                  <br><br>  <br><br>
                                  <center>
                                     <button class="btn btn-primary" type="submit">  Attendance  <i class="fa fa-plus"></i></button>
                                      </center>
@@ -172,26 +161,24 @@ Student Attendance
                                                                     </thead>
                                                                     <tbody >
 
-                                                                      @foreach ($GetStudents as $value)
-                                                                           <tr class="">
-                                                                            <td>{{$value->id}}</td>
-                                                                            <td>{{$value->name}}</td>
-                                                                            <td> {{$value->roll}}</td>
-                                                                            <td> {{$value->phone}}</td>
-                                                                            <td class="center"><img width="70px" height="70px" src="{{URL::to('/')}}/images/{{$value->image}} "></td>
-                                                                            <td> {{$value->class}}</td>
-                                                                            <td>
-                                                                            @if(\App\Attendence::where('uid','=',$value->st_id)->where('created_at','=',$value->created_at)->pluck('status')==0)
-                                                                            <a   href="{{URL::to('/')}}/absent/attendence/student/{{$value->st_id}}" >  <input  type="button" value="✓ P"    name="stdAttendence[]"  class="btn btn-round btn-success" /></a>
-                                                                             @else
 
-                                                              <input  type="button" value="X A"  checked  name="stdAttendence[]"  class="btn btn-round btn-danger" />
-                                                                               @endif
+                                                                @foreach ($GetStudents as $value)
+                                                                     <tr class="">
+                                                                      <td>{{$value->id}}</td>
+                                                                      <td>{{$value->name}}</td>
+                                                                      <td> {{$value->roll}}</td>
+                                                                      <td> {{$value->phone}}</td>
+                                                                      <td class="center"><img width="70px" height="70px" src="{{URL::to('/')}}/images/{{$value->image}} "></td>
+                                                                      <td> {{$value->class}}</td>
+                                                                      <td>
 
 
-                                                                          </td>
-                                                                           </tr>
-                                                                        @endforeach
+                                                        <a   href="{{URL::to('/')}}/absent/attendence/student/details/{{$value->st_id}}" >  <input  type="button" value="✓"    name="stdAttendence[]"  class="btn btn-round btn-success" /></a>
+
+                                                                    </td>
+                                                                     </tr>
+                                                                  @endforeach
+
 
 
                                                                     </tbody>

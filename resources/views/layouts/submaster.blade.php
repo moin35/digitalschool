@@ -380,7 +380,7 @@
                             <ul class="sub">
 
 
-                                <li><a href="{{URL::to('students/attendence')}}">Student Attendance</a></li>
+                                <li><a href="{{URL::to('students/attendence/Index')}}">Student Attendance</a></li>
                                 <li><a href="{{URL::to('teacher/attendence')}}">Teacher Attendance</a></li>
                                 <li><a href="{{URL::to('grade/index')}}">OtherUsers Attendance</a></li>
                                 <li><a href="{{URL::to('attendence/result/teacher')}}">Teacher Attendance Report</a></li>
