@@ -335,12 +335,21 @@ $v=Teacher::where('institute_code','=',$iid)->get();
       ->where('tbl_studets.section','=',$sectionId)
   //   ->where('tbl_attendence.created_at','LIKE',"%$today%")
      ->get();*/
+
      $GetStudents=students::where('institute_code','=',Auth::user()->institute_id)->where('class','=',$clseId)->where('section','=',$sectionId)->get();
 
        return view('admin.attendence.studentsAttendenceIndex')->with('GetStudents',$GetStudents)->with('allclass',$this->getallclass());
     }
     public function postStudentsAttendenceDetails($uid){
+
+      $maxDays=date('t');//how may day current month
+      $currentDayOfMonth=date('j');//today numaric
+
+
        $today = date("d");
+         $Cmonth = date("Y-m");
+         $y=date("Y");
+     // return $y;
       $GetStudents=DB::table('tbl_studets')
      ->join('tbl_attendence','tbl_studets.st_id','=','tbl_attendence.uid')
      ->select('tbl_studets.*','tbl_attendence.*')
@@ -351,12 +360,33 @@ $v=Teacher::where('institute_code','=',$iid)->get();
      ->first();
 
      //return $today;
-     $stdPrestAve=Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$uid)->where('status','=',0)->count();
+     $stdPrestAve=Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$uid)->where('status','=',0)->where('created_at','LIKE',"%$Cmonth%")->count();
      $presentPersent= (int)(($stdPrestAve/$today)*100);
-     //return $presentPersent;
-         $stdClass=ClassAdd::where('class_id','=',$GetStudents->class)->pluck('class_name');
-      //return $uid;
-      return view('admin.attendence.studentsAttendanceViewDetails')->with('stdInfo',$GetStudents)->with('stdClass',$stdClass)->with('persent',$presentPersent);
+     //return $stdPrestAve;
+       $stdClass=ClassAdd::where('class_id','=',$GetStudents->class)->pluck('class_name');
+       $viewAttandence=Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$uid)->where('created_at','LIKE',"%$Cmonth%")->get();
+
+      //  $PresentAttandence=Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$uid)->where('created_at','LIKE',"%$Cmonth%")->pluck('status');
+
+   //return $PresentAttandence;
+  $month = date('m');
+   $year = date("Y");
+   //return $year;
+   $start_date = "01-".$month."-".$year;
+   $start_time = strtotime($start_date);
+
+   $end_time = strtotime("+1 month", $start_time);
+
+   for($i=$start_time; $i<$end_time; $i+=86400)
+   {
+      $list[] = date('d-D', $i);
+   }
+   //return $list;
+      return view('admin.attendence.studentsAttendanceViewDetails')
+      ->with('stdInfo',$GetStudents)->with('stdClass',$stdClass)
+      ->with('persent',$presentPersent)->with('viewAttandence',$viewAttandence)->with('day',$list);
+    //  ->with('PresentAttandence','=',$PresentAttandence);
+      //->with('','=',);
 
     }
 

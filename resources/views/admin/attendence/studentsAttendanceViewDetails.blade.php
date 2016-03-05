@@ -11,114 +11,7 @@ Attendance Information
   <script src="{{URL::to('/')}}/js/indexdata.js"></script>
   <style>
   .hideable { display:none }
-  table a:link {
-  	color: #666;
-  	font-weight: bold;
-  	text-decoration: none;
-  }
 
-  table a:visited {
-  	color: #999999;
-  	font-weight: bold;
-  	text-decoration: none;
-  }
-
-  table a:active,
-  table a:hover {
-  	color: #bd5a35;
-  	text-decoration: underline;
-  }
-
-  table {
-  	font-family: Arial, Helvetica, sans-serif;
-  	color: #666;
-  	font-size: 11px;
-  	text-shadow: 1px 1px 0px #fff;
-  	background: #eaebec;
-  	margin-left: -15px;
-  	border: #ccc 1px solid;
-  	-moz-border-radius: 3px;
-  	-webkit-border-radius: 3px;
-  	border-radius: 3px;
-  	-moz-box-shadow: 0 1px 2px #d1d1d1;
-  	-webkit-box-shadow: 0 1px 2px #d1d1d1;
-  	box-shadow: 0 1px 2px #d1d1d1;
-  }
-
-  table th {
-  	padding: 10px 15px 12px 15px;
-  	border-top: 1px solid #fafafa;
-  	border-bottom: 1px solid #e0e0e0;
-  	background: #fffcf5;
-  	background: -webkit-gradient(linear, left top, left bottom, from(#fffcf5), to(#fffcf5));
-  	background: -moz-linear-gradient(top, #fffcf5, #fffcf5);
-  }
-
-  table th:first-child {
-  	text-align: left;
-  	padding-left: 20px;
-  }
-
-  table tr:first-child th:first-child {
-  	-moz-border-radius-topleft: 3px;
-  	-webkit-border-top-left-radius: 3px;
-  	border-top-left-radius: 3px;
-  }
-
-  table tr:first-child th:last-child {
-  	-moz-border-radius-topright: 3px;
-  	-webkit-border-top-right-radius: 3px;
-  	border-top-right-radius: 3px;
-  }
-
-  table tr {
-  	text-align: center;
-  	padding-left: 0px;
-  }
-
-  table td:first-child {
-  	text-align: left;
-  	padding-left: 10px;
-  	border-left: 0;
-  }
-
-  table td {
-  	padding: 9px;
-  	border-top: 1px solid #ffffff;
-  	border-bottom: 1px solid #e0e0e0;
-  	border-left: 1px solid #e0e0e0;
-  	background: #fffcf5;
-  	background: -webkit-gradient(linear, left top, left bottom, from(#fffcf5), to(#fffcf5));
-  	background: -moz-linear-gradient(top, #fffcf5, #fffcf5);
-  }
-
-  table tr.even td {
-  	background: #fffcf5;
-  	background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#fffcf5));
-  	background: -moz-linear-gradient(top, #f8f8f8, #fffcf5);
-  }
-
-  table tr:last-child td {
-  	border-bottom: 0;
-  }
-
-  table tr:last-child td:first-child {
-  	-moz-border-radius-bottomleft: 3px;
-  	-webkit-border-bottom-left-radius: 3px;
-  	border-bottom-left-radius: 3px;
-  }
-
-  table tr:last-child td:last-child {
-  	-moz-border-radius-bottomright: 3px;
-  	-webkit-border-bottom-right-radius: 3px;
-  	border-bottom-right-radius: 3px;
-  }
-
-  table tr:hover td {
-  	background: #fffcf5;
-  	background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
-  	background: -moz-linear-gradient(top, #f2f2f2, #f0f0f0);
-  }
   </style>
 
 
@@ -209,138 +102,40 @@ Attendance Information
                   <hr>
                   <div class="panel-body profile-information">
 <center> <h1> Attendance Information</h1></center>
+<div class="table-responsive">
+                            <table class="responsive">
+                                <thead>
+                                    <tr class="even">
+                                        <th>#</th>
+                                  @foreach ($day as $key => $value)
+                                          <th>{{ $value}} </th>
+                                    @endforeach
+                                      </tr>
+                                </thead>
+                                        <tbody align="center">
+                                            <tr>
+
+                                            <th><?php echo date("F"); ?></th>
+                                                     @for ($i =1; $i <= date('t'); $i++)
+
+                                              @if($i==date('j'))
+                                              @foreach ($viewAttandence as $key => $value)
+                                                 @if($value->status==0)
+                                                <td class="att-bg-color"><span class="label label-success label-mini">P</span></td>
+                                                @else
+                                               <td class="att-bg-color"><span class="label label-danger label-mini">A</span></td>
+                                               @endif
+                                               @endforeach
+                                                    @else
+                                                      <td class="att-bg-color"><span class="label label-primary label-mini">F</span></td>
+                                                      @endif
+                                                     @endfor
 
 
-<table class="table-responsive" cellspacing='0'>
-	<!-- cellspacing='0' is important, must stay -->
-
-	<thead>
-		<tr>
-			<th>Takimlar</th>
-			<th>O</th>
-			<th>G</th>
-			<th>B</th>
-			<th>M</th>
-			<th>Av</th>
-			<th>P</th>
-		</tr>
-	</thead>
-
-	<tbody>
-		<tr>
-			<td>Besiktas</td>
-			<td>16</td>
-			<td>12</td>
-			<td>2</td>
-			<td>2</td>
-			<td>19</td>
-			<td>38</td>
-		</tr>
-
-		<tr class="even">
-			<td>Fenerbahce</td>
-			<td>16</td>
-			<td>11</td>
-			<td>4</td>
-			<td>1</td>
-			<td>13</td>
-			<td>37</td>
-		</tr>
-
-		<tr>
-			<td>Galatasaray</td>
-			<td>16</td>
-			<td>8</td>
-			<td>5</td>
-			<td>3</td>
-			<td>15</td>
-			<td>29</td>
-		</tr>
-
-		<tr class="even">
-			<td>Basaksehir</td>
-			<td>16</td>
-			<td>9</td>
-			<td>2</td>
-			<td>5</td>
-			<td>9</td>
-			<td>29</td>
-		</tr>
-
-		<tr>
-			<td>Kasimpasa</td>
-			<td>16</td>
-			<td>8</td>
-			<td>5</td>
-			<td>3</td>
-			<td>9</td>
-			<td>28</td>
-		</tr>
-
-		<tr class="even">
-			<td>Akhisar Belediye</td>
-			<td>16</td>
-			<td>8</td>
-			<td>4</td>
-			<td>4</td>
-			<td>7</td>
-			<td>28</td>
-		</tr>
-
-		<tr>
-			<td>Basaksehir</td>
-			<td>16</td>
-			<td>9</td>
-			<td>2</td>
-			<td>5</td>
-			<td>9</td>
-			<td>29</td>
-		</tr>
-
-		<tr>
-			<td>Basaksehir</td>
-			<td>16</td>
-			<td>9</td>
-			<td>2</td>
-			<td>5</td>
-			<td>9</td>
-			<td>29</td>
-		</tr>
-
-		<tr>
-			<td>Basaksehir</td>
-			<td>16</td>
-			<td>9</td>
-			<td>2</td>
-			<td>5</td>
-			<td>9</td>
-			<td>29</td>
-		</tr>
-
-		<tr>
-			<td>Basaksehir</td>
-			<td>16</td>
-			<td>9</td>
-			<td>2</td>
-			<td>5</td>
-			<td>9</td>
-			<td>29</td>
-		</tr>
-
-		<tr>
-			<td>Basaksehir</td>
-			<td>16</td>
-			<td>9</td>
-			<td>2</td>
-			<td>5</td>
-			<td>9</td>
-			<td>29</td>
-		</tr>
-
-	</tbody>
-	<!-- Table Body -->
-
-</table>
+                                    </tr>
+                                                            </tbody>
+                                                          </table>
+                        </div>
 
                   </div>
 
