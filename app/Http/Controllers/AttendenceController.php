@@ -47,8 +47,10 @@ class AttendenceController extends Controller
 
 
        $teacher = DB::table('tbl_teacher')
-            ->join('tbl_attendence', 'tbl_teacher.institute_code', '=', 'tbl_attendence.institute_code')
+            ->join('tbl_attendence', 'tbl_teacher.teacher_id', '=', 'tbl_attendence.uid')
             ->select('tbl_teacher.*','tbl_attendence.*')
+            ->where('tbl_attendence.institute_code','=',Auth::user()->institute_id)
+            ->where('tbl_teacher.institute_code','=',Auth::user()->institute_id)
             ->where('tbl_attendence.created_at','LIKE',"%$today%")
             ->where('tbl_attendence.created_at','=','Teacher')
             ->where('tbl_attendence.status','=',2)
@@ -338,7 +340,7 @@ $v=Teacher::where('institute_code','=',$iid)->get();
        return view('admin.attendence.studentsAttendenceIndex')->with('GetStudents',$GetStudents)->with('allclass',$this->getallclass());
     }
     public function postStudentsAttendenceDetails($uid){
-
+       $today = date("d");
       $GetStudents=DB::table('tbl_studets')
      ->join('tbl_attendence','tbl_studets.st_id','=','tbl_attendence.uid')
      ->select('tbl_studets.*','tbl_attendence.*')
@@ -347,9 +349,14 @@ $v=Teacher::where('institute_code','=',$iid)->get();
       ->where('tbl_attendence.type','=','Student')
       ->where('tbl_studets.st_id','=',$uid)
      ->first();
+
+     //return $today;
+     $stdPrestAve=Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$uid)->where('status','=',0)->count();
+     $presentPersent= (int)(($stdPrestAve/$today)*100);
+     //return $presentPersent;
          $stdClass=ClassAdd::where('class_id','=',$GetStudents->class)->pluck('class_name');
       //return $uid;
-      return view('admin.attendence.studentsAttendanceViewDetails')->with('stdInfo',$GetStudents)->with('stdClass',$stdClass);
+      return view('admin.attendence.studentsAttendanceViewDetails')->with('stdInfo',$GetStudents)->with('stdClass',$stdClass)->with('persent',$presentPersent);
 
     }
 

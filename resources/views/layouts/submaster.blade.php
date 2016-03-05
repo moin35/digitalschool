@@ -1014,6 +1014,7 @@ $('#addAllMarks').on('submit',function(e){
     headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
  });
  </script>
+ 
 @section('scripts')
 
 @show
