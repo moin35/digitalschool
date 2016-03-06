@@ -136,44 +136,36 @@
     </div>
     <section class="panel"> 
     <div class="panel-body profile-information">
-      <table class="datatable table table-striped table-bordered">
+      <table class="resnponsive table-bordered">
     <thead>
       <tr>
-        <th>Date & Day</th>
-       
-        <th>Action</th>
+       <th>#</th>
+      
+  @foreach($pre as $q => $g)
+        <th style="padding:1.5px;">
+           &nbsp;&nbsp;{{$g}}
+        </th>
+           @endforeach
       </tr>
     </thead>
     <tbody>
-      @foreach($pre as $q => $v)
+      
       <tr>
-     
-        <td>
-           {{$v}}
-          <p value="hidden"></p>
-        </td>
-
-        @if(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$teacher->teacher_id)->where('created_at','LIKE',"%str_limit($v,10,'')%")->pluck('status')=='1')
-        <td><span class="label label-success label-mini">P</span></td>
-        @elseif(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$teacher->teacher_id)->where('created_at','LIKE',"%str_limit($v,10,'')%")->pluck('status')=='0')
-        <td><span class="label label-success label-mini">P</span></td>
-        @elseif(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$teacher->teacher_id)->where('created_at','LIKE',"%str_limit($v,10,'')%")->pluck('status')=='2')
-        <td><span class="label label-danger label-mini">A</span></td>
+     <th><?php echo date("F"); ?></th>
+           @foreach($day as $q => $v)
+        @if(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$teacher->teacher_id)->where('created_at','LIKE',"%$v%")->pluck('status')=='1')
+        <td style="height:50px;float:center;"><span class="label label-success label-mini" >&nbsp;&nbsp;P</span></td>
+        @elseif(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$teacher->teacher_id)->where('created_at','LIKE',"%$v%")->pluck('status')=='0')
+        <td style="height:50px; float:center;"><span class="label label-success label-mini" >&nbsp;&nbsp;P</span></td>
+        @elseif(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$teacher->teacher_id)->where('created_at','LIKE',"%$v%")->pluck('status')=='2')
+        <td style="height:50px; float:center;"><span class="label label-danger label-mini" >&nbsp;&nbsp;A</span></td>
         @else
-        <td style="background-color:white;color:black">Blank</td>
+        <td style="background-color:white;color:black; float:center;height:50px;">&nbsp;&nbsp;B</td>
          @endif
-   
+           @endforeach
       </tr>
-     @endforeach
+    
     </tbody>
-    <tfoot>
-        <tr>
-   
-        <th>Date & Day</th>
-  
-        <th>Action</th>
-      </tr>
-    </tfoot>
   </table>
   </div>
   </section>
