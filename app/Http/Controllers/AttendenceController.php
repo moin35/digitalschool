@@ -381,10 +381,17 @@ $v=Teacher::where('institute_code','=',$iid)->get();
    {
       $list[] = date('d-D', $i);
    }
-   //return $list;
+   for($i=$start_time; $i<$end_time; $i+=86400)
+   {
+      $listdate[] = date('d', $i);
+   }
+  // return   $listdate;
+
+       //return $rand = substr(uniqid('', true), -4);//uniq random id limit
       return view('admin.attendence.studentsAttendanceViewDetails')
       ->with('stdInfo',$GetStudents)->with('stdClass',$stdClass)
-      ->with('persent',$presentPersent)->with('viewAttandence',$viewAttandence)->with('day',$list);
+      ->with('persent',$presentPersent)->with('viewAttandence',$viewAttandence)->with('day',$list)
+      ->with('listdate',$listdate);
     //  ->with('PresentAttandence','=',$PresentAttandence);
       //->with('','=',);
 

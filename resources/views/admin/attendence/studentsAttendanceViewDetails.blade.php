@@ -116,20 +116,23 @@ Attendance Information
                                             <tr>
 
                                             <th><?php echo date("F"); ?></th>
-                                                     @for ($i =1; $i <= date('t'); $i++)
+                                                
+                                                    @foreach ($listdate as $key => $value)
 
-                                              @if($i==date('j'))
+                                              @if($value==date('j'))
                                               @foreach ($viewAttandence as $key => $value)
                                                  @if($value->status==0)
                                                 <td class="att-bg-color"><span class="label label-success label-mini">P</span></td>
-                                                @else
+                                                @elseif($value->status==1)
                                                <td class="att-bg-color"><span class="label label-danger label-mini">A</span></td>
-                                               @endif
-                                               @endforeach
+
+
                                                     @else
                                                       <td class="att-bg-color"><span class="label label-primary label-mini">F</span></td>
-                                                      @endif
-                                                     @endfor
+                                                     @endif
+                                                       @endforeach
+                                                         @endif
+                                                     @endforeach
 
 
                                     </tr>
