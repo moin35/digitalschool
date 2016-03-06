@@ -7,6 +7,8 @@
     <script src="{{URL::to('/')}}/js/angular/angular-animate.min.js"></script>
     <link href="{{URL::to('/')}}/css/angular/animatedbox.css" rel="stylesheet">
     <link rel="stylesheet" href="{{URL::to('/')}}/css/styledata.css">
+
+
     <script src="{{URL::to('/')}}/js/indexdata.js"></script>
     <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
@@ -66,9 +68,9 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Teacher Id</th>
-                                    <th>Today</th>
+                                   <!-- <th>Today</th>
                                     <th>Month</th>
-                                    <th>Year</th>
+                                    <th>Year</th> -->
                                     <th>Search</th>
                                 </tr>
                                 </thead>
@@ -77,7 +79,7 @@
                                     <tr class="" id="tid">
                                         <td > {{$a->name}}</td>
                                         <td>{{$a->teacher_id}}</td>
-                                        <td> 
+                                       <!-- <td> 
                                             <input class="default-date-picker" name="date"  size="16" type="text" value="" />
                                         </td>
                                         <td class="center">
@@ -95,7 +97,7 @@
                                            <option selected="selected" value=" ">Search with year</option>
                                            <option value="2016">2016</option>
                                            </select>
-                                        </td>
+                                        </td> -->
                                         <td>
                                             <a class="btn btn-success tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="View More"  href="{{URL::to('/')}}/view/attendence/teacher/{{$a->teacher_id}}" >
                                                 <div class="fa fa-check"></div>View Detail

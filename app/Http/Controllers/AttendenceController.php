@@ -40,26 +40,20 @@ class AttendenceController extends Controller
      }
     public function getTeacherAttendence()
     {
-        $today = date("Y-m-d");
+          $today = date("Y-m-d");
       $iid= Teacher::where('institute_code','=',Auth::user()->institute_id)->pluck('institute_code');
 
-      $iid= Teacher::where('institute_code','=',Auth::user()->institute_id)->get();
+        //$teacher=Attendence::where('institute_code','=',Auth::user()->institute_id)->where('created_at','LIKE',"%$today%")->get();
+   $teacher=DB::table('tbl_teacher')
+           ->join('tbl_attendence','tbl_teacher.teacher_id','=','tbl_attendence.uid')
+           ->select('tbl_teacher.*','tbl_attendence.*')
+           ->where('tbl_attendence.institute_code','=',Auth::user()->institute_id)
+           ->where('tbl_teacher.institute_code','=',Auth::user()->institute_id)
+            ->where('tbl_attendence.type','=','Teacher')
+           ->where('tbl_attendence.created_at','LIKE',"%$today%")
+           ->get();
 
-
-       $teacher = DB::table('tbl_teacher')
-            ->join('tbl_attendence', 'tbl_teacher.teacher_id', '=', 'tbl_attendence.uid')
-            ->select('tbl_teacher.*','tbl_attendence.*')
-            ->where('tbl_attendence.institute_code','=',Auth::user()->institute_id)
-            ->where('tbl_teacher.institute_code','=',Auth::user()->institute_id)
-            ->where('tbl_attendence.created_at','LIKE',"%$today%")
-            ->where('tbl_attendence.created_at','=','Teacher')
-            ->where('tbl_attendence.status','=',2)
-            ->get();
-
-          //  ->select('tbl_teacher.teacher_id','tbl_teacher.phone','tbl_teacher.name','tbl_teacher.designation','tbl_teacher.email', 'tbl_attendence.status')
-
-          return $teacher;
-        return view('admin.attendence.teacherattendence',['teacher'=>$teacher,'p'=>$today,'iid'=>$iid]);
+              return view('admin.attendence.teacherattendence',['teacher'=>$teacher,'p'=>$today,'iid'=>$iid]);
     }
 
 
@@ -73,35 +67,28 @@ class AttendenceController extends Controller
      */
     public function postTeacherAttendence($tid)
     {
-
+//return 1;
 // Assuming today is March 10th, 2001, 5:16:18 pm, and that we are in the
 // Mountain Standard Time (MST) Time Zone
 
-          $today = date("F j, Y, g:i a");                 // March 10, 2001, 5:16 pm
-          $today = date("m.d.y");                         // 03.10.01
-          $today = date("j, n, Y");                       // 10, 3, 2001
-          $today = date("Ymd");                           // 20010310
-          $today1 = date('h-i-s, j-m-y, it is w Day');     // 05-16-18, 10-03-01, 1631 1618 6 Satpm01
-          $today = date('\i\t \i\s \t\h\e jS \d\a\y.');   // it is the 10th day.
-          $today = date("D M j G:i:s T Y");               // Sat Mar 10 17:16:18 MST 2001
-          $today2 = date('H:m:s \m \i\s\ \m\o\n\t\h');     // 17:03:18 m is month
+        //  $today = date("F j, Y, g:i a");                 // March 10, 2001, 5:16 pm
+        //  $today = date("m.d.y");                         // 03.10.01
+        //  $today = date("j, n, Y");                       // 10, 3, 2001
+        //  $today = date("Ymd");                           // 20010310
+         // $today1 = date('h-i-s, j-m-y, it is w Day');     // 05-16-18, 10-03-01, 1631 1618 6 Satpm01
+        //  $today = date('\i\t \i\s \t\h\e jS \d\a\y.');   // it is the 10th day.
+         // $today = date("D M j G:i:s T Y");               // Sat Mar 10 17:16:18 MST 2001
+         // $today2 = date('H:m:s \m \i\s\ \m\o\n\t\h');     // 17:03:18 m is month
 
-          $today5 = time('H:m:s');                            // 17:16:18
-          $today4 = date("Y-m-d g:i A");                   // 2001-03-10 17:16:18 (the MySQL DATETIME format)
+          //$today5 = time('H:m:s');                            // 17:16:18
+          //$today4 = date("Y-m-d g:i A");                   // 2001-03-10 17:16:18 (the MySQL DATETIME format)
                // 2001-03-10 17:16:18 (the MySQL DATETIME format)
 //return $today4;
-        $time = date("H:i:s");
-        $teacher=Teacher::where('institute_code','=',Auth::user()->institute_id)->where('teacher_id','=',$tid)->first();
-        $uid=$teacher->teacher_id;
-        $iid=$teacher->institute_code;
-        $type=$teacher->user_type;
-        $up=new Attendence;
-        $up->institute_code=$iid;
-        $up->uid=$uid;
-        $up->type=$type;
-        $up->time=$time;
-        $up->status=0;
-        $up->save();
+        //$time = date("H:i:s");
+        $today = date("Y-m-d");
+   $teacher=Attendence::where('institute_code','=',Auth::user()->institute_id)
+        ->where('uid','=',$tid)->where('created_at','LIKE',"%$today%")->update(['status'=>'0']);
+      
         Session::flash('data', 'Please Take Next Attendence');
         return redirect::to('teacher/attendence');
     }
@@ -138,6 +125,44 @@ class AttendenceController extends Controller
      */
     public function detailReportIndividualTeacher($tid)
     {
+      $today=date("d");
+      $m=date("Y-m");
+      $y=date("Y");
+      $at=Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$tid)->where('created_at','LIKE',"%$m%")->where('status','=',1)->count();
+      $atten_percent=(int)(($at/$today)*100);
+      $ay=Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$tid)->where('created_at','LIKE',"%$y%")->where('status','=',1)->count();
+     
+     if ($y%4==0) {
+      $x=366;
+       $year_percent=(int)(($ay/$x)*100);
+     }
+     else{
+       $yx=365;
+       $year_percent=(int)(($ay/$yx)*100);
+     }
+$month = date('m');
+$year = date("Y");
+//return $year;
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+
+$end_time = strtotime("+1 month", $start_time);
+
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+   $list[] = date('Y-m-d', $i);
+   $list1[] = date('d D', $i);
+}
+//foreach ($list1 as $key => $value) {
+//$value;
+ //$t=Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$tid)->where('created_at','LIKE',"%$value%")->first();
+//echo $t;
+//}
+//var_dump($list);
+//return $list1;
+    //return $t;
+      $tpinfo=Teacher::where('institute_code','=',Auth::user()->institute_id)->where('teacher_id','=',$tid)->first();
+       $today = date("Y-m-d");
                 $data1=Attendence::where('institute_code','=',Auth::user()->institute_id)
         ->where('type','=','Teacher')
         ->where('created_at','LIKE',"%$today%")
@@ -149,10 +174,12 @@ class AttendenceController extends Controller
         ->where('uid','LIKE',$tid)
         ->pluck('updated_at');
 
-$diff_seconds  = strtotime($data2) - strtotime($data1);
+$diff_seconds  = strtotime('10:00:00.000') - strtotime($data1);
+//return $diff_seconds;
 $stat = floor($diff_seconds/3600).'H:'.floor(($diff_seconds%3600)/60).'M';
-
-        return view('',['stat'=>$stat]);
+//return $stat;
+        return view('admin.attendence.teacherattendencedetail',['stat'=>$stat,
+          'teacher'=>$tpinfo,'percent'=>$atten_percent,'year'=>$year_percent,'day'=>$list,'pre'=>$list1]);
     }
 
     /**
@@ -172,7 +199,7 @@ $v=Teacher::where('institute_code','=',$iid)->get();
         $up->institute_code=$iid;
         $up->uid=$value->teacher_id;
         $up->type='Teacher';
-        //$up->time=$time;
+        //$up->created_at=$time;
         $up->status=2;//status 2 meaning absence this teacher
         $up->save();
         }
