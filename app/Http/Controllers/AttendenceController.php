@@ -26,6 +26,7 @@ use App\Section;
 use App\Attendence;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\EmployeeSchedule;
 
 class AttendenceController extends Controller
 {
@@ -208,27 +209,44 @@ $v=Teacher::where('institute_code','=',$iid)->get();
         return redirect::to('teacher/attendence');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function getInOutTime()
     {
-        //
+        $view=EmployeeSchedule::where('institute_code','=',Auth::user()->institute_id)->get();
+        return view('admin.inout.inout',['v'=>$view]);
+    }
+    public function postInOutTime()
+    {
+
+        $stime=Input::get('stime');
+        $sgtime=Input::get('sgtime');
+        $etime=Input::get('etime');
+        $egtime=Input::get('egtime');
+        $schedule=Input::get('schedule');
+        $oltime=Input::get('oltime');
+        $iid=User::where('institute_id','=',Auth::user()->institute_id)->pluck('institute_id');
+        //return $iid;
+        $up= new EmployeeSchedule;
+        $up->start_time= $stime;
+        $up->strat_time_grace= $sgtime;
+        $up->end_time= $etime;
+        $up->end_time_grace= $egtime;
+        $up->shift= $schedule;
+        $up->extra_time= $oltime;
+        $up->institute_code= $iid;
+        $up->save();
+
+//return $stime.'/'.$sgtime.'/'.$etime.'/'.$egtime.'/'.$schedule.'/'.$oltime;
+
+        Session::flash('data', 'Schedule Added Successfully !');
+        return Redirect::to('admin/set/in/out/time');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+    public function DeleteInOutTime($id)
     {
-        //
+         $delete = EmployeeSchedule::where('id', '=', $id)->delete();
+        Session::flash('data', 'Data successfully Delete !');
+        return Redirect::to('admin/set/in/out/time');
     }
 
     //saif studentsAttendence add

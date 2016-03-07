@@ -287,3 +287,7 @@ Route::get('absent/attendence/student/{uid}','AttendenceController@StudentsAtten
 Route::get('students/attendence/Index','AttendenceController@getStudentsAttendenceIndex');
 Route::post('students/attendence/Index','AttendenceController@postStudentsAttendenceIndex');
 Route::get('/absent/attendence/student/details/{uid}','AttendenceController@postStudentsAttendenceDetails');
+//Employee Time Schedule Route Get Post
+Route::get('admin/set/in/out/time','AttendenceController@getInOutTime');
+Route::post('admin/set/in/out/time','AttendenceController@postInOutTime');
+Route::get('employee/schedule/delete/{id}','AttendenceController@DeleteInOutTime');
