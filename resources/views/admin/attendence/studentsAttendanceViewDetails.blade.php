@@ -116,20 +116,17 @@ Attendance Information
                                             <tr>
 
                                             <th><?php echo date("F"); ?></th>
-                                                     @for ($i =1; $i <= date('t'); $i++)
 
-                                              @if($i==date('j'))
-                                              @foreach ($viewAttandence as $key => $value)
-                                                 @if($value->status==0)
+                                                    @foreach ($listdate as $key => $value)
+
+                                                @if(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$stdInfo->st_id)->where('created_at','LIKE',"%$value%")->pluck('status')=='0')
                                                 <td class="att-bg-color"><span class="label label-success label-mini">P</span></td>
-                                                @else
+                                                @elseif(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$stdInfo->st_id)->where('created_at','LIKE',"%$value%")->pluck('status')=='1')
                                                <td class="att-bg-color"><span class="label label-danger label-mini">A</span></td>
-                                               @endif
-                                               @endforeach
-                                                    @else
-                                                      <td class="att-bg-color"><span class="label label-primary label-mini">F</span></td>
-                                                      @endif
-                                                     @endfor
+                                               @else
+                                                  <td class="att-bg-color"><span class="label label-primary label-mini">F</span></td>
+                                                     @endif
+                                                       @endforeach
 
 
                                     </tr>
