@@ -57,15 +57,6 @@ class AttendenceController extends Controller
               return view('admin.attendence.teacherattendence',['teacher'=>$teacher,'p'=>$today,'iid'=>$iid]);
     }
 
-
-
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function postTeacherAttendence($tid)
     {
 //return 1;
@@ -101,12 +92,7 @@ class AttendenceController extends Controller
         Session::flash('data', 'Please Take Next Attendence');
         return redirect::to('teacher/attendence');
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function getReportTeacherAttendence()
     {
          $today = date("Y-m-d");
@@ -118,12 +104,6 @@ class AttendenceController extends Controller
             return view('admin.attendence.teacherreport',['p'=>$today,'at'=>$c]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function detailReportIndividualTeacher($tid)
     {
       $today=date("d");
@@ -441,5 +421,11 @@ $v=Teacher::where('institute_code','=',$iid)->get();
       //->with('','=',);
 
     }
+public function getTeacherJobAllocation(){
+  $shift=EmployeeSchedule::where('institute_code','=',Auth::user()->institute_id)->get();
+  $c=EmployeeSchedule::where('institute_code','=',Auth::user()->institute_id)->count();
+  $te=Teacher::where('institute_code','=',Auth::user()->institute_id)->get();
+  return view('admin.allocation.teacherallocation',['tes'=>$te,'sh'=>$shift,'count'=>$c]);
+}
 
 }

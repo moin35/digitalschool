@@ -291,3 +291,6 @@ Route::get('/absent/attendence/student/details/{uid}','AttendenceController@post
 Route::get('admin/set/in/out/time','AttendenceController@getInOutTime');
 Route::post('admin/set/in/out/time','AttendenceController@postInOutTime');
 Route::get('employee/schedule/delete/{id}','AttendenceController@DeleteInOutTime');
+
+//Teacher JOb Distribution List Route
+Route::get('teacher/job/allocation','AttendenceController@getTeacherJobAllocation');
