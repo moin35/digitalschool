@@ -287,3 +287,5 @@ Route::get('absent/attendence/student/{uid}','AttendenceController@StudentsAtten
 Route::get('students/attendence/Index','AttendenceController@getStudentsAttendenceIndex');
 Route::post('students/attendence/Index','AttendenceController@postStudentsAttendenceIndex');
 Route::get('/absent/attendence/student/details/{uid}','AttendenceController@postStudentsAttendenceDetails');
+Route::get('/admin/acadimicClander','AttendenceController@getAcadimicClander');
+Route::post('/admin/acadimicClander','AttendenceController@postAcadimicClander');

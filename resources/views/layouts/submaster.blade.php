@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:ng="http://angularjs.org" id="ng-app" ng-app="app">
 <head>
     <meta charset="utf-8">
 
@@ -1014,7 +1014,7 @@ $('#addAllMarks').on('submit',function(e){
     headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
  });
  </script>
- 
+
 @section('scripts')
 
 @show

@@ -103,12 +103,12 @@ Attendance Information
                   <div class="panel-body profile-information">
 <center> <h1> Attendance Information</h1></center>
 <div class="table-responsive">
-                            <table class="responsive">
+                            <table class="resnponsive table-bordered">
                                 <thead>
                                     <tr class="even">
                                         <th>#</th>
                                   @foreach ($day as $key => $value)
-                                          <th>{{ $value}} </th>
+                                          <th style="padding:1.5px;">{{ $value}} </th>
                                     @endforeach
                                       </tr>
                                 </thead>
@@ -120,11 +120,11 @@ Attendance Information
                                                     @foreach ($listdate as $key => $value)
 
                                                 @if(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$stdInfo->st_id)->where('created_at','LIKE',"%$value%")->pluck('status')=='0')
-                                                <td class="att-bg-color"><span class="label label-success label-mini">P</span></td>
+                                                <td  style="height:50px;float:center;" class="att-bg-color"><span class="label label-success label-mini">P</span></td>
                                                 @elseif(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$stdInfo->st_id)->where('created_at','LIKE',"%$value%")->pluck('status')=='1')
-                                               <td class="att-bg-color"><span class="label label-danger label-mini">A</span></td>
+                                               <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-danger label-mini">A</span></td>
                                                @else
-                                                  <td class="att-bg-color"><span class="label label-primary label-mini">F</span></td>
+                                                  <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-primary label-mini">F</span></td>
                                                      @endif
                                                        @endforeach
 

@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class AcademicCalender extends Model
 {
-    protected $table='merchant';
-    // public $timestamps=false;
+    protected $table='tbl_academic_calender';
+    public $timestamps=false;
 }
