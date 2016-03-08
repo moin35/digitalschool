@@ -17,9 +17,6 @@
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-fileupload/bootstrap-fileupload.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-datepicker/css/datepicker.css" />
-    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-timepicker/compiled/timepicker.css" />
-    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-colorpicker/css/colorpicker.css" />
-    <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/bootstrap-datetimepicker/css/datetimepicker.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/jquery-multi-select/css/multi-select.css" />
     <link rel="stylesheet" type="text/css" href="{{URL::to('/')}}/js/jquery-tags-input/jquery.tagsinput.css" />
@@ -350,13 +347,13 @@
                             <li><a href="{{URL::to('admin/add/subject')}}">{{Lang::get('home.subject')}}</a></li>
                             <li><a href="{{URL::to('sectionAdd')}}">{{Lang::get('home.section')}}</a></li>
                             <li><a href=" {{URL::to('admin/add/routine')}}">Add Class Routine</a></li>
-                            <!--   <li><a href="form_validation.html">Form Validation</a></li>
-                               <li><a href="file_upload.html">Muliple File Upload</a></li>
-
+                            <li><a href="{{URL::to('admin/set/in/out/time')}}">Institute Official time Schedule</a></li>
+                            <!--      <li><a href="file_upload.html">Muliple File Upload</a></li>
                                <li><a href="dropzone.html">Dropzone</a></li>
                                <li><a href="inline_editor.html">Inline Editor</a></li>
                            -->
                         </ul>
+                    
                     </li>
 
                         <li class="sub-menu">
@@ -760,11 +757,8 @@
 <script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-daterangepicker/moment.min.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-daterangepicker/daterangepicker.js"></script>
-<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
-<script type="text/javascript" src="{{URL::to('/')}}/js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/jquery-multi-select/js/jquery.multi-select.js"></script>
 <script type="text/javascript" src="{{URL::to('/')}}/js/jquery-multi-select/js/jquery.quicksearch.js"></script>
 

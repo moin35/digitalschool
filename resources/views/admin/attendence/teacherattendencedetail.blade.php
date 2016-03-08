@@ -19,23 +19,13 @@
     <div class="row">
         <div class="col-sm-12">
             <section class="panel">
-                <header class="panel-heading">
-                    Teacher Attdence Detail
-                <span class="tools pull-right">
-                    <a href="javascript:;" class="fa fa-chevron-down"></a>
-                    <a href="javascript:;" class="fa fa-cog"></a>
-                    <a href="javascript:;" class="fa fa-times"></a>
-                </span>
-                </header>
-            </section>
-            <section class="panel">
                 <div class="panel-body profile-information">
-                    <center> <h1> Attdence Information</h1> </center>
+                    <center> <h3> Attdence Information</h3> </center>
                     <div class="col-md-6" style="float:left">
-<h3><?php echo date('Y-M');?>,Attendence : {{$percent}} %</h3>
+<h4><?php echo date('Y-M');?>,Attendence : {{$percent}} %</h4>
     
 </div><div class="col-md-6" style="float:right" align="right">
- <h3>   Absence : <?php echo (100-$percent)."%" ;?></h3>
+ <h4>   Absence : <?php echo (100-$percent)."%" ;?></h4>
 </div>
 <div class="progress-wrap progress" data-progress-percent="{{$percent}}">
 &nbsp;<p style="color:white;"></p>
@@ -44,10 +34,10 @@
 </div>
 </div>
                     <div class="col-md-6" style="float:left">
-<h3><?php echo date('Y');?>,Attendence : {{$year}} %</h3>
+<h4><?php echo date('Y');?>,Attendence : {{$year}} %</h4>
     
 </div><div class="col-md-6" style="float:right" align="right">
- <h3>   Absence : <?php echo (100-$year)."%" ;?></h3>
+ <h4>   Absence : <?php echo (100-$year)."%" ;?></h4>
 </div>
 <div class="progress-wrap1 progress1" data-progress-percent1="{{$year}}">
 &nbsp;<p style="color:white;"></p>
@@ -136,6 +126,7 @@
     </div>
     <section class="panel"> 
     <div class="panel-body profile-information">
+    <h3>Current Month Attdence Report</h3>
       <table class="resnponsive table-bordered">
     <thead>
       <tr>
