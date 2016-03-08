@@ -353,7 +353,7 @@
                                <li><a href="inline_editor.html">Inline Editor</a></li>
                            -->
                         </ul>
-                    
+
                     </li>
 
                         <li class="sub-menu">
@@ -973,6 +973,19 @@ $('#addAllMarks').on('submit',function(e){
  </script>
  <script language="JavaScript" type="text/javascript">
 
+ $(document).ready(function () {
+     $('#ascuisines').on('change', function () {
+         $('#getcuisines').val($(this).val().join());
+     }).trigger('change');
+ });
+ </script>
+ <script language="JavaScript" type="text/javascript">
+ 
+ $(document).ready(function () {
+     $('#holyascuisines').on('change', function () {
+         $('#holygetcuisines').val($(this).val().join());
+     }).trigger('change');
+ });
  </script>
    <script src="{{URL::to('/')}}/ajaxjs/exprence.js" type="text/javascript"></script>
     <script src="{{URL::to('/')}}/ajaxjs/attendance.js" type="text/javascript"></script>

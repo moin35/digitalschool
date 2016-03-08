@@ -26,6 +26,7 @@ use App\Attendence;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\EmployeeSchedule;
+use App\AcademicCalender;
 class AttendenceController extends Controller
 {
     /**
@@ -370,4 +371,48 @@ public function getTeacherJobAllocation(){
   $te=Teacher::where('institute_code','=',Auth::user()->institute_id)->get();
   return view('admin.allocation.teacherallocation',['tes'=>$te,'sh'=>$shift,'count'=>$c]);
 }
+
+public function getAcadimicClander(){
+  return view('admin.attendence.acadimicClander');
+}
+public function postAcadimicClander(){
+  $day=Input::get('e9');
+  //return $day;
+  $title=Input::get('title');
+  $year=Input::get('selectYear');
+  $note=Input::get('note');
+  $holy=Input::get('holyday');
+  return $holy."-".$day;
+//foreach(Input::get('e9') as $selected_id){
+$weekend=new AcademicCalender;
+$weekend->institute_code=Auth::user()->institute_id;
+$weekend->title=$title;
+$weekend->weekendday=$day;
+$weekend->year=$year;
+$weekend->note=$note;
+$weekend->save();
+//  }
+/*
+
+  //$a=Input::all();
+//return $a;
+  $day=Input::get('e9');
+ //return $day;
+
+    $title=Input::get('title');
+    $year=Input::get('selectYear');
+    $note=Input::get('note');
+    $weekend=new AcademicCalender;
+    $weekend->institute_code=Auth::user()->institute_id;
+    $weekend->title=$title;
+    $weekend->weekendday=$day;
+    $weekend->year=$year;
+    $weekend->note=$note;
+    $weekend->save();*/
+    // return redirect()->back();
+     return redirect::to('admin/acadimicClander');
+}
+
+
+
 }
