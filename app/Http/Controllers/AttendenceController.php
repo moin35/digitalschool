@@ -412,6 +412,10 @@ $weekend->save();
     // return redirect()->back();
      return redirect::to('admin/acadimicClander');
 }
+public function getholyday(){
+  
+  return view('admin.attendence.holydayAdd');
+}
 
 
 

@@ -8,6 +8,7 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="{{URL::to('/')}}/images/faveicon.png">
     <title>@yield('title')</title>
+
     <!--Core CSS -->
     <link href="{{URL::to('/')}}/bs3/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/css/bootstrap-reset.css" rel="stylesheet">
@@ -31,7 +32,13 @@
     <!-- Custom styles for this template -->
     <link href="{{URL::to('/')}}/css/style.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/css/style-responsive.css" rel="stylesheet" />
-    <!--
+
+
+ <!-- Bootstrap CSS v3.0.0 or higher -->
+
+<!-- FormValidation CSS file --><script src="http://formvalidation.io/vendor/formvalidation/js/formValidation.min.js"></script>
+
+<!--
     <link href="{{URL::to('/')}}/bs3/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/css/bootstrap-reset.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/font-awesome/css/font-awesome.css" rel="stylesheet" />
@@ -741,6 +748,8 @@
 <!--Core js-->
 <script src="{{URL::to('/')}}/js/jquery.js"></script>
 <script src="{{URL::to('/')}}/js/jquery-1.8.3.min.js"></script>
+<!-- jQuery v1.9.1 or higher -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="{{URL::to('/')}}/bs3/js/bootstrap.min.js"></script>
 <script src="{{URL::to('/')}}/js/jquery-ui-1.9.2.custom.min.js"></script>
 <script class="include" type="text/javascript" src="{{URL::to('/')}}/js/jquery.dcjqaccordion.2.7.js"></script>
@@ -804,6 +813,214 @@
 <!--dynamic table initialization end-->
 <!-- END JAVASCRIPTS -->
 
+
+
+
+<!-- Bootstrap JS -->
+
+<script src="http://formvalidation.io/vendor/formvalidation/js/formValidation.min.js"></script>
+
+<script src="http://formvalidation.io/vendor/formvalidation/js/framework/bootstrap.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+<script>
+/*
+    Text fields
+*/
+$(function(){
+
+	$(document).on('focus', 'div.form-group-options div.input-group-option:last-child input', function(){
+
+		var sInputGroupHtml = $(this).parent().html();
+		var sInputGroupClasses = $(this).parent().attr('class');
+		$(this).parent().parent().append('<div class="'+sInputGroupClasses+'">'+sInputGroupHtml+'</div>');
+
+	});
+
+	$(document).on('click', 'div.form-group-options .input-group-addon-remove', function(){
+
+		$(this).parent().remove();
+
+	});
+
+});
+
+/*
+    Selects
+*/
+$(function(){
+
+	var values = new Array();
+
+	$(document).on('change', '.form-group-multiple-selects .input-group-multiple-select:last-child select', function(){
+
+		var selectsLength = $(this).parent().parent().find('.input-group-multiple-select select').length;
+		var optionsLength = ($(this).find('option').length)-1;
+
+		if(selectsLength < optionsLength){
+			var sInputGroupHtml = $(this).parent().html();
+			var sInputGroupClasses = $(this).parent().attr('class');
+			$(this).parent().parent().append('<div class="'+sInputGroupClasses+'">'+sInputGroupHtml+'</div>');
+		}
+
+		updateValues($(this).parent().parent());
+
+	});
+
+	$(document).on('change', '.form-group-multiple-selects .input-group-multiple-select:not(:last-child) select', function(){
+
+		updateValues($(this).parent().parent());
+
+	});
+
+	$(document).on('click', '.input-group-addon-remove', function(){
+
+        var oSelectContainer = $(this).parent().parent()
+    	$(this).parent().remove();
+		updateValues(oSelectContainer);
+
+	});
+
+	function updateValues(oSelectContainer){
+
+		values = new Array();
+		$(oSelectContainer).find('.input-group-multiple-select select').each(function(){
+			var value = $(this).val();
+			if(value != 0 && value != ""){
+				values.push(value);
+			}
+		});
+
+		$(oSelectContainer).find('.input-group-multiple-select select').find('option').each(function(){
+			var optionValue = $(this).val();
+			var selectValue = $(this).parent().val();
+			if(in_array(optionValue,values)!= -1 && selectValue != optionValue)
+			{
+				$(this).attr('disabled', 'disabled');
+			}
+			else
+			{
+				$(this).removeAttr('disabled');
+			}
+		});
+
+	}
+
+	function in_array(needle, haystack){
+
+		var found = 0;
+		for (var i=0, length=haystack.length;i<length;i++) {
+			if (haystack[i] == needle) return i;
+			found++;
+	    }
+	    return -1;
+
+	}
+
+    // Update all options for first use
+    $('.form-group-multiple-selects').each(function(i, e){
+
+    	updateValues(e);
+
+	});
+});
+
+
+</script>
+<script>
+$(document).ready(function() {
+    // Initialize the date picker for the original due date field
+    $('#dueDatePicker')
+        .datepicker({
+            format: 'yyyy/mm/dd'
+        })
+        .on('changeDate', function(evt) {
+            // Revalidate the date field
+            $('#taskForm').formValidation('revalidateField', $('#dueDatePicker').find('[name="dueDate[]"]'));
+        });
+
+    $('#taskForm')
+        .formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                'task[]': {
+                    // The task is placed inside a .col-xs-6 element
+                    row: '.col-xs-6',
+                    validators: {
+                        notEmpty: {
+                            message: 'The task is required'
+                        }
+                    }
+                },
+                'dueDate[]': {
+                    // The due date is placed inside a .col-xs-4 element
+                    row: '.col-xs-4',
+                    validators: {
+                        notEmpty: {
+                            message: 'The due date is required'
+                        },
+                        date: {
+                            format: 'YYYY/MM/DD',
+                            min: new Date(),
+                            message: 'The due date is not valid'
+                        }
+                    }
+                }
+            }
+        })
+
+        .on('added.field.fv', function(e, data) {
+            if (data.field === 'dueDate[]') {
+                // The new due date field is just added
+                // Create a new date picker
+                data.element
+                    .parent()
+                    .datepicker({
+                        format: 'yyyy/mm/dd'
+                    })
+                    .on('changeDate', function(evt) {
+                        // Revalidate the date field
+                        $('#taskForm').formValidation('revalidateField', data.element);
+                    });
+            }
+        })
+
+        // Add button click handler
+        .on('click', '.addButton', function() {
+            var $template = $('#taskTemplate'),
+                $clone    = $template
+                                .clone()
+                                .removeClass('hide')
+                                .removeAttr('id')
+                                .insertBefore($template);
+
+            // Add new fields
+            // Note that we DO NOT need to pass the set of validators
+            // because the new field has the same name with the original one
+            // which its validators are already set
+            $('#taskForm')
+                .formValidation('addField', $clone.find('[name="task[]"]'))
+                .formValidation('addField', $clone.find('[name="dueDate[]"]'))
+        })
+
+        // Remove button click handler
+        .on('click', '.removeButton', function() {
+            var $row = $(this).closest('.form-group');
+
+            // Remove fields
+            $('#taskForm')
+                .formValidation('removeField', $row.find('[name="task[]"]'))
+                .formValidation('removeField', $row.find('[name="dueDate[]"]'));
+
+            // Remove element containing the fields
+            $row.remove();
+        });
+});
+</script>
 <script>
     jQuery(document).ready(function() {
         EditableTable.init();
@@ -980,7 +1197,7 @@ $('#addAllMarks').on('submit',function(e){
  });
  </script>
  <script language="JavaScript" type="text/javascript">
- 
+
  $(document).ready(function () {
      $('#holyascuisines').on('change', function () {
          $('#holygetcuisines').val($(this).val().join());

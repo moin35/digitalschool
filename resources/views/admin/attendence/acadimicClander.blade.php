@@ -119,7 +119,7 @@ Year                               </label>
 <option value="Fri" >Fri</option>
 </select>
 <input type="text" id="holygetcuisines" class="form-control"  name="holyday"/>
- 
+
 </div>
 </div>
 
@@ -142,6 +142,7 @@ Year                               </label>
 </div>
 </section>
 {!!Form::close()!!}
+
 
 </div>
 

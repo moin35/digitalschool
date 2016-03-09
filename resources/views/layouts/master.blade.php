@@ -350,8 +350,6 @@
                                 <li><a href="{{URL::to('admin/add/subject')}}">{{Lang::get('home.subject')}}</a></li>
                                 <li><a href="{{URL::to('sectionAdd')}}">{{Lang::get('home.section')}}</a></li>
                                 <li><a href=" {{URL::to('admin/add/routine')}}">Add Class Routine</a></li>
-                             <li><a href="{{URL::to('admin/set/in/out/time')}}">Institute Official time Schedule</a></li>
-                           
                              <!--   <li><a href="form_validation.html">Form Validation</a></li>
                                 <li><a href="file_upload.html">Muliple File Upload</a></li>
 
