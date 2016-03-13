@@ -3,50 +3,7 @@
 Academic Calendar
 @stop
 @section('head')
-<style>
-/*
-    Text fields
-*/
-div.input-group-option:last-child span.input-group-addon-remove{
-    display: none;
-}
-
-div.input-group-option:last-child input.form-control{
-    border-bottom-right-radius: 3px;
-	border-top-right-radius: 3px;
-}
-
-div.input-group-option span.input-group-addon-remove{
-	cursor: pointer;
-}
-
-div.input-group-option{
-    margin-bottom: 3px;
-}
-
-/*
-    Selects
-*/
-
-div.input-group-multiple-select:last-child span.input-group-addon-remove{
-	display: none;
-}
-
-div.input-group-multiple-select:last-child input.form-control{
-	border-bottom-right-radius: 3px;
-	border-top-right-radius: 3px;
-}
-
-div.input-group-multiple-select span.input-group-addon-remove{
-	cursor: pointer;
-    background: none;
-    border: none;
-}
-
-div.input-group-multiple-select{
-    margin-bottom: 5px;
-}
-</style>
+  <link href="{{URL::to('/')}}/multiinputfield/multiselect.css" rel="stylesheet" />
 
 @stop
 
@@ -70,13 +27,13 @@ Add Academic Calendar
   <form id="taskForm" method="post" class="form-horizontal">
       <div class="form-group">
           <label class="col-xs-1 control-label">Task(s)</label>
-          <div class="col-xs-6">
+          <div class="col-xs-3">
               <input type="text" class="form-control" name="task[]" placeholder="Task" />
           </div>
-          <div class="col-xs-4 dateContainer">
+          <div class="col-xs-3 dateContainer">
               <div class="input-group input-append date" id="dueDatePicker">
-                  <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                  <input type="text" class="form-control" name="dueDate[]" placeholder="Due date" />
+
+                  <input type="text" class="form-control input-group-addon" name="dueDate[]" placeholder="Due date" />
               </div>
           </div>
           <div class="col-xs-1">
@@ -86,13 +43,13 @@ Add Academic Calendar
 
       <!-- The template for adding new field -->
       <div class="form-group hide" id="taskTemplate">
-          <div class="col-xs-6 col-xs-offset-1">
+          <div class="col-xs-3 col-xs-offset-1">
               <input type="text" class="form-control" name="task[]" placeholder="Task" />
           </div>
-          <div class="col-xs-4 dateContainer">
+          <div class="col-xs-3 dateContainer">
               <div class="input-group input-append date">
-                  <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                  <input type="text" class="form-control" name="dueDate[]" placeholder="Due date" />
+
+                  <input type="text" class="form-control input-group-addon" name="dueDate[]" placeholder="Due date" />
               </div>
           </div>
           <div class="col-xs-1">

@@ -376,13 +376,13 @@ public function getAcadimicClander(){
   return view('admin.attendence.acadimicClander');
 }
 public function postAcadimicClander(){
-  $day=Input::get('e9');
-  //return $day;
+  $day=Input::get('display');
+   return $day;
   $title=Input::get('title');
   $year=Input::get('selectYear');
   $note=Input::get('note');
-  $holy=Input::get('holyday');
-  return $holy."-".$day;
+  $holy=Input::get('mul');
+//  return  $day;
 //foreach(Input::get('e9') as $selected_id){
 $weekend=new AcademicCalender;
 $weekend->institute_code=Auth::user()->institute_id;
@@ -412,8 +412,12 @@ $weekend->save();
     // return redirect()->back();
      return redirect::to('admin/acadimicClander');
 }
-public function getholyday(){
-  
+public function postholyday(){
+
+  $title=Input::get('task');
+  $date=Input::get('dueDate');
+  return $date;
+
   return view('admin.attendence.holydayAdd');
 }
 
