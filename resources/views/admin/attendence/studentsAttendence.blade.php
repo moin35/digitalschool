@@ -215,11 +215,24 @@ Student Attendance
         </div>
         <!-- page end-->
 
-
+        <script>
+            jQuery(document).ready(function($){
+                n=1;
+                $('.class').change(function(){
+                    $.get("{{ url('api/dropdown/section')}}",
+                            { option: $(this).val() },
+                            function(data) {
+                                var model = $('.sectionid');
+                                model.empty();
+                                $.each(data, function(index,element) {
+                                //  alert(data);
+                                    model.append("<option value='"+ element +"'>" + element + "</option>");
+                                });
+                            });
+                });
+            });
+        </script>
 <script>
-
-
-
     function TestCtrl() {
         var self = this;
 

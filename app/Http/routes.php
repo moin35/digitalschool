@@ -297,7 +297,11 @@ Route::post('admin/set/in/out/time','AttendenceController@postInOutTime');
 Route::get('employee/schedule/delete/{id}','AttendenceController@DeleteInOutTime');
 
 //Teacher JOb Distribution List Route
+
 Route::get('teacher/job/allocation','AttendenceController@getTeacherJobAllocation'); 
 Route::get('allocation/permission/{tid}','AttendenceController@postTeacherJobAllocation');
 Route::post('allocation/permission/{tid}','AttendenceController@UpdateTeacherAllocation');
+
+//saif add for holyday
+Route::post('admin/add/holyday',['as' => 'postholyday', 'uses' =>'AttendenceController@postholyday']);
 

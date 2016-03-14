@@ -8,6 +8,7 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="{{URL::to('/')}}/images/faveicon.png">
     <title>@yield('title')</title>
+
     <!--Core CSS -->
     <link href="{{URL::to('/')}}/bs3/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/css/bootstrap-reset.css" rel="stylesheet">
@@ -31,7 +32,13 @@
     <!-- Custom styles for this template -->
     <link href="{{URL::to('/')}}/css/style.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/css/style-responsive.css" rel="stylesheet" />
-    <!--
+
+
+ <!-- Bootstrap CSS v3.0.0 or higher -->
+
+<!-- FormValidation CSS file --><script src="{{URL::to('/')}}/multiinputfield/vendor/formValidation.min.js"></script>
+
+<!--
     <link href="{{URL::to('/')}}/bs3/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/css/bootstrap-reset.css" rel="stylesheet">
     <link href="{{URL::to('/')}}/font-awesome/css/font-awesome.css" rel="stylesheet" />
@@ -353,7 +360,7 @@
                                <li><a href="inline_editor.html">Inline Editor</a></li>
                            -->
                         </ul>
-                    
+
                     </li>
 
                         <li class="sub-menu">
@@ -741,6 +748,8 @@
 <!--Core js-->
 <script src="{{URL::to('/')}}/js/jquery.js"></script>
 <script src="{{URL::to('/')}}/js/jquery-1.8.3.min.js"></script>
+<!-- jQuery v1.9.1 or higher -->
+<script type="text/javascript" src="{{URL::to('/')}}/multiinputfield/jquery.min.js"></script>
 <script src="{{URL::to('/')}}/bs3/js/bootstrap.min.js"></script>
 <script src="{{URL::to('/')}}/js/jquery-ui-1.9.2.custom.min.js"></script>
 <script class="include" type="text/javascript" src="{{URL::to('/')}}/js/jquery.dcjqaccordion.2.7.js"></script>
@@ -802,11 +811,25 @@
 <!--dynamic table initialization start-->
 <script src="{{URL::to('/')}}/js/dynamic_table_init.js"></script>
 <!--dynamic table initialization end-->
+
 <!-- END JAVASCRIPTS -->
 
+
 <script>
-    jQuery(document).ready(function() {
-        EditableTable.init();
+    jQuery(document).ready(function($){
+        n=1;
+        $('.class').change(function(){
+            $.get("{{ url('api/dropdown/section')}}",
+                    { option: $(this).val() },
+                    function(data) {
+                        var model = $('.sectionid');
+                        model.empty();
+                        $.each(data, function(index,element) {
+                        //  alert(data);
+                            model.append("<option value='"+ element +"'>" + element + "</option>");
+                        });
+                    });
+        });
     });
 </script>
 
@@ -848,23 +871,7 @@
         });
     });
 </script>
-<script>
-    jQuery(document).ready(function($){
-        n=1;
-        $('.class').change(function(){
-            $.get("{{ url('api/dropdown/section')}}",
-                    { option: $(this).val() },
-                    function(data) {
-                        var model = $('.sectionid');
-                        model.empty();
-                        $.each(data, function(index,element) {
-                        //  alert(data);
-                            model.append("<option value='"+ element +"'>" + element + "</option>");
-                        });
-                    });
-        });
-    });
-</script>
+
 
 <!--saif add for Mark  -->
 <script>
@@ -973,6 +980,19 @@ $('#addAllMarks').on('submit',function(e){
  </script>
  <script language="JavaScript" type="text/javascript">
 
+ $(document).ready(function () {
+     $('#ascuisines').on('change', function () {
+         $('#getcuisines').val($(this).val().join());
+     }).trigger('change');
+ });
+ </script>
+ <script language="JavaScript" type="text/javascript">
+
+ $(document).ready(function () {
+     $('#holyascuisines').on('change', function () {
+         $('#holygetcuisines').val($(this).val().join());
+     }).trigger('change');
+ });
  </script>
    <script src="{{URL::to('/')}}/ajaxjs/exprence.js" type="text/javascript"></script>
     <script src="{{URL::to('/')}}/ajaxjs/attendance.js" type="text/javascript"></script>
@@ -1008,6 +1028,25 @@ $('#addAllMarks').on('submit',function(e){
     headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
  });
  </script>
+
+
+<!-- Bootstrap JS -->
+
+<!-- multiple input fields add remove JS -->
+
+<script src="{{URL::to('/')}}/multiinputfield/formValidation.min.js"></script>
+
+<script src="{{URL::to('/')}}/multiinputfield/bootstrap.min.js"></script>
+<script src="{{URL::to('/')}}/multiinputfield/bootstrap-datepicker.min.js"></script>
+
+
+<script src="{{URL::to('/')}}/multiinputfield/viewinputdate.js"></script>
+<script src="{{URL::to('/')}}/multiinputfield/selectaddremove.js"></script>
+<script>
+    jQuery(document).ready(function() {
+        EditableTable.init();
+    });
+</script>
 
 @section('scripts')
 <script src="{{URL::to('/')}}/ajaxjs/teacherallocation.js" type="text/javascript"></script>
