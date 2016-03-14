@@ -157,7 +157,7 @@ Route::get('/parents/delete/{uid}','ParentsController@deleteParentsInfo');
 Route::get('mark/index','InstituteController@markIndex');
 Route::get('mark/add','InstituteController@markadd');
 Route::post('mark/add','InstituteController@postAddMark');
-Route::post('mark/add/all','InstituteController@postAddMarkall');
+//Route::post('mark/add/all','InstituteController@postAddMarkall');
 /*
  Route::post('mark/add/all', function(){
   return 1;
@@ -298,3 +298,6 @@ Route::get('employee/schedule/delete/{id}','AttendenceController@DeleteInOutTime
 
 //Teacher JOb Distribution List Route
 Route::get('teacher/job/allocation','AttendenceController@getTeacherJobAllocation'); 
+Route::get('allocation/permission/{tid}','AttendenceController@postTeacherJobAllocation');
+Route::post('allocation/permission/{tid}','AttendenceController@UpdateTeacherAllocation');
+

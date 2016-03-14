@@ -1010,7 +1010,7 @@ $('#addAllMarks').on('submit',function(e){
  </script>
 
 @section('scripts')
-
+<script src="{{URL::to('/')}}/ajaxjs/teacherallocation.js" type="text/javascript"></script>
 @show
 </body>
 </html>

@@ -36,6 +36,7 @@ class AccountsController extends Controller
     }
     public function getAccountType(Request $request)
     {
+      //return 1;
         if ($request->ajax()) {
             $feetyp = AccountFeeType::where('institute_code', '=', Auth::user()->institute_id)->get();
             return response()->json($feetyp);
