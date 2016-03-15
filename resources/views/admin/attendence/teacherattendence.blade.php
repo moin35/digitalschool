@@ -59,8 +59,12 @@
                     <div class="col-md-4"></div>
                       <div class="clo-md-4"><a  class="btn btn-danger tooltips" href="{{URL::to('/')}}/give/absence/teacher/{{$iid}}">Take Teacher Attendence</a></div>
                     <div class="col-md-4"></div>
-                      @else
-                  
+                      @elseif(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('created_at','LIKE',"%$p%")->where('type','=','Teacher')->where('status','=',0)->count()==0)
+             <div></div>
+                     @elseif(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('created_at','LIKE',"%$p%")->where('type','=','Teacher')->where('status','=',1)->count()==0)
+             <div></div>
+            
+                    @else
                       <div></div>
                       @endif
                             <table class="table table-striped table-hover table-bordered" id="editable-sample">

@@ -157,7 +157,7 @@ Route::get('/parents/delete/{uid}','ParentsController@deleteParentsInfo');
 Route::get('mark/index','InstituteController@markIndex');
 Route::get('mark/add','InstituteController@markadd');
 Route::post('mark/add','InstituteController@postAddMark');
-Route::post('mark/add/all','InstituteController@postAddMarkall');
+//Route::post('mark/add/all','InstituteController@postAddMarkall');
 /*
  Route::post('mark/add/all', function(){
   return 1;
@@ -297,8 +297,13 @@ Route::post('admin/set/in/out/time','AttendenceController@postInOutTime');
 Route::get('employee/schedule/delete/{id}','AttendenceController@DeleteInOutTime');
 
 //Teacher JOb Distribution List Route
+
 Route::get('teacher/job/allocation','AttendenceController@getTeacherJobAllocation');
+Route::get('allocation/permission/{tid}','AttendenceController@postTeacherJobAllocation');
+Route::post('allocation/permission/{tid}','AttendenceController@UpdateTeacherAllocation');
+
 //saif add for holyday
 Route::post('admin/add/holyday',['as' => 'postholyday', 'uses' =>'AttendenceController@postholyday']);
+
 Route::get('supadmin/add/govtholiday','AttendenceController@getGovetholiyday');
-Route::post('supadmin/add/govtholiday','AttendenceController@postGovetholiyday');
+Route::post('supadmin/add/govtholiday','AttendenceController@postGovetholiyday'); 

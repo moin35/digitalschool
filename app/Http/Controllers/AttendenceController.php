@@ -369,10 +369,56 @@ return view('admin.attendence.studentsAttendanceViewDetails')
 
 }
 public function getTeacherJobAllocation(){
-  $shift=EmployeeSchedule::where('institute_code','=',Auth::user()->institute_id)->get();
-  $c=EmployeeSchedule::where('institute_code','=',Auth::user()->institute_id)->count();
-  $te=Teacher::where('institute_code','=',Auth::user()->institute_id)->get();
-  return view('admin.allocation.teacherallocation',['tes'=>$te,'sh'=>$shift,'count'=>$c]);
+
+        
+            $ts = Teacher::where('institute_code','=',Auth::user()->institute_id)->get();
+      
+
+
+  return view('admin.allocation.teacherallocation',['view'=>$ts]);
+}
+
+    public function postTeacherJobAllocation($tid)
+    {
+      //return $tid;
+      $scheduleget=EmployeeSchedule::where('institute_code','=',Auth::user()->institute_id)->get();
+      $schedule=EmployeeSchedule::where('institute_code','=',Auth::user()->institute_id)->count();
+      $tedit=User::where('institute_id','=',Auth::user()->institute_id)->where('uid','=',$tid)->first();
+     return view('admin.allocation.permission',['editExpense'=>$tedit,'scount'=>$schedule,'sget'=>$scheduleget]);
+       
+    }
+public function UpdateTeacherAllocation($tid){
+
+$attdence=Input::get('attendence');
+$addmission=Input::get('addmission');
+$teacheradd=Input::get('teacheradd');
+$subjectadd=Input::get('subjectadd');
+$examschedule=Input::get('examschedule');
+$classroutine=Input::get('classroutine');
+$notice=Input::get('notice');
+$sms=Input::get('sms');
+$shift=Input::get('shift');
+$a0=User::where('institute_id','=',Auth::user()->institute_id)->where('uid','=',$tid)->where('attdence','=',0)->pluck('attdence');
+$a1=User::where('institute_id','=',Auth::user()->institute_id)->where('uid','=',$tid)->where('attdence','=',1)->pluck('attdence');
+//return $attdence;
+//return ;
+if ($attdence==$a1) {
+  $up=User::where('institute_id','=',Auth::user()->institute_id)->where('uid','=',$tid)->where('attdence','=',$a1)
+            ->update(['attdence'=>0]);
+  //return $attdence;
+
+}
+elseif ($attdence==NULL) {
+  
+  $up=User::where('institute_id','=',Auth::user()->institute_id)->where('uid','=',$tid)->where('attdence','=',1)
+            ->update(['attdence'=>1]);
+return 1;
+}
+else{
+  return 'OK';
+  }
+
+  return Redirect::to('allocation/permission/'.$tid);
 }
 
 public function getAcadimicClander(){
@@ -496,6 +542,7 @@ return 1;
   }
 */
 }
+
 
 
 
