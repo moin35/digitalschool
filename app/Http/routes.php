@@ -300,3 +300,5 @@ Route::get('employee/schedule/delete/{id}','AttendenceController@DeleteInOutTime
 Route::get('teacher/job/allocation','AttendenceController@getTeacherJobAllocation');
 //saif add for holyday
 Route::post('admin/add/holyday',['as' => 'postholyday', 'uses' =>'AttendenceController@postholyday']);
+Route::get('supadmin/add/govtholiday','AttendenceController@getGovetholiyday');
+Route::post('supadmin/add/govtholiday','AttendenceController@postGovetholiyday');

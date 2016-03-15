@@ -28,7 +28,7 @@ Academic Calendar
                             <div class="clearfix">
                                 <div class="btn-group">
                                     <a class="btn btn-primary" ng-click="test.showBoxOne = !test.showBoxOne" >
-                                        Add Academic Calendar <i class="fa fa-plus"></i>
+                                         Academic Weekend <i class="fa fa-plus"></i>
                                     </a>
                                 </div>
 
@@ -45,7 +45,7 @@ Academic Calendar
                                 <div class="btn-group pull-right">
                                   <div class="btn-group">
                                     <a class="btn btn-primary" ng-click="test.holyday = !test.holyday" >
-                                    Add Holyday <i class="fa fa-plus"></i>
+                                Academic Holyday <i class="fa fa-plus"></i>
                                     </a>
                                     </div>
                                 </div>
@@ -54,7 +54,7 @@ Academic Calendar
                                         <div class="col-sm-12">
                                             <section class="panel">
                                                 <header class="panel-heading">
-                                               Academic Calendar Add
+                                               Academic Weekend
                                                 <span class="tools pull-right">
                                                     <a href="javascript:;" class="fa fa-chevron-down"></a>
                                                     <a href="javascript:;" class="fa fa-cog"></a>
@@ -109,7 +109,7 @@ Academic Calendar
            <textarea name="display" id="display" placeholder="view select list value(s) onchange" name="day" cols="20" rows="4" readonly></textarea>
                            </div>
                               </div>
-                              <div class="form-group ">
+                          <!--    <div class="form-group ">
                                                  <label for="examname" class="control-label col-lg-3">HolyDay</label>
                                                  <div class="col-lg-6">
                                                    <div class="form-group form-group-multiple-selects col-lg-6">
@@ -135,7 +135,7 @@ Academic Calendar
                                                                                      <div class="col-sm-6">
                                                                                          <textarea class="form-control" id="note" name="note" rows="6"></textarea>
                                                                                      </div>
-                                                                                 </div>
+                                                                                 </div>-->
 
 
                                                                     <div class="form-group">
@@ -166,7 +166,7 @@ Academic Calendar
                             <div class="col-sm-12">
                             <section class="panel">
                             <header class="panel-heading">
-                            Academic Calendar Add
+                          Academic Holyday
                             <span class="tools pull-right">
                             <a href="javascript:;" class="fa fa-chevron-down"></a>
                             <a href="javascript:;" class="fa fa-cog"></a>
@@ -238,6 +238,87 @@ Academic Calendar
                 <!-- page start-->
 
                 <div class="row">
+
+                <div class="col-sm-6">
+                    <section class="panel">
+                        <header class="panel-heading">
+                          Academic Holyday
+                            <span class="tools pull-right">
+                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                <a href="javascript:;" class="fa fa-cog"></a>
+                                <a href="javascript:;" class="fa fa-times"></a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="adv-table editable-table ">
+                            <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                                <thead>
+                                <tr>
+
+                                    <th>Title</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($academicHoliday as $v)
+                                <tr>
+
+                                    <td>{{$v->holiday_title}}</td>
+                                    <td>{{$v->holiday_date}}</td>
+                                    <td>Delete</td>
+
+
+                                </tr>
+                                  @endforeach
+                                </tbody>
+                            </table>
+                          </div>
+                        </div>
+
+                    </section>
+                </div>
+                <div class="col-sm-6">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Week Holiday Table
+                            <span class="tools pull-right">
+                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                <a href="javascript:;" class="fa fa-cog"></a>
+                                <a href="javascript:;" class="fa fa-times"></a>
+                             </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="adv-table editable-table ">
+                            <table class="table table-striped table-hover table-bordered" id="dualeditable">
+                                <thead>
+                                <tr>
+
+                                    <th>Title</th>
+                                    <th>Year</th>
+                                    <th>Days</th>
+                                      <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($weekend as $vw)
+                                <tr>
+
+                                    <td>{{$vw->title}}</td>
+                                    <td>{{$vw->year}}</td>
+                                    <td>{{$vw->weekendday}}</td>
+                                    <td>Delete</td>
+
+
+                                </tr>
+                            @endforeach
+                                </tbody>
+                            </table>
+                          </div>
+                        </div>
+                    </section>
+                </div>
+             <!--
                     <div class="col-sm-12">
                         <section class="panel">
                             <header class="panel-heading">
@@ -278,7 +359,7 @@ Academic Calendar
                             </div>
                         </section>
                     </div>
-                </div>
+                </div>-->
                 <!-- page end-->
 
             </section>
