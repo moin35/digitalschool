@@ -49,88 +49,135 @@ Set Permission
                                         <thead>
                                         <tr>
                                     <th colspan="{{$scount}}">shift</th>
-                                    <th>Attdence</th>
-                                    <th>Addmission</th>
-                                    <th>Teacher Add</th>
-                                    <th>Subject Add</th>
-                                    <th>Exam Schedule</th>
-                                    <th>Class Routine</th>
-                                    <th>Notice</th>
-                                    <th>SMS</th>
+                                    <th colspan="2">Attdence</th>
+                                    <th colspan="2">Addmission</th>
+                                    <th colspan="2">Teacher Add</th>
+                                    <th colspan="2">Subject Add</th>
+                                    <th colspan="2">Exam Schedule</th>
+                                    <th colspan="2">Class Routine</th>
+                                    <th colspan="2">Notice</th>
+                                    <th colspan="2">SMS</th>
                                     
                                         </tr>
                                         </thead>
                                         <tbody>
                                 
                                         <tr>
-                                        @foreach($sget as $d => $v)
-
-                                            <td>{{$v->shift}}<input value="{{$v->id}}" type='checkbox' class='checkbox' name="shift"> </td>
-                                        @endforeach
-                                           <td>
-                                    @if($editExpense->attdence==1)
-                                      <input value="1" type='checkbox' class='checkbox' onchange='this.form.submit()' name="attendence" checked="checked">
-                                    @else
-                                       <input value="0" type='checkbox' class='checkbox' onchange='this.form.submit()' name="attendence" >
-                                    @endif
-                                           </td>
-                                           <td>
-                                 @if($editExpense->addmission==1)
-                                      <input value="1" type='checkbox' class='checkbox' onchange='this.form.submit()' name="addmission" checked="checked">
-                                    @else
-                                       <input value="0" type='checkbox' class='checkbox' onchange='this.form.submit()' name="addmission" >
-                                    @endif
-                                           </td>
-                                           <td>
-                                 @if($editExpense->teacheradd==0)
-                                      <input value="1" type='checkbox' class='checkbox' name="teacheradd[]">
-                                    @else
-                                       <input value="0" type='checkbox' class='checkbox' name="teacheradd[]" checked="checked">
-                                  @endif
-                                           </td>
-                                           <td>
-                                    @if($editExpense->subjectadd==0)
-                                      <input value="1" type='checkbox' class='checkbox' name="subjectadd[]">
-                                    @else
-                                       <input value="0" type='checkbox' class='checkbox' name="subjectadd[]" checked="checked">
-                                  @endif
-                                           </td>
-                                           <td>
-                                    @if($editExpense->examschedule==0)
-                                      <input value="1" type='checkbox' class='checkbox' name="examschedule[]">
-                                    @else
-                                       <input value="0" type='checkbox' class='checkbox' name="examschedule[]" checked="checked">
-                                  @endif
-                                           </td>
-                                           <td>
-                                    @if($editExpense->classroutine==0)
-                                      <input value="1" type='checkbox' class='checkbox' name="classroutine[]">
-                                    @else
-                                       <input value="0" type='checkbox' class='checkbox' name="classroutine[]" checked="checked">
-                                        @endif
-                                     </td>
-                                    <td>
-                                        @if($editExpense->notice==0)
-                                      <input value="1" type='checkbox' class='checkbox' name="notice[]">
-                                        @else
-                                       <input value="0" type='checkbox' class='checkbox' name="notice[]" checked="checked">
-                                        @endif
-                                    </td>
-                                    <td>
-                                    @if($editExpense->sms==0)
-                                      <input value="1" type='checkbox' class='checkbox' name="sms[]">
-                                         @else
-                                       <input value="0" type='checkbox'  class='checkbox' name="sms[]" checked="checked">
-                                    @endif
-                                           </td>
+                                        
+                                               @foreach($sget as $d => $v)
+                                            <td> 
+                                           @if($editExpense->attdence!=" ")
+                                              
+                                              {{$v->shift}} <input value="{{$v->id}}" type='radio' class='checkbox' name="shift" checked="checked"> 
+                                             
+                                                @endif                                         </td>
+                                         @endforeach
                                           
+                                    @if($editExpense->attdence==1)
+                                    <td> <label>Yes
+                                      <input value="1" type='radio' class='radio'  name="attendence" checked="checked"></label>
+                                      </td><td><label> NO: <input value="0" type='radio' class='radio'  name="attendence" ></label>
+                                  </td>
+                                      @endif
+                                     @if($editExpense->attdence==0)
+                                    <td> <label>Yes
+                                      <input value="1" type='radio' class='radio'  name="attendence" ></label>
+                                      </td><td><label> NO: <input value="0" type='radio' class='radio'  name="attendence" checked="checked"></label>
+                                  </td>
+                                      @endif 
+
+                                    @if($editExpense->addmission==1)
+                                    <td> <label>Yes
+                                      <input value="1" type='radio' class='radio'  name="addmission" checked="checked"></label>
+                                      </td><td><label> NO: <input value="0" type='radio' class='radio'  name="addmission" ></label>
+                                  </td>
+                                      @endif
+                                     @if($editExpense->addmission==0)
+                                    <td> <label>Yes
+                                      <input value="1" type='radio' class='radio'  name="addmission" ></label>
+                                      </td><td><label> NO: <input value="0" type='radio' class='radio'  name="addmission" checked="checked"></label>
+                                  </td>
+                                      @endif 
+                                    @if($editExpense->teacheradd==1)
+                                    <td> <label>Yes
+                                      <input value="1" type='radio' class='radio'  name="teacheradd" checked="checked"></label>
+                                      </td><td><label> NO: <input value="0" type='radio' class='radio'  name="teacheradd" ></label>
+                                  </td>
+                                      @endif
+                                     @if($editExpense->teacheradd==0)
+                                    <td> <label>Yes
+                                      <input value="1" type='radio' class='radio'  name="teacheradd" ></label>
+                                      </td><td><label> NO: <input value="0" type='radio' class='radio'  name="teacheradd" checked="checked"></label>
+                                  </td>
+                                      @endif 
+                                       @if($editExpense->subjectadd==1)
+                                    <td> <label>Yes
+                                      <input value="1" type='radio' class='radio'  name="subjectadd" checked="checked"></label>
+                                      </td><td><label> NO: <input value="0" type='radio' class='radio'  name="subjectadd" ></label>
+                                  </td>
+                                      @endif
+                                     @if($editExpense->subjectadd==0)
+                                    <td> <label>Yes
+                                      <input value="1" type='radio' class='radio'  name="subjectadd" ></label>
+                                      </td><td><label> NO: <input value="0" type='radio' class='radio'  name="subjectadd" checked="checked"></label>
+                                  </td>
+                                      @endif 
+                                            @if($editExpense->examschedule==1)
+                                    <td> <label>Yes
+                                      <input value="1" type='radio' class='radio'  name="examschedule" checked="checked"></label>
+                                      </td><td><label> NO: <input value="0" type='radio' class='radio'  name="examschedule" ></label>
+                                  </td>
+                                      @endif
+                                     @if($editExpense->examschedule==0)
+                                    <td> <label>Yes
+                                      <input value="1" type='radio' class='radio'  name="examschedule" ></label>
+                                      </td><td><label> NO: <input value="0" type='radio' class='radio'  name="examschedule" checked="checked"></label>
+                                  </td>
+                                      @endif 
+                                   @if($editExpense->classroutine==1)
+                                    <td> <label>Yes
+                                      <input value="1" type='radio' class='radio'  name="classroutine" checked="checked"></label>
+                                      </td><td><label> NO: <input value="0" type='radio' class='radio'  name="classroutine" ></label>
+                                  </td>
+                                      @endif
+                                     @if($editExpense->classroutine==0)
+                                    <td> <label>Yes
+                                      <input value="1" type='radio' class='radio'  name="classroutine" ></label>
+                                      </td><td><label> NO: <input value="0" type='radio' class='radio'  name="classroutine" checked="checked"></label>
+                                  </td>
+                                      @endif 
+                         @if($editExpense->notice==1)
+                                    <td> <label>Yes
+                                      <input value="1" type='radio' class='radio'  name="notice" checked="checked"></label>
+                                      </td><td><label> NO: <input value="0" type='radio' class='radio'  name="notice" ></label>
+                                  </td>
+                                      @endif
+                                     @if($editExpense->notice==0)
+                                    <td> <label>Yes
+                                      <input value="1" type='radio' class='radio'  name="notice" ></label>
+                                      </td><td><label> NO: <input value="0" type='radio' class='radio'  name="notice" checked="checked"></label>
+                                  </td>
+                                      @endif 
+                                                      @if($editExpense->sms==1)
+                                    <td> <label>Yes
+                                      <input value="1" type='radio' class='radio'  name="sms" checked="checked"></label>
+                                      </td><td><label> NO: <input value="0" type='radio' class='radio'  name="sms" ></label>
+                                  </td>
+                                      @endif
+                                     @if($editExpense->sms==0)
+                                    <td> <label>Yes
+                                      <input value="1" type='radio' class='radio'  name="sms" ></label>
+                                      </td><td><label> NO: <input value="0" type='radio' class='radio'  name="sms" checked="checked"></label>
+                                  </td>
+                                      @endif 
+                                   
                                         </tr>
                                    
                                         </tbody>
                                     </table>
                                 <div class="form-group">
                                     <div class="col-lg-offset-3 col-lg-6">
-                                         <noscript><button class="btn btn-primary" type="submit" >Update</button></noscript>
+                                        <button class="btn btn-primary" type="submit" >Update</button>
                                         <button class="btn btn-default" type="button">Cancel</button>
                                     </div>
                                 </div>

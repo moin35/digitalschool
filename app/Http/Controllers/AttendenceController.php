@@ -395,26 +395,17 @@ $classroutine=Input::get('classroutine');
 $notice=Input::get('notice');
 $sms=Input::get('sms');
 $shift=Input::get('shift');
-$a0=User::where('institute_id','=',Auth::user()->institute_id)->where('uid','=',$tid)->where('attdence','=',0)->pluck('attdence');
-$a1=User::where('institute_id','=',Auth::user()->institute_id)->where('uid','=',$tid)->where('attdence','=',1)->pluck('attdence');
-//return $attdence;
-//return ;
-if ($attdence==$a1) {
-  $up=User::where('institute_id','=',Auth::user()->institute_id)->where('uid','=',$tid)->where('attdence','=',$a1)
-            ->update(['attdence'=>0]);
-  //return $attdence;
-
-}
-elseif ($attdence==NULL) {
-  
-  $up=User::where('institute_id','=',Auth::user()->institute_id)->where('uid','=',$tid)->where('attdence','=',1)
-            ->update(['attdence'=>1]);
-return 1;
-}
-else{
-  return 'OK';
-  }
-
+//return $attdence.$addmission;
+$up=User::where('institute_id','=',Auth::user()->institute_id)->where('uid','=',$tid)
+            ->update(['attdence'=>$attdence,
+                 'addmission'=>$addmission,
+                 'teacheradd'=>$teacheradd,
+              'subjectadd'=>$subjectadd,
+              'examschedule'=>$examschedule,
+              'classroutine'=>$classroutine,
+              'notice'=>$notice,
+              'sms'=>$sms,
+              'shift'=>$shift]);
   return Redirect::to('allocation/permission/'.$tid);
 }
 
