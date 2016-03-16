@@ -298,10 +298,12 @@ Route::get('employee/schedule/delete/{id}','AttendenceController@DeleteInOutTime
 
 //Teacher JOb Distribution List Route
 
-Route::get('teacher/job/allocation','AttendenceController@getTeacherJobAllocation'); 
+Route::get('teacher/job/allocation','AttendenceController@getTeacherJobAllocation');
 Route::get('allocation/permission/{tid}','AttendenceController@postTeacherJobAllocation');
 Route::post('allocation/permission/{tid}','AttendenceController@UpdateTeacherAllocation');
 
 //saif add for holyday
 Route::post('admin/add/holyday',['as' => 'postholyday', 'uses' =>'AttendenceController@postholyday']);
 
+Route::get('supadmin/add/govtholiday','AttendenceController@getGovetholiyday');
+Route::post('supadmin/add/govtholiday','AttendenceController@postGovetholiyday'); 

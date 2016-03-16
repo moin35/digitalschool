@@ -28,7 +28,7 @@ $(document).ready(function() {
                         }
                     }
                 },
-                'dueDate[]': {
+              /*  'dueDate[]': {
                     // The due date is placed inside a .col-xs-4 element
                     row: '.col-xs-4',
                     validators: {
@@ -41,7 +41,7 @@ $(document).ready(function() {
                             message: 'The due date is not valid'
                         }
                     }
-                }
+                }*/
             }
         })
 

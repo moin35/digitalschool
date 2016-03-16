@@ -407,11 +407,18 @@
                         </li>
                         @if(Auth::check())
                             @if(Auth::user()->priv==3)
-                        <li>
-                            <a href="{{URL::to('Institute/Setting')}}">
-                                <i class="fa fa-bullhorn"></i>
-                                <span>Institute Setting </span>
+                            <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-laptop"></i>
+                              <span>Setting </span>
                             </a>
+                            <ul class="sub">
+
+
+                                <li><a href="{{URL::to('Institute/Setting')}}}}">Institute Setting</a></li>
+                                <li><a href="{{URL::to('supadmin/add/govtholiday')}}">Govt. Holiday</a></li>
+                                <li><a href="{{URL::to('admin/acadimicClander')}}">Academic Holiday</a></li>
+                            </ul>
                         </li>
                         @endif
                         @endif

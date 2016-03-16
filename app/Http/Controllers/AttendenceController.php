@@ -27,6 +27,9 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\EmployeeSchedule;
 use App\AcademicCalender;
+use App\Holyday;
+use App\InstiHolyday;
+
 class AttendenceController extends Controller
 {
     /**
@@ -410,11 +413,13 @@ $up=User::where('institute_id','=',Auth::user()->institute_id)->where('uid','=',
 }
 
 public function getAcadimicClander(){
-  return view('admin.attendence.acadimicClander');
+  $weekend=AcademicCalender::where('institute_code','=',Auth::user()->institute_id)->get();
+  $academicHoliday=InstiHolyday::where('institute_code','=',Auth::user()->institute_id)->get();
+  return view('admin.attendence.acadimicClander')->with('weekend',$weekend)->with('academicHoliday',$academicHoliday);
 }
 public function postAcadimicClander(){
   $day=Input::get('display');
-   return $day;
+  // return $day;
   $title=Input::get('title');
   $year=Input::get('selectYear');
   $note=Input::get('note');
@@ -426,7 +431,6 @@ $weekend->institute_code=Auth::user()->institute_id;
 $weekend->title=$title;
 $weekend->weekendday=$day;
 $weekend->year=$year;
-$weekend->note=$note;
 $weekend->save();
 //  }
 /*
@@ -446,16 +450,88 @@ $weekend->save();
     $weekend->year=$year;
     $weekend->note=$note;
     $weekend->save();*/
-    // return redirect()->back();
-     return redirect::to('admin/acadimicClander');
+  return redirect()->back();
+    // return redirect::to('admin/acadimicClander');
 }
 public function postholyday(){
+  //  $date=Input::get('dueDate');
+  //  $title=Input::get('task');
+  //  InstiHolyday
+  //  return $date;
 
-  $title=Input::get('task');
+   //$createdAt = Carbon::parse(Input::get('dueDate')->format('Y-m-d');
+
+   //$date=Input::get('dueDate');
+  //$d=Carbon::createFromFormat('d-m-Y', Input::get('dueDate'));
+  //return   $createdAt;
+  $input = Input::all();
+  //return $input;
+
+  foreach($input['dueDate'] as $index => $value) {
+
+    $model = new InstiHolyday;
+    $model->institute_code = Auth::user()->institute_id;
+    $model->uid = Auth::user()->uid;
+    $model->holiday_title = $input['task'][$index];
+    $model->holiday_date = $value;
+    $model->save();
+
+     }
+
+  return redirect()->back();
+
+  //return view('admin.attendence.holydayAdd');
+}
+
+public function getGovetholiyday(){
+      $viewGovtHoliday=Holyday::all();
+    return view('admin.attendence.holydayAdd')->with('viewGovtHoliday',$viewGovtHoliday);
+}
+public function postGovetholiyday(){
+  //return 1;
+
+  $input = Input::all();
+
+  foreach($input['dueDate'] as $index => $value) {
+
+    $model = new Holyday;
+    $model->uid = Auth::user()->uid;
+    $model->holiday_title = $input['task'][$index];
+    $model->holiday_date = $value;
+    $model->save();
+
+     }
+
+  return redirect()->back();
+  /*
+return 1;
+   foreach ($input['dueDate'] as $row) {
+       $items = new Holyday([
+           'uid' => Auth::user()->uid,
+           'holiday_title' => $row['task'],
+           'holiday_date' => $row['dueDate'],
+       ]);
+       $items->saveMany();
+   }
+
+  $style = implode(',', Input::get('task'));
+   $title = array('task',$style);
+   $date = implode(',', Input::get('dueDate'));
+   $dates= array('dueDate',$style);;
+   DB::table('tbl_govt_holiday')->insert($title,$dates);
+   return $data;
+
+  DB::table($table_name)->insert($data);
   $date=Input::get('dueDate');
-  return $date;
-
-  return view('admin.attendence.holydayAdd');
+  $title=Input::get('task');
+  foreach ($date as  $value) {
+    $gholiday=new Holyday;
+    $gholiday->uid=Auth::user()->uid;
+    $gholiday->holiday_title=$title;
+    $gholiday->holiday_date=$value;
+    $gholiday->save();
+  }
+*/
 }
 
 
