@@ -66,11 +66,15 @@ Set Permission
                                         
                                                @foreach($sget as $d => $v)
                                             <td> 
-                                           @if($editExpense->attdence!=" ")
+                                           @if($editExpense->shift==$v->id)
                                               
                                               {{$v->shift}} <input value="{{$v->id}}" type='radio' class='checkbox' name="shift" checked="checked"> 
-                                             
-                                                @endif                                         </td>
+                                             @else
+                                              {{$v->shift}} <input value="{{$v->id}}" type='radio' class='checkbox' name="shift"> 
+                                            
+                                                @endif
+
+                                          </td>
                                          @endforeach
                                           
                                     @if($editExpense->attdence==1)

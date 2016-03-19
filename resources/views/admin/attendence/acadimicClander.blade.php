@@ -262,14 +262,20 @@ Academic Calendar
                                 </thead>
                                 <tbody>
                                     @foreach($academicHoliday as $v)
+                                     @if($v->holiday_title!=null)
                                 <tr>
 
                                     <td>{{$v->holiday_title}}</td>
-                                    <td>{{$v->holiday_date}}</td>
-                                    <td>Delete</td>
+                                    <td>{{date('d-M-Y', strtotime($v->holiday_date))}}</td>
+                                    <td>
+
+
+                                    <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/Academic/Holyday/delete/{{$v->id}}" ><i class="fa  fa-trash-o"></i></a>
+                           </td>
 
 
                                 </tr>
+                                @endif
                                   @endforeach
                                 </tbody>
                             </table>
@@ -302,12 +308,18 @@ Academic Calendar
                                 </thead>
                                 <tbody>
                                     @foreach($weekend as $vw)
+
                                 <tr>
 
                                     <td>{{$vw->title}}</td>
                                     <td>{{$vw->year}}</td>
                                     <td>{{$vw->weekendday}}</td>
-                                    <td>Delete</td>
+                                    <td>
+
+
+
+                                      <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/Academic/weekend/delete/{{$vw->id}}" ><i class="fa  fa-trash-o"></i></a>
+                           </td>
 
 
                                 </tr>
