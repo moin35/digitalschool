@@ -123,7 +123,7 @@ Attendance Information
                                                   <td  style="height:50px;float:center;" class="att-bg-color"><span class="label label-success label-mini">P</span></td>
                                                   @elseif(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$stdInfo->st_id)->where('created_at','LIKE',"%$value%")->pluck('status')=='1')
                                                  <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-danger label-mini">A</span></td>
-                                                 @elseif('2016-03-17'==$value)
+                                                 @elseif('\App\Holyday::where('holiday_date','LIKE',"%$value%")->pluck('holiday_date')'==$value)
                                                   <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-primary label-mini">GH</span></td>
                                                   @elseif($App==date('yyyy-mm-dd'))
                                                   <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-primary label-mini">AH</span></td>

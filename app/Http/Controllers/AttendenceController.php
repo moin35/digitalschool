@@ -325,9 +325,9 @@ $v=Teacher::where('institute_code','=',$iid)->get();
     }
     public function postStudentsAttendenceDetails($uid){
 
-      $App=InstiHolyday::where('institute_code','=',Auth::user()->institute_id)->where('holiday_date','=',"2016-03-03")->pluck('holiday_date');
+      $App=Holyday::all();
 
-      //return $App;
+     return $App;
 
 $maxDays=date('t');//how may day current month
 $currentDayOfMonth=date('j');//today numaric
@@ -404,6 +404,7 @@ $classroutine=Input::get('classroutine');
 $notice=Input::get('notice');
 $sms=Input::get('sms');
 $shift=Input::get('shift');
+
 $a0=User::where('institute_id','=',Auth::user()->institute_id)->where('uid','=',$tid)->where('attdence','=',0)->pluck('attdence');
 $a1=User::where('institute_id','=',Auth::user()->institute_id)->where('uid','=',$tid)->where('attdence','=',1)->pluck('attdence');
 //return $attdence;
@@ -423,6 +424,19 @@ return 1;
 else{
   return 'OK';
   }
+
+
+//return $attdence.$addmission;
+$up=User::where('institute_id','=',Auth::user()->institute_id)->where('uid','=',$tid)
+            ->update(['attdence'=>$attdence,
+                 'addmission'=>$addmission,
+                 'teacheradd'=>$teacheradd,
+              'subjectadd'=>$subjectadd,
+              'examschedule'=>$examschedule,
+              'classroutine'=>$classroutine,
+              'notice'=>$notice,
+              'sms'=>$sms,
+              'shift'=>$shift]);
 
   return Redirect::to('allocation/permission/'.$tid);
 }
