@@ -29,7 +29,6 @@ use App\EmployeeSchedule;
 use App\AcademicCalender;
 use App\Holyday;
 use App\InstiHolyday;
-
 class AttendenceController extends Controller
 {
     /**
@@ -77,7 +76,6 @@ class AttendenceController extends Controller
         $today = date("Y-m-d");
    $teacher=Attendence::where('institute_code','=',Auth::user()->institute_id)
         ->where('uid','=',$tid)->where('created_at','LIKE',"%$today%")->update(['status'=>'0']);
-
         Session::flash('data', 'Please Take Next Attendence');
         return redirect::to('teacher/attendence');
     }
@@ -105,7 +103,6 @@ class AttendenceController extends Controller
       $at=Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$tid)->where('created_at','LIKE',"%$m%")->where('status','=',1)->count();
       $atten_percent=(int)(($at/$today)*100);
       $ay=Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$tid)->where('created_at','LIKE',"%$y%")->where('status','=',1)->count();
-
      if ($y%4==0) {
       $x=366;
        $year_percent=(int)(($ay/$x)*100);
@@ -288,7 +285,6 @@ $v=Teacher::where('institute_code','=',$iid)->get();
       return redirect()->back();
     }
     public function getStudentsAttendenceIndex(){
-
       //$today = date("Y-m-d");
       $this->getallclass();
       $clseId=Input::get('class');
@@ -324,15 +320,10 @@ $v=Teacher::where('institute_code','=',$iid)->get();
        return view('admin.attendence.studentsAttendenceIndex')->with('GetStudents',$GetStudents)->with('allclass',$this->getallclass());
     }
     public function postStudentsAttendenceDetails($uid){
-
       $App=Holyday::all();
-
-     //return $App;
-
+     return $App;
 $maxDays=date('t');//how may day current month
 $currentDayOfMonth=date('j');//today numaric
-
-
 $today = date("d");
 $Cmonth = date("Y-m");
 $y=date("Y");
@@ -345,20 +336,14 @@ $GetStudents=DB::table('tbl_studets')
 ->where('tbl_attendence.type','=','Student')
 ->where('tbl_studets.st_id','=',$uid)
 ->first();
-
-
 $stdPrestAve=Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$uid)->where('status','=',0)->where('created_at','LIKE',"%$Cmonth%")->count();
 $presentPersent= (int)(($stdPrestAve/$today)*100);
-
 $stdClass=ClassAdd::where('class_id','=',$GetStudents->class)->pluck('class_name');
 $month = date('m');
 $year = date("Y");
-
 $start_date = "01-".$month."-".$year;
 $start_time = strtotime($start_date);
-
 $end_time = strtotime("+1 month", $start_time);
-
 for($i=$start_time; $i<$end_time; $i+=86400)
 {
 $list[] = date('d D', $i);
@@ -372,18 +357,11 @@ return view('admin.attendence.studentsAttendanceViewDetails')
 ->with('stdInfo',$GetStudents)->with('stdClass',$stdClass)
 ->with('persent',$presentPersent)->with('day',$list)
 ->with('listdate',$listdate)->with('App',$App);
-
 }
 public function getTeacherJobAllocation(){
-
-
             $ts = Teacher::where('institute_code','=',Auth::user()->institute_id)->get();
-
-
-
   return view('admin.allocation.teacherallocation',['view'=>$ts]);
 }
-
   public function postTeacherJobAllocation($tid)
     {
       //return $tid;
@@ -391,7 +369,6 @@ public function getTeacherJobAllocation(){
       $schedule=EmployeeSchedule::where('institute_code','=',Auth::user()->institute_id)->count();
       $tedit=User::where('institute_id','=',Auth::user()->institute_id)->where('uid','=',$tid)->first();
      return view('admin.allocation.permission',['editExpense'=>$tedit,'scount'=>$schedule,'sget'=>$scheduleget]);
-
    }
 public function UpdateTeacherAllocation($tid){
 $shift=Input::get('shift');
@@ -420,7 +397,6 @@ $up=User::where('institute_id','=',Auth::user()->institute_id)->where('uid','=',
 //return $up;
   return Redirect::to('allocation/permission/'.$tid);
 }
-
 public function getAcadimicClander(){
   $weekend=AcademicCalender::where('institute_code','=',Auth::user()->institute_id)->get();
   $academicHoliday=InstiHolyday::where('institute_code','=',Auth::user()->institute_id)->get();
@@ -443,12 +419,10 @@ $weekend->year=$year;
 $weekend->save();
 //  }
 /*
-
   //$a=Input::all();
 //return $a;
   $day=Input::get('e9');
  //return $day;
-
     $title=Input::get('title');
     $year=Input::get('selectYear');
     $note=Input::get('note');
@@ -467,50 +441,37 @@ public function postholyday(){
   //  $title=Input::get('task');
   //  InstiHolyday
   //  return $date;
-
    //$createdAt = Carbon::parse(Input::get('dueDate')->format('Y-m-d');
-
    //$date=Input::get('dueDate');
   //$d=Carbon::createFromFormat('d-m-Y', Input::get('dueDate'));
   //return   $createdAt;
   $input = Input::all();
   //return $input;
-
   foreach($input['dueDate'] as $index => $value) {
-
     $model = new InstiHolyday;
     $model->institute_code = Auth::user()->institute_id;
     $model->uid = Auth::user()->uid;
     $model->holiday_title = $input['task'][$index];
     $model->holiday_date = $value;
     $model->save();
-
      }
-
   return redirect()->back();
-
   //return view('admin.attendence.holydayAdd');
 }
-
 public function getGovetholiyday(){
       $viewGovtHoliday=Holyday::all();
     return view('admin.attendence.holydayAdd')->with('viewGovtHoliday',$viewGovtHoliday);
 }
 public function postGovetholiyday(){
   //return 1;
-
   $input = Input::all();
-
   foreach($input['dueDate'] as $index => $value) {
-
     $model = new Holyday;
     $model->uid = Auth::user()->uid;
     $model->holiday_title = $input['task'][$index];
     $model->holiday_date = $value;
     $model->save();
-
      }
-
   return redirect()->back();
   /*
 return 1;
@@ -522,14 +483,12 @@ return 1;
        ]);
        $items->saveMany();
    }
-
   $style = implode(',', Input::get('task'));
    $title = array('task',$style);
    $date = implode(',', Input::get('dueDate'));
    $dates= array('dueDate',$style);;
    DB::table('tbl_govt_holiday')->insert($title,$dates);
    return $data;
-
   DB::table($table_name)->insert($data);
   $date=Input::get('dueDate');
   $title=Input::get('task');
@@ -550,7 +509,4 @@ public function deleteAcademicWeekend($id){
   $deleteHoliday=AcademicCalender::where('institute_code','=',Auth::user()->institute_id)->where('id','=',$id)->delete();
     return redirect()->back();
 }
-
-
-
 }
