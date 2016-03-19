@@ -288,6 +288,7 @@ $v=Teacher::where('institute_code','=',$iid)->get();
       return redirect()->back();
     }
     public function getStudentsAttendenceIndex(){
+
       //$today = date("Y-m-d");
       $this->getallclass();
       $clseId=Input::get('class');
@@ -321,7 +322,12 @@ $v=Teacher::where('institute_code','=',$iid)->get();
      ->get();*/
      $GetStudents=students::where('institute_code','=',Auth::user()->institute_id)->where('class','=',$clseId)->where('section','=',$sectionId)->get();
        return view('admin.attendence.studentsAttendenceIndex')->with('GetStudents',$GetStudents)->with('allclass',$this->getallclass());
-    }public function postStudentsAttendenceDetails($uid){
+    }
+    public function postStudentsAttendenceDetails($uid){
+
+      $App=InstiHolyday::where('institute_code','=',Auth::user()->institute_id)->where('holiday_date','=',"2016-03-03")->pluck('holiday_date');
+
+      //return $App;
 
 $maxDays=date('t');//how may day current month
 $currentDayOfMonth=date('j');//today numaric
@@ -365,28 +371,28 @@ $listdate[] = date('Y-m-d', $i);
 return view('admin.attendence.studentsAttendanceViewDetails')
 ->with('stdInfo',$GetStudents)->with('stdClass',$stdClass)
 ->with('persent',$presentPersent)->with('day',$list)
-->with('listdate',$listdate);
+->with('listdate',$listdate)->with('App',$App);
 
 }
 public function getTeacherJobAllocation(){
 
-        
+
             $ts = Teacher::where('institute_code','=',Auth::user()->institute_id)->get();
-      
+
 
 
   return view('admin.allocation.teacherallocation',['view'=>$ts]);
 }
 
-    public function postTeacherJobAllocation($tid)
+  public function postTeacherJobAllocation($tid)
     {
       //return $tid;
       $scheduleget=EmployeeSchedule::where('institute_code','=',Auth::user()->institute_id)->get();
       $schedule=EmployeeSchedule::where('institute_code','=',Auth::user()->institute_id)->count();
       $tedit=User::where('institute_id','=',Auth::user()->institute_id)->where('uid','=',$tid)->first();
      return view('admin.allocation.permission',['editExpense'=>$tedit,'scount'=>$schedule,'sget'=>$scheduleget]);
-       
-    }
+
+   }
 public function UpdateTeacherAllocation($tid){
 
 $attdence=Input::get('attendence');
@@ -409,7 +415,7 @@ if ($attdence==$a1) {
 
 }
 elseif ($attdence==NULL) {
-  
+
   $up=User::where('institute_id','=',Auth::user()->institute_id)->where('uid','=',$tid)->where('attdence','=',1)
             ->update(['attdence'=>1]);
 return 1;
@@ -542,7 +548,14 @@ return 1;
   }
 */
 }
-
+public function deleteAcademicHoliday($id){
+  $deleteHoliday=InstiHolyday::where('institute_code','=',Auth::user()->institute_id)->where('id','=',$id)->delete();
+    return redirect()->back();
+}
+public function deleteAcademicWeekend($id){
+  $deleteHoliday=AcademicCalender::where('institute_code','=',Auth::user()->institute_id)->where('id','=',$id)->delete();
+    return redirect()->back();
+}
 
 
 

@@ -306,4 +306,6 @@ Route::post('allocation/permission/{tid}','AttendenceController@UpdateTeacherAll
 Route::post('admin/add/holyday',['as' => 'postholyday', 'uses' =>'AttendenceController@postholyday']);
 
 Route::get('supadmin/add/govtholiday','AttendenceController@getGovetholiyday');
-Route::post('supadmin/add/govtholiday','AttendenceController@postGovetholiyday'); 
+Route::post('supadmin/add/govtholiday','AttendenceController@postGovetholiyday');
+Route::get('/Academic/Holyday/delete/{id}','AttendenceController@deleteAcademicHoliday');
+Route::get('/Academic/weekend/delete/{id}','AttendenceController@deleteAcademicWeekend');
