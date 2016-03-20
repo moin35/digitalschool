@@ -158,6 +158,8 @@
   </table>
   </div>
   </section>
+
+
     <!-- page end-->
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src="{{URL::to('/')}}/progressbar/js/index.js"></script>
