@@ -140,8 +140,7 @@
       </tr>
     </thead>
     <tbody>
-      
-      <tr>
+    <tr>
      <th><?php echo date("F"); ?></th>
            @foreach($day as $q => $v)
         @if(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$teacher->teacher_id)->where('created_at','LIKE',"%$v%")->pluck('status')=='1')
@@ -155,12 +154,13 @@
          @endif
            @endforeach
       </tr>
-    
     </tbody>
   </table>
   </div>
   </section>
+
+
     <!-- page end-->
-     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src="{{URL::to('/')}}/progressbar/js/index.js"></script>
 @stop

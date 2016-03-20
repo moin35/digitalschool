@@ -196,9 +196,6 @@ Set Permission
         </section>
     </div>
 </div>
-
-
-
 <script>
 $("#BodyField").delay(5000).fadeOut();
 </script>

@@ -114,6 +114,7 @@ class AttendenceController extends Controller
 $month = date('m');
 $year = date("Y");
 //return $year;
+
 $start_date = "01-".$month."-".$year;
 $start_time = strtotime($start_date);
 $end_time = strtotime("+1 month", $start_time);
