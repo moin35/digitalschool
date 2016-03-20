@@ -324,10 +324,12 @@ $v=Teacher::where('institute_code','=',$iid)->get();
        return view('admin.attendence.studentsAttendenceIndex')->with('GetStudents',$GetStudents)->with('allclass',$this->getallclass());
     }
     public function postStudentsAttendenceDetails($uid){
+      //$value='Sat, Fri';
+      $App=AcademicCalender::where('institute_code','=',Auth::user()->institute_id)->pluck('weekendday');
+    // return date('D', strtotime($gh));
+    //  $App=Holyday::all();
 
-      $App=Holyday::all();
-
-     return $App;
+       //return $App;
 
 $maxDays=date('t');//how may day current month
 $currentDayOfMonth=date('j');//today numaric
