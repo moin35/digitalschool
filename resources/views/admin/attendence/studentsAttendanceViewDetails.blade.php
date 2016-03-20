@@ -117,18 +117,18 @@ Attendance Information
 
                                             <th><?php echo date("F"); ?></th>
 
-                                                    @foreach ($listdate as $key => $value)
-
+                                                 @foreach ($listdate as $key => $value)
+                                                 <?php echo date('D',strtotime($value)) ?>
                                                 @if(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$stdInfo->st_id)->where('created_at','LIKE',"%$value%")->pluck('status')=='0')
                                                   <td  style="height:50px;float:center;" class="att-bg-color"><span class="label label-success label-mini">P</span></td>
                                                   @elseif(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$stdInfo->st_id)->where('created_at','LIKE',"%$value%")->pluck('status')=='1')
                                                  <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-danger label-mini">A</span></td>
-                                                 @elseif('\App\Holyday::where('holiday_date','LIKE',"%$value%")->pluck('holiday_date')'==$value)
-                                                  <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-primary label-mini">GH</span></td>
-                                                  @elseif($App==date('yyyy-mm-dd'))
-                                                  <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-primary label-mini">AH</span></td>
+                                                 @elseif(date('Y-m-d', strtotime(\App\InstiHolyday::where('holiday_date','=',"$value")->pluck('holiday_date')))==$value)
+                                                  <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-warning label-mini">AH</span></td>
+                                                 @elseif(date('Y-m-d', strtotime(\App\Holyday::where('holiday_date','=',"$value")->pluck('holiday_date')))==$value)
+                                                  <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-info label-mini">GH</span></td>
                                                   @else
-                                                  <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-primary label-mini">N</span></td>
+                                               <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-default label-mini">N</span></td>
 
                                                      @endif
                                                        @endforeach
