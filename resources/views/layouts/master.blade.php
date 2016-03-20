@@ -418,6 +418,8 @@
                                 <li><a href="{{URL::to('Institute/Setting')}}}}">Institute Setting</a></li>
                                 <li><a href="{{URL::to('supadmin/add/govtholiday')}}">Govt. Holiday</a></li>
                                 <li><a href="{{URL::to('admin/acadimicClander')}}">Academic Holiday</a></li>
+                              <li><a href="{{URL::to('teacher/job/allocation')}}">Teacher privilege</a></li>
+                         
                             </ul>
                         </li>
                         @endif
