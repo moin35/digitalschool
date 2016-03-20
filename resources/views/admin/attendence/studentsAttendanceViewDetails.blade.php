@@ -118,7 +118,7 @@ Attendance Information
                                             <th><?php echo date("F"); ?></th>
 
                                                  @foreach ($listdate as $key => $value)
-                                                 <?php echo date('D',strtotime($value)) ?>
+
                                                 @if(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$stdInfo->st_id)->where('created_at','LIKE',"%$value%")->pluck('status')=='0')
                                                   <td  style="height:50px;float:center;" class="att-bg-color"><span class="label label-success label-mini">P</span></td>
                                                   @elseif(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$stdInfo->st_id)->where('created_at','LIKE',"%$value%")->pluck('status')=='1')
@@ -127,7 +127,14 @@ Attendance Information
                                                   <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-warning label-mini">AH</span></td>
                                                  @elseif(date('Y-m-d', strtotime(\App\Holyday::where('holiday_date','=',"$value")->pluck('holiday_date')))==$value)
                                                   <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-info label-mini">GH</span></td>
-                                                  @else
+                                                  @elseif($App==date('D',strtotime($value)))
+                                                 <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-inverse label-mini">WE</span></td>
+                                                 @elseif($sewe==date('D',strtotime($value)))
+                                                <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-inverse label-mini">WE</span></td>
+                                                @elseif($sewe3==date('D',strtotime($value)))
+                                               <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-inverse label-mini">WE</span></td>
+
+                                                    @else
                                                <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-default label-mini">N</span></td>
 
                                                      @endif

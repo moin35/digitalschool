@@ -320,15 +320,19 @@ $v=Teacher::where('institute_code','=',$iid)->get();
        return view('admin.attendence.studentsAttendenceIndex')->with('GetStudents',$GetStudents)->with('allclass',$this->getallclass());
     }
     public function postStudentsAttendenceDetails($uid){
- 
-      //$value='Sat, Fri';
-      $App=AcademicCalender::where('institute_code','=',Auth::user()->institute_id)->pluck('weekendday');
+
+
+       $value='Sat, Fri, Sun';
+      $AppWE=AcademicCalender::where('institute_code','=',Auth::user()->institute_id)->pluck('weekendday');
     // return date('D', strtotime($gh));
     //  $App=Holyday::all();
+          // return strlen($AppWE);
+          $App=str_limit($AppWE,3,'');
+          $sewe= substr($AppWE,4);
+          $sewe3= substr($value,9);
+          //return $sewe3;
 
-       //return $App;
-
-      $App=Holyday::all();
+      //$App=Holyday::all();
 
 $maxDays=date('t');//how may day current month
 $currentDayOfMonth=date('j');//today numaric
@@ -364,7 +368,7 @@ $listdate[] = date('Y-m-d', $i);
 return view('admin.attendence.studentsAttendanceViewDetails')
 ->with('stdInfo',$GetStudents)->with('stdClass',$stdClass)
 ->with('persent',$presentPersent)->with('day',$list)
-->with('listdate',$listdate)->with('App',$App);
+->with('listdate',$listdate)->with('App',$App)->with('sewe',$sewe)->with('sewe3',$sewe3);
 }
 public function getTeacherJobAllocation(){
             $ts = Teacher::where('institute_code','=',Auth::user()->institute_id)->get();
