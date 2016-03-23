@@ -55,7 +55,7 @@
                                     <input class="btn btn-success" type="button" name="clockButton" value="Loading..." onClick="showDate()" />
 
                       </form>
-                      @if(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('created_at','LIKE',"%$p%")->where('type','=','Teacher')->where('status','=',2)->count()==0)
+                   <!--   @if(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('created_at','LIKE',"%$p%")->where('type','=','Teacher')->where('status','=',2)->count()==0)
                     <div class="col-md-4"></div>
                       <div class="clo-md-4"><a  class="btn btn-danger tooltips" href="{{URL::to('/')}}/give/absence/teacher/{{$iid}}">Take Teacher Attendence</a></div>
                     <div class="col-md-4"></div>
@@ -65,8 +65,8 @@
              <div></div>
             
                     @else
-                      <div></div>
-                      @endif
+                      <div></div> 
+                      @endif-->
                             <table class="table table-striped table-hover table-bordered" id="editable-sample">
                                 <thead>
                                 <tr>

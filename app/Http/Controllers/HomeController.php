@@ -23,6 +23,11 @@ use App\ClassAdd;
 use App\Parents;
 use App\Section;
 use Illuminate\Support\Facades\DB;
+use App\Attendence;
+use App\EmployeeSchedule;
+use App\Holyday;
+use App\InstiHolyday;
+
 class HomeController extends Controller {
     /**
      * Display a listing of the resource.
@@ -47,22 +52,66 @@ class HomeController extends Controller {
                 return "Student";
             }
             elseif(priv()==3){
+                $today=date('Y-m-d');
+                $y=date("Y");
+                //return $today;
                 $totalStudents=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->count();
                 $totalStudentsMale=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Male')->count();
                 $totalStudentsFemale=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Female')->count();
                 $totalTeachesrs=Teacher::where('institute_code', '=', Auth::user()->institute_id)->count();
+                $teacherAttendence=Attendence::where('institute_code', '=', Auth::user()->institute_id)
+                ->where('type','=','Teacher')->where('status','=',0)->where('created_at','LIKE',"%$today%")->count();
+                   $teacherAttendence1=Attendence::where('institute_code', '=', Auth::user()->institute_id)
+                ->where('type','=','Teacher')->where('status','=',1)->where('created_at','LIKE',"%$today%")->count();
+              
+              $total= $teacherAttendence+$teacherAttendence1;
+              //return $total;
+                  $today_atten=(int)(($total/$totalTeachesrs)*100);
+                  //return $today_atten;
+         $a1=Attendence::where('institute_code','=',Auth::user()->institute_id)
+         ->where('created_at','LIKE',"%$y%")
+         ->where('type','=','Teacher')
+         ->where('status','=',1)->count();
+         $a0=Attendence::where('institute_code','=',Auth::user()->institute_id)
+         ->where('created_at','LIKE',"%$y%")
+         ->where('type','=','Teacher')
+         ->where('status','=',0)->count();
+         $ay=$a1+$a0;
+//return $ay;
+     if ($y%4==0) {
+      $x=366;
+       $year_percent=(int)(($ay/$x)*100);
+     }
+     else{
+       $yx=365;
+       $year_percent=(int)(($ay/$yx)*100);
+     }
+                //return $atten_percent;
                 // return $AtotalInstitute;
-                return view('welcome')->with('totalStudents',$totalStudents)->with('totalTeachesrs',$totalTeachesrs)
-                    ->with('totalStudentsMale',$totalStudentsMale)->with('totalStudentsFemale',$totalStudentsFemale);
-
-            }
+      $totalTeacherMale=Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Male')->count();
+      $totalTeacherFemale=Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Female')->count(); 
+   $m=date("Y-m");
+    ///$h=Holyday::where('holiday_date','LIKE',"%2016-03%")->get();
+   //$h=Holyday::where('holiday_date','LIKE',"%$m%")->get();
+   $d=date('t');
+   $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();   
+   $p=$d-$at;
+   $ms=(int)(($p/$d)*100);  
+   return view('welcome')->with('totalStudents',$totalStudents)->with('totalTeachesrs',$totalTeachesrs)
+                    ->with('totalStudentsMale',$totalStudentsMale)
+                    ->with('totalStudentsFemale',$totalStudentsFemale)
+                    ->with('today',$today_atten)
+                    ->with('year',$year_percent)
+                    ->with('m',$totalTeacherMale)
+                    ->with('f',$totalTeacherFemale)
+                    ->with('mon',$ms);
+}
             elseif(priv()==4){
                 return "Teacher";
             }
             elseif(priv()==5){
                 return "Parents";
             }
-
             else {
 
                 Session::flash('data', 'Not Logged In! Please Login to Continue.');
