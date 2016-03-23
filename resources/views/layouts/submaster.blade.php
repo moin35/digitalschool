@@ -383,9 +383,13 @@
                             </a>
                             <ul class="sub">
 
-
+ <?php $p=date("Y-m-d");?>
                                 <li><a href="{{URL::to('students/attendence/Index')}}">Student Attendance</a></li>
+                                    @if(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('created_at','LIKE',"%$p%")->where('type','=','Teacher')->where('status','=',2)->where('status','!=',0)->where('status','!=',1)->count()==0)
+                                <li><a href="{{URL::to('/')}}/give/absence/teacher/{{Auth::user()->institute_id}}">Teacher Attendance</a></li>
+                                 @else
                                 <li><a href="{{URL::to('teacher/attendence')}}">Teacher Attendance</a></li>
+                                @endif
                                 <li><a href="{{URL::to('grade/index')}}">OtherUsers Attendance</a></li>
                                 <li><a href="{{URL::to('attendence/result/teacher')}}">Teacher Attendance Report</a></li>
                             </ul>
@@ -421,6 +425,8 @@
                                 <li><a href="{{URL::to('Institute/Setting')}}}}">Institute Setting</a></li>
                                 <li><a href="{{URL::to('supadmin/add/govtholiday')}}">Govt. Holiday</a></li>
                                 <li><a href="{{URL::to('admin/acadimicClander')}}">Academic Holiday</a></li>
+                                <li><a href="{{URL::to('teacher/job/allocation')}}">Teacher privilege</a></li>
+                         
                             </ul>
                         </li>
 

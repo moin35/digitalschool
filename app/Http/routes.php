@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     if(Auth::check()){
     $AtotalInstitute=App\Institute::where('status','=',1)->count();
       $AtotalStudents=App\Students::where('status','=',1)->count();
@@ -20,7 +20,7 @@ Route::get('/', function () {
   /*
         return view('welcome')->with('atotalInstitute',$AtotalInstitute)
         ->with('atotalStudents',$AtotalStudents)->with('atotalStudentsMale',$AtotalStudentsMale)->with('atotalStudentsFemale',$AtotalStudentsFemale);
-   */
+
      $totalStudents=App\Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->count();
      $totalStudentsMale=App\Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Male')->count();
      $totalStudentsFemale=App\Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Female')->count();
@@ -33,9 +33,9 @@ Route::get('/', function () {
     else{
     return view('auth.login');
     }
-});
+}); */
 //auth route moin
-Route::get('home',['middleware' => 'auth', 'uses' => 'HomeController@home']);
+Route::get('/',['middleware' => 'auth', 'uses' => 'HomeController@home']);
 Route::get('/lang/{lang}',['middleware' => 'auth', 'uses' => 'LangController@home']);
 
 Route::get('reg', function(){
@@ -309,4 +309,6 @@ Route::get('supadmin/add/govtholiday','AttendenceController@getGovetholiyday');
 Route::post('supadmin/add/govtholiday','AttendenceController@postGovetholiyday');
 Route::get('/Academic/Holyday/delete/{id}','AttendenceController@deleteAcademicHoliday');
 Route::get('/Academic/weekend/delete/{id}','AttendenceController@deleteAcademicWeekend');
- 
+
+//Attdence Report For Teacher
+Route::get('teacher/all/type/attdence/report','AttendenceController@getTeacherAttdenceAllReport'); 

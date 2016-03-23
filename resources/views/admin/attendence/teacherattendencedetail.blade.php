@@ -149,7 +149,17 @@
         <td style="height:50px; float:center;"><span class="label label-success label-mini" >&nbsp;&nbsp;P</span></td>
         @elseif(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$teacher->teacher_id)->where('created_at','LIKE',"%$v%")->pluck('status')=='2')
         <td style="height:50px; float:center;"><span class="label label-danger label-mini" >&nbsp;&nbsp;A</span></td>
-        @else
+          @elseif(date('Y-m-d', strtotime(\App\InstiHolyday::where('institute_code','=',Auth::user()->institute_id)->where('holiday_date','=',"$v")->pluck('holiday_date')))==$v)
+      <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-warning label-mini">AH</span></td>
+     @elseif(date('Y-m-d', strtotime(\App\Holyday::where('holiday_date','=',"$v")->pluck('holiday_date')))==$v)
+      <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-info label-mini">GH</span></td>
+      @elseif($App==date('D',strtotime($v)))
+     <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-inverse label-mini">WE</span></td>
+     @elseif($sewe==date('D',strtotime($v)))
+    <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-inverse label-mini">WE</span></td>
+    @elseif($sewe3==date('D',strtotime($v)))
+   <td style="height:50px;float:center;" class="att-bg-color"><span class="label label-inverse label-mini">WE</span></td>
+    @else
         <td style="background-color:white;color:black; float:center;height:50px;">&nbsp;&nbsp;B</td>
          @endif
            @endforeach

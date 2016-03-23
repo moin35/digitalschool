@@ -97,10 +97,18 @@ class AttendenceController extends Controller
     }
     public function detailReportIndividualTeacher($tid)
     {
+       $AppWE=AcademicCalender::where('institute_code','=',Auth::user()->institute_id)->pluck('weekendday');
+    // return date('D', strtotime($gh));
+    //  $App=Holyday::all();
+          // return strlen($AppWE);
+          $App=str_limit($AppWE,3,'');
+          $sewe= substr($AppWE,4);
+          $sewe3= substr($AppWE,9);
       $today=date("d");
       $m=date("Y-m");
       $y=date("Y");
-      $at=Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$tid)->where('created_at','LIKE',"%$m%")->where('status','=',1)->count();
+      $at=Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$tid)->where('created_at','LIKE',"%$m%")->where('status','=',0)->count();
+      //return $today;
       $atten_percent=(int)(($at/$today)*100);
       $ay=Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$tid)->where('created_at','LIKE',"%$y%")->where('status','=',1)->count();
      if ($y%4==0) {
@@ -123,14 +131,6 @@ for($i=$start_time; $i<$end_time; $i+=86400)
    $list[] = date('Y-m-d', $i);
    $list1[] = date('d D', $i);
 }
-//foreach ($list1 as $key => $value) {
-//$value;
- //$t=Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$tid)->where('created_at','LIKE',"%$value%")->first();
-//echo $t;
-//}
-//var_dump($list);
-//return $list1;
-    //return $t;
       $tpinfo=Teacher::where('institute_code','=',Auth::user()->institute_id)->where('teacher_id','=',$tid)->first();
        $today = date("Y-m-d");
                 $data1=Attendence::where('institute_code','=',Auth::user()->institute_id)
@@ -148,7 +148,8 @@ $diff_seconds  = strtotime('10:00:00.000') - strtotime($data1);
 $stat = floor($diff_seconds/3600).'H:'.floor(($diff_seconds%3600)/60).'M';
 //return $stat;
         return view('admin.attendence.teacherattendencedetail',['stat'=>$stat,
-          'teacher'=>$tpinfo,'percent'=>$atten_percent,'year'=>$year_percent,'day'=>$list,'pre'=>$list1]);
+          'teacher'=>$tpinfo,'percent'=>$atten_percent,'year'=>$year_percent,
+          'day'=>$list,'pre'=>$list1,'App'=>$App,'sewe'=>$sewe,'sewe3'=>$sewe3]);
     }
     /**
      * Show the form for editing the specified resource.
