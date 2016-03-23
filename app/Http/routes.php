@@ -309,3 +309,4 @@ Route::get('supadmin/add/govtholiday','AttendenceController@getGovetholiyday');
 Route::post('supadmin/add/govtholiday','AttendenceController@postGovetholiyday');
 Route::get('/Academic/Holyday/delete/{id}','AttendenceController@deleteAcademicHoliday');
 Route::get('/Academic/weekend/delete/{id}','AttendenceController@deleteAcademicWeekend');
+ 

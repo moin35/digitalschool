@@ -149,9 +149,9 @@
                         <h4 class="widget-h">Daily Sales</h4>
                         <div class="bar-stats">
                             <ul class="progress-stat-bar clearfix">
-                                <li data-percent="50%"><span class="progress-stat-percent pink"></span></li>
+                                <li data-percent="80%"><span class="progress-stat-percent pink"></span></li>
                                 <li data-percent="90%"><span class="progress-stat-percent"></span></li>
-                                <li data-percent="70%"><span class="progress-stat-percent yellow-b"></span></li>
+                                <li data-percent="40%"><span class="progress-stat-percent yellow-b"></span></li>
                             </ul>
                             <ul class="bar-legend">
                                 <li><span class="bar-legend-pointer pink"></span> New York</li>

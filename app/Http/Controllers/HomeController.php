@@ -39,8 +39,12 @@ class HomeController extends Controller {
                 $AtotalStudents=Students::where('status','=',1)->count();
                 $AtotalStudentsMale=Students::where('status','=',1)->where('gender','=','Male')->count();
                 $AtotalStudentsFemale=Students::where('status','=',1)->where('gender','=','Female')->count();
+              //  $dalyAttendence=
 
-              return view('welcome')->with('atotalInstitute',$AtotalInstitute)->with('atotalStudents',$AtotalStudents)->with('atotalStudentsMale',$AtotalStudentsMale)->with('atotalStudentsFemale',$AtotalStudentsFemale);
+              return view('welcome')->with('atotalInstitute',$AtotalInstitute)
+              ->with('atotalStudents',$AtotalStudents)
+              ->with('atotalStudentsMale',$AtotalStudentsMale)
+              ->with('atotalStudentsFemale',$AtotalStudentsFemale);
 
             }
             elseif(priv()==2){
