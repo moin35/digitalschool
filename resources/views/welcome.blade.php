@@ -56,7 +56,9 @@
 
     <!--mini statistics start-->
     <div class="row">
+
         <div class="col-md-3">
+        
             <div class="mini-stat clearfix">
                 <span class="mini-stat-icon orange"><i class="fa  ico-users"></i></span>
                 <div class="mini-stat-info">
@@ -66,8 +68,9 @@
 
                 </div>
             </div>
+
         </div>
-   
+
         <div class="col-md-3">
             <div class="mini-stat clearfix">
                 <span class="mini-stat-icon pink"><i class="fa fa-male"></i></span>
