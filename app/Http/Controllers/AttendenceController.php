@@ -131,6 +131,8 @@ for($i=$start_time; $i<$end_time; $i+=86400)
    $list[] = date('Y-m-d', $i);
    $list1[] = date('d D', $i);
 }
+
+//return $list1;
       $tpinfo=Teacher::where('institute_code','=',Auth::user()->institute_id)->where('teacher_id','=',$tid)->first();
        $today = date("Y-m-d");
                 $data1=Attendence::where('institute_code','=',Auth::user()->institute_id)
@@ -322,16 +324,41 @@ $v=Teacher::where('institute_code','=',$iid)->get();
        return view('admin.attendence.studentsAttendenceIndex')->with('GetStudents',$GetStudents)->with('allclass',$this->getallclass());
     }
     public function postStudentsAttendenceDetails($uid){
+       $Cmonth = date("Y-m");
+      $holi=Holyday::where('holiday_date','=','2016-03-26')->count();
+      $query = Holyday::query();
+
+     return $holi;
+if (!empty($Cmonth)) {
+  $query->where('holiday_date', 'like', "%$Cmonth%");
+       }
+
+$count = $query->count();
+
+   return $query;
+      $Cmonth = date("Y-m");
+    $holi=Holyday::all();
+    $holi=Holyday::all()->count($Cmonth);
+     return $holi;
+
+    foreach ($holi as $key => $value) {
+    return  date('Y-m', strtotime($value->holiday_date));
+
+      //$holi=Holyday::where('holiday_date','LIKE','%$Cmonth%')->count();
+      # code...
+    }
+  return  $value->holiday_date->count($Cmonth);
+   //$holi=Holyday::where('holiday_date','=','03')->count();
 
 
-       $value='Sat, Fri, Sun';
       $AppWE=AcademicCalender::where('institute_code','=',Auth::user()->institute_id)->pluck('weekendday');
+
     // return date('D', strtotime($gh));
     //  $App=Holyday::all();
           // return strlen($AppWE);
           $App=str_limit($AppWE,3,'');
           $sewe= substr($AppWE,4);
-          $sewe3= substr($value,9);
+          $sewe3= substr($AppWE,9);
           //return $sewe3;
 
       //$App=Holyday::all();
@@ -342,6 +369,7 @@ $today = date("d");
 $Cmonth = date("Y-m");
 $y=date("Y");
 // return $y;
+
 $GetStudents=DB::table('tbl_studets')
 ->join('tbl_attendence','tbl_studets.st_id','=','tbl_attendence.uid')
 ->select('tbl_studets.*','tbl_attendence.*')
@@ -351,7 +379,9 @@ $GetStudents=DB::table('tbl_studets')
 ->where('tbl_studets.st_id','=',$uid)
 ->first();
 $stdPrestAve=Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$uid)->where('status','=',0)->where('created_at','LIKE',"%$Cmonth%")->count();
+
 $presentPersent= (int)(($stdPrestAve/$today)*100);
+//return $presentPersent;
 $stdClass=ClassAdd::where('class_id','=',$GetStudents->class)->pluck('class_name');
 $month = date('m');
 $year = date("Y");
@@ -523,4 +553,29 @@ public function deleteAcademicWeekend($id){
   $deleteHoliday=AcademicCalender::where('institute_code','=',Auth::user()->institute_id)->where('id','=',$id)->delete();
     return redirect()->back();
 }
+public function getTeacherAttdenceAllReport($tid){
+   $AppWE=AcademicCalender::where('institute_code','=',Auth::user()->institute_id)->pluck('weekendday');
+    
+    $tpinfo=Teacher::where('institute_code','=',Auth::user()->institute_id)->where('teacher_id','=',$tid)->first();
+     $App=str_limit($AppWE,3,'');
+          $sewe= substr($AppWE,4);
+          $sewe3= substr($AppWE,9);
+  $month = Input::get('month');
+//  return $month;
+$year = date("Y");
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+//return $start_time;
+$end_time = strtotime("+1 month", $start_time);
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+   $list[] = date('l', $i);
+   $list1[] = date('Y-m-d', $i);
+}
+//return $list;
+return view('admin.attendence.individualteacherreport',['pre'=>$list1,'day'=>$list,
+  'teacher'=>$tpinfo,'App'=>$App,'sewe'=>$sewe,'sewe3'=>$sewe3]);
+}
+
+
 }

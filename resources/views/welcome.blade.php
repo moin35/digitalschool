@@ -158,17 +158,17 @@
             <section class="panel">
                 <div class="panel-body">
                     <div class="top-stats-panel">
-                        <h4 class="widget-h">Daily Sales</h4>
+                        <h4 class="widget-h" style="color:black;">Students Attendence Report</h4>
                         <div class="bar-stats">
                             <ul class="progress-stat-bar clearfix">
-                                <li data-percent="50%"><span class="progress-stat-percent pink"></span></li>
-                                <li data-percent="90%"><span class="progress-stat-percent"></span></li>
-                                <li data-percent="70%"><span class="progress-stat-percent yellow-b"></span></li>
+                                <li data-percent="{{$studentTodayReport}}%" style="width:13%;"><span class="progress-stat-percent pink" style="color:white;">{{$studentTodayReport}}%</span></li>
+                                <li data-percent="{{$monthpresentPersent}}%" style="width:13%;"><span class="progress-stat-percent" style="color:white;">{{$monthpresentPersent}}%</span></li>
+                                <li data-percent="70%" style="width:13%;"><span class="progress-stat-percent yellow-b" style="color:white;"></span></li>
                             </ul>
                             <ul class="bar-legend">
-                                <li><span class="bar-legend-pointer pink"></span> New York</li>
-                                <li><span class="bar-legend-pointer green"></span> Los Angels</li>
-                                <li><span class="bar-legend-pointer yellow-b"></span> Dallas</li>
+                                <li><span class="bar-legend-pointer pink"></span>Today</li>
+                                <li><span class="bar-legend-pointer green"></span> This Month </li>
+                                <li><span class="bar-legend-pointer yellow-b"></span> This Year</li>
                             </ul>
                             <div class="daily-sales-info">
                                 <span class="sales-count">1200 </span> <span class="sales-label">Products Sold</span>
@@ -235,9 +235,9 @@
                         <h4 class="widget-h">Daily Sales</h4>
                         <div class="bar-stats">
                             <ul class="progress-stat-bar clearfix">
-                                <li data-percent="50%"><span class="progress-stat-percent pink"></span></li>
+                                <li data-percent="80%"><span class="progress-stat-percent pink"></span></li>
                                 <li data-percent="90%"><span class="progress-stat-percent"></span></li>
-                                <li data-percent="70%"><span class="progress-stat-percent yellow-b"></span></li>
+                                <li data-percent="40%"><span class="progress-stat-percent yellow-b"></span></li>
                             </ul>
                             <ul class="bar-legend">
                                 <li><span class="bar-legend-pointer pink"></span> New York</li>

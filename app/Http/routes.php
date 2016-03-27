@@ -20,7 +20,7 @@
   /*
         return view('welcome')->with('atotalInstitute',$AtotalInstitute)
         ->with('atotalStudents',$AtotalStudents)->with('atotalStudentsMale',$AtotalStudentsMale)->with('atotalStudentsFemale',$AtotalStudentsFemale);
-   
+
      $totalStudents=App\Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->count();
      $totalStudentsMale=App\Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Male')->count();
      $totalStudentsFemale=App\Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Female')->count();
@@ -278,6 +278,7 @@ Route::get('give/attendence/teacher/end/{tid}','AttendenceController@postEndTeac
 
 Route::get('attendence/result/teacher','AttendenceController@getReportTeacherAttendence');
 Route::get('view/attendence/teacher/{tid}','AttendenceController@detailReportIndividualTeacher');
+Route::post('view/attendence/teacher/{tid}','AttendenceController@getTeacherAttdenceAllReport');
 Route::get('give/absence/teacher/{iid}','AttendenceController@absenceReportTeacher');
 //Attendance for Students
 Route::get('students/attendence','AttendenceController@getStudentsAttendence');
@@ -310,5 +311,5 @@ Route::post('supadmin/add/govtholiday','AttendenceController@postGovetholiyday')
 Route::get('/Academic/Holyday/delete/{id}','AttendenceController@deleteAcademicHoliday');
 Route::get('/Academic/weekend/delete/{id}','AttendenceController@deleteAcademicWeekend');
 
-//Attdence Report For Teacher 
-Route::get('teacher/all/type/attdence/report','AttendenceController@getTeacherAttdenceAllReport');
+//Attdence Report For Teacher
+//Route::post('teacher/all/type/attdence/report',['as'=>'searchmearchent','uses'=>'AttendenceController@getTeacherAttdenceAllReport']); 

@@ -80,7 +80,27 @@
 
 
                             <h1><p style="font-size: 15px">*** View Information ***</p>
-
+                                    <p>
+                                      {!!Form::open(array('class'=>'cmxform form-horizontal')) !!}
+                                     <div class="form-group">
+                                        <label for="classesID" class="control-label col-lg-3">
+                                        Year 
+                                        </label>
+                                      <div class="col-md-6">
+                                    <select name="month" style="width:auto;" class="form-control selectWidth" onchange="this.form.submit()">
+                                 @for ($i = 01; $i <= 12; $i++)
+                                 <option class="">{{$i}}</option>
+                                 @endfor
+                             </select>
+                              </div>
+                               </div>
+                                    <div class="form-group">
+                                                                        <div class="col-lg-offset-3 col-lg-6">
+                                                                           <button class="btn btn-primary"><i class="fa fa-plus"></i> Add Academic Calendar</button>
+                                                                        </div>
+                                                                    </div>
+                                      {!!Form::close()!!}
+                                    </p>
                                 <p>Today: <?php echo date('Y-M-d');?> Late: {{$stat}}</p><br>
                                Phone: {{App\Parents::where('guradian_id','=',$teacher->guardian_id)->pluck('phone')}} </h1>
 
