@@ -325,29 +325,7 @@ $v=Teacher::where('institute_code','=',$iid)->get();
        $Cmonth = date("Y-m");
       $holi=Holyday::where('holiday_date','=','2016-03-26')->count();
       $query = Holyday::query();
-
-     return $holi;
-if (!empty($Cmonth)) {
-  $query->where('holiday_date', 'like', "%$Cmonth%");
-       }
-
-$count = $query->count();
-
-   return $query;
-      $Cmonth = date("Y-m");
-    $holi=Holyday::all();
-    $holi=Holyday::all()->count($Cmonth);
-     return $holi;
-
-    foreach ($holi as $key => $value) {
-    return  date('Y-m', strtotime($value->holiday_date));
-
-      //$holi=Holyday::where('holiday_date','LIKE','%$Cmonth%')->count();
-      # code...
-    }
-  return  $value->holiday_date->count($Cmonth);
-   //$holi=Holyday::where('holiday_date','=','03')->count();
-
+ 
 
       $AppWE=AcademicCalender::where('institute_code','=',Auth::user()->institute_id)->pluck('weekendday');
 
