@@ -99,6 +99,25 @@ class HomeController extends Controller {
     ///$h=Holyday::where('holiday_date','LIKE',"%2016-03%")->get();
    //$h=Holyday::where('holiday_date','LIKE',"%$m%")->get();
    $d=date('t');
+
+   $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();   
+   $p=$d-$at;
+   //return $p;
+ $a12=Attendence::where('institute_code','=',Auth::user()->institute_id)
+         ->where('created_at','LIKE',"%$m%")
+         ->where('type','=','Teacher')
+         ->where('status','=',1)->count();
+
+         $a02=Attendence::where('institute_code','=',Auth::user()->institute_id)
+         ->where('created_at','LIKE',"%$m%")
+         ->where('type','=','Teacher')
+         ->where('status','=',0)->count();
+         $ay2=$a12+$a02;
+             //return $a12.$a02;
+         $t=$totalTeachesrs*$p;
+   $ms=(int)(($ay2/$t)*100);
+   //return $ms;
+
    $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();
    $InstiHolyday=InstiHolyday::where('holiday_date','LIKE',"%$m%")->where('institute_code', '=', Auth::user()->institute_id)->count();
   // $InstiHolyday=AcademicCalender::where('holiday_date','LIKE',"%$m%")->where('institute_code', '=', Auth::user()->institute_id)->count();
@@ -117,6 +136,7 @@ class HomeController extends Controller {
     $mtotal=($totalStudents*$p);
      $monthpresentPersent= (int)(($stdPrestAve/$mtotal)*100);
      ///yearly calculation
+
 
    return view('welcome')->with('totalStudents',$totalStudents)->with('totalTeachesrs',$totalTeachesrs)
                     ->with('totalStudentsMale',$totalStudentsMale)

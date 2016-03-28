@@ -131,6 +131,8 @@ for($i=$start_time; $i<$end_time; $i+=86400)
    $list[] = date('Y-m-d', $i);
    $list1[] = date('d D', $i);
 }
+
+//return $list1;
       $tpinfo=Teacher::where('institute_code','=',Auth::user()->institute_id)->where('teacher_id','=',$tid)->first();
        $today = date("Y-m-d");
                 $data1=Attendence::where('institute_code','=',Auth::user()->institute_id)
@@ -529,4 +531,29 @@ public function deleteAcademicWeekend($id){
   $deleteHoliday=AcademicCalender::where('institute_code','=',Auth::user()->institute_id)->where('id','=',$id)->delete();
     return redirect()->back();
 }
+public function getTeacherAttdenceAllReport($tid){
+   $AppWE=AcademicCalender::where('institute_code','=',Auth::user()->institute_id)->pluck('weekendday');
+    
+    $tpinfo=Teacher::where('institute_code','=',Auth::user()->institute_id)->where('teacher_id','=',$tid)->first();
+     $App=str_limit($AppWE,3,'');
+          $sewe= substr($AppWE,4);
+          $sewe3= substr($AppWE,9);
+  $month = Input::get('month');
+//  return $month;
+$year = date("Y");
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+//return $start_time;
+$end_time = strtotime("+1 month", $start_time);
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+   $list[] = date('l', $i);
+   $list1[] = date('Y-m-d', $i);
+}
+//return $list;
+return view('admin.attendence.individualteacherreport',['pre'=>$list1,'day'=>$list,
+  'teacher'=>$tpinfo,'App'=>$App,'sewe'=>$sewe,'sewe3'=>$sewe3]);
+}
+
+
 }

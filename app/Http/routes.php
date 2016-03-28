@@ -278,6 +278,7 @@ Route::get('give/attendence/teacher/end/{tid}','AttendenceController@postEndTeac
 
 Route::get('attendence/result/teacher','AttendenceController@getReportTeacherAttendence');
 Route::get('view/attendence/teacher/{tid}','AttendenceController@detailReportIndividualTeacher');
+Route::post('view/attendence/teacher/{tid}','AttendenceController@getTeacherAttdenceAllReport');
 Route::get('give/absence/teacher/{iid}','AttendenceController@absenceReportTeacher');
 //Attendance for Students
 Route::get('students/attendence','AttendenceController@getStudentsAttendence');
@@ -311,4 +312,4 @@ Route::get('/Academic/Holyday/delete/{id}','AttendenceController@deleteAcademicH
 Route::get('/Academic/weekend/delete/{id}','AttendenceController@deleteAcademicWeekend');
 
 //Attdence Report For Teacher
-Route::get('teacher/all/type/attdence/report','AttendenceController@getTeacherAttdenceAllReport'); 
+//Route::post('teacher/all/type/attdence/report',['as'=>'searchmearchent','uses'=>'AttendenceController@getTeacherAttdenceAllReport']); 

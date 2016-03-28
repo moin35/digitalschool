@@ -948,6 +948,7 @@
     });
 
 </script>
+
 <script>
     jQuery(document).ready(function($){
         n=1;
@@ -965,8 +966,8 @@
     });
 
 </script>
-<script language="JavaScript" type="text/javascript">
 
+<script language="JavaScript" type="text/javascript">
  $(function(){
 $('#addAllMarks').on('submit',function(e){
     $.ajaxSetup({
@@ -992,26 +993,27 @@ $('#addAllMarks').on('submit',function(e){
     });
 });
  </script>
- <script language="JavaScript" type="text/javascript">
 
+ <script language="JavaScript" type="text/javascript">
  $(document).ready(function () {
      $('#ascuisines').on('change', function () {
          $('#getcuisines').val($(this).val().join());
      }).trigger('change');
  });
  </script>
- <script language="JavaScript" type="text/javascript">
 
+ <script language="JavaScript" type="text/javascript">
  $(document).ready(function () {
      $('#holyascuisines').on('change', function () {
          $('#holygetcuisines').val($(this).val().join());
      }).trigger('change');
  });
  </script>
+
    <script src="{{URL::to('/')}}/ajaxjs/exprence.js" type="text/javascript"></script>
     <script src="{{URL::to('/')}}/ajaxjs/attendance.js" type="text/javascript"></script>
- <script language="JavaScript" type="text/javascript">
 
+ <script language="JavaScript" type="text/javascript">
   $(function(){
  $('#iiSetting').on('submit',function(e){
      $.ajaxSetup({
@@ -1037,6 +1039,7 @@ $('#addAllMarks').on('submit',function(e){
      });
  });
   </script>
+
  <script type="text/javascript">
  $.ajaxSetup({
     headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
@@ -1056,6 +1059,7 @@ $('#addAllMarks').on('submit',function(e){
 
 <script src="{{URL::to('/')}}/multiinputfield/viewinputdate.js"></script>
 <script src="{{URL::to('/')}}/multiinputfield/selectaddremove.js"></script>
+
 <script>
     jQuery(document).ready(function() {
         EditableTable.init();
