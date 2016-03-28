@@ -43,7 +43,21 @@
     <div class="panel-body profile-information">
           <table class="resnponsive table-bordered">
     <thead>
-      @foreach($pre as $q => $v)
+    <tr>
+      <th>#</th>
+      <th>Date </th>
+      <th>Status</th>
+      <th colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Check In &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Check Out &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Working Time &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>Late</th>
+      <th>Over Time</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+  @foreach($pre as $q => $v)
       <tr>
        <th>#</th>
       
@@ -52,9 +66,8 @@
       for ($i=$q; $i <$q ; $i++) { 
        echo $q->$v;
       }
-     ?>
-           
-   @if(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$teacher->teacher_id)->where('created_at','LIKE',"%$v%")->pluck('status')=='1')
+     ?>         
+        @if(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$teacher->teacher_id)->where('created_at','LIKE',"%$v%")->pluck('status')=='1')
         <td style="height:50px;float:center;"><span class="label label-success label-mini" >&nbsp;&nbsp;P</span></td>
         @elseif(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$teacher->teacher_id)->where('created_at','LIKE',"%$v%")->pluck('status')=='0')
         <td style="height:50px; float:center;"><span class="label label-success label-mini" >&nbsp;&nbsp;P</span></td>
@@ -74,19 +87,40 @@
         <td style="background-color:white;color:black; float:center;height:50px;">&nbsp;&nbsp;B</td>
          @endif
         </th>
+        <th colspan="2">
+        @if($c=\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$teacher->teacher_id)->where('created_at','LIKE',"%$v%")->pluck('created_at'))
+        <?php
+          $a= substr($c,10);
+          echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp".date('h:i:s a', strtotime($a))."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp";
+          ?>
+          @endif
+        </th>
+        <th>
+   @if($c=\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$teacher->teacher_id)->where('created_at','LIKE',"%$v%")->pluck('updated_at'))
+        <?php
+  $a= substr($c,10);
+  echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp".date('h:i:s a', strtotime($a))."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp";
+?>
+@endif
+        </th>
+        <th colspan="2">
+          <?php 
+        $c=\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$teacher->teacher_id)->where('created_at','LIKE',"%$v%")->pluck('created_at');  
+        $d=\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('uid','=',$teacher->teacher_id)->where('created_at','LIKE',"%$v%")->pluck('updated_at');
+$diff_seconds  = strtotime($d) - strtotime($c);
+//return $diff_seconds;
+$stat = floor($diff_seconds/3600).':'.floor(($diff_seconds%3600)/60).'M';
+echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp".$stat;
+          ?>
+        </th>
+        <th>ok</th>
+        <th>ok</th>
+  
+
       </tr>
           @endforeach
              @foreach($day as $q => $v)
-    
-               
-        
-         
-         
-    
-   @endforeach
-    </thead>
-    <tbody>
-
+        @endforeach
     </tbody>
   </table>
 
