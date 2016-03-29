@@ -1700,6 +1700,7 @@
                             <span>{{Lang::get('home.teacher')}} </span>
                         </a>
                     </li>
+
                     <li>
                         <a href="{{URL::to('user/index')}}">
                             <i class="fa fa-user"></i>
@@ -2401,12 +2402,16 @@
                             <span>{{Lang::get('home.teacher')}} </span>
                         </a>
                     </li>
+                       @if(Auth::check())
+                     @if(Auth::user()->teacheradd==1)
                     <li>
                         <a href="{{URL::to('user/index')}}">
                             <i class="fa fa-user"></i>
                             <span>{{Lang::get('home.user')}} </span>
                         </a>
                     </li>
+                    @endif
+                    @endif
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-tasks"></i>
@@ -2417,7 +2422,11 @@
                             <li><a href="{{URL::to('admin/add/subject')}}">{{Lang::get('home.subject')}}</a></li>
                             <li><a href="{{URL::to('sectionAdd')}}">{{Lang::get('home.section')}}</a></li>
                             <li><a href=" {{URL::to('admin/add/routine')}}">Add Class Routine</a></li>
+                                 @if(Auth::check())
+                     @if(Auth::user()->priv==1 || Auth::user()->priv==3)
                             <li><a href="{{URL::to('admin/set/in/out/time')}}">Institute Official time Schedule</a></li>
+                                @endif
+                    @endif
                             <!--      <li><a href="file_upload.html">Muliple File Upload</a></li>
                                <li><a href="dropzone.html">Dropzone</a></li>
                                <li><a href="inline_editor.html">Inline Editor</a></li>
@@ -2433,9 +2442,12 @@
                             </a>
                             <ul class="sub">
 
+                                           @if(Auth::check())
+                     @if(Auth::user()->examschedule==1)
                                 <li><a href="{{URL::to('/admin/add/exam')}}">Exam</a></li>
                                 <li><a href="{{URL::to('admin/add/exam/schedule')}}">Add Exam Schedule</a></li>
-                                <li><a href="{{URL::to('mark/index')}}">{{Lang::get('home.mark')}}</a></li>
+                                         @endif
+                    @endif   <li><a href="{{URL::to('mark/index')}}">{{Lang::get('home.mark')}}</a></li>
                                 <li><a href="{{URL::to('grade/index')}}">{{Lang::get('home.grade')}}</a></li>
                             </ul>
                         </li>
@@ -3760,16 +3772,7 @@
         <div id="sidebar" class="nav-collapse">
             <!-- sidebar menu start-->            <div class="leftside-navigation">
                 <ul class="sidebar-menu" id="nav-accordion">
-                    @if(Auth::check())
-                        @if(Auth::user()->priv==1)
-                            <li>
-                                <a href="{{URL::to('admin/institute/registration')}}">
-                                    <i class="fa fa-building-o"></i>
-                                    <span>{{Lang::get('home.institute')}} </span>
-                                </a>
-                            </li>
-                        @endif
-                    @endif
+     
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-th"></i>

@@ -21,6 +21,8 @@
     </script>
     <div class="row">
         <div class="col-sm-12">
+              @if(Auth::check())
+             @if(Auth::user()->teacheradd==1)
             <section class="panel">
                 @if(Session::get('data'))
                     <div class="alert alert-dismissible alert-info">
@@ -248,7 +250,8 @@
 
                 </div>
             </section>
-
+@endif
+@endif
             <section class="panel">
                 <!-- page start-->
 
@@ -300,9 +303,12 @@
                                                 <td>{{$a->designation}}</td>
                                                 <td>
                                                     <a class="btn btn-success tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="View More"  href="{{URL::to('/')}}/teachers/details/{{$a->id}}" ><i class="fa fa-eye"></i> </a>
+                                                         @if(Auth::check())
+                                                            @if(Auth::user()->teacheradd==1)
                                                     <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/teachers/edit/{{$a->teacher_id}}"><i class="fa fa-edit"></i> </a>
                                                     <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/teachers/delete/{{$a->teacher_id}}" ><i class="fa  fa-trash-o"></i></a>
-
+                                                        @endif
+                                                        @endif
                                                 </td>
                                             </tr>
                                         @endforeach

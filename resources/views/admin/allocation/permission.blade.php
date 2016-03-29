@@ -52,7 +52,7 @@ Set Permission
                                     <th colspan="2">Attdence</th>
                                     <th colspan="2">Addmission</th>
                                     <th colspan="2">Teacher Add</th>
-                                    <th colspan="2">Subject Add</th>
+                                    <th colspan="2">Basic Info</th>
                                     <th colspan="2">Exam Schedule</th>
                                     <th colspan="2">Class Routine</th>
                                     <th colspan="2">Notice</th>
@@ -114,16 +114,16 @@ Set Permission
                                       </td><td><label> NO: <input value="0" type='radio' class='radio'  name="teacheradd" checked="checked"></label>
                                   </td>
                                       @endif 
-                                       @if($editExpense->subjectadd==1)
+                                       @if($editExpense->basicinfo==1)
                                     <td> <label>Yes
-                                      <input value="1" type='radio' class='radio'  name="subjectadd" checked="checked"></label>
-                                      </td><td><label> NO: <input value="0" type='radio' class='radio'  name="subjectadd" ></label>
+                                      <input value="1" type='radio' class='radio'  name="basicinfo" checked="checked"></label>
+                                      </td><td><label> NO: <input value="0" type='radio' class='radio'  name="basicinfo" ></label>
                                   </td>
                                       @endif
-                                     @if($editExpense->subjectadd==0)
+                                     @if($editExpense->basicinfo==0)
                                     <td> <label>Yes
-                                      <input value="1" type='radio' class='radio'  name="subjectadd" ></label>
-                                      </td><td><label> NO: <input value="0" type='radio' class='radio'  name="subjectadd" checked="checked"></label>
+                                      <input value="1" type='radio' class='radio'  name="basicinfo" ></label>
+                                      </td><td><label> NO: <input value="0" type='radio' class='radio'  name="basicinfo" checked="checked"></label>
                                   </td>
                                       @endif 
                                             @if($editExpense->examschedule==1)

@@ -11,6 +11,8 @@
 @section('body')
     <div class="row">
         <div class="col-sm-12">
+           @if(Auth::check())
+                     @if(Auth::user()->basicinfo==1)
             <section class="panel">
                 <header class="panel-heading">
                     Subject Information
@@ -142,6 +144,8 @@
 
                 </div>
             </section>
+            @endif
+            @endif
             <section class="panel">
                 <!-- page start-->
 

@@ -26,13 +26,16 @@ Section
                 <div class="adv-table editable-table ">
                     <div ng-app="app" ng-controller="TestCtrl as test">
                         <div class="clearfix">
+                           @if(Auth::check())
+                     @if(Auth::user()->basicinfo==1)
                             <div class="btn-group">
                                 <a class="btn btn-primary" ng-click="test.showBoxOne = !test.showBoxOne" >
                                     Add Section  <i class="fa fa-plus"></i>
                                 </a>
                             </div>
 
-
+@endif
+@endif
                               @if(Session::get('data'))
                               <div class="bs-example">
     <div class="alert alert-success fade in">
