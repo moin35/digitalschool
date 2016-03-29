@@ -11,6 +11,8 @@
 @section('body')
     <div class="row">
         <div class="col-sm-12">
+             @if(Auth::check())
+             @if(Auth::user()->addmission==1)
             <section class="panel">
                 <header class="panel-heading">
                     Parents
@@ -24,11 +26,13 @@
                     <div class="adv-table editable-table ">
                         <div ng-app="app" ng-controller="TestCtrl as test">
                             <div class="clearfix">
+                            
                                 <div class="btn-group">
                                     <a class="btn btn-primary" ng-click="test.showBoxOne = !test.showBoxOne" >
                                         Add Parents <i class="fa fa-plus"></i>
                                     </a>
                                 </div>
+                           
                                 <div class="btn-group pull-right">
                                     <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
                                     </button>
@@ -185,7 +189,8 @@
 
                 </div>
             </section>
-
+@endif
+@endif
             <section class="panel">
                 <!-- page start-->
 
@@ -240,9 +245,13 @@
 
                                                 <td>
                                                     <a class="btn btn-success tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="View More"  href="{{URL::to('/')}}/parents/details/{{$a->id}}" ><i class="fa fa-eye"></i> </a>
+                                                         @if(Auth::check())
+                                                            @if(Auth::user()->addmission==1)
                                                     <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/parents/edit/{{$a->guradian_id}}"><i class="fa fa-edit"></i> </a>
                                                     <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/parents/delete/{{$a->guradian_id}}" ><i class="fa  fa-trash-o"></i></a>
-
+                                                            @else
+                                                            @endif
+                                                            @endif
                                                 </td>
                                             </tr>
                                         @endforeach

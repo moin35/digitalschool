@@ -390,6 +390,7 @@ public function getTeacherJobAllocation(){
       $scheduleget=EmployeeSchedule::where('institute_code','=',Auth::user()->institute_id)->get();
       $schedule=EmployeeSchedule::where('institute_code','=',Auth::user()->institute_id)->count();
       $tedit=User::where('institute_id','=',Auth::user()->institute_id)->where('uid','=',$tid)->first();
+      //return $tedit->basicinfo;
      return view('admin.allocation.permission',['editExpense'=>$tedit,'scount'=>$schedule,'sget'=>$scheduleget]);
    }
 public function UpdateTeacherAllocation($tid){
@@ -397,12 +398,12 @@ $shift=Input::get('shift');
 $attdence=Input::get('attendence');
 $addmission=Input::get('addmission');
 $teacheradd=Input::get('teacheradd');
-$subjectadd=Input::get('subjectadd');
+$basicinfo=Input::get('basicinfo');
 $examschedule=Input::get('examschedule');
 $classroutine=Input::get('classroutine');
 $notice=Input::get('notice');
 $sms=Input::get('sms');
-
+//return $basicinfo;
 //return $shift;
 $up=User::where('institute_id','=',Auth::user()->institute_id)->where('uid','=',$tid)
             ->update([
@@ -410,7 +411,7 @@ $up=User::where('institute_id','=',Auth::user()->institute_id)->where('uid','=',
               'attdence'=>$attdence,
                  'addmission'=>$addmission,
                  'teacheradd'=>$teacheradd,
-              'subjectadd'=>$subjectadd,
+              'basicinfo'=>$basicinfo,
               'examschedule'=>$examschedule,
               'classroutine'=>$classroutine,
               'notice'=>$notice,

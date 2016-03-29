@@ -49,7 +49,7 @@ Teacher Allocation
                                             <td>{{$m->teacher_id}}</td>
                                             <td>{{$m->name}}</td>
                                       
-                                           <td><button class="btn btn-success"><a href="{{URL::to('/')}}/allocation/permission/{{$m->teacher_id}}">Set Permission</a></button></td>
+                                           <td><a class="btn btn-success" href="{{URL::to('/')}}/allocation/permission/{{$m->teacher_id}}">Set Permission</a></td>
                                         </tr>
 
                                         

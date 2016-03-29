@@ -26,11 +26,15 @@
                         <div class="adv-table editable-table ">
                                 <div ng-app="app" ng-controller="TestCtrl as test">
                                     <div class="clearfix">
+                                    @if(Auth::check())
+                                        @if(Auth::user()->addmission==1)
                                         <div class="btn-group">
                                             <a class="btn btn-primary" ng-click="test.showBoxOne = !test.showBoxOne" >
                                                 Add New Student <i class="fa fa-plus"></i>
                                             </a>
                                         </div>
+                                        @endif
+                                        @endif
                                         @if(Session::get('data'))
                                             <div class="alert alert-dismissible alert-info">
                                                 <button type="button" class="close" data-dismiss="alert">×</button>
@@ -85,7 +89,6 @@
                                                                 <div class="col-lg-6">
                                                                     <select class="form-control input-sm m-bot15" id="guardian_name" name="guardian_name" type="text">
                                                                         <option selected="selected">Select a Guardian Name</option>
-
                                                                         @foreach($parents as $r=>$t)
                                                                             <option value="{{$t}}">{{$r}}</option>
                                                                         @endforeach
@@ -322,8 +325,12 @@
                                                     <td> {{$c->class_name}}</td>
                                                     <td>
                                                         <a class="btn btn-success tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="View More"  href="{{URL::to('/')}}/student/details/{{$c->id}}" ><i class="fa fa-eye"></i> </a>
+                                                          @if(Auth::check())
+                                                            @if(Auth::user()->addmission==1)
                                                         <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/student/edit/{{$c->st_id}}"><i class="fa fa-edit"></i> </a>
                                                         <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/student/delete/{{$c->st_id}}" ><i class="fa  fa-trash-o"></i></a>
+                                                            @endif
+                                                            @endif
                                                     </td>
                                                 </tr>
                                             @endforeach
