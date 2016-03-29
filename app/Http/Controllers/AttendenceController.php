@@ -135,17 +135,17 @@ for($i=$start_time; $i<$end_time; $i+=86400)
 //return $list1;
       $tpinfo=Teacher::where('institute_code','=',Auth::user()->institute_id)->where('teacher_id','=',$tid)->first();
        $today = date("Y-m-d");
-                $data1=Attendence::where('institute_code','=',Auth::user()->institute_id)
+       $data1=Attendence::where('institute_code','=',Auth::user()->institute_id)
         ->where('type','=','Teacher')
         ->where('created_at','LIKE',"%$today%")
         ->where('uid','LIKE',$tid)
         ->pluck('created_at');
-             $data2=Attendence::where('institute_code','=',Auth::user()->institute_id)
+       $data2=Attendence::where('institute_code','=',Auth::user()->institute_id)
         ->where('type','=','Teacher')
         ->where('created_at','LIKE',"%$today%")
         ->where('uid','LIKE',$tid)
         ->pluck('updated_at');
-$diff_seconds  = strtotime('10:00:00.000') - strtotime($data1);
+$diff_seconds  = strtotime($data1)- strtotime('10:00:00.000');
 //return $diff_seconds;
 $stat = floor($diff_seconds/3600).'H:'.floor(($diff_seconds%3600)/60).'M';
 //return $stat;
@@ -550,7 +550,7 @@ for($i=$start_time; $i<$end_time; $i+=86400)
    $list[] = date('l', $i);
    $list1[] = date('Y-m-d', $i);
 }
-//return $list;
+//return $list1;
 return view('admin.attendence.individualteacherreport',['pre'=>$list1,'day'=>$list,
   'teacher'=>$tpinfo,'App'=>$App,'sewe'=>$sewe,'sewe3'=>$sewe3]);
 }
