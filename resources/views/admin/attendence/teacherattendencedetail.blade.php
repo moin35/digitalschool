@@ -94,11 +94,7 @@
                              </select>
                               </div>
                                </div>
-                                    <div class="form-group">
-                                                                        <div class="col-lg-offset-3 col-lg-6">
-                                                                           <button class="btn btn-primary"><i class="fa fa-plus"></i> Add Academic Calendar</button>
-                                                                        </div>
-                                                                    </div>
+                             
                                       {!!Form::close()!!}
                                     </p>
                                 <p>Today: <?php echo date('Y-M-d');?> Late: {{$stat}}</p><br>

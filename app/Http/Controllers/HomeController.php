@@ -41,6 +41,7 @@ class HomeController extends Controller {
     public function home() {
         if (Auth::check()) {
             if (priv() == 1) {
+              //Super Admin
                  $AtotalInstitute=Institute::where('status','=',1)->count();
                 $AtotalStudents=Students::where('status','=',1)->count();
                 $AtotalStudentsMale=Students::where('status','=',1)->where('gender','=','Male')->count();
@@ -54,9 +55,101 @@ class HomeController extends Controller {
 
             }
             elseif(priv()==2){
-                return "Student";
+              /****Student****/
+                                $today=date('Y-m-d');
+                $y=date("Y");
+                //return $today;
+                $totalStudents=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->count();
+                $tamil=50;
+                $totalStudentsFemale=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Female')->count();
+                $totalTeachesrs=Teacher::where('institute_code', '=', Auth::user()->institute_id)->count();
+                $teacherAttendence=Attendence::where('institute_code', '=', Auth::user()->institute_id)
+                ->where('type','=','Teacher')->where('status','=',0)->where('created_at','LIKE',"%$today%")->count();
+                   $teacherAttendence1=Attendence::where('institute_code', '=', Auth::user()->institute_id)
+                ->where('type','=','Teacher')->where('status','=',1)->where('created_at','LIKE',"%$today%")->count();
+
+              $total= $teacherAttendence+$teacherAttendence1;
+              //return $total;
+                  $today_atten=(int)(($total/$totalTeachesrs)*100);
+                  //return $today_atten;
+         $a1=Attendence::where('institute_code','=',Auth::user()->institute_id)
+         ->where('created_at','LIKE',"%$y%")
+         ->where('type','=','Teacher')
+         ->where('status','=',1)->count();
+         $a0=Attendence::where('institute_code','=',Auth::user()->institute_id)
+         ->where('created_at','LIKE',"%$y%")
+         ->where('type','=','Teacher')
+         ->where('status','=',0)->count();
+         $ay=$a1+$a0;
+//return $ay;
+     if ($y%4==0) {
+      $x=366;
+       $year_percent=(int)(($ay/$x)*100);
+     }
+     else{
+       $yx=365;
+       $year_percent=(int)(($ay/$yx)*100);
+     }
+                //return $atten_percent;
+                // return $AtotalInstitute;
+      $totalTeacherMale=Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Male')->count();
+      $totalTeacherFemale=Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Female')->count();
+   $m=date("Y-m");
+    ///$h=Holyday::where('holiday_date','LIKE',"%2016-03%")->get();
+   //$h=Holyday::where('holiday_date','LIKE',"%$m%")->get();
+   $d=date('t');
+
+   $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();   
+   $p=$d-$at;
+   //return $p;
+ $a12=Attendence::where('institute_code','=',Auth::user()->institute_id)
+         ->where('created_at','LIKE',"%$m%")
+         ->where('type','=','Teacher')
+         ->where('status','=',1)->count();
+
+         $a02=Attendence::where('institute_code','=',Auth::user()->institute_id)
+         ->where('created_at','LIKE',"%$m%")
+         ->where('type','=','Teacher')
+         ->where('status','=',0)->count();
+         $ay2=$a12+$a02;
+             //return $a12.$a02;
+         $t=$totalTeachesrs*$p;
+   $ms=(int)(($ay2/$t)*100);
+   //return $ms;
+
+   $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();
+   $InstiHolyday=InstiHolyday::where('holiday_date','LIKE',"%$m%")->where('institute_code', '=', Auth::user()->institute_id)->count();
+  // $InstiHolyday=AcademicCalender::where('holiday_date','LIKE',"%$m%")->where('institute_code', '=', Auth::user()->institute_id)->count();
+   //return $InstiHolyday;
+   $p=$d-($at+$InstiHolyday);
+   $ms=(int)(($p/$d)*100);
+   //students attendence report saif...
+   //today attendence calculation
+   $totalStudents=Students::where('institute_code', '=', Auth::user()->institute_id)->count();
+   $totalstudentsAtten=Attendence::where('institute_code', '=', Auth::user()->institute_id)
+   ->where('type','=','Student')->where('status','=',0)->where('created_at','LIKE',"%$today%")->count();
+    $studentTodayReport=(int)(($totalstudentsAtten/$totalStudents)*100);
+    //monthly calculation
+    $stdPrestAve=Attendence::where('institute_code','=',Auth::user()->institute_id)->where('type','=','Student')->where('status','=',0)->where('created_at','LIKE',"%$m%")->count();
+    //$presentPersent= (int)(($stdPrestAve/$p)*100);
+    $mtotal=($totalStudents*$p);
+     $monthpresentPersent= (int)(($stdPrestAve/$mtotal)*100);
+     ///yearly calculation
+
+
+   return view('welcome')->with('totalStudents',$totalStudents)->with('totalTeachesrs',$totalTeachesrs)
+                    ->with('tmail',$tamil)
+                    ->with('totalStudentsFemale',$totalStudentsFemale)
+                    ->with('today',$today_atten)
+                    ->with('year',$year_percent)
+                    ->with('m',$totalTeacherMale)
+                    ->with('f',$totalTeacherFemale)
+                    ->with('mon',$ms)
+                    ->with('studentTodayReport',$studentTodayReport)
+                    ->with('monthpresentPersent',$monthpresentPersent);
             }
             elseif(priv()==3){
+              /****Admin****/
                 $today=date('Y-m-d');
                 $y=date("Y");
                 //return $today;
@@ -150,10 +243,196 @@ class HomeController extends Controller {
                     ->with('monthpresentPersent',$monthpresentPersent);
 }
             elseif(priv()==4){
-                return "Teacher";
+              /****Teacher****/
+                                $today=date('Y-m-d');
+                $y=date("Y");
+                //return $today;
+                $totalStudents=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->count();
+                $totalStudentsMale=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Male')->count();
+                $totalStudentsFemale=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Female')->count();
+                $totalTeachesrs=Teacher::where('institute_code', '=', Auth::user()->institute_id)->count();
+                $teacherAttendence=Attendence::where('institute_code', '=', Auth::user()->institute_id)
+                ->where('type','=','Teacher')->where('status','=',0)->where('created_at','LIKE',"%$today%")->count();
+                   $teacherAttendence1=Attendence::where('institute_code', '=', Auth::user()->institute_id)
+                ->where('type','=','Teacher')->where('status','=',1)->where('created_at','LIKE',"%$today%")->count();
+
+              $total= $teacherAttendence+$teacherAttendence1;
+              //return $total;
+                  $today_atten=(int)(($total/$totalTeachesrs)*100);
+                  //return $today_atten;
+         $a1=Attendence::where('institute_code','=',Auth::user()->institute_id)
+         ->where('created_at','LIKE',"%$y%")
+         ->where('type','=','Teacher')
+         ->where('status','=',1)->count();
+         $a0=Attendence::where('institute_code','=',Auth::user()->institute_id)
+         ->where('created_at','LIKE',"%$y%")
+         ->where('type','=','Teacher')
+         ->where('status','=',0)->count();
+         $ay=$a1+$a0;
+//return $ay;
+     if ($y%4==0) {
+      $x=366;
+       $year_percent=(int)(($ay/$x)*100);
+     }
+     else{
+       $yx=365;
+       $year_percent=(int)(($ay/$yx)*100);
+     }
+                //return $atten_percent;
+                // return $AtotalInstitute;
+      $totalTeacherMale=Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Male')->count();
+      $totalTeacherFemale=Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Female')->count();
+   $m=date("Y-m");
+    ///$h=Holyday::where('holiday_date','LIKE',"%2016-03%")->get();
+   //$h=Holyday::where('holiday_date','LIKE',"%$m%")->get();
+   $d=date('t');
+
+   $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();   
+   $p=$d-$at;
+   //return $p;
+ $a12=Attendence::where('institute_code','=',Auth::user()->institute_id)
+         ->where('created_at','LIKE',"%$m%")
+         ->where('type','=','Teacher')
+         ->where('status','=',1)->count();
+
+         $a02=Attendence::where('institute_code','=',Auth::user()->institute_id)
+         ->where('created_at','LIKE',"%$m%")
+         ->where('type','=','Teacher')
+         ->where('status','=',0)->count();
+         $ay2=$a12+$a02;
+             //return $a12.$a02;
+         $t=$totalTeachesrs*$p;
+   $ms=(int)(($ay2/$t)*100);
+   //return $ms;
+
+   $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();
+   $InstiHolyday=InstiHolyday::where('holiday_date','LIKE',"%$m%")->where('institute_code', '=', Auth::user()->institute_id)->count();
+  // $InstiHolyday=AcademicCalender::where('holiday_date','LIKE',"%$m%")->where('institute_code', '=', Auth::user()->institute_id)->count();
+   //return $InstiHolyday;
+   $p=$d-($at+$InstiHolyday);
+   $ms=(int)(($p/$d)*100);
+   //students attendence report saif...
+   //today attendence calculation
+   $totalStudents=Students::where('institute_code', '=', Auth::user()->institute_id)->count();
+   $totalstudentsAtten=Attendence::where('institute_code', '=', Auth::user()->institute_id)
+   ->where('type','=','Student')->where('status','=',0)->where('created_at','LIKE',"%$today%")->count();
+    $studentTodayReport=(int)(($totalstudentsAtten/$totalStudents)*100);
+    //monthly calculation
+    $stdPrestAve=Attendence::where('institute_code','=',Auth::user()->institute_id)->where('type','=','Student')->where('status','=',0)->where('created_at','LIKE',"%$m%")->count();
+    //$presentPersent= (int)(($stdPrestAve/$p)*100);
+    $mtotal=($totalStudents*$p);
+     $monthpresentPersent= (int)(($stdPrestAve/$mtotal)*100);
+     ///yearly calculation
+
+
+   return view('welcome')->with('totalStudents',$totalStudents)->with('totalTeachesrs',$totalTeachesrs)
+                    ->with('totalStudentsMale',$totalStudentsMale)
+                    ->with('totalStudentsFemale',$totalStudentsFemale)
+                    ->with('today',$today_atten)
+                    ->with('year',$year_percent)
+                    ->with('m',$totalTeacherMale)
+                    ->with('f',$totalTeacherFemale)
+                    ->with('mon',$ms)
+                    ->with('studentTodayReport',$studentTodayReport)
+                    ->with('monthpresentPersent',$monthpresentPersent);
             }
             elseif(priv()==5){
-                return "Parents";
+              /****Parents****/
+                                                $today=date('Y-m-d');
+                $y=date("Y");
+                //return $today;
+                $totalStudents=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->count();
+                $totalStudentsMale=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Male')->count();
+                $totalStudentsFemale=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Female')->count();
+                $totalTeachesrs=Teacher::where('institute_code', '=', Auth::user()->institute_id)->count();
+                $teacherAttendence=Attendence::where('institute_code', '=', Auth::user()->institute_id)
+                ->where('type','=','Teacher')->where('status','=',0)->where('created_at','LIKE',"%$today%")->count();
+                   $teacherAttendence1=Attendence::where('institute_code', '=', Auth::user()->institute_id)
+                ->where('type','=','Teacher')->where('status','=',1)->where('created_at','LIKE',"%$today%")->count();
+
+              $total= $teacherAttendence+$teacherAttendence1;
+              //return $total;
+                  $today_atten=(int)(($total/$totalTeachesrs)*100);
+                  //return $today_atten;
+         $a1=Attendence::where('institute_code','=',Auth::user()->institute_id)
+         ->where('created_at','LIKE',"%$y%")
+         ->where('type','=','Teacher')
+         ->where('status','=',1)->count();
+         $a0=Attendence::where('institute_code','=',Auth::user()->institute_id)
+         ->where('created_at','LIKE',"%$y%")
+         ->where('type','=','Teacher')
+         ->where('status','=',0)->count();
+         $ay=$a1+$a0;
+//return $ay;
+     if ($y%4==0) {
+      $x=366;
+       $year_percent=(int)(($ay/$x)*100);
+     }
+     else{
+       $yx=365;
+       $year_percent=(int)(($ay/$yx)*100);
+     }
+                //return $atten_percent;
+                // return $AtotalInstitute;
+      $totalTeacherMale=Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Male')->count();
+      $totalTeacherFemale=Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Female')->count();
+   $m=date("Y-m");
+    ///$h=Holyday::where('holiday_date','LIKE',"%2016-03%")->get();
+   //$h=Holyday::where('holiday_date','LIKE',"%$m%")->get();
+   $d=date('t');
+
+   $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();   
+   $p=$d-$at;
+   //return $p;
+ $a12=Attendence::where('institute_code','=',Auth::user()->institute_id)
+         ->where('created_at','LIKE',"%$m%")
+         ->where('type','=','Teacher')
+         ->where('status','=',1)->count();
+
+         $a02=Attendence::where('institute_code','=',Auth::user()->institute_id)
+         ->where('created_at','LIKE',"%$m%")
+         ->where('type','=','Teacher')
+         ->where('status','=',0)->count();
+         $ay2=$a12+$a02;
+             //return $a12.$a02;
+         $t=$totalTeachesrs*$p;
+   $ms=(int)(($ay2/$t)*100);
+   //return $ms;
+
+   $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();
+   $InstiHolyday=InstiHolyday::where('holiday_date','LIKE',"%$m%")->where('institute_code', '=', Auth::user()->institute_id)->count();
+  // $InstiHolyday=AcademicCalender::where('holiday_date','LIKE',"%$m%")->where('institute_code', '=', Auth::user()->institute_id)->count();
+   //return $InstiHolyday;
+   $p=$d-($at+$InstiHolyday);
+   $ms=(int)(($p/$d)*100);
+   //students attendence report saif...
+   //today attendence calculation
+   $totalStudents=Students::where('institute_code', '=', Auth::user()->institute_id)->count();
+   $totalstudentsAtten=Attendence::where('institute_code', '=', Auth::user()->institute_id)
+   ->where('type','=','Student')->where('status','=',0)->where('created_at','LIKE',"%$today%")->count();
+    $studentTodayReport=(int)(($totalstudentsAtten/$totalStudents)*100);
+    //monthly calculation
+    $stdPrestAve=Attendence::where('institute_code','=',Auth::user()->institute_id)->where('type','=','Student')->where('status','=',0)->where('created_at','LIKE',"%$m%")->count();
+    //$presentPersent= (int)(($stdPrestAve/$p)*100);
+    $mtotal=($totalStudents*$p);
+     $monthpresentPersent= (int)(($stdPrestAve/$mtotal)*100);
+     ///yearly calculation
+
+
+   return view('welcome')->with('totalStudents',$totalStudents)->with('totalTeachesrs',$totalTeachesrs)
+                    ->with('totalStudentsMale',$totalStudentsMale)
+                    ->with('totalStudentsFemale',$totalStudentsFemale)
+                    ->with('today',$today_atten)
+                    ->with('year',$year_percent)
+                    ->with('m',$totalTeacherMale)
+                    ->with('f',$totalTeacherFemale)
+                    ->with('mon',$ms)
+                    ->with('studentTodayReport',$studentTodayReport)
+                    ->with('monthpresentPersent',$monthpresentPersent);
+            }
+                  elseif(priv()==6){
+                    /****Users****/
+                return "Users";
             }
             else {
 
