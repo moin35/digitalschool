@@ -28,6 +28,7 @@ use App\EmployeeSchedule;
 use App\Holyday;
 use App\InstiHolyday;
 use App\AcademicCalender;
+use Carbon\Carbon;
 
 class HomeController extends Controller {
     /**
@@ -233,7 +234,7 @@ class HomeController extends Controller {
    //$h=Holyday::where('holiday_date','LIKE',"%$m%")->get();
    $d=date('t');
 
-   $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();   
+   $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();
    $p=$d-$at;
    //return $p;
  $a12=Attendence::where('institute_code','=',Auth::user()->institute_id)
@@ -249,12 +250,26 @@ class HomeController extends Controller {
              //return $a12.$a02;
          $t=$totalTeachesrs*$p;
    $ms=(int)(($ay2/$t)*100);
-   //return $ms;
 
    $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();
    $InstiHolyday=InstiHolyday::where('holiday_date','LIKE',"%$m%")->where('institute_code', '=', Auth::user()->institute_id)->count();
-  // $InstiHolyday=AcademicCalender::where('holiday_date','LIKE',"%$m%")->where('institute_code', '=', Auth::user()->institute_id)->count();
-   //return $InstiHolyday;
+   $InstiWeekEnd=AcademicCalender::where('institute_code', '=', Auth::user()->institute_id)->pluck('weekendday');
+   $WeekEnd1=str_limit($InstiWeekEnd,3,'');
+   $WeekEnd2= substr($InstiWeekEnd,4);
+   $WeekEnd3= substr($InstiWeekEnd,9);
+//   return date('d', strtotime($WeekEnd1));
+
+   $month = date('m');
+   $year = date("Y");
+   $start_date = "01-".$month."-".$year;
+   $start_time = strtotime($start_date);
+   $end_time = strtotime("+1 month", $start_time);
+
+   for($i=$start_time; $i<$end_time; $i+=86400)
+   {
+    $list[] = date('D', $i);
+
+   } 
    $p=$d-($at+$InstiHolyday);
    $ms=(int)(($p/$d)*100);
    //students attendence report saif...

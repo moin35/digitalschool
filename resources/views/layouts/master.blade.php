@@ -308,14 +308,14 @@
         <div id="sidebar" class="nav-collapse">
             <!-- sidebar menu start-->            <div class="leftside-navigation">
                 <ul class="sidebar-menu" id="nav-accordion">
-          
+
                             <li>
                                 <a href="{{URL::to('admin/institute/registration')}}">
                                     <i class="fa fa-building-o"></i>
                                     <span>{{Lang::get('home.institute')}} </span>
                                 </a>
                             </li>
-               
+
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-th"></i>
@@ -408,7 +408,7 @@
                                 <span>Library </span>
                             </a>
                         </li>
-       
+
 
 
                     <!--       <li class="sub-menu">
@@ -990,7 +990,7 @@
         <div id="sidebar" class="nav-collapse">
             <!-- sidebar menu start-->            <div class="leftside-navigation">
                 <ul class="sidebar-menu" id="nav-accordion">
-                    <li class="sub-menu">
+                    <!--<li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-th"></i>
                             <span>Student Addmission</span>
@@ -999,9 +999,9 @@
                             <li><a href="{{URL::to('add/student')}}">{{Lang::get('home.student')}}</a></li>
                             <li><a href="{{URL::to('admin/add/parents')}}">{{Lang::get('home.parents')}}</a></li>
                             <!-- <li><a href="dynamic_table.html">Dynamic Table</a></li>
-                             <li><a href="editable_table.html">Editable Table</a></li>-->
+                             <li><a href="editable_table.html">Editable Table</a></li>
                         </ul>
-                    </li>
+                    </li>-->
                     <li>
                         <a href="{{URL::to('admin/add/teacher')}}">
                             <i class="fa fa-group"></i>
@@ -1009,62 +1009,79 @@
                         </a>
                     </li>
                     <li>
+                      <a href="{{URL::to('student/subjects')}}">
+                            <i class="fa fa-group"></i>
+                            <span>{{Lang::get('home.subject')}} </span>
+                        </a>
+                    </li>
+                    <li>
+                      <a href="{{URL::to('student/examschedule')}}">
+                            <i class="fa  fa-clock-o"></i>
+                            <span>Exam Schedule</span>
+                        </a>
+                    </li>
+                    <li>
+                    <a href="{{URL::to('student/markView')}}">
+                            <i class="fa fa-group"></i>
+                            <span>{{Lang::get('home.mark')}}</span>
+                        </a>
+                    </li>
+                    <li>
+                      <a href=" {{URL::to('admin/add/routine')}}">
+                            <i class="fa  fa-calendar-o"></i>
+                            <span>Routine</span>
+                        </a>
+                    </li>
+                    <li>
+                    <a href="{{URL::to('/')}}/absent/attendence/student/details/{{Auth::user()->uid}}">
+                            <i class="fa fa-group"></i>
+                            <span>Attendance</span>
+                        </a>
+                    </li>
+                      <!--<li>
                         <a href="{{URL::to('user/index')}}">
                             <i class="fa fa-user"></i>
                             <span>{{Lang::get('home.user')}} </span>
                         </a>
-                    </li>
-      
-                        <li class="sub-menu">
-                            <a href="javascript:;">
-                                <i class="fa fa-laptop"></i>
-                                <span>{{Lang::get('home.layout')}}</span>
-                            </a>
-                            <ul class="sub">
+                    </li>-->
 
-                                <li><a href="{{URL::to('/admin/add/exam')}}">Exam</a></li>
-                                <li><a href="{{URL::to('admin/add/exam/schedule')}}">Add Exam Schedule</a></li>
-                                <li><a href="{{URL::to('mark/index')}}">{{Lang::get('home.mark')}}</a></li>
-                                <li><a href="{{URL::to('grade/index')}}">{{Lang::get('home.grade')}}</a></li>
-                            </ul>
-                        </li>
-                            <li class="sub-menu">
-                            <a href="javascript:;">
-                                <i class="fa fa-laptop"></i>
-                                <span>Attendance</span>
-                            </a>
-                            <ul class="sub">
 
- <?php $p=date("Y-m-d");?>
-                                <li><a href="{{URL::to('students/attendence/Index')}}">Student Attendance</a></li>
-                                    @if(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('created_at','LIKE',"%$p%")->where('type','=','Teacher')->where('status','=',2)->where('status','!=',0)->where('status','!=',1)->count()==0)
-                                <li><a href="{{URL::to('/')}}/give/absence/teacher/{{Auth::user()->institute_id}}">Teacher Attendance</a></li>
-                                 @else
-                                <li><a href="{{URL::to('teacher/attendence')}}">Teacher Attendance</a></li>
-                                @endif
-                                <li><a href="{{URL::to('grade/index')}}">OtherUsers Attendance</a></li>
-                                <li><a href="{{URL::to('attendence/result/teacher')}}">Teacher Attendance Report</a></li>
-                            </ul>
-                        </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="fa fa-book"></i>
-                            <span>{{Lang::get('home.account')}}</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="{{URL::to('admin/add/account/fee/type')}}">Add Fee Type</a></li>
-                            <li><a href="{{URL::to('admin/add/invoice')}}">Create Invoice</a></li>
-                            <li><a href="{{URL::to('admin/view/balance')}}">Balance</a></li>
-                            <li><a href="{{URL::to('admin/add/Expense')}}">Expense</a></li>
-                        </ul>
-                    </li>
                         <li>
                             <a href="{{URL::to('public/library')}}">
                                 <i class="fa fa-book"></i>
                                 <span>Library </span>
                             </a>
                         </li>
-               
+                        <li>
+                            <a href="{{URL::to('public/library')}}">
+                                <i class="fa fa-book"></i>
+                                <span>Invoice </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{URL::to('public/library')}}">
+                                <i class="fa fa-book"></i>
+                                <span>Holiday </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{URL::to('public/library')}}">
+                                <i class="fa fa-book"></i>
+                                <span>Leave Application </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{URL::to('public/library')}}">
+                                <i class="fa fa-book"></i>
+                                <span>Message</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{URL::to('public/library')}}">
+                                <i class="fa fa-book"></i>
+                                <span>Notice</span>
+                            </a>
+                        </li>
                             <li class="sub-menu">
                             <a href="javascript:;">
                                 <i class="fa fa-laptop"></i>
@@ -1074,12 +1091,12 @@
 
 
                                 <li><a href="{{URL::to('Institute/Setting')}}}}">Institute Setting</a></li>
-    
-                         
+
+
                             </ul>
                         </li>
 
-                    
+
                     <!--       <li class="sub-menu">
                                <a href="javascript:;">
                                    <i class="fa fa-envelope"></i>
@@ -1659,7 +1676,7 @@
         <div id="sidebar" class="nav-collapse">
             <!-- sidebar menu start-->            <div class="leftside-navigation">
                 <ul class="sidebar-menu" id="nav-accordion">
-    
+
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-th"></i>
@@ -1752,7 +1769,7 @@
                                 <span>Library </span>
                             </a>
                         </li>
-                    
+
                             <li class="sub-menu">
                             <a href="javascript:;">
                                 <i class="fa fa-laptop"></i>
@@ -1765,11 +1782,11 @@
                                 <li><a href="{{URL::to('supadmin/add/govtholiday')}}">Govt. Holiday</a></li>
                                 <li><a href="{{URL::to('admin/acadimicClander')}}">Academic Holiday</a></li>
                                 <li><a href="{{URL::to('teacher/job/allocation')}}">Teacher privilege</a></li>
-                         
+
                             </ul>
                         </li>
 
-                         
+
 
 
                     <!--       <li class="sub-menu">
@@ -2439,7 +2456,7 @@
                                 <span>Library </span>
                             </a>
                         </li>
-                 
+
                             <li class="sub-menu">
                             <a href="javascript:;">
                                 <i class="fa fa-laptop"></i>
@@ -2449,12 +2466,12 @@
 
 
                                 <li><a href="{{URL::to('Institute/Setting')}}}}">Institute Setting</a></li>
-                      
-                         
+
+
                             </ul>
                         </li>
 
-                   
+
 
                     <!--       <li class="sub-menu">
                                <a href="javascript:;">
@@ -3035,7 +3052,7 @@
         <div id="sidebar" class="nav-collapse">
             <!-- sidebar menu start-->            <div class="leftside-navigation">
                 <ul class="sidebar-menu" id="nav-accordion">
-                  
+
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-th"></i>
@@ -3128,7 +3145,7 @@
                                 <span>Library </span>
                             </a>
                         </li>
-                 
+
                             <li class="sub-menu">
                             <a href="javascript:;">
                                 <i class="fa fa-laptop"></i>
@@ -3138,12 +3155,12 @@
 
 
                                 <li><a href="{{URL::to('Institute/Setting')}}}}">Institute Setting</a></li>
-                      
-                         
+
+
                             </ul>
                         </li>
 
-                   
+
 
                     <!--       <li class="sub-menu">
                                <a href="javascript:;">
@@ -3724,7 +3741,7 @@
         <div id="sidebar" class="nav-collapse">
             <!-- sidebar menu start-->            <div class="leftside-navigation">
                 <ul class="sidebar-menu" id="nav-accordion">
-     
+
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-th"></i>
@@ -3817,7 +3834,7 @@
                                 <span>Library </span>
                             </a>
                         </li>
-                 
+
                             <li class="sub-menu">
                             <a href="javascript:;">
                                 <i class="fa fa-laptop"></i>
@@ -3827,12 +3844,12 @@
 
 
                                 <li><a href="{{URL::to('Institute/Setting')}}}}">Institute Setting</a></li>
-                      
-                         
+
+
                             </ul>
                         </li>
 
-                   
+
 
                     <!--       <li class="sub-menu">
                                <a href="javascript:;">
