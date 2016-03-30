@@ -184,22 +184,31 @@
                                             <th>Teacher</th>
                                             <th>Sub Author</th>
                                             <th>Subject Code</th>
+                                            @if(Auth::check())
+                                                      @if(Auth::user()->basicinfo==1)
                                             <th>Action</th>
+                                            @endif
+                                            @endif
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($allsubinfo as $c)
                                             <tr class="">
+                                          
                                                 <td>{{$c->class_name}}</td>
                                                 <td> {{$c->subject_name}}</td>
                                                 <td> {{$c->teacher_name}}</td>
                                                 <td class="center">{{$c->sub_author}}</td>
                                                 <td><a  href="a url">{{$c->subject_code}}</a></td>
+                                                @if(Auth::check())
+                                                          @if(Auth::user()->basicinfo==1)
                                                 <td>
                                                     <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/admin/edit/subject/{{$c->subject_code}}"><i class="fa fa-edit"></i> </a>
                                                     <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/institute/delete/" ><i class="fa  fa-trash-o"></i></a>
 
                                                 </td>
+                                                @endif
+                                                @endif
 
                                             </tr>
                                         @endforeach

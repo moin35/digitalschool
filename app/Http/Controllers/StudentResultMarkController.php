@@ -247,7 +247,7 @@ class StudentResultMarkController extends Controller
         $stdInfo=Students::where('institute_code','=',Auth::user()->institute_id)->where('roll','=', $roll)->where('class','=',$cid)->first();
         $stdClass=ClassAdd::where('class_id','=',$stdInfo->class)->pluck('class_name');
         $showAllMark=Mark::where('institute_code','=',Auth::user()->institute_id)->where('roll','=', $roll)->where('class_id','=',$cid)->get();
-     $showAllMarkExamName=Mark::where('institute_code', '=', Auth::user()->institute_id)->where('roll','=', $roll)->where('class_id','=',$cid)->select('exam_name')->distinct()->get();
+       $showAllMarkExamName=Mark::where('institute_code', '=', Auth::user()->institute_id)->where('roll','=', $roll)->where('class_id','=',$cid)->select('exam_name')->distinct()->get();
     //    $showAllMarkExamName=Mark::where('institute_code','=',Auth::user()->institute_id)->where('roll','=', $roll)->where('class_id','=',$cid)->get();
         $MarkViewGrade=Mark::where('institute_code','=',Auth::user()->institute_id)->where('roll','=', $roll)->where('class_id','=',$cid)->first();
         //return $showAllMark->sub_mark;

@@ -154,9 +154,9 @@ Route::get('/parents/delete/{uid}','ParentsController@deleteParentsInfo');
 
 
 //mark management saif........
-Route::get('mark/index','InstituteController@markIndex');
-Route::get('mark/add','InstituteController@markadd');
-Route::post('mark/add','InstituteController@postAddMark');
+//Route::get('mark/index','InstituteController@markIndex');
+//Route::get('mark/add','InstituteController@markadd');
+//Route::post('mark/add','InstituteController@postAddMark');
 //Route::post('mark/add/all','InstituteController@postAddMarkall');
 /*
  Route::post('mark/add/all', function(){
@@ -310,6 +310,8 @@ Route::get('supadmin/add/govtholiday','AttendenceController@getGovetholiyday');
 Route::post('supadmin/add/govtholiday','AttendenceController@postGovetholiyday');
 Route::get('/Academic/Holyday/delete/{id}','AttendenceController@deleteAcademicHoliday');
 Route::get('/Academic/weekend/delete/{id}','AttendenceController@deleteAcademicWeekend');
-
+Route::get('student/subjects','StudentsController@getstudentsSubjects');
+Route::get('student/examschedule','StudentsController@getstudentsexamschedule');
+Route::get('student/markView','StudentsController@getMarkViews');
 //Attdence Report For Teacher
-//Route::post('teacher/all/type/attdence/report',['as'=>'searchmearchent','uses'=>'AttendenceController@getTeacherAttdenceAllReport']); 
+//Route::post('teacher/all/type/attdence/report',['as'=>'searchmearchent','uses'=>'AttendenceController@getTeacherAttdenceAllReport']);

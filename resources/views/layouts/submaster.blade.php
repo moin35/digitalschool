@@ -1013,31 +1013,31 @@
                         </a>
                     </li>
                     <li>
-                      <a href="{{URL::to('admin/add/subject')}}">
+                      <a href="{{URL::to('student/subjects')}}">
                             <i class="fa fa-group"></i>
                             <span>{{Lang::get('home.subject')}} </span>
                         </a>
                     </li>
                     <li>
-                      <a href="{{URL::to('admin/add/exam/schedule')}}">
-                            <i class="fa fa-group"></i>
+                      <a href="{{URL::to('student/examschedule')}}">
+                            <i class="fa  fa-clock-o"></i>
                             <span>Exam Schedule</span>
                         </a>
                     </li>
                     <li>
-                    <a href="{{URL::to('mark/index')}}">
+                    <a href="{{URL::to('student/markView')}}">
                             <i class="fa fa-group"></i>
                             <span>{{Lang::get('home.mark')}}</span>
                         </a>
                     </li>
                     <li>
                       <a href=" {{URL::to('admin/add/routine')}}">
-                            <i class="fa fa-group"></i>
+                            <i class="fa  fa-calendar-o"></i>
                             <span>Routine</span>
                         </a>
                     </li>
                     <li>
-                      <a href="{{URL::to('students/attendence/Index')}}">
+                      <a href="{{URL::to('/')}}/absent/attendence/student/details/{{Auth::user()->uid}}">
                             <i class="fa fa-group"></i>
                             <span>Attendance</span>
                         </a>

@@ -22,6 +22,9 @@ use App\Teacher;
 use App\ClassAdd;
 use App\Parents;
 use App\Section;
+use App\ExamSchedule;
+use App\Mark;
+use App\GradeSystem;
 class StudentsController extends Controller
 {
     public function getEditSubject($scode) {
@@ -242,7 +245,41 @@ public function getDetailStudents($id){
     public function searchStudentsByClass(){
         return 1;
     }
+public function getstudentsSubjects(){
+  //student view subject saif
+   $stdInof=Students::where('institute_code','=',Auth::user()->institute_id)->where('st_id','=',Auth::user()->uid)->first();
+   $clsId=$stdInof->class;
+    $subject=Subject::where('class_id','=',$clsId)->get();
+    return View('student.viewsubjects')->with('allsubinfo',$subject);
 
+}
+  public function getstudentsexamschedule()
+{
+  # code... student exam schedule saif
+  $stdInof=Students::where('institute_code','=',Auth::user()->institute_id)->where('st_id','=',Auth::user()->uid)->first();
+  $clsId=$stdInof->class;
+   $examschedule=ExamSchedule::where('class_id','=',$clsId)->get();
+   return View('student.examSchedule')->with('examschedule',$examschedule);
+
+}
+public function getMarkViews(){
+
+//  $stdInfo=Students::where('institute_code','=',Auth::user()->institute_id)->where('roll','=', $roll)->where('class','=',$cid)->first();
+  $stdInfo=Students::where('institute_code','=',Auth::user()->institute_id)->where('st_id','=',Auth::user()->uid)->first();
+  $stdClass=ClassAdd::where('class_id','=',$stdInfo->class)->pluck('class_name');
+  //return $stdInof->class;
+  $showAllMark=Mark::where('institute_code','=',Auth::user()->institute_id)->where('roll','=',$stdInfo->roll)->where('class_id','=',$stdInfo->class)->get();
+ $showAllMarkExamName=Mark::where('institute_code', '=', Auth::user()->institute_id)->where('roll','=', $stdInfo->roll)->where('class_id','=',$stdInfo->class)->select('exam_name')->distinct()->get();
+//    $showAllMarkExamName=Mark::where('institute_code','=',Auth::user()->institute_id)->where('roll','=', $roll)->where('class_id','=',$cid)->get();
+  $MarkViewGrade=Mark::where('institute_code','=',Auth::user()->institute_id)->where('roll','=',$stdInfo->roll)->where('class_id','=',$stdInfo->class)->first();
+  //return $showAllMark->sub_mark;
+  $allGrad=GradeSystem::where('institute_code','=',Auth::user()->institute_id)->get();
+  $MarkViewGrade=Mark::where('institute_code','=',Auth::user()->institute_id)->where('roll','=',  $stdInfo->roll)->where('class_id','=',$stdInfo->class)->get();
+
+
+  return view('admin.resultMark.markviews')->with('stdInfo',$stdInfo)->with('stdClass',$stdClass)
+  ->with('showAllMark',$showAllMark)->with('MarkViewGrade',$MarkViewGrade)->with('allGrad',$allGrad)->with('showAllMarkExamName',$showAllMarkExamName);
+}
 
 
 
