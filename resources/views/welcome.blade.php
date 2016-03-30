@@ -47,6 +47,88 @@
             </div>
         </div>
     </div>
+     <div class="col-md-3">
+        <div class="mini-stat clearfix">
+            <span class="mini-stat-icon tar"><i class="fa fa-users"></i></span>
+            <div class="mini-stat-info">
+                <span>{{$satotalteacher}}</span>Teachers<br>
+            </div>
+        </div>
+    </div>
+        <div class="col-md-3">
+        <div class="mini-stat clearfix">
+            <span class="mini-stat-icon pink"><i class="fa fa-male"></i></span>
+            <div class="mini-stat-info">
+                  <span>{{$satotalmaleteacher}}</span>Males
+            </div>
+        </div>
+    </div>
+        <div class="col-md-3">
+        <div class="mini-stat clearfix">
+            <span class="mini-stat-icon green"><i class="fa fa-female"></i></span>
+            <div class="mini-stat-info">
+
+                  <span>{{$satotalfemaleteacher}}</span>Females
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="mini-stat clearfix">
+            <span class="mini-stat-icon green"><i class="fa fa-female"></i></span>
+            <div class="mini-stat-info">
+
+                  <span>{{$others}}</span>Others
+            </div>
+        </div>
+    </div>
+                    <div class="col-md-6">
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="top-stats-panel">
+                        <h4 class="widget-h" style="color:black;">Teacher Attendence Report</h4>
+                        <div class="bar-stats">
+                            <ul class="progress-stat-bar clearfix">
+                                <li data-percent="{{$today}}" style="width:13%;"><span class="progress-stat-percent pink" style="color:white;">{{$today}}%</span></li>
+                                <li data-percent="{{$cmonth}}" style="width:13%;"><span class="progress-stat-percent" style="color:white;">{{$cmonth}}%</span></li>
+                                <li data-percent="" style="width:13%;color:black;"><span class="progress-stat-percent yellow-b"></span>%</li>
+                            </ul>
+                            <ul class="bar-legend">
+                                <li><span class="bar-legend-pointer pink"></span> Today Attdence Percent</li>
+                                <li><span class="bar-legend-pointer green"></span> This Month Attdence Percent</li>
+                                <li><span class="bar-legend-pointer yellow-b"></span> This Year Attdence Percent</li>
+                            </ul>
+                            <div class="daily-sales-info">
+                                <span class="sales-count">{{$satotalteacher}} </span> <span class="sales-label">Total Teacher</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+                        <div class="col-md-6">
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="top-stats-panel">
+                        <h4 class="widget-h" style="color:black;">Student Attendence Report</h4>
+                        <div class="bar-stats">
+                            <ul class="progress-stat-bar clearfix">
+                                <li data-percent="{{$today}}" style="width:13%;"><span class="progress-stat-percent pink" style="color:white;">{{$today}}%</span></li>
+                                <li data-percent="" style="width:13%;"><span class="progress-stat-percent" style="color:white;">%</span></li>
+                                <li data-percent="" style="width:13%;color:black;"><span class="progress-stat-percent yellow-b"></span>%</li>
+                            </ul>
+                            <ul class="bar-legend">
+                                <li><span class="bar-legend-pointer pink"></span> Today Attdence Percent</li>
+                                <li><span class="bar-legend-pointer green"></span> This Month Attdence Percent</li>
+                                <li><span class="bar-legend-pointer yellow-b"></span> This Year Attdence Percent</li>
+                            </ul>
+                            <div class="daily-sales-info">
+                                <span class="sales-count"> </span> <span class="sales-label">Total Teacher</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
 </div>
 <!--mini statistics start-->
     @endif
@@ -61,12 +143,10 @@
         <div class="col-md-3">
         
             <div class="mini-stat clearfix">
-                <span class="mini-stat-icon orange"><i class="fa  ico-users"></i></span>
+                <span class="mini-stat-icon orange"><i class="fa ico-users"></i></span>
                 <div class="mini-stat-info">
                     <span> {{$totalTeachesrs}}</span>
                     Total Teachers
-
-
                 </div>
             </div>
 
@@ -109,7 +189,7 @@
             <div class="mini-stat clearfix">
                 <span class="mini-stat-icon pink"><i class="fa fa-male"></i></span>
                 <div class="mini-stat-info">
-                      <span>{{$tmail}}</span>Male
+                      <span>{{$totalStudentsMale}}</span>Male
                 </div>
             </div>
         </div>

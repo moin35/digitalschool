@@ -46,21 +46,66 @@ class HomeController extends Controller {
                 $AtotalStudents=Students::where('status','=',1)->count();
                 $AtotalStudentsMale=Students::where('status','=',1)->where('gender','=','Male')->count();
                 $AtotalStudentsFemale=Students::where('status','=',1)->where('gender','=','Female')->count();
-              //  $dalyAttendence=
 
+                $SAtotalTeachers=Teacher::all()->count();
+                $SAtotalTeachersMale=Teacher::where('gender','=','Male')->count();
+                $SAtotalTeachersFeMale=Teacher::where('gender','=','Female')->count();
+                $OthersTeacher=Teacher::where('gender','=','Other')->count();
+                  //today report in %
+                  $today=date('Y-m-d');
+                  $y=date("Y");
+                  //$totalTeachesrs=Teacher::where('institute_code', '=', Auth::user()->institute_id)->count();
+                  $teacherAttendence=Attendence::
+                  where('type','=','Teacher')->where('status','=',0)->where('created_at','LIKE',"%$today%")->count();
+                  $teacherAttendence1=Attendence::
+                  where('type','=','Teacher')->where('status','=',1)->where('created_at','LIKE',"%$today%")->count();
+
+                  $total= $teacherAttendence+$teacherAttendence1;
+                  //return $total;
+                  $today_atten=(int)(($total/$SAtotalTeachers)*100);
+                  //return $today_atten;
+                  //end today report
+                  //This Month Report in %
+                    $m=date("Y-m");
+                    $d=date('t');
+                    $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();   
+                    $p=$d-$at;
+                  $a12=Attendence::
+                  where('created_at','LIKE',"%$m%")
+                  ->where('type','=','Teacher')
+                  ->where('status','=',1)->count();
+
+                  $a02=Attendence::
+                  where('created_at','LIKE',"%$m%")
+                  ->where('type','=','Teacher')
+                  ->where('status','=',0)->count();
+                  $ay2=$a12+$a02;
+                  //return $a12.$a02;
+                  $t=$SAtotalTeachers*$p;
+                  $ms=(int)(($ay2/$t)*100);
+                  //return $ms;
+                  //This Month Rreport End
               return view('welcome')->with('atotalInstitute',$AtotalInstitute)
               ->with('atotalStudents',$AtotalStudents)
               ->with('atotalStudentsMale',$AtotalStudentsMale)
-              ->with('atotalStudentsFemale',$AtotalStudentsFemale);
+              ->with('atotalStudentsFemale',$AtotalStudentsFemale)
+              ->with('satotalteacher',$SAtotalTeachers)
+              ->with('satotalmaleteacher',$SAtotalTeachersMale)
+              ->with('satotalfemaleteacher',$SAtotalTeachersFeMale)
+              ->with('others',$OthersTeacher)
+              ->with('today',$today_atten)
+              ->with('cmonth',$ms);
+
+
 
             }
             elseif(priv()==2){
               /****Student****/
-                                $today=date('Y-m-d');
+                $today=date('Y-m-d');
                 $y=date("Y");
                 //return $today;
                 $totalStudents=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->count();
-                $tamil=50;
+                $totalStudentsMale=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Male')->count();
                 $totalStudentsFemale=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Female')->count();
                 $totalTeachesrs=Teacher::where('institute_code', '=', Auth::user()->institute_id)->count();
                 $teacherAttendence=Attendence::where('institute_code', '=', Auth::user()->institute_id)
@@ -90,15 +135,10 @@ class HomeController extends Controller {
        $yx=365;
        $year_percent=(int)(($ay/$yx)*100);
      }
-                //return $atten_percent;
-                // return $AtotalInstitute;
-      $totalTeacherMale=Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Male')->count();
+       $totalTeacherMale=Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Male')->count();
       $totalTeacherFemale=Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Female')->count();
    $m=date("Y-m");
-    ///$h=Holyday::where('holiday_date','LIKE',"%2016-03%")->get();
-   //$h=Holyday::where('holiday_date','LIKE',"%$m%")->get();
    $d=date('t');
-
    $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();   
    $p=$d-$at;
    //return $p;
@@ -138,7 +178,7 @@ class HomeController extends Controller {
 
 
    return view('welcome')->with('totalStudents',$totalStudents)->with('totalTeachesrs',$totalTeachesrs)
-                    ->with('tmail',$tamil)
+                    ->with('totalStudentsMale',$totalStudentsMale)
                     ->with('totalStudentsFemale',$totalStudentsFemale)
                     ->with('today',$today_atten)
                     ->with('year',$year_percent)

@@ -2425,28 +2425,14 @@
                             <ul class="sub">
 
  <?php $p=date("Y-m-d");?>
+ @if(Auth::check())
+                                @if(Auth::user()->attdence==1)
                                 <li><a href="{{URL::to('students/attendence/Index')}}">Student Attendance</a></li>
-                                    @if(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('created_at','LIKE',"%$p%")->where('type','=','Teacher')->where('status','=',2)->where('status','!=',0)->where('status','!=',1)->count()==0)
-                                <li><a href="{{URL::to('/')}}/give/absence/teacher/{{Auth::user()->institute_id}}">Teacher Attendance</a></li>
-                                 @else
-                                <li><a href="{{URL::to('teacher/attendence')}}">Teacher Attendance</a></li>
-                                @endif
-                                <li><a href="{{URL::to('grade/index')}}">OtherUsers Attendance</a></li>
-                                <li><a href="{{URL::to('attendence/result/teacher')}}">Teacher Attendance Report</a></li>
-                            </ul>
-                        </li>
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="fa fa-book"></i>
-                            <span>{{Lang::get('home.account')}}</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="{{URL::to('admin/add/account/fee/type')}}">Add Fee Type</a></li>
-                            <li><a href="{{URL::to('admin/add/invoice')}}">Create Invoice</a></li>
-                            <li><a href="{{URL::to('admin/view/balance')}}">Balance</a></li>
-                            <li><a href="{{URL::to('admin/add/Expense')}}">Expense</a></li>
+                                   @endif
+                                   @endif
                         </ul>
-                    </li>
+                        </li>
+
                         <li>
                             <a href="{{URL::to('public/library')}}">
                                 <i class="fa fa-book"></i>
