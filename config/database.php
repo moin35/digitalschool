@@ -74,15 +74,14 @@ return [
             'prefix'   => '',
             'schema'   => 'public',
         ],
-
         'sqlsrv' => [
-            'driver'   => 'sqlsrv',
-            'host'     => '',
-            'database' => '',
-            'username' => '',
-            'password' => '',
-            'charset'  => 'utf8',
-            'prefix'   => '',
+                    'driver'   => 'sqlsrv',
+                    'host'     => '103.10.54.99',
+                    'database' => 'Digital_School',
+                    'username' => 'sa',
+                    'password' => 'Qwert3201',
+                    'charset'  => 'utf8',
+                    'prefix'   => '',
         ],
 
     ],
