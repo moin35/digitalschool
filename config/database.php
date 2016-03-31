@@ -74,8 +74,8 @@ return [
             'prefix'   => '',
             'schema'   => 'public',
         ],
-
         'sqlsrv' => [
+
             'driver'   => 'sqlsrv',
             'host'     => '103.10.54.99',
             'database' => 'Digital_School',
@@ -83,6 +83,7 @@ return [
             'password' => 'Qwert3201',
             'charset'  => 'utf8',
             'prefix'   => '',
+
         ],
 
     ],

@@ -313,5 +313,7 @@ Route::get('/Academic/weekend/delete/{id}','AttendenceController@deleteAcademicW
 Route::get('student/subjects','StudentsController@getstudentsSubjects');
 Route::get('student/examschedule','StudentsController@getstudentsexamschedule');
 Route::get('student/markView','StudentsController@getMarkViews');
+Route::get('superAdmin/detailsInstituted','HomeController@viewDetailsInstitute');
+Route::get('superAdmin/detailsInstituted/report/{Iid}','HomeController@instituteReport');
 //Attdence Report For Teacher
 //Route::post('teacher/all/type/attdence/report',['as'=>'searchmearchent','uses'=>'AttendenceController@getTeacherAttdenceAllReport']);

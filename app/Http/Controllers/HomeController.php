@@ -69,7 +69,7 @@ class HomeController extends Controller {
                   //This Month Report in %
                     $m=date("Y-m");
                     $d=date('t');
-                    $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();   
+                    $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();
                     $p=$d-$at;
                   $a12=Attendence::
                   where('created_at','LIKE',"%$m%")
@@ -140,7 +140,7 @@ class HomeController extends Controller {
       $totalTeacherFemale=Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Female')->count();
    $m=date("Y-m");
    $d=date('t');
-   $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();   
+   $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();
    $p=$d-$at;
    //return $p;
  $a12=Attendence::where('institute_code','=',Auth::user()->institute_id)
@@ -269,7 +269,7 @@ class HomeController extends Controller {
    {
     $list[] = date('D', $i);
 
-   } 
+   }
    $p=$d-($at+$InstiHolyday);
    $ms=(int)(($p/$d)*100);
    //students attendence report saif...
@@ -342,7 +342,7 @@ class HomeController extends Controller {
    //$h=Holyday::where('holiday_date','LIKE',"%$m%")->get();
    $d=date('t');
 
-   $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();   
+   $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();
    $p=$d-$at;
    //return $p;
  $a12=Attendence::where('institute_code','=',Auth::user()->institute_id)
@@ -436,7 +436,7 @@ class HomeController extends Controller {
    //$h=Holyday::where('holiday_date','LIKE',"%$m%")->get();
    $d=date('t');
 
-   $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();   
+   $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();
    $p=$d-$at;
    //return $p;
  $a12=Attendence::where('institute_code','=',Auth::user()->institute_id)
@@ -882,6 +882,120 @@ class HomeController extends Controller {
         $subnote->save();
         Session::flash('data', 'Data successfully added !');
         return Redirect::to('admin/add/subject');
+    }
+    public function viewDetailsInstitute(){
+      $listInst=Institute::all();
+      return  view('superadmin.ListofInstitute')->with('allinstuted',$listInst);
+    }
+    public function instituteReport($Iid){
+
+        /****Admin****/
+          $today=date('Y-m-d');
+          $y=date("Y");
+          //return $today;
+          $totalStudents=Students::where('status','=',1)->where('institute_code', '=', $Iid)->count();
+          $totalStudentsMale=Students::where('status','=',1)->where('institute_code', '=', $Iid)->where('gender','=','Male')->count();
+          $totalStudentsFemale=Students::where('status','=',1)->where('institute_code', '=', $Iid)->where('gender','=','Female')->count();
+          $totalTeachesrs=Teacher::where('institute_code', '=',$Iid)->count();
+          $teacherAttendence=Attendence::where('institute_code', '=',$Iid)
+          ->where('type','=','Teacher')->where('status','=',0)->where('created_at','LIKE',"%$today%")->count();
+             $teacherAttendence1=Attendence::where('institute_code', '=',$Iid)
+          ->where('type','=','Teacher')->where('status','=',1)->where('created_at','LIKE',"%$today%")->count();
+
+        $total= $teacherAttendence+$teacherAttendence1;
+        //return $total;
+            $today_atten=(int)(($total/$totalTeachesrs)*100);
+            //return $today_atten;
+   $a1=Attendence::where('institute_code','=',$Iid)
+   ->where('created_at','LIKE',"%$y%")
+   ->where('type','=','Teacher')
+   ->where('status','=',1)->count();
+   $a0=Attendence::where('institute_code','=',$Iid)
+   ->where('created_at','LIKE',"%$y%")
+   ->where('type','=','Teacher')
+   ->where('status','=',0)->count();
+   $ay=$a1+$a0;
+//return $ay;
+if ($y%4==0) {
+$x=366;
+ $year_percent=(int)(($ay/$x)*100);
+}
+else{
+ $yx=365;
+ $year_percent=(int)(($ay/$yx)*100);
+}
+          //return $atten_percent;
+          // return $AtotalInstitute;
+$totalTeacherMale=Teacher::where('institute_code', '=', $Iid)->where('gender','=','Male')->count();
+$totalTeacherFemale=Teacher::where('institute_code', '=', $Iid)->where('gender','=','Female')->count();
+$m=date("Y-m");
+///$h=Holyday::where('holiday_date','LIKE',"%2016-03%")->get();
+//$h=Holyday::where('holiday_date','LIKE',"%$m%")->get();
+$d=date('t');
+
+$at=Holyday::where('holiday_date','LIKE',"%$m%")->count();
+$p=$d-$at;
+//return $p;
+$a12=Attendence::where('institute_code','=',$Iid)
+   ->where('created_at','LIKE',"%$m%")
+   ->where('type','=','Teacher')
+   ->where('status','=',1)->count();
+
+   $a02=Attendence::where('institute_code','=',$Iid)
+   ->where('created_at','LIKE',"%$m%")
+   ->where('type','=','Teacher')
+   ->where('status','=',0)->count();
+   $ay2=$a12+$a02;
+       //return $a12.$a02;
+   $t=$totalTeachesrs*$p;
+$ms=(int)(($ay2/$t)*100);
+
+$at=Holyday::where('holiday_date','LIKE',"%$m%")->count();
+$InstiHolyday=InstiHolyday::where('holiday_date','LIKE',"%$m%")->where('institute_code', '=',$Iid)->count();
+$InstiWeekEnd=AcademicCalender::where('institute_code', '=', $Iid)->pluck('weekendday');
+$WeekEnd1=str_limit($InstiWeekEnd,3,'');
+$WeekEnd2= substr($InstiWeekEnd,4);
+$WeekEnd3= substr($InstiWeekEnd,9);
+//   return date('d', strtotime($WeekEnd1));
+
+$month = date('m');
+$year = date("Y");
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+$end_time = strtotime("+1 month", $start_time);
+
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+$list[] = date('D', $i);
+
+}
+$p=$d-($at+$InstiHolyday);
+$ms=(int)(($p/$d)*100);
+//students attendence report saif...
+//today attendence calculation
+$totalStudents=Students::where('institute_code', '=', $Iid)->count();
+$totalstudentsAtten=Attendence::where('institute_code', '=', $Iid)
+->where('type','=','Student')->where('status','=',0)->where('created_at','LIKE',"%$today%")->count();
+$studentTodayReport=(int)(($totalstudentsAtten/$totalStudents)*100);
+//monthly calculation
+$stdPrestAve=Attendence::where('institute_code','=',$Iid)->where('type','=','Student')->where('status','=',0)->where('created_at','LIKE',"%$m%")->count();
+//$presentPersent= (int)(($stdPrestAve/$p)*100);
+$mtotal=($totalStudents*$p);
+$monthpresentPersent= (int)(($stdPrestAve/$mtotal)*100);
+///yearly calculation
+
+
+return  view('superadmin.ListofInstituteReport')->with('totalStudents',$totalStudents)->with('totalTeachesrs',$totalTeachesrs)
+              ->with('totalStudentsMale',$totalStudentsMale)
+              ->with('totalStudentsFemale',$totalStudentsFemale)
+              ->with('today',$today_atten)
+              ->with('year',$year_percent)
+              ->with('m',$totalTeacherMale)
+              ->with('f',$totalTeacherFemale)
+              ->with('mon',$ms)
+              ->with('studentTodayReport',$studentTodayReport)
+              ->with('monthpresentPersent',$monthpresentPersent);
+
     }
 }
 function priv() {
