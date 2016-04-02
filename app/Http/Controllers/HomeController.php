@@ -190,7 +190,7 @@ class HomeController extends Controller {
                     ->with('monthpresentPersent',$monthpresentPersent);
             }
             elseif(priv()==3){
-              /****Admin****/
+              /****School Admin****/
                 $today=date('Y-m-d');
                 $y=date("Y");
                 //return $today;
@@ -488,6 +488,22 @@ class HomeController extends Controller {
                   elseif(priv()==6){
                     /****Users****/
                 return "Users";
+            }
+                    elseif(priv()==7){
+                    /****Thana Officer****/
+                return "Thana Officer";
+            }
+                    elseif(priv()==8){
+                    /****District Officer****/
+                return "District Officer";
+            }
+                    elseif(priv()==9){
+                    /****Division Officer****/
+                return "Divission Officer";
+            }
+                    elseif(priv()==10){
+                    /****Board Officer****/
+                return "Board Officer";
             }
             else {
 

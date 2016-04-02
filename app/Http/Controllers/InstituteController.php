@@ -347,7 +347,8 @@ public function postExamSchedule(){
         $examname=Exam::where('institute_code', '=', Auth::user()->institute_id)->lists('exam_id','exam_name');
         $classname=ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id','class_name');
         $schedule=ExamSchedule::where('institute_code', '=', Auth::user()->institute_id)->get();
-        //return $schedule;
+        $teacher=Teacher::where('institute_code', '=', Auth::user()->institute_id)->get();
+        //return $teacher;
         $sid=ClassRoutine::where('class_name','LIKE',$classname)->pluck('institute_code');
             $sat=ClassRoutine::where('class_name','=',$classname)
                                 ->where('institute_code','=',$sid)
@@ -395,7 +396,8 @@ public function postExamSchedule(){
                                         'thu'=> $thu,
                                         'fri'=> $fri,
                                         'sec'=> $indsec,
-                                        'section'=>$search1]);
+                                        'section'=>$search1,
+                                        'teacher'=>$teacher]);
        // return view('admin.addroutine');
     }
 public function postAddRoutine(){
@@ -409,6 +411,8 @@ public function postAddRoutine(){
     $sub_name= Input::get('subject');
     $sub_id = Subject::where('subject_name', '=', $sub_name)->pluck('id');
     $section_name= Input::get('section');
+    $teacher= Input::get('teacher');
+    $teacher_name=Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('teacher_id','=',$teacher)->pluck('name');
     $section_id = Section::where('institute_code', '=', Auth::user()->institute_id)->where('section_name', '=', $section_name)->pluck('section_id');
 //return $iid.'/'.$class.'/'.$class_name.'/'.'ok'.$sub_id.'ok'.'/'.$sub_name.'/'.$section_id.'/'.$section_name;
     $su=new ClassRoutine;
@@ -424,6 +428,9 @@ public function postAddRoutine(){
     $su->start_timeday=Input::get('timepickerform');
     $su->end_time=Input::get('timepickerto');
     $su->room_no=Input::get('room');
+    $su->teacher_id=Input::get('teacher');
+    $su->teacher_name=$teacher_name;
+
     $su->save();
     //return $su;
     Session::flash('data', 'Data successfully Added !');
@@ -440,6 +447,8 @@ public function postRoutineByClass(){
      $examname=Exam::where('institute_code', '=', Auth::user()->institute_id)->lists('exam_id','exam_name');
         $classname=ClassAdd::where('institute_code', '=', Auth::user()->institute_id)->lists('class_id','class_name');
         $schedule=ExamSchedule::where('institute_code', '=', Auth::user()->institute_id)->get();
+          $teacher=Teacher::where('institute_code', '=', Auth::user()->institute_id)->get();
+       
             $sid=ClassRoutine::where('class_name','LIKE',$class)->pluck('institute_code');
             $sat=ClassRoutine::where('class_name','=',$class)
                                 ->where('institute_code','=',$sid)
@@ -491,7 +500,8 @@ public function postRoutineByClass(){
                                             'thu'=> $thu,
                                             'fri'=> $fri,
                                             'sec'=> $indsec,
-                                            'section'=>$search1]);
+                                            'section'=>$search1,
+                                            'teacher'=>$teacher]);
          }
 }
     public function getEditClassRoutine($id){

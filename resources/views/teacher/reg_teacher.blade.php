@@ -94,13 +94,7 @@
 
                                                             </div>
                                                         </div>
-                                                        <div class="form-group ">
-                                                            <label for="religion " class="control-label col-lg-3">Religion </label>
-                                                            <div class="col-lg-6">
-                                                                <input class=" form-control" id="religion" name="religion" type="text" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group ">
+                                                       <div class="form-group ">
                                                             <label for="address" class="control-label col-lg-3">Address</label>
                                                             <div class="col-lg-6">
                                                                 <input class=" form-control" id="address" name="address" type="text" />

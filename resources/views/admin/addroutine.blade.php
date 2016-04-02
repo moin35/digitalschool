@@ -113,6 +113,20 @@
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="form-group ">
+                                                                                        <label for="teacher" class="col-sm-2 col-sm-offset-2 control-label-right">Teacher</label>
+                                                                                        <div class="col-lg-6">
+                                                                                        
+                                                                                            <select name="teacher" class="form-control">
+                                                                                            <option value=" " selected="selected">Assign a Teacher</option>
+                                                                                            @foreach($teacher as $v=>$t)
+                                                                                                <option value="{{$t->teacher_id}}">{{$t->name}}</option>
+                                                                                                
+                                                                                             @endforeach
+                                                                                            </select>
+                                                                                            
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="form-group ">
                                                                                         <label for="icode" class="col-sm-2 col-sm-offset-2 control-label-right">Time Form</label>
                                                                                         <div class="col-lg-6">
                                                                                             <select name="day" id="day" class="form-control">
@@ -129,13 +143,13 @@
                                                                                     <div class="form-group ">
                                                                                         <label for="icode" class="col-sm-2 col-sm-offset-2 control-label-right">Starting Time</label>
                                                                                         <div class="col-lg-6">
-                                                                                            <input class="form-control" id="timeto" name="timepickerform" type="text" />
+                                                                                            <input class="form-control" id="timeto" name="timepickerform" type="time" placeholder="Enter Start Time" />
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="form-group ">
-                                                                                        <label for="icode" class="col-sm-2 col-sm-offset-2 control-label-right">End Time</label>
+                                                                                        <label for="icode" class="col-sm-2 col-sm-offset-2 control-label-right" >End Time</label>
                                                                                         <div class="col-lg-6">
-                                                                                            <input class="form-control" id="timeto" name="timepickerto" type="text" />
+                                                                                            <input class="form-control" id="timeto" name="timepickerto" type="time" placeholder="Enter Start Time"/>
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="form-group ">
@@ -203,7 +217,6 @@
                         </div>
                         <div class="col-md-3"></div>
                     </div>
-
             <section class="panel">
                 <header class="panel-heading tab-bg-dark-navy-blue ">
                 
@@ -227,6 +240,7 @@
                         <div id="home" class="tab-pane active" style="background-color: #00A8B3;">
                             <div class="col-md-12">
                               <div class="row">
+                              @if(\App\)
                               <div class="col-md-1">SATURDAY</div>
                                   @foreach($sat as $r)
                                   <div class="col-md-2 round">
