@@ -29,7 +29,7 @@ use App\Holyday;
 use App\InstiHolyday;
 use App\AcademicCalender;
 use Carbon\Carbon;
-
+use App\Room;
 class HomeController extends Controller {
     /**
      * Display a listing of the resource.
@@ -249,8 +249,8 @@ class HomeController extends Controller {
          $ay2=$a12+$a02;
              //return $a12.$a02;
          $t=$totalTeachesrs*$p;
-   $ms=(int)(($ay2/$t)*100);
-
+   $monthreportteacher=(int)(($ay2/$t)*100);
+//return $monthreportteacher;
    $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();
    $InstiHolyday=InstiHolyday::where('holiday_date','LIKE',"%$m%")->where('institute_code', '=', Auth::user()->institute_id)->count();
    $InstiWeekEnd=AcademicCalender::where('institute_code', '=', Auth::user()->institute_id)->pluck('weekendday');
@@ -272,6 +272,7 @@ class HomeController extends Controller {
    }
    $p=$d-($at+$InstiHolyday);
    $ms=(int)(($p/$d)*100);
+  // return $p;
    //students attendence report saif...
    //today attendence calculation
    $totalStudents=Students::where('institute_code', '=', Auth::user()->institute_id)->count();
@@ -293,13 +294,13 @@ class HomeController extends Controller {
                     ->with('year',$year_percent)
                     ->with('m',$totalTeacherMale)
                     ->with('f',$totalTeacherFemale)
-                    ->with('mon',$ms)
+                    ->with('mon',$monthreportteacher)
                     ->with('studentTodayReport',$studentTodayReport)
                     ->with('monthpresentPersent',$monthpresentPersent);
 }
             elseif(priv()==4){
               /****Teacher****/
-                                $today=date('Y-m-d');
+                $today=date('Y-m-d');
                 $y=date("Y");
                 //return $today;
                 $totalStudents=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->count();
@@ -1012,6 +1013,31 @@ return  view('superadmin.ListofInstituteReport')->with('totalStudents',$totalStu
               ->with('studentTodayReport',$studentTodayReport)
               ->with('monthpresentPersent',$monthpresentPersent);
 
+    }
+    public function getRoomNumberView(){
+      $room=Room::where('institute_code','=',Auth::user()->institute_id)->orderBy('room_no','ASC')->get();
+      return view('admin.addroom',['room'=>$room]);
+    }
+    public function PostRoomNumberView(){
+      $roomnum=Input::get('rnumber');
+      $roomnocheck=Room::where('institute_code','=',Auth::user()->institute_id)->where('room_no','=',$roomnum)->count();
+       if ($roomnocheck==1) {
+        Session::flash('warn', 'This Room already allocated for another class Please Try another !');
+        return Redirect::to('add/room/number');
+      }
+      else{
+         $iid=Institute::where('institute_code','=',Auth::user()->institute_id)->pluck('institute_code');
+      // /return $iid;
+      $radd=New Room;
+      $radd->institute_code=$iid;
+      $radd->room_name=Input::get('rname');
+      $radd->room_no=Input::get('rnumber');
+      $radd->note=Input::get('note');
+      $radd->save();
+        Session::flash('data', 'Data successfully added !');
+        return Redirect::to('add/room/number');
+      }
+     
     }
 }
 function priv() {

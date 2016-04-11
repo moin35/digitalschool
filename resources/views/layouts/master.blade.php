@@ -379,7 +379,7 @@
                             </a>
                             <ul class="sub">
 
- <?php $p=date("Y-m-d");?>
+                                <?php $p=date("Y-m-d");?>
                                 <li><a href="{{URL::to('students/attendence/Index')}}">Student Attendance</a></li>
                                     @if(\App\Attendence::where('institute_code','=',Auth::user()->institute_id)->where('created_at','LIKE',"%$p%")->where('type','=','Teacher')->where('status','=',2)->where('status','!=',0)->where('status','!=',1)->count()==0)
                                 <li><a href="{{URL::to('/')}}/give/absence/teacher/{{Auth::user()->institute_id}}">Teacher Attendance</a></li>
@@ -461,13 +461,12 @@
                                    <li><a href="registration.html">Registration</a></li>
                                </ul>
                            </li> -->
-                           <li>
-
-                    <a href="login.html">
-                        <i class="fa fa-user"></i>
-                        <span>Login Page</span>
-                    </a>
-                    </li>
+                            <li>
+                            <a href="{{URL::to('get/all/bangladesh/report')}}">
+                                <i class="fa fa-video-camera"></i>
+                                <span>Full Bangladesh Custom Report</span>
+                            </a>
+                            </li>
                 </ul>     </div>
             <!-- sidebar menu end-->
         </div>

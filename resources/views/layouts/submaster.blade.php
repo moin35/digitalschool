@@ -465,13 +465,12 @@
                                    <li><a href="registration.html">Registration</a></li>
                                </ul>
                            </li> -->
-                           <li>
-
-                    <a href="login.html">
-                        <i class="fa fa-user"></i>
-                        <span>Login Page</span>
-                    </a>
-                    </li>
+                     <li>
+                            <a href="{{URL::to('get/all/bangladesh/report')}}">
+                                <i class="fa fa-video-camera"></i>
+                                <span>Full Bangladesh Custom Report</span>
+                            </a>
+                            </li>
                 </ul>     </div>
             <!-- sidebar menu end-->
         </div>

@@ -303,7 +303,7 @@ Route::get('teacher/job/allocation','AttendenceController@getTeacherJobAllocatio
 Route::get('allocation/permission/{tid}','AttendenceController@postTeacherJobAllocation');
 Route::post('allocation/permission/{tid}','AttendenceController@UpdateTeacherAllocation');
 
-//saif add for holyday
+//Saif add for holyday
 Route::post('admin/add/holyday',['as' => 'postholyday', 'uses' =>'AttendenceController@postholyday']);
 
 Route::get('supadmin/add/govtholiday','AttendenceController@getGovetholiyday');
@@ -315,5 +315,18 @@ Route::get('student/examschedule','StudentsController@getstudentsexamschedule');
 Route::get('student/markView','StudentsController@getMarkViews');
 Route::get('superAdmin/detailsInstituted','HomeController@viewDetailsInstitute');
 Route::get('superAdmin/detailsInstituted/report/{Iid}','HomeController@instituteReport');
-//Attdence Report For Teacher
-//Route::post('teacher/all/type/attdence/report',['as'=>'searchmearchent','uses'=>'AttendenceController@getTeacherAttdenceAllReport']);
+
+Route::get('add/room/number','HomeController@getRoomNumberView');
+Route::post('add/room/number','HomeController@PostRoomNumberView');
+
+//Report For Super Admin Start
+Route::get('get/all/bangladesh/report','ReportController@getAllReport');
+
+Route::get('admin/view/current/month/teacher/attdence/data','ReportController@getCurrentMonthWiseTeacher');
+Route::get('admin/view/last/six/month/teacher/attdence/data','ReportController@getLastSixmonthTeacher');
+Route::get('admin/view/last/one/year/month/teacher/attdence/data','ReportController@getLastOneYearTeacher');
+Route::get('admin/view/current/month/students/attdence/data','ReportController@getCurrentMonthWiseStudent');
+Route::get('admin/view/last/six/month/students/attdence/data','ReportController@getLastSixmonthsStudent');
+Route::get('admin/view/last/one/year/students/attdence/data','ReportController@getLastOneYearStudents');
+Route::get('admin/view/all/division','ReportController@getAllDivisionTeacher');
+

@@ -240,8 +240,7 @@
                         <div id="home" class="tab-pane active" style="background-color: #00A8B3;">
                             <div class="col-md-12">
                               <div class="row">
-                              @if(\App\)
-                              <div class="col-md-1">SATURDAY</div>
+                                <div class="col-md-1">SATURDAY</div>
                                   @foreach($sat as $r)
                                   <div class="col-md-2 round">
                                       <label style="background-color: #56C9F5;padding: 5px;" align="center">
