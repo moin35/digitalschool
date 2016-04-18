@@ -129,13 +129,22 @@ foreach($daterangesix as $date) {
 $weeksix= count($weekendsix);
 //return $weeksix;
 $totaldaycountsix=$months-$weeksix;
-return $totaldaycountsix;
+
+$t1=Attendence::whereBetween('created_at', [$d2,$d1])
+->where('type','=','Teacher')
+->where('status','=',1)->count();
+$t2=Attendence::whereBetween('created_at', [$d2,$d1])
+->where('type','=','Teacher')
+->where('status','=',0)->count();
+$ct= $t1+$t2;
+return "Atten: ".$ct."Total Day: ".$totaldaycountsix;
+return "Total Day: ".$totaldaycountsix;
 //echo 'Number of weeks: ' . count($weekends);
 //echo 'Number of weekend days: ' . (count($weekends, COUNT_RECURSIVE) - count($weekends));
 /*** Week Count For Six month End ***/
 /*** six month day count End ***/
 //Super Admin
-                 $AtotalInstitute=Institute::where('status','=',1)->count();
+                $AtotalInstitute=Institute::where('status','=',1)->count();
                 $AtotalStudents=Students::where('status','=',1)->count();
                 $AtotalStudentsMale=Students::where('status','=',1)->where('gender','=','Male')->count();
                 $AtotalStudentsFemale=Students::where('status','=',1)->where('gender','=','Female')->count();
