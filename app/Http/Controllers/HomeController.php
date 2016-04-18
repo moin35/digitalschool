@@ -29,7 +29,7 @@ use App\Holyday;
 use App\InstiHolyday;
 use App\AcademicCalender;
 use Carbon\Carbon;
-
+use App\Room;
 class HomeController extends Controller {
     /**
      * Display a listing of the resource.
@@ -299,7 +299,7 @@ class HomeController extends Controller {
 }
             elseif(priv()==4){
               /****Teacher****/
-                                $today=date('Y-m-d');
+                $today=date('Y-m-d');
                 $y=date("Y");
                 //return $today;
                 $totalStudents=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->count();
@@ -1012,6 +1012,31 @@ return  view('superadmin.ListofInstituteReport')->with('totalStudents',$totalStu
               ->with('studentTodayReport',$studentTodayReport)
               ->with('monthpresentPersent',$monthpresentPersent);
 
+    }
+    public function getRoomNumberView(){
+      $room=Room::where('institute_code','=',Auth::user()->institute_id)->orderBy('room_no','ASC')->get();
+      return view('admin.addroom',['room'=>$room]);
+    }
+    public function PostRoomNumberView(){
+      $roomnum=Input::get('rnumber');
+      $roomnocheck=Room::where('institute_code','=',Auth::user()->institute_id)->where('room_no','=',$roomnum)->count();
+       if ($roomnocheck==1) {
+        Session::flash('warn', 'This Room already allocated for another class Please Try another !');
+        return Redirect::to('add/room/number');
+      }
+      else{
+         $iid=Institute::where('institute_code','=',Auth::user()->institute_id)->pluck('institute_code');
+      // /return $iid;
+      $radd=New Room;
+      $radd->institute_code=$iid;
+      $radd->room_name=Input::get('rname');
+      $radd->room_no=Input::get('rnumber');
+      $radd->note=Input::get('note');
+      $radd->save();
+        Session::flash('data', 'Data successfully added !');
+        return Redirect::to('add/room/number');
+      }
+     
     }
 }
 function priv() {
