@@ -17,8 +17,6 @@
             <div class="mini-stat-info">
                 <span>{{$atotalInstitute}} </span>
                 Total Institutes<br>
-
-
             </div>
           </a>
 
@@ -44,7 +42,6 @@
         <div class="mini-stat clearfix">
             <span class="mini-stat-icon green"><i class="fa fa-female"></i></span>
             <div class="mini-stat-info">
-
                   <span>{{$atotalStudentsFemale}}</span>Females
             </div>
         </div>
@@ -69,7 +66,6 @@
         <div class="mini-stat clearfix">
             <span class="mini-stat-icon green"><i class="fa fa-female"></i></span>
             <div class="mini-stat-info">
-
                   <span>{{$satotalfemaleteacher}}</span>Females
             </div>
         </div>
@@ -90,7 +86,7 @@
             <span class="mini-stat-icon tar"><i class="fa fa-stethoscope"></i></span>
             <div class="mini-stat-info tar" style="color:white;">
 
-                  <span>{{$cmonth}} %</span>
+                  <span>{{$tattencmonth}} %</span>
             </div>
         </div>
     </div>
@@ -137,7 +133,6 @@
         <h4 align="center">LAST 6 MONTH STUDENT ATTDENCE PERCENT</h4>
             <span class="mini-stat-icon pink"><i class="fa fa-stethoscope"></i></span>
             <div class="mini-stat-info pink" style="color:white;">
-
                   <span>{{$cmonth}} %</span>
             </div>
         </div>
@@ -163,7 +158,7 @@
                         <div class="bar-stats">
                             <ul class="progress-stat-bar clearfix">
                                 <li data-percent="{{$today}}" style="width:13%;"><span class="progress-stat-percent pink" style="color:white;">{{$today}}%</span></li>
-                                <li data-percent="{{$cmonth}}" style="width:13%;"><span class="progress-stat-percent" style="color:white;">{{$cmonth}}%</span></li>
+                                <li data-percent="{{$tattencmonth}}" style="width:13%;"><span class="progress-stat-percent" style="color:white;">{{$tattencmonth}} %</span></li>
                                 <li data-percent="" style="width:13%;color:black;"><span class="progress-stat-percent yellow-b"></span>%</li>
                             </ul>
                             <ul class="bar-legend">
