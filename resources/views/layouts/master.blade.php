@@ -1026,7 +1026,7 @@
                         </a>
                     </li>
                     <li>
-                      <a href=" {{URL::to('admin/add/routine')}}">
+                      <a href=" {{URL::to('/')}}/student/routine/details/{{Auth::user()->uid}}')}}">
                             <i class="fa  fa-calendar-o"></i>
                             <span>Routine</span>
                         </a>
