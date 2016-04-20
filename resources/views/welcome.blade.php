@@ -98,7 +98,7 @@
             <span class="mini-stat-icon tar"><i class="fa fa-stethoscope"></i></span>
             <div class="mini-stat-info tar" style="color:white;">
 
-                  <span>{{$cmonth}} %</span>
+                  <span>{{$sixmonth}} %</span>
             </div>
         </div>
     </div>
@@ -110,7 +110,7 @@
             <span class="mini-stat-icon tar"><i class="fa fa-stethoscope"></i></span>
             <div class="mini-stat-info tar" style="color:white;">
 
-                  <span>{{$cmonth}} %</span>
+                  <span>{{$oneyear}} %</span>
             </div>
         </div>
     </div>
@@ -122,7 +122,7 @@
             <span class="mini-stat-icon pink"><i class="fa fa-stethoscope"></i></span>
             <div class="mini-stat-info pink" style="color:white;">
 
-                  <span>{{$cmonth}} %</span>
+                  <span>{{$totalstudentmonth}} %</span>
             </div>
         </div>
     </div>
@@ -133,7 +133,7 @@
         <h4 align="center">LAST 6 MONTH STUDENT ATTDENCE PERCENT</h4>
             <span class="mini-stat-icon pink"><i class="fa fa-stethoscope"></i></span>
             <div class="mini-stat-info pink" style="color:white;">
-                  <span>{{$cmonth}} %</span>
+                  <span>{{$totalpercentstudentsix}} %</span>
             </div>
         </div>
     </div>
@@ -145,7 +145,7 @@
             <span class="mini-stat-icon pink"><i class="fa fa-stethoscope"></i></span>
             <div class="mini-stat-info pink" style="color:white;">
 
-                  <span>{{$cmonth}} %</span>
+                  <span>{{$studentoneyear}} %</span>
             </div>
         </div>
     </div>

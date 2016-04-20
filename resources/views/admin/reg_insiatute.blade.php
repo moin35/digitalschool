@@ -78,7 +78,7 @@ Institute
                                                                                         <select name='division'  id="make" class="form-control"  >
                                                                                             <option  selected="selected" >Choose Division</option>
                                                                                             @foreach($divisionlist as $r=>$t)
-                                                                                            <option value="{{$t}}">{{$r}}</option>
+                                                                                            <option value="{{$r}}">{{$r}}</option>
                                                                                             @endforeach
                                                                                         </select>
                                                                                     </div>

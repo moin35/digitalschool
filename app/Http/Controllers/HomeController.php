@@ -41,6 +41,7 @@ class HomeController extends Controller {
     }
     public function home() {
         if (Auth::check()) {
+          //Super Admin Dashboard //
             if (priv() == 1) {
 //return date("Y-m-d", strtotime("-4 months"));
 /* Current Month Total Day Count Start */
@@ -83,10 +84,11 @@ $week= count($weekends);
 //echo 'Number of weeks: ' . count($weekends);
 //echo 'Number of weekend days: ' . (count($weekends, COUNT_RECURSIVE) - count($weekends));
 /************ Current Month Total weekend Count End ****************/
-/************ Current Month Teacher Attdence Percentage Start ****************/
 $workday= $daycount-$week;
+/************ Current Month Teacher Attdence Percentage Start ****************/
 $teacher= Teacher::all()->count();
 $allteacherworkday=$workday*$teacher;
+
 $m=date("Y-m");
           $teacheratten1=Attendence::where('created_at','LIKE',"%$m%")
                   ->where('type','=','Teacher')
@@ -95,9 +97,19 @@ $m=date("Y-m");
                   ->where('type','=','Teacher')
                   ->where('status','=',0)->count();
                   $total=$teacheratten1+ $teacheratten2;
-  $b= (($allteacherworkday)/100);
-$tcurrent=$b*$total;
+  $tcurrent=(int) (($total/$allteacherworkday)*100);
 /************ Current Month Teacher Attdence Percentage End ****************/
+/************ Current Month Student Attdence Percentage Start ****************/
+$student= Students::all()->count();
+$studentclassday=$workday*$student;
+//return $studentclassday;
+$m=date("Y-m");
+          $studentm=Attendence::where('created_at','LIKE',"%$m%")
+                  ->where('type','=','Student')
+                  ->where('status','=',0)->count();
+  $sttotal=(int) (($studentm/$studentclassday)*100);
+/************ Current Month Student Attdence Percentage End ****************/
+
 /*** six month day count Start ***/
 $d1 = date("Y-m-d");
 $d2= date("Y-m-d", strtotime("-6 months"));
@@ -110,7 +122,6 @@ while (($date1 = strtotime('+1 DAY', $date1)) <= $date2)
     $months++;
 //return  $months;
 /*** Week Count For six month Start***/
-
               $t=$d2;
               $e=$d1;
               //return $t.'--'.$e;
@@ -127,9 +138,8 @@ foreach($daterangesix as $date) {
     }
 }
 $weeksix= count($weekendsix);
-//return $weeksix;
+/* Teacher Six month calculation start */
 $totaldaycountsix=$months-$weeksix;
-
 $t1=Attendence::whereBetween('created_at', [$d2,$d1])
 ->where('type','=','Teacher')
 ->where('status','=',1)->count();
@@ -137,12 +147,76 @@ $t2=Attendence::whereBetween('created_at', [$d2,$d1])
 ->where('type','=','Teacher')
 ->where('status','=',0)->count();
 $ct= $t1+$t2;
-return "Atten: ".$ct."Total Day: ".$totaldaycountsix;
-return "Total Day: ".$totaldaycountsix;
+$sixmonthtattenpercent=(int)(($ct/$totaldaycountsix)*100);
+/* Teacher Six month calculation End */
+/* Student Six month calculation start */
+$s1=Attendence::whereBetween('created_at', [$d2,$d1])
+->where('type','=','Student')
+->where('status','=',0)->count();
+
+$studentpercentsixmonth=(int)(($s1/$totaldaycountsix)*100);
+
+/* Student Six month calculation End */
 //echo 'Number of weeks: ' . count($weekends);
 //echo 'Number of weekend days: ' . (count($weekends, COUNT_RECURSIVE) - count($weekends));
 /*** Week Count For Six month End ***/
 /*** six month day count End ***/
+/*** one year day count Start ***/
+$dy1 = date("Y-m-d");
+$dy2= date("Y-m-d", strtotime("-12 months"));
+//return $d2.$d1;
+$datey1 = strtotime($dy2);
+$datey2 = strtotime($dy1);
+//return $date1.'=='.$date2;
+$monthsy = 0;
+while (($datey1 = strtotime('+1 DAY', $datey1)) <= $datey2)
+    $monthsy++;
+//return  $months;
+/*** Week Count For six month Start***/
+              $ty=$dy2;
+              $ey=$dy1;
+              //return $t.'--'.$e;
+$beginy = new \DateTime($ty);
+$endy = new \DateTime($ey);
+//return $begin.'--'.$end;
+$intervaly = new \DateInterval('P1D');
+$daterangey = new \DatePeriod($beginy, $intervaly, $endy);
+$weekendy = [];
+
+foreach($daterangey as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekendy[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$weekyear= count($weekendy);
+//return $weekyear;
+$totaldaycountyear=$monthsy-$weekyear;
+/* Teacher One year Start*/
+$ty1=Attendence::whereBetween('created_at', [$dy2,$dy1])
+->where('type','=','Teacher')
+->where('status','=',1)->count();
+$ty2=Attendence::whereBetween('created_at', [$dy2,$dy1])
+->where('type','=','Teacher')
+->where('status','=',0)->count();
+$cty= $ty1+$ty2;
+//return $cty;
+$yeartattenpercent=(int)(($cty/$totaldaycountyear)*100);
+/* Teacher One year End*/
+/* Student One year Start*/
+$sy2=Attendence::whereBetween('created_at', [$dy2,$dy1])
+->where('type','=','Student')
+->where('status','=',0)->count();
+
+//return $cty;
+$styearcount=(int)(($sy2/$totaldaycountyear)*100);
+
+/* Student One year End*/
+//return $yeartattenpercent;
+//echo 'Number of weeks: ' . count($weekends);
+//echo 'Number of weekend days: ' . (count($weekends, COUNT_RECURSIVE) - count($weekends));
+/*** Week Count For Six month End ***/
+/*** six month day count End ***/
+/***************************************************** Teacher Percent End ********/
 //Super Admin
                 $AtotalInstitute=Institute::where('status','=',1)->count();
                 $AtotalStudents=Students::where('status','=',1)->count();
@@ -197,7 +271,12 @@ return "Total Day: ".$totaldaycountsix;
               ->with('others',$OthersTeacher)
               ->with('today',$today_atten)
               ->with('cmonth',$ms)
-              ->with('tattencmonth',$tcurrent);
+              ->with('tattencmonth',$tcurrent)
+              ->with('sixmonth',$sixmonthtattenpercent)
+              ->with('oneyear',$yeartattenpercent)
+              ->with('totalstudentmonth',$sttotal)
+              ->with('totalpercentstudentsix',$studentpercentsixmonth)
+              ->with('studentoneyear',$styearcount);
 
 
 
