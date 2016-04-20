@@ -318,3 +318,16 @@ Route::get('superAdmin/detailsInstituted/report/{Iid}','HomeController@institute
 
 Route::get('add/room/number','HomeController@getRoomNumberView');
 Route::post('add/room/number','HomeController@PostRoomNumberView');
+
+
+//Report For Super Admin Start
+Route::get('get/all/bangladesh/report','ReportController@getAllReport');
+
+Route::get('admin/view/current/month/teacher/attdence/data','ReportController@getCurrentMonthWiseTeacher');
+Route::get('admin/view/last/six/month/teacher/attdence/data','ReportController@getLastSixmonthTeacher');
+Route::get('admin/view/last/one/year/month/teacher/attdence/data','ReportController@getLastOneYearTeacher');
+Route::get('admin/view/current/month/students/attdence/data','ReportController@getCurrentMonthWiseStudent');
+Route::get('admin/view/last/six/month/students/attdence/data','ReportController@getLastSixmonthsStudent');
+Route::get('admin/view/last/one/year/students/attdence/data','ReportController@getLastOneYearStudents');
+Route::get('admin/view/all/division','ReportController@getAllDivisionTeacher');
+Route::get('student/routine/details/{id}','StudentsController@getroutine');

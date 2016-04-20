@@ -280,6 +280,10 @@ public function getMarkViews(){
   return view('admin.resultMark.markviews')->with('stdInfo',$stdInfo)->with('stdClass',$stdClass)
   ->with('showAllMark',$showAllMark)->with('MarkViewGrade',$MarkViewGrade)->with('allGrad',$allGrad)->with('showAllMarkExamName',$showAllMarkExamName);
 }
+public function getroutine($id){
+
+  return view('student.viewroutine');
+}
 
 
 

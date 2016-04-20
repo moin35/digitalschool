@@ -249,8 +249,8 @@ class HomeController extends Controller {
          $ay2=$a12+$a02;
              //return $a12.$a02;
          $t=$totalTeachesrs*$p;
-   $ms=(int)(($ay2/$t)*100);
-
+   $monthreportteacher=(int)(($ay2/$t)*100);
+//return $monthreportteacher;
    $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();
    $InstiHolyday=InstiHolyday::where('holiday_date','LIKE',"%$m%")->where('institute_code', '=', Auth::user()->institute_id)->count();
    $InstiWeekEnd=AcademicCalender::where('institute_code', '=', Auth::user()->institute_id)->pluck('weekendday');
@@ -272,6 +272,7 @@ class HomeController extends Controller {
    }
    $p=$d-($at+$InstiHolyday);
    $ms=(int)(($p/$d)*100);
+  // return $p;
    //students attendence report saif...
    //today attendence calculation
    $totalStudents=Students::where('institute_code', '=', Auth::user()->institute_id)->count();
@@ -293,7 +294,7 @@ class HomeController extends Controller {
                     ->with('year',$year_percent)
                     ->with('m',$totalTeacherMale)
                     ->with('f',$totalTeacherFemale)
-                    ->with('mon',$ms)
+                    ->with('mon',$monthreportteacher)
                     ->with('studentTodayReport',$studentTodayReport)
                     ->with('monthpresentPersent',$monthpresentPersent);
 }

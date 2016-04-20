@@ -83,6 +83,78 @@
             </div>
         </div>
     </div>
+    <a href="{{URL::to('admin/view/current/month/teacher/attdence/data')}}">
+        <div class="col-md-4">
+        <div class="mini-stat clearfix">
+        <h4 align="center">CURRENT MONTH TEACHER ATTDENCE PERCENT</h4>
+            <span class="mini-stat-icon tar"><i class="fa fa-stethoscope"></i></span>
+            <div class="mini-stat-info tar" style="color:white;">
+
+                  <span>{{$cmonth}} %</span>
+            </div>
+        </div>
+    </div>
+    </a>
+    <a href="{{URL::to('admin/view/last/six/month/teacher/attdence/data')}}">
+            <div class="col-md-4">
+        <div class="mini-stat clearfix">
+        <h4 align="center">LAST 6 MONTH TEACHER ATTDENCE PERCENT</h4>
+            <span class="mini-stat-icon tar"><i class="fa fa-stethoscope"></i></span>
+            <div class="mini-stat-info tar" style="color:white;">
+
+                  <span>{{$cmonth}} %</span>
+            </div>
+        </div>
+    </div>
+    </a>
+    <a href="{{URL::to('admin/view/last/one/year/month/teacher/attdence/data')}}">
+            <div class="col-md-4">
+        <div class="mini-stat clearfix">
+        <h4 align="center">LAST 1 YEAR TEACHER ATTDENCE PERCENT</h4>
+            <span class="mini-stat-icon tar"><i class="fa fa-stethoscope"></i></span>
+            <div class="mini-stat-info tar" style="color:white;">
+
+                  <span>{{$cmonth}} %</span>
+            </div>
+        </div>
+    </div>
+    </a>
+        <a href="{{URL::to('admin/view/current/month/students/attdence/data')}}">
+        <div class="col-md-4">
+        <div class="mini-stat clearfix">
+        <h4 align="center">CURRENT MONTH STUDENT ATTDENCE PERCENT</h4>
+            <span class="mini-stat-icon pink"><i class="fa fa-stethoscope"></i></span>
+            <div class="mini-stat-info pink" style="color:white;">
+
+                  <span>{{$cmonth}} %</span>
+            </div>
+        </div>
+    </div>
+    </a>
+    <a href="{{URL::to('admin/view/last/six/month/students/attdence/data')}}">
+            <div class="col-md-4">
+        <div class="mini-stat clearfix">
+        <h4 align="center">LAST 6 MONTH STUDENT ATTDENCE PERCENT</h4>
+            <span class="mini-stat-icon pink"><i class="fa fa-stethoscope"></i></span>
+            <div class="mini-stat-info pink" style="color:white;">
+
+                  <span>{{$cmonth}} %</span>
+            </div>
+        </div>
+    </div>
+    </a>
+    <a href="{{URL::to('admin/view/last/one/year/students/attdence/data')}}">
+            <div class="col-md-4">
+        <div class="mini-stat clearfix">
+        <h4 align="center">LAST 1 YEAR STUDENT ATTDENCE PERCENT</h4>
+            <span class="mini-stat-icon pink"><i class="fa fa-stethoscope"></i></span>
+            <div class="mini-stat-info pink" style="color:white;">
+
+                  <span>{{$cmonth}} %</span>
+            </div>
+        </div>
+    </div>
+    </a>
                     <div class="col-md-6">
             <section class="panel">
                 <div class="panel-body">
@@ -265,7 +337,7 @@
     @endif
     @endif
         <!--mini statistics start-->
-        <!-- ADMIN -->
+        <!--School ADMIN -->
     @if(Auth::check())
     @if(Auth::user()->priv==3)
 
