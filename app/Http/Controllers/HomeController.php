@@ -42,8 +42,109 @@ class HomeController extends Controller {
     public function home() {
         if (Auth::check()) {
             if (priv() == 1) {
-              //Super Admin
-                 $AtotalInstitute=Institute::where('status','=',1)->count();
+//return date("Y-m-d", strtotime("-4 months"));
+/* Current Month Total Day Count Start */
+$date = new \DateTime("-6");
+$date->modify("-" . ($date->format('j')-1) . " days");
+
+
+$month = date('m');
+$year = date("Y");
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+$end_time = strtotime("+1 month", $start_time);
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+   $list[] = date('Y-m-d', $i);
+   $list1[] = date('d D', $i);
+}
+$daycount=count($list);
+//return $mo;
+//return count($list);
+/************ Current Month Total Day Count End **************/
+/*********** Current Month Total weekend Count Start ***********/
+              $t=date('Y-m-d', mktime(0, 0, 0, date('m'), 1, date('Y')));
+              $e=date('Y-m-d', mktime(0, 0, 0, date('m')+1, 0, date('Y')));
+              //return $t.'--'.$e;
+$begin = new \DateTime($t);
+$end = new \DateTime($e);
+
+$interval = new \DateInterval('P1D');
+$daterange = new \DatePeriod($begin, $interval, $end);
+$weekends = [];
+
+foreach($daterange as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekends[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$week= count($weekends);
+//return $week;
+//echo 'Number of weeks: ' . count($weekends);
+//echo 'Number of weekend days: ' . (count($weekends, COUNT_RECURSIVE) - count($weekends));
+/************ Current Month Total weekend Count End ****************/
+/************ Current Month Teacher Attdence Percentage Start ****************/
+$workday= $daycount-$week;
+$teacher= Teacher::all()->count();
+$allteacherworkday=$workday*$teacher;
+$m=date("Y-m");
+          $teacheratten1=Attendence::where('created_at','LIKE',"%$m%")
+                  ->where('type','=','Teacher')
+                  ->where('status','=',1)->count();
+                  $teacheratten2=Attendence::where('created_at','LIKE',"%$m%")
+                  ->where('type','=','Teacher')
+                  ->where('status','=',0)->count();
+                  $total=$teacheratten1+ $teacheratten2;
+  $b= (($allteacherworkday)/100);
+$tcurrent=$b*$total;
+/************ Current Month Teacher Attdence Percentage End ****************/
+/*** six month day count Start ***/
+$d1 = date("Y-m-d");
+$d2= date("Y-m-d", strtotime("-6 months"));
+//return $d2.$d1;
+$date1 = strtotime($d2);
+$date2 = strtotime($d1);
+//return $date1.'=='.$date2;
+$months = 0;
+while (($date1 = strtotime('+1 DAY', $date1)) <= $date2)
+    $months++;
+//return  $months;
+/*** Week Count For six month Start***/
+
+              $t=$d2;
+              $e=$d1;
+              //return $t.'--'.$e;
+$beginsix = new \DateTime($t);
+$endsix = new \DateTime($e);
+//return $begin.'--'.$end;
+$intervalsix = new \DateInterval('P1D');
+$daterangesix = new \DatePeriod($beginsix, $intervalsix, $endsix);
+$weekendsix = [];
+
+foreach($daterangesix as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekendsix[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$weeksix= count($weekendsix);
+//return $weeksix;
+$totaldaycountsix=$months-$weeksix;
+
+$t1=Attendence::whereBetween('created_at', [$d2,$d1])
+->where('type','=','Teacher')
+->where('status','=',1)->count();
+$t2=Attendence::whereBetween('created_at', [$d2,$d1])
+->where('type','=','Teacher')
+->where('status','=',0)->count();
+$ct= $t1+$t2;
+return "Atten: ".$ct."Total Day: ".$totaldaycountsix;
+return "Total Day: ".$totaldaycountsix;
+//echo 'Number of weeks: ' . count($weekends);
+//echo 'Number of weekend days: ' . (count($weekends, COUNT_RECURSIVE) - count($weekends));
+/*** Week Count For Six month End ***/
+/*** six month day count End ***/
+//Super Admin
+                $AtotalInstitute=Institute::where('status','=',1)->count();
                 $AtotalStudents=Students::where('status','=',1)->count();
                 $AtotalStudentsMale=Students::where('status','=',1)->where('gender','=','Male')->count();
                 $AtotalStudentsFemale=Students::where('status','=',1)->where('gender','=','Female')->count();
@@ -95,7 +196,8 @@ class HomeController extends Controller {
               ->with('satotalfemaleteacher',$SAtotalTeachersFeMale)
               ->with('others',$OthersTeacher)
               ->with('today',$today_atten)
-              ->with('cmonth',$ms);
+              ->with('cmonth',$ms)
+              ->with('tattencmonth',$tcurrent);
 
 
 

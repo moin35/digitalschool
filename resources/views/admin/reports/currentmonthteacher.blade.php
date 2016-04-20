@@ -5,7 +5,6 @@
 @section('head')
 @stop
 @section('body')
-
 @if(Auth::check())
 @if(Auth::user()->priv==1)
 <!--mini statistics start-->
