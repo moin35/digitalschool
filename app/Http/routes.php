@@ -72,7 +72,7 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('api/dropdown', function(){
     $user = Input::get('option');
     $items = App\District::where('division_id', '=', $user)->lists('district','id');
-    return $items;
+    
     return Response::make($items);
 });
 

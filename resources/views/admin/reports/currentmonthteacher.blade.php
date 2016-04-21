@@ -10,16 +10,16 @@
 <!--mini statistics start-->
 <div class="row">
 <div class="panel panel-default">
-  <div class="panel-heading">TEACHER REPORT</div>
+  <div class="panel-heading">MONTHLY TEACHER REPORT DIVISION WISE ATTENDENCE</div>
   <div class="panel-body">
         <a href="{{URL::to('admin/view/all/division')}}">
         <div class="col-md-6">
         <div class="mini-stat clearfix">
-        <h4 align="center">DIVISION</h4>
+        <h4 align="center">DHAKA</h4>
             <span class="mini-stat-icon tar"><i class="fa fa-stethoscope"></i></span>
             <div class="mini-stat-info tar" style="color:white;">
 
-                  <span>19 %</span>
+                  <span>{{$dhakathismonth}} %</span>
             </div>
         </div>
     </div>
@@ -27,11 +27,11 @@
     <a href="">
             <div class="col-md-6">
         <div class="mini-stat clearfix">
-        <h4 align="center">DISTRICT</h4>
+        <h4 align="center">Chittagong</h4>
             <span class="mini-stat-icon tar"><i class="fa fa-stethoscope"></i></span>
             <div class="mini-stat-info tar" style="color:white;">
 
-                  <span>19 %</span>
+                  <span>{{$chittagongthismonth}} %</span>
             </div>
         </div>
     </div>
@@ -39,11 +39,11 @@
     <a href="">
             <div class="col-md-6">
         <div class="mini-stat clearfix">
-        <h4 align="center">THANA</h4>
+        <h4 align="center">Barisal</h4>
             <span class="mini-stat-icon tar"><i class="fa fa-stethoscope"></i></span>
             <div class="mini-stat-info tar" style="color:white;">
 
-                  <span>19 %</span>
+                  <span>{{$barisalthismonth}} %</span>
             </div>
         </div>
     </div>
@@ -51,11 +51,59 @@
         <a href="">
         <div class="col-md-6">
         <div class="mini-stat clearfix">
-        <h4 align="center">UNION</h4>
+        <h4 align="center">Rajshahi</h4>
             <span class="mini-stat-icon tar"><i class="fa fa-stethoscope"></i></span>
             <div class="mini-stat-info tar" style="color:white;">
 
-                  <span>19 %</span>
+                  <span>{{$rajshahithismonth}} %</span>
+            </div>
+        </div>
+    </div>
+    </a>
+            <a href="">
+        <div class="col-md-6">
+        <div class="mini-stat clearfix">
+        <h4 align="center">Sylhet </h4>
+            <span class="mini-stat-icon tar"><i class="fa fa-stethoscope"></i></span>
+            <div class="mini-stat-info tar" style="color:white;">
+
+                  <span>{{$sylhetthismonth}} %</span>
+            </div>
+        </div>
+    </div>
+    </a>
+            <a href="">
+        <div class="col-md-6">
+        <div class="mini-stat clearfix">
+        <h4 align="center">Rangpur</h4>
+            <span class="mini-stat-icon tar"><i class="fa fa-stethoscope"></i></span>
+            <div class="mini-stat-info tar" style="color:white;">
+
+                  <span>{{$rangpurthismonth}} %</span>
+            </div>
+        </div>
+    </div>
+    </a>
+            <a href="">
+        <div class="col-md-6">
+        <div class="mini-stat clearfix">
+        <h4 align="center">Khulna </h4>
+            <span class="mini-stat-icon tar"><i class="fa fa-stethoscope"></i></span>
+            <div class="mini-stat-info tar" style="color:white;">
+
+                  <span>{{$khulnathismonth}} %</span>
+            </div>
+        </div>
+    </div>
+    </a>
+                <a href="">
+        <div class="col-md-6">
+        <div class="mini-stat clearfix">
+        <h4 align="center">MYMENSINGH </h4>
+            <span class="mini-stat-icon tar"><i class="fa fa-stethoscope"></i></span>
+            <div class="mini-stat-info tar" style="color:white;">
+
+                  <span>{{$mymensinghthismonth}} %</span>
             </div>
         </div>
     </div>

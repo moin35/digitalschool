@@ -44,8 +44,6 @@ class ReportController extends Controller
         /* Current Month Total Day Count Start */
 $date = new \DateTime("-6");
 $date->modify("-" . ($date->format('j')-1) . " days");
-
-
 $month = date('m');
 $year = date("Y");
 $start_date = "01-".$month."-".$year;
@@ -87,55 +85,639 @@ $workday= $daycount-$week;
 /************ Current Month Teacher Attdence Percentage Start ****************/
 $teacher= Teacher::all()->count();
 $allteacherworkday=$workday*$teacher;
-
+//return $allteacherworkday;
 $m=date("Y-m");
-          $teacheratten1=Attendence::where('created_at','LIKE',"%$m%")
-                  ->where('type','=','Teacher')
-                  ->where('status','=',1)->count();
-                  $teacheratten2=Attendence::where('created_at','LIKE',"%$m%")
-                  ->where('type','=','Teacher')
-                  ->where('status','=',0)->count();
-                  return $total=$teacheratten1+ $teacheratten2;
-  $tcurrent=(int) (($total/$allteacherworkday)*100);
-  $t=Attendence::where('type','=','Teacher')
-  
-  ->where('status','=',1)
-  ->count();
-    $t1=Attendence::where('type','=','Teacher')
-  
-  ->where('status','=',0)
-  ->count();
-  return $t+$t1;
+/*********** Barisal Division Percentage Start*******/
 $teac1 = DB::table('tbl_attendence')
             ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
-            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
-            ->where( 'tbl_instituate.division','=','DHAKA')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',1)
             ->where( 'tbl_attendence.type','=','Teacher')
             ->where('tbl_attendence.created_at','LIKE',"%$m%")
             ->where( 'tbl_attendence.status','=',0)
             ->count();
+            //return $teac1;
 $teac2 = DB::table('tbl_attendence')
             ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
             ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
-            ->where( 'tbl_instituate.division','=','DHAKA')
+            ->where( 'tbl_instituate.division','=',1)
             ->where( 'tbl_attendence.type','=','Teacher')
             ->where('tbl_attendence.created_at','LIKE',"%$m%")
             ->where( 'tbl_attendence.status','=',1)
-            ->count();
+            ->count('tbl_attendence.institute_code');
             //print_r($users);
-            return $teac1+$teac2;
+            $sumteacherbarisal= $teac1+$teac2;
+            $barisaltotal=(int) (($sumteacherbarisal/$allteacherworkday)*100);   
+/*********** Barisal Division Percentage End*******/
+/*********** Chittagong Division Percentage Start*******/
+$teac3 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',2)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->where('tbl_attendence.created_at','LIKE',"%$m%")
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac4 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',2)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->where('tbl_attendence.created_at','LIKE',"%$m%")
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $sumteacherchittagong= $teac3+$teac4;
+            $chittagongtotal=(int) (($sumteacherchittagong/$allteacherworkday)*100);   
+/*********** Chittagong Division Percentage End*******/
+/*********** Dhaka Division Percentage Start*******/
+$teac5 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',3)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->where('tbl_attendence.created_at','LIKE',"%$m%")
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac6 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',3)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->where('tbl_attendence.created_at','LIKE',"%$m%")
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $sumteacher= $teac5+$teac6;
+            $dhakatotal=(int) (($sumteacher/$allteacherworkday)*100);   
+/*********** Dhaka Division Percentage End*******/
+/*********** Khulna Division Percentage Start*******/
+$teac7 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',4)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->where('tbl_attendence.created_at','LIKE',"%$m%")
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac8 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',4)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->where('tbl_attendence.created_at','LIKE',"%$m%")
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $sumkhulna= $teac7+$teac8;
+            $khulnatotal=(int) (($sumkhulna/$allteacherworkday)*100);   
+/*********** Khulna Division Percentage End*******/
+/*********** Rajshahi Division Percentage Start*******/
+$teac9 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',5)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->where('tbl_attendence.created_at','LIKE',"%$m%")
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac10 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',5)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->where('tbl_attendence.created_at','LIKE',"%$m%")
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $sumrajshahi= $teac9+$teac10;
+            $rajshahitotal=(int) (($sumrajshahi/$allteacherworkday)*100);   
+/*********** Rajshahi Division Percentage End*******/
+/*********** Rangpur Division Percentage Start*******/
+$teac11 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',6)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->where('tbl_attendence.created_at','LIKE',"%$m%")
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac12 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',6)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->where('tbl_attendence.created_at','LIKE',"%$m%")
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $sumrangpur= $teac11+$teac12;
+            $rangpurtotal=(int) (($sumrangpur/$allteacherworkday)*100);   
+/*********** Rangpur Division Percentage End*******/
+/*********** Sylhet Division Percentage Start*******/
+$teac13 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',7)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->where('tbl_attendence.created_at','LIKE',"%$m%")
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac14 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',7)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->where('tbl_attendence.created_at','LIKE',"%$m%")
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $sumsylhet= $teac13+$teac14;
+            $sylhettotal=(int) (($sumsylhet/$allteacherworkday)*100);   
+/*********** Sylhet Division Percentage End*******/
+/*********** MYMENSINGH Division Percentage Start*******/
+$teac15 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',8)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->where('tbl_attendence.created_at','LIKE',"%$m%")
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac16 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',8)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->where('tbl_attendence.created_at','LIKE',"%$m%")
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $summymensingh= $teac15+$teac16;
+            $mymensinghtotal=(int) (($sumsylhet/$allteacherworkday)*100);   
+/*********** MYMENSINGH Division Percentage End*******/
 /************ Current Month Teacher Attdence Percentage End ****************/
-        return view('admin.reports.currentmonthteacher');
+        return view('admin.reports.currentmonthteacher',
+          ['dhakathismonth'=>$dhakatotal,
+          'barisalthismonth'=>$barisaltotal,
+          'chittagongthismonth'=>$chittagongtotal,
+          'khulnathismonth'=>$khulnatotal,
+          'rajshahithismonth'=>$rajshahitotal,
+          'rangpurthismonth'=>$rangpurtotal,
+          'sylhetthismonth'=>$sylhettotal,
+          'mymensinghthismonth'=>$mymensinghtotal
+          ]);
     }
 
     public function getLastSixmonthTeacher()
     {
-        return view('admin.reports.sixmonthteacher');
+      /*** six month day count Start ***/
+$d1 = date("Y-m-d");
+$d2= date("Y-m-d", strtotime("-6 months"));
+//return $d2.$d1;
+$date1 = strtotime($d2);
+$date2 = strtotime($d1);
+//return $date1.'=='.$date2;
+$months = 0;
+while (($date1 = strtotime('+1 DAY', $date1)) <= $date2)
+    $months++;
+//return  $months;
+/*** Week Count For six month Start***/
+              $t=$d2;
+              $e=$d1;
+              //return $t.'--'.$e;
+$beginsix = new \DateTime($t);
+$endsix = new \DateTime($e);
+//return $begin.'--'.$end;
+$intervalsix = new \DateInterval('P1D');
+$daterangesix = new \DatePeriod($beginsix, $intervalsix, $endsix);
+$weekendsix = [];
+
+foreach($daterangesix as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekendsix[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$weeksix= count($weekendsix);
+
+/* Teacher Six month calculation start */
+$allteacherworkday=$months-$weeksix;
+/*********** Barisal Division Percentage Start*******/
+$teac1 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',1)
+            ->where( 'tbl_attendence.type','=','Teacher')
+           ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac2 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',1)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $sumteacherbarisal= $teac1+$teac2;
+            $barisaltotal=(int) (($sumteacherbarisal/$allteacherworkday)*100);   
+/*********** Barisal Division Percentage End*******/
+/*********** Chittagong Division Percentage Start*******/
+$teac3 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',2)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac4 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',2)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $sumteacherchittagong= $teac3+$teac4;
+            $chittagongtotal=(int) (($sumteacherchittagong/$allteacherworkday)*100);   
+/*********** Chittagong Division Percentage End*******/
+/*********** Dhaka Division Percentage Start*******/
+$teac5 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',3)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac6 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',3)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $sumteacher= $teac5+$teac6;
+            $dhakatotal=(int) (($sumteacher/$allteacherworkday)*100);   
+/*********** Dhaka Division Percentage End*******/
+/*********** Khulna Division Percentage Start*******/
+$teac7 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',4)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac8 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',4)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $sumkhulna= $teac7+$teac8;
+            $khulnatotal=(int) (($sumkhulna/$allteacherworkday)*100);   
+/*********** Khulna Division Percentage End*******/
+/*********** Rajshahi Division Percentage Start*******/
+$teac9 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',5)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac10 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',5)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $sumrajshahi= $teac9+$teac10;
+            $rajshahitotal=(int) (($sumrajshahi/$allteacherworkday)*100);   
+/*********** Rajshahi Division Percentage End*******/
+/*********** Rangpur Division Percentage Start*******/
+$teac11 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',6)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac12 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',6)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $sumrangpur= $teac11+$teac12;
+            $rangpurtotal=(int) (($sumrangpur/$allteacherworkday)*100);   
+/*********** Rangpur Division Percentage End*******/
+/*********** Sylhet Division Percentage Start*******/
+$teac13 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',7)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac14 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',7)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $sumsylhet= $teac13+$teac14;
+            $sylhettotal=(int) (($sumsylhet/$allteacherworkday)*100);   
+/*********** Sylhet Division Percentage End*******/
+/*********** MYMENSINGH Division Percentage Start*******/
+$teac15 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',8)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac16 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',8)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $summymensingh= $teac15+$teac16;
+            $mymensinghtotal=(int) (($sumsylhet/$allteacherworkday)*100);   
+/*********** MYMENSINGH Division Percentage End*******/
+
+/* Teacher Six month calculation End */
+        return view('admin.reports.sixmonthteacher',
+           ['dhakathismonth'=>$dhakatotal,
+          'barisalthismonth'=>$barisaltotal,
+          'chittagongthismonth'=>$chittagongtotal,
+          'khulnathismonth'=>$khulnatotal,
+          'rajshahithismonth'=>$rajshahitotal,
+          'rangpurthismonth'=>$rangpurtotal,
+          'sylhetthismonth'=>$sylhettotal,
+          'mymensinghthismonth'=>$mymensinghtotal
+          ]);
     }
 
     public function getLastOneYearTeacher()
     {
-        return view('admin.reports.oneyearteacher');
+            /*** One Year day count Start ***/
+$d1 = date("Y-m-d");
+$d2= date("Y-m-d", strtotime("-12 months"));
+//return $d2.$d1;
+$date1 = strtotime($d2);
+$date2 = strtotime($d1);
+//return $date1.'=='.$date2;
+$months = 0;
+while (($date1 = strtotime('+1 DAY', $date1)) <= $date2)
+    $months++;
+//return  $months;
+/*** Week Count For six month Start***/
+              $t=$d2;
+              $e=$d1;
+              //return $t.'--'.$e;
+$beginsix = new \DateTime($t);
+$endsix = new \DateTime($e);
+//return $begin.'--'.$end;
+$intervalsix = new \DateInterval('P1D');
+$daterangesix = new \DatePeriod($beginsix, $intervalsix, $endsix);
+$weekendsix = [];
+
+foreach($daterangesix as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekendsix[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$weeksix= count($weekendsix);
+//return $weeksix;
+/* Teacher Six month calculation start */
+$allteacherworkday=$months-$weeksix;
+/*********** Barisal Division Percentage Start*******/
+$teac1 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',1)
+            ->where( 'tbl_attendence.type','=','Teacher')
+           ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac2 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',1)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $sumteacherbarisal= $teac1+$teac2;
+            $barisaltotal=(int) (($sumteacherbarisal/$allteacherworkday)*100);   
+/*********** Barisal Division Percentage End*******/
+/*********** Chittagong Division Percentage Start*******/
+$teac3 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',2)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac4 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',2)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $sumteacherchittagong= $teac3+$teac4;
+            $chittagongtotal=(int) (($sumteacherchittagong/$allteacherworkday)*100);   
+/*********** Chittagong Division Percentage End*******/
+/*********** Dhaka Division Percentage Start*******/
+$teac5 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',3)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac6 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',3)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $sumteacher= $teac5+$teac6;
+            $dhakatotal=(int) (($sumteacher/$allteacherworkday)*100);   
+/*********** Dhaka Division Percentage End*******/
+/*********** Khulna Division Percentage Start*******/
+$teac7 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',4)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac8 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',4)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $sumkhulna= $teac7+$teac8;
+            $khulnatotal=(int) (($sumkhulna/$allteacherworkday)*100);   
+/*********** Khulna Division Percentage End*******/
+/*********** Rajshahi Division Percentage Start*******/
+$teac9 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',5)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac10 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',5)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $sumrajshahi= $teac9+$teac10;
+            $rajshahitotal=(int) (($sumrajshahi/$allteacherworkday)*100);   
+/*********** Rajshahi Division Percentage End*******/
+/*********** Rangpur Division Percentage Start*******/
+$teac11 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',6)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac12 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',6)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $sumrangpur= $teac11+$teac12;
+            $rangpurtotal=(int) (($sumrangpur/$allteacherworkday)*100);   
+/*********** Rangpur Division Percentage End*******/
+/*********** Sylhet Division Percentage Start*******/
+$teac13 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',7)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac14 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',7)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $sumsylhet= $teac13+$teac14;
+            $sylhettotal=(int) (($sumsylhet/$allteacherworkday)*100);   
+/*********** Sylhet Division Percentage End*******/
+/*********** MYMENSINGH Division Percentage Start*******/
+$teac15 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
+            ->where( 'tbl_instituate.division','=',8)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',0)
+            ->count();
+            //return $teac1;
+$teac16 = DB::table('tbl_attendence')
+            ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
+            ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
+            ->where( 'tbl_instituate.division','=',8)
+            ->where( 'tbl_attendence.type','=','Teacher')
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
+            ->where( 'tbl_attendence.status','=',1)
+            ->count('tbl_attendence.institute_code');
+            //print_r($users);
+            $summymensingh= $teac15+$teac16;
+            $mymensinghtotal=(int) (($sumsylhet/$allteacherworkday)*100);   
+/*********** MYMENSINGH Division Percentage End*******/
+        return view('admin.reports.oneyearteacher',
+          ['dhakathismonth'=>$dhakatotal,
+          'barisalthismonth'=>$barisaltotal,
+          'chittagongthismonth'=>$chittagongtotal,
+          'khulnathismonth'=>$khulnatotal,
+          'rajshahithismonth'=>$rajshahitotal,
+          'rangpurthismonth'=>$rangpurtotal,
+          'sylhetthismonth'=>$sylhettotal,
+          'mymensinghthismonth'=>$mymensinghtotal
+          ]);
     }
 
     public function getCurrentMonthWiseStudent()
