@@ -372,112 +372,88 @@ $styearcount=(int)(($sy2/$totaldaycountyear)*100);
             }
             elseif(priv()==3){
               /****School Admin****/
-                $today=date('Y-m-d');
-                $y=date("Y");
-                //return $today;
                 $totalStudents=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->count();
                 $totalStudentsMale=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Male')->count();
                 $totalStudentsFemale=Students::where('status','=',1)->where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Female')->count();
                 $totalTeachesrs=Teacher::where('institute_code', '=', Auth::user()->institute_id)->count();
-                $teacherAttendence=Attendence::where('institute_code', '=', Auth::user()->institute_id)
-                ->where('type','=','Teacher')->where('status','=',0)->where('created_at','LIKE',"%$today%")->count();
-                   $teacherAttendence1=Attendence::where('institute_code', '=', Auth::user()->institute_id)
-                ->where('type','=','Teacher')->where('status','=',1)->where('created_at','LIKE',"%$today%")->count();
-
-              $total= $teacherAttendence+$teacherAttendence1;
-              //return $total;
-                  $today_atten=(int)(($total/$totalTeachesrs)*100);
-                  //return $today_atten;
-         $a1=Attendence::where('institute_code','=',Auth::user()->institute_id)
-         ->where('created_at','LIKE',"%$y%")
-         ->where('type','=','Teacher')
-         ->where('status','=',1)->count();
-         $a0=Attendence::where('institute_code','=',Auth::user()->institute_id)
-         ->where('created_at','LIKE',"%$y%")
-         ->where('type','=','Teacher')
-         ->where('status','=',0)->count();
-         $ay=$a1+$a0;
-//return $ay;
-     if ($y%4==0) {
-      $x=366;
-       $year_percent=(int)(($ay/$x)*100);
-     }
-     else{
-       $yx=365;
-       $year_percent=(int)(($ay/$yx)*100);
-     }
-                //return $atten_percent;
-                // return $AtotalInstitute;
       $totalTeacherMale=Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Male')->count();
       $totalTeacherFemale=Teacher::where('institute_code', '=', Auth::user()->institute_id)->where('gender','=','Female')->count();
-   $m=date("Y-m");
-    ///$h=Holyday::where('holiday_date','LIKE',"%2016-03%")->get();
-   //$h=Holyday::where('holiday_date','LIKE',"%$m%")->get();
-   $d=date('t');
-
-   $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();
-   $p=$d-$at;
-   //return $p;
- $a12=Attendence::where('institute_code','=',Auth::user()->institute_id)
-         ->where('created_at','LIKE',"%$m%")
-         ->where('type','=','Teacher')
-         ->where('status','=',1)->count();
-
-         $a02=Attendence::where('institute_code','=',Auth::user()->institute_id)
-         ->where('created_at','LIKE',"%$m%")
-         ->where('type','=','Teacher')
-         ->where('status','=',0)->count();
-         $ay2=$a12+$a02;
-             //return $a12.$a02;
-         $t=$totalTeachesrs*$p;
-   $monthreportteacher=(int)(($ay2/$t)*100);
-//return $monthreportteacher;
-   $at=Holyday::where('holiday_date','LIKE',"%$m%")->count();
-   $InstiHolyday=InstiHolyday::where('holiday_date','LIKE',"%$m%")->where('institute_code', '=', Auth::user()->institute_id)->count();
-   $InstiWeekEnd=AcademicCalender::where('institute_code', '=', Auth::user()->institute_id)->pluck('weekendday');
-   $WeekEnd1=str_limit($InstiWeekEnd,3,'');
-   $WeekEnd2= substr($InstiWeekEnd,4);
-   $WeekEnd3= substr($InstiWeekEnd,9);
-//   return date('d', strtotime($WeekEnd1));
-
-   $month = date('m');
-   $year = date("Y");
-   $start_date = "01-".$month."-".$year;
-   $start_time = strtotime($start_date);
-   $end_time = strtotime("+1 month", $start_time);
-
-   for($i=$start_time; $i<$end_time; $i+=86400)
-   {
-    $list[] = date('D', $i);
-
-   }
-   $p=$d-($at+$InstiHolyday);
-   $ms=(int)(($p/$d)*100);
-  // return $p;
-   //students attendence report saif...
-   //today attendence calculation
-   $totalStudents=Students::where('institute_code', '=', Auth::user()->institute_id)->count();
-   $totalstudentsAtten=Attendence::where('institute_code', '=', Auth::user()->institute_id)
-   ->where('type','=','Student')->where('status','=',0)->where('created_at','LIKE',"%$today%")->count();
-    $studentTodayReport=(int)(($totalstudentsAtten/$totalStudents)*100);
-    //monthly calculation
-    $stdPrestAve=Attendence::where('institute_code','=',Auth::user()->institute_id)->where('type','=','Student')->where('status','=',0)->where('created_at','LIKE',"%$m%")->count();
-    //$presentPersent= (int)(($stdPrestAve/$p)*100);
-    $mtotal=($totalStudents*$p);
-     $monthpresentPersent= (int)(($stdPrestAve/$mtotal)*100);
-     ///yearly calculation
+   /* Current Month Total Day Count Start */
+$date = new \DateTime("-6");
+$date->modify("-" . ($date->format('j')-1) . " days");
 
 
-   return view('welcome')->with('totalStudents',$totalStudents)->with('totalTeachesrs',$totalTeachesrs)
+$month = date('m');
+$year = date("Y");
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+$end_time = strtotime("+1 month", $start_time);
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+   $list[] = date('Y-m-d', $i);
+   $list1[] = date('d D', $i);
+}
+$daycount=count($list);
+//return $mo;
+//return count($list);
+/************ Current Month Total Day Count End **************/
+/*********** Current Month Total weekend Count Start ***********/
+              $t=date('Y-m-d', mktime(0, 0, 0, date('m'), 1, date('Y')));
+              $e=date('Y-m-d', mktime(0, 0, 0, date('m')+1, 0, date('Y')));
+              //return $t.'--'.$e;
+$begin = new \DateTime($t);
+$end = new \DateTime($e);
+
+$interval = new \DateInterval('P1D');
+$daterange = new \DatePeriod($begin, $interval, $end);
+$weekends = [];
+
+foreach($daterange as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekends[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$week= count($weekends);
+//return $week;
+//echo 'Number of weeks: ' . count($weekends);
+//echo 'Number of weekend days: ' . (count($weekends, COUNT_RECURSIVE) - count($weekends));
+/************ Current Month Total weekend Count End ****************/
+$workday= $daycount-$week;
+/************ Current Month Teacher Attdence Percentage Start ****************/
+$teacher= Teacher::where('institute_code', '=', Auth::user()->institute_id)->count();
+$allteacherworkday=$workday*$teacher;
+
+$m=date("Y-m");
+          $teacheratten1=Attendence::where('created_at','LIKE',"%$m%")
+                  ->where('institute_code', '=', Auth::user()->institute_id)
+                  ->where('type','=','Teacher')
+                  ->where('status','=',1)->count();
+          $teacheratten2=Attendence::where('created_at','LIKE',"%$m%")
+                  ->where('institute_code', '=', Auth::user()->institute_id)
+                  ->where('type','=','Teacher')
+                  ->where('status','=',0)->count();
+          $total=$teacheratten1+ $teacheratten2;
+  $tcurrent=(int) (($total/$allteacherworkday)*100);
+/************ Current Month Teacher Attdence Percentage End ****************/
+/************ Current Month Student Attdence Percentage Start ****************/
+$student= Students::where('institute_code', '=', Auth::user()->institute_id)->count();
+$studentclassday=$workday*$student;
+//return $studentclassday;
+$m=date("Y-m");
+          $studentm=Attendence::where('created_at','LIKE',"%$m%")
+                  ->where('type','=','Student')
+                  ->where('status','=',0)->count();
+  $sttotal=(int) (($studentm/$studentclassday)*100);
+/************ Current Month Student Attdence Percentage End ****************/
+
+   return view('welcome')->with('totalStudents',$totalStudents)
+                    ->with('totalTeachesrs',$totalTeachesrs)
                     ->with('totalStudentsMale',$totalStudentsMale)
-                    ->with('totalStudentsFemale',$totalStudentsFemale)
-                    ->with('today',$today_atten)
-                    ->with('year',$year_percent)
+                    ->with('totalStudentsFemale',$totalStudentsFemale)                  
                     ->with('m',$totalTeacherMale)
                     ->with('f',$totalTeacherFemale)
-                    ->with('mon',$monthreportteacher)
-                    ->with('studentTodayReport',$studentTodayReport)
-                    ->with('monthpresentPersent',$monthpresentPersent);
+                    ->with('teacherthismonth',$tcurrent)
+                    ->with('studentrthismonth',$sttotal);
 }
             elseif(priv()==4){
               /****Teacher****/

@@ -343,12 +343,18 @@
 
             <div class="mini-stat clearfix">
                 <span class="mini-stat-icon orange"><i class="fa  ico-users"></i></span>
+                 @if($totalTeachesrs==0)
+                 <div class="mini-stat-info">
+                    <span> 0 %</span>
+                    Total Teachers
+                </div>
+                    
+                @else
                 <div class="mini-stat-info">
                     <span> {{$totalTeachesrs}}</span>
                     Total Teachers
-
-
                 </div>
+                @endif
             </div>
 
         </div>
@@ -356,18 +362,29 @@
         <div class="col-md-3">
             <div class="mini-stat clearfix">
                 <span class="mini-stat-icon pink"><i class="fa fa-male"></i></span>
+                @if($m==0)
+                      <div class="mini-stat-info">
+                      <span>0 %</span>Male
+                </div>
+                @else
                 <div class="mini-stat-info">
                       <span>{{$m}}</span>Male
                 </div>
+                @endif
             </div>
         </div>
         <div class="col-md-3">
             <div class="mini-stat clearfix">
                 <span class="mini-stat-icon green"><i class="fa fa-female"></i></span>
+                @if($m==0)
+                    <div class="mini-stat-info">
+                      <span>0%</span>Female
+                </div>
+                @else
                 <div class="mini-stat-info">
-
                       <span>{{$f}}</span>Female
                 </div>
+                @endif
             </div>
         </div>
              <div class="col-md-3">
@@ -381,34 +398,51 @@
    <div class="col-md-3">
             <div class="mini-stat clearfix">
                 <span class="mini-stat-icon tar"><i class="fa fa-users"></i></span>
+                   @if($totalStudents==0)
+                      <div class="mini-stat-info">
+                    <span>0 %</span>Total Students<br>
+                </div>
+                @else
                 <div class="mini-stat-info">
                     <span>{{$totalStudents}}</span>Total Students<br>
                 </div>
+                @endif
             </div>
         </div>
          <div class="col-md-3">
             <div class="mini-stat clearfix">
                 <span class="mini-stat-icon pink"><i class="fa fa-male"></i></span>
+                 @if($totalStudentsMale==0)
                 <div class="mini-stat-info">
+                      <span>0 %</span>Male
+                </div>
+                @else
+                    <div class="mini-stat-info">
                       <span>{{$totalStudentsMale}}</span>Male
                 </div>
+                @endif
             </div>
         </div>
                 <div class="col-md-3">
             <div class="mini-stat clearfix">
                 <span class="mini-stat-icon green"><i class="fa fa-female"></i></span>
+                 @if($totalStudentsFemale==0)
                 <div class="mini-stat-info">
-
+                      <span>0 %</span>Female
+                </div>
+                @else
+                     <div class="mini-stat-info">
                       <span>{{$totalStudentsFemale}}</span>Female
                 </div>
+                @endif
             </div>
         </div>
                 <div class="col-md-3">
             <div class="mini-stat clearfix">
                 <span class="mini-stat-icon green"><i class="fa fa-female"></i></span>
-                <div class="mini-stat-info">
 
-                      <span>{{$totalStudentsFemale}}</span>Female
+                <div class="mini-stat-info">
+                      <span>0 %</span>Others
                 </div>
             </div>
         </div>
@@ -419,9 +453,9 @@
                         <h4 class="widget-h" style="color:black;">Teacher Attendence Report</h4>
                         <div class="bar-stats">
                             <ul class="progress-stat-bar clearfix">
-                                <li data-percent="{{$today}}" style="width:13%;"><span class="progress-stat-percent pink" style="color:white;">{{$today}}%</span></li>
-                                <li data-percent="{{$mon}}" style="width:13%;"><span class="progress-stat-percent" style="color:white;">{{$mon}}%</span></li>
-                                <li data-percent="{{$year}}" style="width:13%;color:black;"><span class="progress-stat-percent yellow-b"></span>{{$year}}%</li>
+                                <li data-percent="{{$teacherthismonth}}" style="width:13%;"><span class="progress-stat-percent pink" style="color:white;">{{$teacherthismonth}} %</span></li>
+                                <li data-percent="" style="width:13%;"><span class="progress-stat-percent" style="color:white;">%</span></li>
+                                <li data-percent="" style="width:13%;color:black;"><span class="progress-stat-percent yellow-b"></span>%</li>
                             </ul>
                             <ul class="bar-legend">
                                 <li><span class="bar-legend-pointer pink"></span> Today Attdence Percent</li>
@@ -429,7 +463,9 @@
                                 <li><span class="bar-legend-pointer yellow-b"></span> This Year Attdence Percent</li>
                             </ul>
                             <div class="daily-sales-info">
-                                <span class="sales-count">{{$totalTeachesrs}} </span> <span class="sales-label">Total Teacher</span>
+                     
+                                <span class="sales-count"> </span> <span class="sales-label">Total Teacher</span>
+                           
                             </div>
                         </div>
                     </div>
@@ -443,8 +479,8 @@
                         <h4 class="widget-h" style="color:black;">Students Attendence Report</h4>
                         <div class="bar-stats">
                             <ul class="progress-stat-bar clearfix">
-                                <li data-percent="{{$studentTodayReport}}%" style="width:13%;"><span class="progress-stat-percent pink" style="color:white;">{{$studentTodayReport}}%</span></li>
-                                <li data-percent="{{$monthpresentPersent}}%" style="width:13%;"><span class="progress-stat-percent" style="color:white;">{{$monthpresentPersent}}%</span></li>
+                                <li data-percent="{{$studentrthismonth}} %" style="width:13%;"><span class="progress-stat-percent pink" style="color:white;">{{$studentrthismonth}}%</span></li>
+                                <li data-percent="%" style="width:13%;"><span class="progress-stat-percent" style="color:white;">%</span></li>
                                 <li data-percent="70%" style="width:13%;"><span class="progress-stat-percent yellow-b" style="color:white;"></span></li>
                             </ul>
                             <ul class="bar-legend">
