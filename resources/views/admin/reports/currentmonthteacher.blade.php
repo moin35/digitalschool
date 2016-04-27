@@ -12,7 +12,7 @@
 <div class="panel panel-default">
   <div class="panel-heading">MONTHLY TEACHER REPORT DIVISION WISE ATTENDENCE</div>
   <div class="panel-body">
-        <a href="{{URL::to('admin/view/all/division')}}">
+        <a href="{{URL::to('admin/view/dhaka/district')}}">
         <div class="col-md-6">
         <div class="mini-stat clearfix">
         <h4 align="center">DHAKA</h4>
