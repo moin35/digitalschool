@@ -433,7 +433,9 @@ $m=date("Y-m");
                   ->where('type','=','Teacher')
                   ->where('status','=',0)->count();
           $total=$teacheratten1+ $teacheratten2;
+   //      return $total;
   $tcurrent=(int) (($total/$allteacherworkday)*100);
+
 /************ Current Month Teacher Attdence Percentage End ****************/
 /************ Current Month Student Attdence Percentage Start ****************/
 $student= Students::where('institute_code', '=', Auth::user()->institute_id)->count();

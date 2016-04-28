@@ -330,5 +330,5 @@ Route::get('admin/view/last/one/year/month/teacher/attdence/data','ReportControl
 Route::get('admin/view/current/month/students/attdence/data','ReportController@getCurrentMonthWiseStudent');
 Route::get('admin/view/last/six/month/students/attdence/data','ReportController@getLastSixmonthsStudent');
 Route::get('admin/view/last/one/year/students/attdence/data','ReportController@getLastOneYearStudents');
-Route::get('admin/view/dhaka/district','ReportController@getAllDivisionTeacher');
+Route::get('admin/view/dhaka/district','ReportController@getAllDistrictTeacher');
 Route::get('student/routine/details/{id}','StudentsController@getroutine');

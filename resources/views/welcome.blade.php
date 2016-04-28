@@ -343,7 +343,7 @@
 
             <div class="mini-stat clearfix">
                 <span class="mini-stat-icon orange"><i class="fa  ico-users"></i></span>
-                 @if($totalTeachesrs==0)
+                 @if($totalTeachesrs=="")
                  <div class="mini-stat-info">
                     <span> 0 %</span>
                     Total Teachers
@@ -362,7 +362,7 @@
         <div class="col-md-3">
             <div class="mini-stat clearfix">
                 <span class="mini-stat-icon pink"><i class="fa fa-male"></i></span>
-                @if($m==0)
+                @if($m==" ")
                       <div class="mini-stat-info">
                       <span>0 %</span>Male
                 </div>
@@ -376,7 +376,7 @@
         <div class="col-md-3">
             <div class="mini-stat clearfix">
                 <span class="mini-stat-icon green"><i class="fa fa-female"></i></span>
-                @if($m==0)
+                @if($m==" ")
                     <div class="mini-stat-info">
                       <span>0%</span>Female
                 </div>
@@ -398,7 +398,7 @@
    <div class="col-md-3">
             <div class="mini-stat clearfix">
                 <span class="mini-stat-icon tar"><i class="fa fa-users"></i></span>
-                   @if($totalStudents==0)
+                   @if($totalStudents==" ")
                       <div class="mini-stat-info">
                     <span>0 %</span>Total Students<br>
                 </div>
@@ -412,7 +412,7 @@
          <div class="col-md-3">
             <div class="mini-stat clearfix">
                 <span class="mini-stat-icon pink"><i class="fa fa-male"></i></span>
-                 @if($totalStudentsMale==0)
+                 @if($totalStudentsMale==" ")
                 <div class="mini-stat-info">
                       <span>0 %</span>Male
                 </div>
@@ -426,7 +426,7 @@
                 <div class="col-md-3">
             <div class="mini-stat clearfix">
                 <span class="mini-stat-icon green"><i class="fa fa-female"></i></span>
-                 @if($totalStudentsFemale==0)
+                 @if($totalStudentsFemale==" ")
                 <div class="mini-stat-info">
                       <span>0 %</span>Female
                 </div>
@@ -453,7 +453,12 @@
                         <h4 class="widget-h" style="color:black;">Teacher Attendence Report</h4>
                         <div class="bar-stats">
                             <ul class="progress-stat-bar clearfix">
+                            @if($teacherthismonth==" ")
                                 <li data-percent="{{$teacherthismonth}}" style="width:13%;"><span class="progress-stat-percent pink" style="color:white;">{{$teacherthismonth}} %</span></li>
+                              @else
+
+                              ok
+                              @endif  
                                 <li data-percent="" style="width:13%;"><span class="progress-stat-percent" style="color:white;">%</span></li>
                                 <li data-percent="" style="width:13%;color:black;"><span class="progress-stat-percent yellow-b"></span>%</li>
                             </ul>

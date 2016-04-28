@@ -12,54 +12,31 @@
 <div class="panel panel-default">
   <div class="panel-heading">TEACHER REPORT</div>
   <div class="panel-body">
-        <a href="{{URL::to('admin/view/all/division')}}">
-        <div class="col-md-6">
-        <div class="mini-stat clearfix">
-        <h4 align="center">DIVISION</h4>
-            <span class="mini-stat-icon tar"><i class="fa fa-stethoscope"></i></span>
-            <div class="mini-stat-info tar" style="color:white;">
+    <div class="col-md-1"> 
 
-                  <span>19 %</span>
-            </div>
-        </div>
-    </div>
-    </a>
-    <a href="">
-            <div class="col-md-6">
-        <div class="mini-stat clearfix">
-        <h4 align="center">DISTRICT</h4>
-            <span class="mini-stat-icon tar"><i class="fa fa-stethoscope"></i></span>
-            <div class="mini-stat-info tar" style="color:white;">
+</div>
+  <div class="col-md-8"> 
+<div class="list-group">
+@foreach($dhakadivision as $key=>$value)
+<li class="list-group-item">
+    <a href="#" class="list-group-item list-group-item-success">
+     {{$value->district}}
+     @if($value->district=="DHAKA")
+    <span class="label label-default label-pill pull-xs-right" style="float:right;">{{$dhktotalpercent}} %</span>
+    @elseif($value->district=="FARIDPUR")
+     <span class="label label-default label-pill pull-xs-right" style="float:right;">{{$faridpurpercent}} %</span>
+  @else
+      <span class="label label-default label-pill pull-xs-right" style="float:right;">NO DATA</span>
 
-                  <span>19 %</span>
-            </div>
-        </div>
-    </div>
+  @endif
     </a>
-    <a href="">
-            <div class="col-md-6">
-        <div class="mini-stat clearfix">
-        <h4 align="center">THANA</h4>
-            <span class="mini-stat-icon tar"><i class="fa fa-stethoscope"></i></span>
-            <div class="mini-stat-info tar" style="color:white;">
+  </li>
+@endforeach
+</div>
+</div>
+  <div class="col-md-2"> 
 
-                  <span>19 %</span>
-            </div>
-        </div>
-    </div>
-    </a>
-        <a href="">
-        <div class="col-md-6">
-        <div class="mini-stat clearfix">
-        <h4 align="center">UNION</h4>
-            <span class="mini-stat-icon tar"><i class="fa fa-stethoscope"></i></span>
-            <div class="mini-stat-info tar" style="color:white;">
-
-                  <span>19 %</span>
-            </div>
-        </div>
-    </div>
-    </a>
+</div>
   </div>
 </div>
 </div>
