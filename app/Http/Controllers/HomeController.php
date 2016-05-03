@@ -422,7 +422,7 @@ $workday= $daycount-$week;
 /************ Current Month Teacher Attdence Percentage Start ****************/
 $teacher= Teacher::where('institute_code', '=', Auth::user()->institute_id)->count();
 $allteacherworkday=$workday*$teacher;
-
+//return $allteacherworkday;
 $m=date("Y-m");
           $teacheratten1=Attendence::where('created_at','LIKE',"%$m%")
                   ->where('institute_code', '=', Auth::user()->institute_id)
@@ -433,8 +433,19 @@ $m=date("Y-m");
                   ->where('type','=','Teacher')
                   ->where('status','=',0)->count();
           $total=$teacheratten1+ $teacheratten2;
-   //      return $total;
-  $tcurrent=(int) (($total/$allteacherworkday)*100);
+     // return $allteacherworkday;
+
+          if ($allteacherworkday==0) {
+          // return 1;
+            $tcurrent=(int) (($total/1)*100);
+           // return $tcurrent;
+          }
+          elseif ($allteacherworkday!=0) {
+           $tcurrent=(int) (($total/$allteacherworkday)*100);
+          }
+          //return 2;
+  //$tcurrent=(int) (($total/$allteacherworkday)*100);
+ //return $tcurrent;
 
 /************ Current Month Teacher Attdence Percentage End ****************/
 /************ Current Month Student Attdence Percentage Start ****************/
@@ -445,7 +456,13 @@ $m=date("Y-m");
           $studentm=Attendence::where('created_at','LIKE',"%$m%")
                   ->where('type','=','Student')
                   ->where('status','=',0)->count();
-  $sttotal=(int) (($studentm/$studentclassday)*100);
+                  if ($studentclassday==0) {
+                     $sttotal=(int) (($studentm/1)*100);
+                  }
+                  elseif ($studentclassday!=0) {
+                    $sttotal=(int) (($studentm/$studentclassday)*100);
+                  }
+  //$sttotal=(int) (($studentm/$studentclassday)*100);
 /************ Current Month Student Attdence Percentage End ****************/
 
    return view('welcome')->with('totalStudents',$totalStudents)
