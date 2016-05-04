@@ -332,4 +332,12 @@ Route::get('admin/view/last/six/month/students/attdence/data','ReportController@
 Route::get('admin/view/last/one/year/students/attdence/data','ReportController@getLastOneYearStudents');
 Route::get('admin/view/dhaka/district','ReportController@getAllDistrictTeacher');
 Route::get('student/routine/details/{id}','StudentsController@getroutine');
-Route::get('admin/institute/registration/{dis}','ReportController@getThana');
+Route::get('admin/view/dhaka/thana/{dis}','ReportController@getThana');
+
+Route::get('admin/view/dhaka/six/month/district','ReportController@getDhakaTeacherSix');
+Route::get('admin/view/dhaka/six/month/thana/{dis}','ReportController@getThanaSix');
+
+Route::get('admin/view/dhaka/one/year/district','ReportController@getDhakaOneYearTeacher');
+Route::get('admin/view/dhaka/one/year/thana/{dis}','ReportController@getDhakaOneYearThana');
+Route::get('admin/view/current/month/student/district','ReportController@getAllDistrictStudent');
+Route::get('admin/view/student/thana/{dis}','ReportController@getStudentCmonthThana');

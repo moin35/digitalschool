@@ -1173,8 +1173,7 @@ $std8 = DB::table('tbl_attendence')
           ]);
     }
     public function getAllDistrictTeacher(){
-        $dhakadivision= District::where('division_id','=',3)->orderBy('district','ASC')->get();
-        //return $dhakadivision;
+          //return $dhakadivision;
         /* Current Month Total Day Count Start */
 $date = new \DateTime("-6");
 $date->modify("-" . ($date->format('j')-1) . " days");
@@ -1221,7 +1220,8 @@ $teacher= Teacher::all()->count();
 $allteacherworkday=$workday*$teacher;
 //return $allteacherworkday;
 $m=date("Y-m");
-
+  $dhakadivision= District::where('division_id','=',3)->orderBy('district','ASC')->get();
+    
    return view('admin.reports.teacherdistrict',
             [  'dhakadivision'=>$dhakadivision,
                 'allteacherworkday'=>$allteacherworkday,
@@ -1285,4 +1285,273 @@ return view('admin.reports.cmonth_teacher_thana',
         'm'=>$m  
     ]);
     }
+    public function getDhakaTeacherSix(){
+              /*** six month day count Start ***/
+$d1 = date("Y-m-d");
+$d2= date("Y-m-d", strtotime("-6 months"));
+//return $d2.$d1;
+$date1 = strtotime($d2);
+$date2 = strtotime($d1);
+//return $date1.'=='.$date2;
+$months = 0;
+while (($date1 = strtotime('+1 DAY', $date1)) <= $date2)
+    $months++;
+//return  $months;
+/*** Week Count For six month Start***/
+              $t=$d2;
+              $e=$d1;
+              //return $t.'--'.$e;
+$beginsix = new \DateTime($t);
+$endsix = new \DateTime($e);
+//return $begin.'--'.$end;
+$intervalsix = new \DateInterval('P1D');
+$daterangesix = new \DatePeriod($beginsix, $intervalsix, $endsix);
+$weekendsix = [];
+
+foreach($daterangesix as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekendsix[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$weeksix= count($weekendsix);
+/* Teacher Six month calculation start */
+$allteacherworkday=$months-$weeksix;
+   $dhakadivision= District::where('division_id','=',3)->orderBy('district','ASC')->get();
+        return view('admin.reports.six_teacher_district',[
+                    'dhakadivision'=>$dhakadivision,
+                'allteacherworkday'=>$allteacherworkday,
+                'd1'=>$d1,
+                'd2'=>$d2  
+            ]);
+    }
+public function getThanaSix($dis){
+                  /*** six month day count Start ***/
+$d1 = date("Y-m-d");
+$d2= date("Y-m-d", strtotime("-6 months"));
+//return $d2.$d1;
+$date1 = strtotime($d2);
+$date2 = strtotime($d1);
+//return $date1.'=='.$date2;
+$months = 0;
+while (($date1 = strtotime('+1 DAY', $date1)) <= $date2)
+    $months++;
+//return  $months;
+/*** Week Count For six month Start***/
+              $t=$d2;
+              $e=$d1;
+              //return $t.'--'.$e;
+$beginsix = new \DateTime($t);
+$endsix = new \DateTime($e);
+//return $begin.'--'.$end;
+$intervalsix = new \DateInterval('P1D');
+$daterangesix = new \DatePeriod($beginsix, $intervalsix, $endsix);
+$weekendsix = [];
+
+foreach($daterangesix as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekendsix[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$weeksix= count($weekendsix);
+/* Teacher Six month calculation start */
+$allteacherworkday=$months-$weeksix;
+$thana=Thana::where('district_name','=',$dis)->get();
+         return view('admin.reports.six_teacher_thana',[
+                    'thana'=>$thana,
+                'allteacherworkday'=>$allteacherworkday,
+                'd1'=>$d1,
+                'd2'=>$d2  
+            ]);
+}
+public function getDhakaOneYearTeacher(){
+       /*** One Year day count Start ***/
+$d1 = date("Y-m-d");
+$d2= date("Y-m-d", strtotime("-12 months"));
+//return $d2.$d1;
+$date1 = strtotime($d2);
+$date2 = strtotime($d1);
+//return $date1.'=='.$date2;
+$months = 0;
+while (($date1 = strtotime('+1 DAY', $date1)) <= $date2)
+    $months++;
+//return  $months;
+/*** Week Count For six month Start***/
+              $t=$d2;
+              $e=$d1;
+              //return $t.'--'.$e;
+$beginsix = new \DateTime($t);
+$endsix = new \DateTime($e);
+//return $begin.'--'.$end;
+$intervalsix = new \DateInterval('P1D');
+$daterangesix = new \DatePeriod($beginsix, $intervalsix, $endsix);
+$weekendsix = [];
+
+foreach($daterangesix as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekendsix[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$weeksix= count($weekendsix);
+//return $weeksix;
+/* Teacher Six month calculation start */
+$allteacherworkday=$months-$weeksix;
+$dhakadivision= District::where('division_id','=',3)->orderBy('district','ASC')->get();
+          return view('admin.reports.one_year_teacher_district',[
+                    'dhakadivision'=>$dhakadivision,
+                'allteacherworkday'=>$allteacherworkday,
+                'd1'=>$d1,
+                'd2'=>$d2  
+            ]);
+}
+public function getDhakaOneYearThana($dis){
+          /*** One Year day count Start ***/
+$d1 = date("Y-m-d");
+$d2= date("Y-m-d", strtotime("-12 months"));
+//return $d2.$d1;
+$date1 = strtotime($d2);
+$date2 = strtotime($d1);
+//return $date1.'=='.$date2;
+$months = 0;
+while (($date1 = strtotime('+1 DAY', $date1)) <= $date2)
+    $months++;
+//return  $months;
+/*** Week Count For six month Start***/
+              $t=$d2;
+              $e=$d1;
+              //return $t.'--'.$e;
+$beginsix = new \DateTime($t);
+$endsix = new \DateTime($e);
+//return $begin.'--'.$end;
+$intervalsix = new \DateInterval('P1D');
+$daterangesix = new \DatePeriod($beginsix, $intervalsix, $endsix);
+$weekendsix = [];
+
+foreach($daterangesix as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekendsix[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$weeksix= count($weekendsix);
+//return $weeksix;
+/* Teacher Six month calculation start */
+$allteacherworkday=$months-$weeksix;
+$thana=Thana::where('district_name','=',$dis)->get();
+         return view('admin.reports.one_year_teacher_thana',[
+                    'thana'=>$thana,
+                'allteacherworkday'=>$allteacherworkday,
+                'd1'=>$d1,
+                'd2'=>$d2  
+            ]);
+}
+public function getAllDistrictStudent(){
+       /* Current Month Total Day Count Start */
+$date = new \DateTime("-6");
+$date->modify("-" . ($date->format('j')-1) . " days");
+$month = date('m');
+$year = date("Y");
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+$end_time = strtotime("+1 month", $start_time);
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+   $list[] = date('Y-m-d', $i);
+   $list1[] = date('d D', $i);
+}
+$daycount=count($list);
+
+//return $mo;
+//return count($list);
+/************ Current Month Total Day Count End **************/
+/*********** Current Month Total weekend Count Start ***********/
+              $t=date('Y-m-d', mktime(0, 0, 0, date('m'), 1, date('Y')));
+              $e=date('Y-m-d', mktime(0, 0, 0, date('m')+1, 0, date('Y')));
+              //return $t.'--'.$e;
+$begin = new \DateTime($t);
+$end = new \DateTime($e);
+
+$interval = new \DateInterval('P1D');
+$daterange = new \DatePeriod($begin, $interval, $end);
+$weekends = [];
+
+foreach($daterange as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekends[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$week= count($weekends);
+//return $week;
+//echo 'Number of weeks: ' . count($weekends);
+//echo 'Number of weekend days: ' . (count($weekends, COUNT_RECURSIVE) - count($weekends));
+/************ Current Month Total weekend Count End ****************/
+/************ Current Month Total weekend Count End ****************/
+$workday= $daycount-$week;
+/************ Current Month Teacher Attdence Percentage Start ****************/
+$teacher= Teacher::all()->count();
+$allteacherworkday=$workday*$teacher;
+//return $allteacherworkday;
+$m=date("Y-m");
+$dhakadivision= District::where('division_id','=',3)->orderBy('district','ASC')->get();
+    
+   return view('admin.reports.cmonth_student_district',
+            [  'dhakadivision'=>$dhakadivision,
+                'allteacherworkday'=>$allteacherworkday,
+                'm'=>$m  
+            ]);
+}
+
+public function getStudentCmonthThana($dis){
+               /* Current Month Total Day Count Start */
+$date = new \DateTime("-6");
+$date->modify("-" . ($date->format('j')-1) . " days");
+$month = date('m');
+$year = date("Y");
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+$end_time = strtotime("+1 month", $start_time);
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+   $list[] = date('Y-m-d', $i);
+   $list1[] = date('d D', $i);
+}
+$daycount=count($list);
+
+//return $mo;
+//return count($list);
+/************ Current Month Total Day Count End **************/
+/*********** Current Month Total weekend Count Start ***********/
+              $t=date('Y-m-d', mktime(0, 0, 0, date('m'), 1, date('Y')));
+              $e=date('Y-m-d', mktime(0, 0, 0, date('m')+1, 0, date('Y')));
+              //return $t.'--'.$e;
+$begin = new \DateTime($t);
+$end = new \DateTime($e);
+
+$interval = new \DateInterval('P1D');
+$daterange = new \DatePeriod($begin, $interval, $end);
+$weekends = [];
+
+foreach($daterange as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekends[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$week= count($weekends);
+//return $week;
+//echo 'Number of weeks: ' . count($weekends);
+//echo 'Number of weekend days: ' . (count($weekends, COUNT_RECURSIVE) - count($weekends));
+/************ Current Month Total weekend Count End ****************/
+/************ Current Month Total weekend Count End ****************/
+$workday= $daycount-$week;
+/************ Current Month Teacher Attdence Percentage Start ****************/
+$teacher= Teacher::all()->count();
+$allteacherworkday=$workday*$teacher;
+//return $allteacherworkday;
+$m=date("Y-m");
+$thana=Thana::where('district_name','=',$dis)->get();
+return view('admin.reports.cmonth_teacher_thana',
+    [
+        'thana'=>$thana,
+       'allteacherworkday'=>$allteacherworkday,
+        'm'=>$m  
+    ]);
+}
 }

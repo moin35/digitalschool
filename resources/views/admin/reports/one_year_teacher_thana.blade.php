@@ -1,6 +1,6 @@
 @extends('layouts.submaster')
 @section('title')
-    Current Month All Student Report
+   Teacher Six Month Thana Report
 @stop
 @section('head')
 @stop
@@ -28,7 +28,7 @@ $teac5 = DB::table('tbl_attendence')
             ->where( 'tbl_instituate.division','=',3)
             ->where( 'tbl_instituate.thana','=',$value->thana_or_upazilla)
             ->where( 'tbl_attendence.type','=','Teacher')
-            ->where('tbl_attendence.created_at','LIKE',"%$m%")
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
             ->where( 'tbl_attendence.status','=',0)
             ->count();
             //return $teac1;
@@ -38,7 +38,7 @@ $teac6 = DB::table('tbl_attendence')
             ->where( 'tbl_instituate.division','=',3)
             ->where( 'tbl_instituate.thana','=',$value->thana_or_upazilla)
             ->where( 'tbl_attendence.type','=','Teacher')
-            ->where('tbl_attendence.created_at','LIKE',"%$m%")
+            ->whereBetween('tbl_attendence.created_at',[$d2,$d1])
             ->where( 'tbl_attendence.status','=',1)
             ->count('tbl_attendence.institute_code');
             //print_r($users);

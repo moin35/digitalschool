@@ -43,7 +43,7 @@ $teac6 = DB::table('tbl_attendence')
             //print_r($users);
             $sumteacher= $teac5+$teac6;
             $dhakatotal=(($sumteacher/$allteacherworkday)*100);
-            $link=URL::to('admin/institute/registration')."/".$dis;
+            $link=URL::to('admin/view/dhaka/thana')."/".$dis;
             
             echo "<li class='list-group-item'>"."
             <a href='$link' class='list-group-item list-group-item-success'>"
