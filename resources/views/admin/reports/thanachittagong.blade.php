@@ -18,13 +18,13 @@
   <div class="col-md-8"> 
 <div class="list-group">
 <?php  
-foreach ($thana as $key => $value) {
+foreach ($chittagongthana as $key => $value) {
     $dis=$value->thana_or_upazilla;
     /*********** Dhaka District Percentage Start*******/
 $teac5 = DB::table('tbl_attendence')
             ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
             ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
-            ->where( 'tbl_instituate.division','=',3)
+            ->where( 'tbl_instituate.division','=',2)
             ->where( 'tbl_instituate.thana','=',$value->thana_or_upazilla)
             ->where( 'tbl_attendence.type','=','Teacher')
             ->where('tbl_attendence.created_at','LIKE',"%$m%")
@@ -34,7 +34,7 @@ $teac5 = DB::table('tbl_attendence')
 $teac6 = DB::table('tbl_attendence')
             ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
             ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
-            ->where( 'tbl_instituate.division','=',3)
+            ->where( 'tbl_instituate.division','=',2)
             ->where( 'tbl_instituate.thana','=',$value->thana_or_upazilla)
             ->where( 'tbl_attendence.type','=','Teacher')
             ->where('tbl_attendence.created_at','LIKE',"%$m%")

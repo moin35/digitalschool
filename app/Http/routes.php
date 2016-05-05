@@ -321,9 +321,8 @@ Route::get('add/room/number','HomeController@getRoomNumberView');
 Route::post('add/room/number','HomeController@PostRoomNumberView');
 
 
-//Report For Super Admin Start
+//Report For Super Admin Start 
 Route::get('get/all/bangladesh/report','ReportController@getAllReport');
-
 Route::get('admin/view/current/month/teacher/attdence/data','ReportController@getCurrentMonthWiseTeacher');
 Route::get('admin/view/last/six/month/teacher/attdence/data','ReportController@getLastSixmonthTeacher');
 Route::get('admin/view/last/one/year/month/teacher/attdence/data','ReportController@getLastOneYearTeacher');
@@ -341,3 +340,21 @@ Route::get('admin/view/dhaka/one/year/district','ReportController@getDhakaOneYea
 Route::get('admin/view/dhaka/one/year/thana/{dis}','ReportController@getDhakaOneYearThana');
 Route::get('admin/view/current/month/student/district','ReportController@getAllDistrictStudent');
 Route::get('admin/view/student/thana/{dis}','ReportController@getStudentCmonthThana');
+
+Route::get('admin/view/chittagong/district','ReportController@getChittagongDis');
+Route::get('admin/view/barisal/district','ReportController@getBarisalDis');
+Route::get('admin/view/rajshahi/district','ReportController@getRajshahiDis');
+Route::get('admin/view/sylhet/district','ReportController@getSylhetDis');
+Route::get('admin/view/rangpur/district','ReportController@getRangpurDis');
+Route::get('admin/view/khulna/district','ReportController@getKhulnaDis');
+Route::get('admin/view/mymenshingh/district','ReportController@getMymenshinghDis');
+
+Route::get('admin/view/chittagong/thana/{dis}','ReportController@getChittagongThana');
+Route::get('admin/view/barisal/thana/{dis}','ReportController@getBarisalThana');
+Route::get('admin/view/rajshahi/thana/{dis}','ReportController@getRajshahiThana');
+Route::get('admin/view/sylhet/thana/{dis}','ReportController@getSylhetThana');
+Route::get('admin/view/rangpur/thana/{dis}','ReportController@getRangpurThana');
+Route::get('admin/view/khulna/thana/{dis}','ReportController@getKhulnaThana');
+Route::get('admin/view/mymenshingh/thana/{dis}','ReportController@getMymenshinghThana');
+
+

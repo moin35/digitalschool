@@ -1,6 +1,6 @@
 @extends('layouts.submaster')
 @section('title')
-    Current Month All Student Report
+    Current Month All Teacher Report
 @stop
 @section('head')
 @stop
@@ -18,14 +18,14 @@
   <div class="col-md-8"> 
 <div class="list-group">
 <?php  
-foreach ($thana as $key => $value) {
-    $dis=$value->thana_or_upazilla;
+foreach ($sylhetdivision as $key => $value) {
+    $dis=$value->district;
     /*********** Dhaka District Percentage Start*******/
 $teac5 = DB::table('tbl_attendence')
             ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
             ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code','tbl_attendence.type','tbl_attendence.uid')
-            ->where( 'tbl_instituate.division','=',3)
-            ->where( 'tbl_instituate.thana','=',$value->thana_or_upazilla)
+            ->where( 'tbl_instituate.division','=',7)
+            ->where( 'tbl_instituate.district','=',$value->district)
             ->where( 'tbl_attendence.type','=','Teacher')
             ->where('tbl_attendence.created_at','LIKE',"%$m%")
             ->where( 'tbl_attendence.status','=',0)
@@ -34,27 +34,26 @@ $teac5 = DB::table('tbl_attendence')
 $teac6 = DB::table('tbl_attendence')
             ->Join('tbl_instituate', 'tbl_attendence.institute_code', '=', 'tbl_instituate.institute_code')
             ->select('tbl_instituate.division','tbl_instituate.url','tbl_attendence.status','tbl_attendence.institute_code')
-            ->where( 'tbl_instituate.division','=',3)
-            ->where( 'tbl_instituate.thana','=',$value->thana_or_upazilla)
+            ->where( 'tbl_instituate.division','=',7)
+            ->where( 'tbl_instituate.district','=',$value->district)
             ->where( 'tbl_attendence.type','=','Teacher')
             ->where('tbl_attendence.created_at','LIKE',"%$m%")
             ->where( 'tbl_attendence.status','=',1)
             ->count('tbl_attendence.institute_code');
             //print_r($users);
             $sumteacher= $teac5+$teac6;
-            $dhakatotal=(($sumteacher/$allteacherworkday)*100);
-            $link=URL::to('admin/institute/registration')."/".$dis;
+            $chittagongtotal=(($sumteacher/$allteacherworkday)*100);
+            $link=URL::to('admin/view/sylhet/thana')."/".$dis;
             
             echo "<li class='list-group-item'>"."
             <a href='$link' class='list-group-item list-group-item-success'>"
             .$dis.
             "<span class='label label-default label-pill pull-xs-right' style='float:right;'>"
-            .sprintf("%.2f",$dhakatotal)."%".
+            .sprintf("%.2f",$chittagongtotal)."%".
             "</span>"
             ."</a>"
             ."</li>";
 /*********** Dhaka District Percentage End*******/
- 
 }
 ?>
 </div>

@@ -54,7 +54,6 @@ $teac6 = DB::table('tbl_attendence')
             ."</a>"
             ."</li>";
 /*********** Dhaka District Percentage End*******/
- 
 }
 ?>
 </div>

@@ -1554,4 +1554,660 @@ return view('admin.reports.cmonth_teacher_thana',
         'm'=>$m  
     ]);
 }
+
+public function getChittagongDis(){
+        /* Current Month Total Day Count Start */
+$date = new \DateTime("-6");
+$date->modify("-" . ($date->format('j')-1) . " days");
+$month = date('m');
+$year = date("Y");
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+$end_time = strtotime("+1 month", $start_time);
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+   $list[] = date('Y-m-d', $i);
+   $list1[] = date('d D', $i);
+}
+$daycount=count($list);
+/************ Current Month Total Day Count End **************/
+/*********** Current Month Total weekend Count Start ***********/
+              $t=date('Y-m-d', mktime(0, 0, 0, date('m'), 1, date('Y')));
+              $e=date('Y-m-d', mktime(0, 0, 0, date('m')+1, 0, date('Y')));
+$begin = new \DateTime($t);
+$end = new \DateTime($e);
+$interval = new \DateInterval('P1D');
+$daterange = new \DatePeriod($begin, $interval, $end);
+$weekends = [];
+foreach($daterange as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekends[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$week= count($weekends);
+/************ Current Month Total weekend Count End ****************/
+$workday= $daycount-$week;
+/************ Current Month Teacher Attdence Percentage Start ****************/
+$teacher= Teacher::all()->count();
+$allteacherworkday=$workday*$teacher;
+$m=date("Y-m");
+  $chittagongdivision= District::where('division_id','=',2)->orderBy('district','ASC')->get(); 
+   return view('admin.reports.dischittagong',
+            [  'chittagongdivision'=>$chittagongdivision,
+                'allteacherworkday'=>$allteacherworkday,
+                'm'=>$m  
+            ]);
+}
+
+public function getBarisalDis(){
+        /* Current Month Total Day Count Start */
+$date = new \DateTime("-6");
+$date->modify("-" . ($date->format('j')-1) . " days");
+$month = date('m');
+$year = date("Y");
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+$end_time = strtotime("+1 month", $start_time);
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+   $list[] = date('Y-m-d', $i);
+   $list1[] = date('d D', $i);
+}
+$daycount=count($list);
+//return count($list);
+/************ Current Month Total Day Count End **************/
+/*********** Current Month Total weekend Count Start ***********/
+              $t=date('Y-m-d', mktime(0, 0, 0, date('m'), 1, date('Y')));
+              $e=date('Y-m-d', mktime(0, 0, 0, date('m')+1, 0, date('Y')));
+$begin = new \DateTime($t);
+$end = new \DateTime($e);
+$interval = new \DateInterval('P1D');
+$daterange = new \DatePeriod($begin, $interval, $end);
+$weekends = [];
+foreach($daterange as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekends[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$week= count($weekends);
+/************ Current Month Total weekend Count End ****************/
+$workday= $daycount-$week;
+/************ Current Month Teacher Attdence Percentage Start ****************/
+$teacher= Teacher::all()->count();
+$allteacherworkday=$workday*$teacher;
+//return $allteacherworkday;
+$m=date("Y-m");
+  $barisaldivision= District::where('division_id','=',1)->orderBy('district','ASC')->get(); 
+   return view('admin.reports.disbarisal',
+            [  'barisaldivision'=>$barisaldivision,
+                'allteacherworkday'=>$allteacherworkday,
+                'm'=>$m  
+            ]);
+}
+
+
+public function getRajshahiDis(){
+        /* Current Month Total Day Count Start */
+$date = new \DateTime("-6");
+$date->modify("-" . ($date->format('j')-1) . " days");
+$month = date('m');
+$year = date("Y");
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+$end_time = strtotime("+1 month", $start_time);
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+   $list[] = date('Y-m-d', $i);
+   $list1[] = date('d D', $i);
+}
+$daycount=count($list);
+/************ Current Month Total Day Count End **************/
+/*********** Current Month Total weekend Count Start ***********/
+              $t=date('Y-m-d', mktime(0, 0, 0, date('m'), 1, date('Y')));
+              $e=date('Y-m-d', mktime(0, 0, 0, date('m')+1, 0, date('Y')));
+$begin = new \DateTime($t);
+$end = new \DateTime($e);
+$interval = new \DateInterval('P1D');
+$daterange = new \DatePeriod($begin, $interval, $end);
+$weekends = [];
+foreach($daterange as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekends[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$week= count($weekends);
+/************ Current Month Total weekend Count End ****************/
+$workday= $daycount-$week;
+/************ Current Month Teacher Attdence Percentage Start ****************/
+$teacher= Teacher::all()->count();
+$allteacherworkday=$workday*$teacher;
+//return $allteacherworkday;
+$m=date("Y-m");
+  $rajshahidivision= District::where('division_id','=',5)->orderBy('district','ASC')->get(); 
+   return view('admin.reports.disrajshahi',
+            [  'rajshahidivision'=>$rajshahidivision,
+                'allteacherworkday'=>$allteacherworkday,
+                'm'=>$m  
+            ]);
+}
+
+
+public function getSylhetDis(){
+        /* Current Month Total Day Count Start */
+$date = new \DateTime("-6");
+$date->modify("-" . ($date->format('j')-1) . " days");
+$month = date('m');
+$year = date("Y");
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+$end_time = strtotime("+1 month", $start_time);
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+   $list[] = date('Y-m-d', $i);
+   $list1[] = date('d D', $i);
+}
+$daycount=count($list);
+/************ Current Month Total Day Count End **************/
+/*********** Current Month Total weekend Count Start ***********/
+              $t=date('Y-m-d', mktime(0, 0, 0, date('m'), 1, date('Y')));
+              $e=date('Y-m-d', mktime(0, 0, 0, date('m')+1, 0, date('Y')));
+$begin = new \DateTime($t);
+$end = new \DateTime($e);
+$interval = new \DateInterval('P1D');
+$daterange = new \DatePeriod($begin, $interval, $end);
+$weekends = [];
+foreach($daterange as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekends[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$week= count($weekends);
+/************ Current Month Total weekend Count End ****************/
+$workday= $daycount-$week;
+/************ Current Month Teacher Attdence Percentage Start ****************/
+$teacher= Teacher::all()->count();
+$allteacherworkday=$workday*$teacher;
+//return $allteacherworkday;
+$m=date("Y-m");
+  $sylhetdivision= District::where('division_id','=',7)->orderBy('district','ASC')->get(); 
+   return view('admin.reports.dissylhet',
+            [  'sylhetdivision'=>$sylhetdivision,
+                'allteacherworkday'=>$allteacherworkday,
+                'm'=>$m  
+            ]);
+}
+
+
+
+public function getRangpurDis(){
+        /* Current Month Total Day Count Start */
+$date = new \DateTime("-6");
+$date->modify("-" . ($date->format('j')-1) . " days");
+$month = date('m');
+$year = date("Y");
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+$end_time = strtotime("+1 month", $start_time);
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+   $list[] = date('Y-m-d', $i);
+   $list1[] = date('d D', $i);
+}
+$daycount=count($list);
+/************ Current Month Total Day Count End **************/
+/*********** Current Month Total weekend Count Start ***********/
+              $t=date('Y-m-d', mktime(0, 0, 0, date('m'), 1, date('Y')));
+              $e=date('Y-m-d', mktime(0, 0, 0, date('m')+1, 0, date('Y')));
+$begin = new \DateTime($t);
+$end = new \DateTime($e);
+$interval = new \DateInterval('P1D');
+$daterange = new \DatePeriod($begin, $interval, $end);
+$weekends = [];
+foreach($daterange as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekends[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$week= count($weekends);
+/************ Current Month Total weekend Count End ****************/
+$workday= $daycount-$week;
+/************ Current Month Teacher Attdence Percentage Start ****************/
+$teacher= Teacher::all()->count();
+$allteacherworkday=$workday*$teacher;
+//return $allteacherworkday;
+$m=date("Y-m");
+  $rangpurdivision= District::where('division_id','=',6)->orderBy('district','ASC')->get(); 
+   return view('admin.reports.disrangpur',
+            [  'rangpurdivision'=>$rangpurdivisionrangpurdivision,
+                'allteacherworkday'=>$allteacherworkday,
+                'm'=>$m  
+            ]);
+}
+
+public function getKhulnaDis(){
+        /* Current Month Total Day Count Start */
+$date = new \DateTime("-6");
+$date->modify("-" . ($date->format('j')-1) . " days");
+$month = date('m');
+$year = date("Y");
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+$end_time = strtotime("+1 month", $start_time);
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+   $list[] = date('Y-m-d', $i);
+   $list1[] = date('d D', $i);
+}
+$daycount=count($list);
+/************ Current Month Total Day Count End **************/
+/*********** Current Month Total weekend Count Start ***********/
+              $t=date('Y-m-d', mktime(0, 0, 0, date('m'), 1, date('Y')));
+              $e=date('Y-m-d', mktime(0, 0, 0, date('m')+1, 0, date('Y')));
+$begin = new \DateTime($t);
+$end = new \DateTime($e);
+$interval = new \DateInterval('P1D');
+$daterange = new \DatePeriod($begin, $interval, $end);
+$weekends = [];
+foreach($daterange as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekends[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$week= count($weekends);
+/************ Current Month Total weekend Count End ****************/
+$workday= $daycount-$week;
+/************ Current Month Teacher Attdence Percentage Start ****************/
+$teacher= Teacher::all()->count();
+$allteacherworkday=$workday*$teacher;
+//return $allteacherworkday;
+$m=date("Y-m");
+  $khulnadivision= District::where('division_id','=',4)->orderBy('district','ASC')->get(); 
+   return view('admin.reports.diskhulna',
+            [  'khulnadivision'=>$khulnadivision,
+                'allteacherworkday'=>$allteacherworkday,
+                'm'=>$m  
+            ]);
+}
+
+public function getMymenshinghDis(){
+        /* Current Month Total Day Count Start */
+$date = new \DateTime("-6");
+$date->modify("-" . ($date->format('j')-1) . " days");
+$month = date('m');
+$year = date("Y");
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+$end_time = strtotime("+1 month", $start_time);
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+   $list[] = date('Y-m-d', $i);
+   $list1[] = date('d D', $i);
+}
+$daycount=count($list);
+//return count($list);
+/************ Current Month Total Day Count End **************/
+/*********** Current Month Total weekend Count Start ***********/
+              $t=date('Y-m-d', mktime(0, 0, 0, date('m'), 1, date('Y')));
+              $e=date('Y-m-d', mktime(0, 0, 0, date('m')+1, 0, date('Y')));
+$begin = new \DateTime($t);
+$end = new \DateTime($e);
+$interval = new \DateInterval('P1D');
+$daterange = new \DatePeriod($begin, $interval, $end);
+$weekends = [];
+foreach($daterange as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekends[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$week= count($weekends);
+/************ Current Month Total weekend Count End ****************/
+$workday= $daycount-$week;
+/************ Current Month Teacher Attdence Percentage Start ****************/
+$teacher= Teacher::all()->count();
+$allteacherworkday=$workday*$teacher;
+//return $allteacherworkday;
+$m=date("Y-m");
+  $mymenshinghdivision= District::where('division_id','=',8)->orderBy('district','ASC')->get(); 
+   return view('admin.reports.dismymenshingh',
+            [  'mymenshinghdivision'=>$mymenshinghdivision,
+                'allteacherworkday'=>$allteacherworkday,
+                'm'=>$m  
+            ]);
+}
+
+    public function getChittagongThana($dis){
+        /* Current Month Total Day Count Start */
+$date = new \DateTime("-6");
+$date->modify("-" . ($date->format('j')-1) . " days");
+$month = date('m');
+$year = date("Y");
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+$end_time = strtotime("+1 month", $start_time);
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+   $list[] = date('Y-m-d', $i);
+   $list1[] = date('d D', $i);
+}
+$daycount=count($list);
+/************ Current Month Total Day Count End **************/
+/*********** Current Month Total weekend Count Start ***********/
+              $t=date('Y-m-d', mktime(0, 0, 0, date('m'), 1, date('Y')));
+              $e=date('Y-m-d', mktime(0, 0, 0, date('m')+1, 0, date('Y')));
+              //return $t.'--'.$e;
+$begin = new \DateTime($t);
+$end = new \DateTime($e);
+
+$interval = new \DateInterval('P1D');
+$daterange = new \DatePeriod($begin, $interval, $end);
+$weekends = [];
+
+foreach($daterange as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekends[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$week= count($weekends);
+/************ Current Month Total weekend Count End ****************/
+$workday= $daycount-$week;
+/************ Current Month Teacher Attdence Percentage Start ****************/
+$teacher= Teacher::all()->count();
+$allteacherworkday=$workday*$teacher;
+$m=date("Y-m");
+$chittagongthana=Thana::where('district_name','=',$dis)->get();
+return view('admin.reports.thanachittagong',
+    [
+        'chittagongthana'=>$chittagongthana,
+       'allteacherworkday'=>$allteacherworkday,
+        'm'=>$m  
+    ]);
+}
+
+    public function getBarisalThana($dis){
+        /* Current Month Total Day Count Start */
+$date = new \DateTime("-6");
+$date->modify("-" . ($date->format('j')-1) . " days");
+$month = date('m');
+$year = date("Y");
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+$end_time = strtotime("+1 month", $start_time);
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+   $list[] = date('Y-m-d', $i);
+   $list1[] = date('d D', $i);
+}
+$daycount=count($list);
+/************ Current Month Total Day Count End **************/
+/*********** Current Month Total weekend Count Start ***********/
+              $t=date('Y-m-d', mktime(0, 0, 0, date('m'), 1, date('Y')));
+              $e=date('Y-m-d', mktime(0, 0, 0, date('m')+1, 0, date('Y')));
+              //return $t.'--'.$e;
+$begin = new \DateTime($t);
+$end = new \DateTime($e);
+
+$interval = new \DateInterval('P1D');
+$daterange = new \DatePeriod($begin, $interval, $end);
+$weekends = [];
+
+foreach($daterange as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekends[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$week= count($weekends);
+/************ Current Month Total weekend Count End ****************/
+$workday= $daycount-$week;
+/************ Current Month Teacher Attdence Percentage Start ****************/
+$teacher= Teacher::all()->count();
+$allteacherworkday=$workday*$teacher;
+$m=date("Y-m");
+$barisalthana=Thana::where('district_name','=',$dis)->get();
+return view('admin.reports.thanabarisal',
+    [
+        'barisalthana'=>$barisalthana,
+       'allteacherworkday'=>$allteacherworkday,
+        'm'=>$m  
+    ]);
+}
+    public function getRajshahiThana($dis){
+        /* Current Month Total Day Count Start */
+$date = new \DateTime("-6");
+$date->modify("-" . ($date->format('j')-1) . " days");
+$month = date('m');
+$year = date("Y");
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+$end_time = strtotime("+1 month", $start_time);
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+   $list[] = date('Y-m-d', $i);
+   $list1[] = date('d D', $i);
+}
+$daycount=count($list);
+/************ Current Month Total Day Count End **************/
+/*********** Current Month Total weekend Count Start ***********/
+              $t=date('Y-m-d', mktime(0, 0, 0, date('m'), 1, date('Y')));
+              $e=date('Y-m-d', mktime(0, 0, 0, date('m')+1, 0, date('Y')));
+              //return $t.'--'.$e;
+$begin = new \DateTime($t);
+$end = new \DateTime($e);
+
+$interval = new \DateInterval('P1D');
+$daterange = new \DatePeriod($begin, $interval, $end);
+$weekends = [];
+
+foreach($daterange as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekends[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$week= count($weekends);
+/************ Current Month Total weekend Count End ****************/
+$workday= $daycount-$week;
+/************ Current Month Teacher Attdence Percentage Start ****************/
+$teacher= Teacher::all()->count();
+$allteacherworkday=$workday*$teacher;
+$m=date("Y-m");
+$rajshahithana=Thana::where('district_name','=',$dis)->get();
+return view('admin.reports.thanarajshahi',
+    [
+        'rajshahithana'=>$rajshahithana,
+       'allteacherworkday'=>$allteacherworkday,
+        'm'=>$m  
+    ]);
+}
+    public function getSylhetThana($dis){
+        /* Current Month Total Day Count Start */
+$date = new \DateTime("-6");
+$date->modify("-" . ($date->format('j')-1) . " days");
+$month = date('m');
+$year = date("Y");
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+$end_time = strtotime("+1 month", $start_time);
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+   $list[] = date('Y-m-d', $i);
+   $list1[] = date('d D', $i);
+}
+$daycount=count($list);
+/************ Current Month Total Day Count End **************/
+/*********** Current Month Total weekend Count Start ***********/
+              $t=date('Y-m-d', mktime(0, 0, 0, date('m'), 1, date('Y')));
+              $e=date('Y-m-d', mktime(0, 0, 0, date('m')+1, 0, date('Y')));
+              //return $t.'--'.$e;
+$begin = new \DateTime($t);
+$end = new \DateTime($e);
+
+$interval = new \DateInterval('P1D');
+$daterange = new \DatePeriod($begin, $interval, $end);
+$weekends = [];
+
+foreach($daterange as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekends[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$week= count($weekends);
+/************ Current Month Total weekend Count End ****************/
+$workday= $daycount-$week;
+/************ Current Month Teacher Attdence Percentage Start ****************/
+$teacher= Teacher::all()->count();
+$allteacherworkday=$workday*$teacher;
+$m=date("Y-m");
+$sylhethana=Thana::where('district_name','=',$dis)->get();
+return view('admin.reports.thanasylhet',
+    [
+        'sylhethana'=>$sylhethana,
+       'allteacherworkday'=>$allteacherworkday,
+        'm'=>$m  
+    ]);
+}
+    public function getRangpurThana($dis){
+        /* Current Month Total Day Count Start */
+$date = new \DateTime("-6");
+$date->modify("-" . ($date->format('j')-1) . " days");
+$month = date('m');
+$year = date("Y");
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+$end_time = strtotime("+1 month", $start_time);
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+   $list[] = date('Y-m-d', $i);
+   $list1[] = date('d D', $i);
+}
+$daycount=count($list);
+/************ Current Month Total Day Count End **************/
+/*********** Current Month Total weekend Count Start ***********/
+              $t=date('Y-m-d', mktime(0, 0, 0, date('m'), 1, date('Y')));
+              $e=date('Y-m-d', mktime(0, 0, 0, date('m')+1, 0, date('Y')));
+              //return $t.'--'.$e;
+$begin = new \DateTime($t);
+$end = new \DateTime($e);
+
+$interval = new \DateInterval('P1D');
+$daterange = new \DatePeriod($begin, $interval, $end);
+$weekends = [];
+
+foreach($daterange as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekends[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$week= count($weekends);
+/************ Current Month Total weekend Count End ****************/
+$workday= $daycount-$week;
+/************ Current Month Teacher Attdence Percentage Start ****************/
+$teacher= Teacher::all()->count();
+$allteacherworkday=$workday*$teacher;
+$m=date("Y-m");
+$rangpurthana=Thana::where('district_name','=',$dis)->get();
+return view('admin.reports.thanarangpur',
+    [
+        'rangpurthana'=>$rangpurthana,
+       'allteacherworkday'=>$allteacherworkday,
+        'm'=>$m  
+    ]);
+}
+    public function getKhulnaThana($dis){
+        /* Current Month Total Day Count Start */
+$date = new \DateTime("-6");
+$date->modify("-" . ($date->format('j')-1) . " days");
+$month = date('m');
+$year = date("Y");
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+$end_time = strtotime("+1 month", $start_time);
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+   $list[] = date('Y-m-d', $i);
+   $list1[] = date('d D', $i);
+}
+$daycount=count($list);
+/************ Current Month Total Day Count End **************/
+/*********** Current Month Total weekend Count Start ***********/
+              $t=date('Y-m-d', mktime(0, 0, 0, date('m'), 1, date('Y')));
+              $e=date('Y-m-d', mktime(0, 0, 0, date('m')+1, 0, date('Y')));
+              //return $t.'--'.$e;
+$begin = new \DateTime($t);
+$end = new \DateTime($e);
+
+$interval = new \DateInterval('P1D');
+$daterange = new \DatePeriod($begin, $interval, $end);
+$weekends = [];
+
+foreach($daterange as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekends[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$week= count($weekends);
+/************ Current Month Total weekend Count End ****************/
+$workday= $daycount-$week;
+/************ Current Month Teacher Attdence Percentage Start ****************/
+$teacher= Teacher::all()->count();
+$allteacherworkday=$workday*$teacher;
+$m=date("Y-m");
+$khulnathana=Thana::where('district_name','=',$dis)->get();
+return view('admin.reports.thanakhulna',
+    [
+        'khulnathana'=>$khulnathana,
+       'allteacherworkday'=>$allteacherworkday,
+        'm'=>$m  
+    ]);
+}
+    public function getMymenshinghThana($dis){
+        /* Current Month Total Day Count Start */
+$date = new \DateTime("-6");
+$date->modify("-" . ($date->format('j')-1) . " days");
+$month = date('m');
+$year = date("Y");
+$start_date = "01-".$month."-".$year;
+$start_time = strtotime($start_date);
+$end_time = strtotime("+1 month", $start_time);
+for($i=$start_time; $i<$end_time; $i+=86400)
+{
+   $list[] = date('Y-m-d', $i);
+   $list1[] = date('d D', $i);
+}
+$daycount=count($list);
+/************ Current Month Total Day Count End **************/
+/*********** Current Month Total weekend Count Start ***********/
+              $t=date('Y-m-d', mktime(0, 0, 0, date('m'), 1, date('Y')));
+              $e=date('Y-m-d', mktime(0, 0, 0, date('m')+1, 0, date('Y')));
+              //return $t.'--'.$e;
+$begin = new \DateTime($t);
+$end = new \DateTime($e);
+
+$interval = new \DateInterval('P1D');
+$daterange = new \DatePeriod($begin, $interval, $end);
+$weekends = [];
+
+foreach($daterange as $date) {
+    if (in_array($date->format('N'), [5])) {
+        $weekends[$date->format('W')][] = $date->format('Y-m-d');
+    }
+}
+$week= count($weekends);
+/************ Current Month Total weekend Count End ****************/
+$workday= $daycount-$week;
+/************ Current Month Teacher Attdence Percentage Start ****************/
+$teacher= Teacher::all()->count();
+$allteacherworkday=$workday*$teacher;
+$m=date("Y-m");
+$mymenshinghthana=Thana::where('district_name','=',$dis)->get();
+return view('admin.reports.thanamymenshingh',
+    [
+        'mymenshinghthana'=>$mymenshinghthana,
+       'allteacherworkday'=>$allteacherworkday,
+        'm'=>$m  
+    ]);
+}
+
+
+
+
+
 }

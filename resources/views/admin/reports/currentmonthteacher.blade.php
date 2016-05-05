@@ -24,7 +24,7 @@
         </div>
     </div>
     </a>
-    <a href="">
+    <a href="{{URL::to('admin/view/chittagong/district')}}">
             <div class="col-md-6">
         <div class="mini-stat clearfix">
         <h4 align="center">Chittagong</h4>
@@ -36,7 +36,7 @@
         </div>
     </div>
     </a>
-    <a href="">
+    <a href="{{URL::to('admin/view/barisal/district')}}">
             <div class="col-md-6">
         <div class="mini-stat clearfix">
         <h4 align="center">Barisal</h4>
@@ -48,7 +48,7 @@
         </div>
     </div>
     </a>
-        <a href="">
+        <a href="{{URL::to('admin/view/rajshahi/district')}}">
         <div class="col-md-6">
         <div class="mini-stat clearfix">
         <h4 align="center">Rajshahi</h4>
@@ -60,7 +60,7 @@
         </div>
     </div>
     </a>
-            <a href="">
+            <a href="{{URL::to('admin/view/sylhet/district')}}">
         <div class="col-md-6">
         <div class="mini-stat clearfix">
         <h4 align="center">Sylhet </h4>
@@ -72,7 +72,7 @@
         </div>
     </div>
     </a>
-            <a href="">
+            <a href="{{URL::to('admin/view/rangpur/district')}}">
         <div class="col-md-6">
         <div class="mini-stat clearfix">
         <h4 align="center">Rangpur</h4>
@@ -84,7 +84,7 @@
         </div>
     </div>
     </a>
-            <a href="">
+            <a href="{{URL::to('admin/view/khulna/district')}}">
         <div class="col-md-6">
         <div class="mini-stat clearfix">
         <h4 align="center">Khulna </h4>
@@ -96,7 +96,7 @@
         </div>
     </div>
     </a>
-                <a href="">
+                <a href="{{URL::to('admin/view/mymenshingh/district')}}">
         <div class="col-md-6">
         <div class="mini-stat clearfix">
         <h4 align="center">MYMENSINGH </h4>
