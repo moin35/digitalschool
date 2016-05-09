@@ -930,12 +930,19 @@ $m=date("Y-m");
             return Redirect::to('admin/add/parents');
         }
     }
-    public function getAddTeacher() {
+    public function getTeacherAddview() {
         //Moin
         //Teacher Registration get Function For Admin
         $teacherinfo = Teacher::where('institute_code','=',Auth::user()->institute_id)->get();
         //return $teacherinfo;
         return view('teacher.reg_teacher')->with('teacher', $teacherinfo);
+    }
+    public function getAddTeacher() {
+        //Moin
+        //Teacher Registration get Function For Admin
+        $teacherinfo = Teacher::where('institute_code','=',Auth::user()->institute_id)->get();
+        //return $teacherinfo;
+        return view('teacher.teacherform')->with('teacher', $teacherinfo);
     }
     public function postAddTeacher() {
         //Moin
