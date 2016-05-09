@@ -54,6 +54,7 @@ Route::get('admin/add/parents','HomeController@getAddParents');
 Route::post('admin/add/parents','HomeController@postAddParents');
 
 //Add Teacher
+Route::get('admin/teacher/add/view','HomeController@getTeacherAddview');
 Route::get('admin/add/teacher','HomeController@getAddTeacher');
 Route::post('admin/add/teacher','HomeController@postAddTeacher');
 // Authentication routes...

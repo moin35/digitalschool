@@ -333,7 +333,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="{{URL::to('admin/add/teacher')}}">
+                        <a href="{{URL::to('admin/teacher/add/view')}}">
                             <i class="fa fa-group"></i>
                             <span>{{Lang::get('home.teacher')}} </span>
                         </a>
@@ -1693,7 +1693,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="{{URL::to('admin/add/teacher')}}">
+                        <a href="{{URL::to('admin/teacher/add/view')}}">
                             <i class="fa fa-group"></i>
                             <span>{{Lang::get('home.teacher')}} </span>
                         </a>
