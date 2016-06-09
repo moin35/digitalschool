@@ -1068,11 +1068,19 @@ $m=date("Y-m");
         $teacher_name = Teacher::where('teacher_id', '=', $teacher)->pluck('name');
         $class_name = ClassAdd::where('class_id', '=', $class)->pluck('class_name');
         $iid = User::where('uid', '=', Auth::user()->uid)->pluck('institute_id');
+        $subcode=Input::get('subcode');
+        $getSubCode=Subject::where('class_id','=',$class)->where('institute_code','=',$iid)->where('subject_code','=',$subcode)->count('subject_code');
+        //return $getSubCode;
+        if ($getSubCode!=0) {
+          Session::flash('data', 'Subject Code Already Used Try another !');
+        return Redirect::to('admin/add/subject');
+        }
+        else{
         //return $iid;
         $subnote = new Subject;
         $subnote->institute_code = $iid;
         $subnote->subject_name = Input::get('subname');
-        $subnote->subject_code = Input::get('subcode');
+        $subnote->subject_code = $subcode;
         $subnote->class_id = Input::get('subclass');
         $subnote->class_name = $class_name;
         $subnote->teacher_id = Input::get('subteacher');
@@ -1081,6 +1089,14 @@ $m=date("Y-m");
         $subnote->note = Input::get('subnote');
         $subnote->save();
         Session::flash('data', 'Data successfully added !');
+        return Redirect::to('admin/add/subject');
+        }
+    }
+    public function deleteSubject($sid){
+       $iid = User::where('uid', '=', Auth::user()->uid)->pluck('institute_id');
+      
+       $infoDelete = Subject::where('institute_code', '=', $iid)->where('subject_code','=',$sid)->delete();
+        Session::flash('data', 'Subject deleted successfully !');
         return Redirect::to('admin/add/subject');
     }
     public function viewDetailsInstitute(){

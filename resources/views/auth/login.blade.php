@@ -33,10 +33,10 @@
 <body class="login-body">
 
 <div class="container">
-
+<h1></h1>
     <form class="form-signin" method="POST" action="/auth/login">
         {!! csrf_field() !!}
-        <h2 class="form-signin-heading">sign in now</h2>
+        <h2 class="form-signin-heading">Bangobandhu Digital School</h2>
         <div class="login-wrap">
             <div class="user-login-info">
                 <input class="form-control" placeholder="User ID" type="email" name="email" value="{{ old('email') }}" autofocus>
@@ -51,12 +51,7 @@
             </label>
             <button class="btn btn-lg btn-login btn-block" type="submit">Sign in</button>
 
-            <div class="registration">
-                Don't have an account yet?
-                <a class="" href="registration.html">
-                    Create an account
-                </a>
-            </div>
+         
 
         </div>
 

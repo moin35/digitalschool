@@ -153,7 +153,7 @@
                     <div class="col-sm-12">
                         <section class="panel">
                             <header class="panel-heading">
-                                ALL Class Information
+                                ALL Subject Information
                         <span class="tools pull-right">
                             <a href="javascript:;" class="fa-sort-desc"></a>
                             <a href="javascript:;" class="fa fa-cog"></a>
@@ -204,7 +204,7 @@
                                                           @if(Auth::user()->basicinfo==1)
                                                 <td>
                                                     <a class="btn btn-round btn-warning tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Edit"  href="{{URL::to('/')}}/admin/edit/subject/{{$c->subject_code}}"><i class="fa fa-edit"></i> </a>
-                                                    <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/institute/delete/" ><i class="fa  fa-trash-o"></i></a>
+                                                    <a class="btn btn-round btn-danger tooltips" title="" data-placement="top" data-toggle="tooltip"   data-original-title="Delete" href="{{URL::to('/')}}/admin/delete/subject/{{$c->subject_code}}" ><i class="fa  fa-trash-o"></i></a>
 
                                                 </td>
                                                 @endif

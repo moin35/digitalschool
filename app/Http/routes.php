@@ -64,7 +64,7 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 //Add Subject
 Route::get('admin/add/subject','HomeController@getAddSubject');
 Route::post('admin/add/subject','HomeController@postAddSubject');
-
+Route::get('admin/delete/subject/{sid}','HomeController@deleteSubject');
 // Registration routes...
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');

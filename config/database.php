@@ -77,10 +77,10 @@ return [
         'sqlsrv' => [
 
             'driver'   => 'sqlsrv',
-            'host'     => '103.10.54.99',
+            'host'     => '',
             'database' => 'Digital_School',
-            'username' => 'sa',
-            'password' => 'Qwert3201',
+            'username' => '',
+            'password' => '',
             'charset'  => 'utf8',
             'prefix'   => '',
 
